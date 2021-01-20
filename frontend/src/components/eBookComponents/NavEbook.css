@@ -1,0 +1,16 @@
+.dropdown:hover > .dropdown-menu {
+  display: block;
+}
+
+.dropdown > .dropdown-toggle:active {
+  /*Without this, clicking will make it sticky*/
+  pointer-events: none;
+}
+
+.dropdown-menu > a {
+  font-size: 17px;
+  padding: 5px 0;
+}
+.dropdown-menu > a:hover {
+  background-color: rgb(143, 248, 252);
+}

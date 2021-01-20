@@ -1,0 +1,15 @@
+.courseList {
+  transition: all 0.7s;
+  font-size: large;
+}
+
+.courseList:hover {
+  cursor: pointer;
+  background-color: rgb(143, 248, 252);
+  font-size: 150%;
+  font-weight: bold;
+  color: rgb(83, 5, 5);
+}
+a {
+  text-decoration: none !important;
+}
