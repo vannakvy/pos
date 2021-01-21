@@ -17,7 +17,7 @@ import {
  courseDetailsReducer,
  courseListReducer,
  courseUpdateReducer,
-} from './reducers/courseReducers';
+} from './reducers/eLearningReducers/courseReducers';
 import {
  sectionCreateReducer,
  sectionDeleteReducer,
@@ -26,8 +26,8 @@ import {
  videoCreateReducer,
  videoDeleteReducer,
  videoUpdateReducer,
-} from './reducers/sectionReducers.js';
-import { courseEnrollReducer } from './reducers/enrollReducers.js';
+} from './reducers/eLearningReducers/sectionReducers';
+import { courseEnrollReducer } from './reducers/eLearningReducers/enrollReducers';
 
 import {
  getContentReducer,

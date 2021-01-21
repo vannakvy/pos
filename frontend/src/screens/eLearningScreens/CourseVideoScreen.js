@@ -3,6 +3,8 @@ import ReactPlayer from 'react-player/lazy';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getCourseEnroll } from '../../actions/eLearningActions/enrollActions';
+import Loader from '../../components/Loader';
+import Message from '../../components/Message';
 import { COUSRE_ENROLL_RESET } from '../../constants/enrollConstants';
 
 const CourseVideoScreen = () => {
@@ -11,9 +13,7 @@ const CourseVideoScreen = () => {
  const dispatch = useDispatch();
 
  const enrollCourse = useSelector((state) => state.enroll);
- const { enroll } = enrollCourse;
-
- console.log(enroll);
+ const { loading: loadingEnroll, error: errorEnroll, enroll } = enrollCourse;
 
  useEffect(() => {
   dispatch({ type: COUSRE_ENROLL_RESET });
@@ -23,24 +23,34 @@ const CourseVideoScreen = () => {
  return (
   <>
    <div className="container-fluid mt-2">
-    {enroll === null || enroll === undefined ? (
-     <>
-      <h3 className="text-center">You're not own this course</h3>
-     </>
+    {loadingEnroll ? (
+     <div className="py-5">
+      <Loader wd={180} hg={180} />
+     </div>
+    ) : errorEnroll ? (
+     <Message variant="danger">{errorEnroll}</Message>
     ) : (
      <>
-      <div className="row">
-       <div className="col-lg-9">
-        <ReactPlayer
-         width="100%"
-         height="800px"
-         url="https://www.youtube.com/embed/TVkgz1A07n0"
-         controls
-         playing={true}
-        />
-       </div>
-       <div className="col-lg-3"></div>
-      </div>
+      {enroll === null || enroll === undefined ? (
+       <>
+        <h3 className="text-center">You're not own this course</h3>
+       </>
+      ) : (
+       <>
+        <div className="row">
+         <div className="col-lg-9">
+          <ReactPlayer
+           width="100%"
+           height="800px"
+           url="https://www.youtube.com/embed/TVkgz1A07n0"
+           controls
+           playing={true}
+          />
+         </div>
+         <div className="col-lg-3"></div>
+        </div>
+       </>
+      )}
      </>
     )}
    </div>

@@ -17,7 +17,7 @@ import {
  COURSE_DETAILS_REQUEST,
  COURSE_DETAILS_SUCCESS,
  COURSE_DETAILS_FAIL,
-} from '../constants/courseConstants';
+} from '../../constants/courseConstants';
 
 export const courseListReducer = (state = { courses: [] }, action) => {
  switch (action.type) {

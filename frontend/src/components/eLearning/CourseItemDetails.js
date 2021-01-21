@@ -54,9 +54,6 @@ const CourseItemDetails = (props) => {
    <CardContent>
     <div style={{ minHeight: '160px' }}>
      <h5>{course.name}</h5>
-     <h6>
-      Course Level: <span className="text-info">Level 4</span>
-     </h6>
      <small className="text-info">{course.courseType}</small>
 
      {loadingEnroll ? (
@@ -66,7 +63,7 @@ const CourseItemDetails = (props) => {
       >
        <span className="d-flex">
         <Loader wd={23} hg={23} color={'text-dark'} mg={`0`} />
-        <span className="ml-2">Loading...</span>
+        <span className="ml-3">Loading...</span>
        </span>
       </button>
      ) : (

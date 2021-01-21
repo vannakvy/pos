@@ -90,7 +90,7 @@ const CourseDetailsScreen = ({ match }) => {
      <div className="container py-2">
       <div className="col-lg-8">
        <h5>Course Content</h5>
-       <CourseContent sections={course.section} />
+       <CourseContent sections={course.section} cid={course._id} />
       </div>
      </div>
     </>

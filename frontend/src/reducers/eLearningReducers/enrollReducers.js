@@ -3,7 +3,7 @@ import {
  COUSRE_ENROLL_REQUEST,
  COUSRE_ENROLL_RESET,
  COUSRE_ENROLL_SUCCESS,
-} from '../constants/enrollConstants';
+} from '../../constants/enrollConstants';
 
 export const courseEnrollReducer = (state = { enroll: null }, action) => {
  switch (action.type) {

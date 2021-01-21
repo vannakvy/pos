@@ -1,6 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-const CourseContent = ({ sections }) => {
+const CourseContent = ({ sections, cid }) => {
  let i = 0;
  return (
   <>
@@ -29,16 +30,25 @@ const CourseContent = ({ sections }) => {
         aria-labelledby={`heading${section._id}`}
         data-parent="#Example"
        >
-        <div className="card-body">
-         Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
-         terry richardson ad squid. 3 wolf moon officia aute, non cupidatat
-         skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
-         Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid
-         single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh
-         helvetica, craft beer labore wes anderson cred nesciunt sapiente ea
-         proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft
-         beer farm-to-table, raw denim aesthetic synth nesciunt you probably
-         haven't heard of them accusamus labore sustainable VHS.
+        <div className="card-body p-0">
+         {section.videos &&
+          section.videos.map((video) => (
+           <Link to={`/courses/${cid}/videos/${video._id}`}>
+            <div
+             style={{ padding: '10px 0 5px 0' }}
+             className="px-4 adminHover"
+             key={video._id}
+            >
+             <h6>
+              <i
+               className="fas fa-play-circle mr-4"
+               style={{ fontSize: '12px' }}
+              ></i>
+              {video.name}
+             </h6>
+            </div>
+           </Link>
+          ))}
         </div>
        </div>
       </div>
