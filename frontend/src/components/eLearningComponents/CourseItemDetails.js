@@ -6,7 +6,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
-import Progress from '../Progress';
+import Progress from './Progress';
 import { useDispatch, useSelector } from 'react-redux';
 import { COUSRE_ENROLL_RESET } from '../../constants/enrollConstants';
 import { getCourseEnroll } from '../../actions/eLearningActions/enrollActions';

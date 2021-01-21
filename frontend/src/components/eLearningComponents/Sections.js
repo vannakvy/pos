@@ -3,8 +3,8 @@ import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import Loader from './Loader';
-import Message from './Message';
+import Loader from '../Loader';
+import Message from '../Message';
 import {
  SECTION_CREATE_RESET,
  SECTION_DELETE_RESET,
@@ -12,7 +12,7 @@ import {
  VIDEO_CREATE_RESET,
  VIDEO_DELETE_RESET,
  VIDEO_UPDATE_RESET,
-} from '../constants/courseConstants';
+} from '../../constants/courseConstants';
 import {
  createSection,
  createVideo,
@@ -21,7 +21,7 @@ import {
  updateSectionById,
  deleteVideoById,
  updateVideoById,
-} from '../actions/eLearningActions/sectionActions';
+} from '../../actions/eLearningActions/sectionActions';
 
 const Sections = () => {
  const { id } = useParams();
@@ -341,7 +341,7 @@ const Sections = () => {
          </h6>
          {section.videos.map((video) => (
           <div
-           className="d-flex justify-content-between border-bottom pl-3 adminHover pt-2"
+           className="d-flex justify-content-between border-bottom pl-3 adminHover pt-2 rounded"
            style={{ padding: '3px 0' }}
            key={video._id}
            onMouseEnter={mouseEnter}
