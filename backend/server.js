@@ -63,6 +63,9 @@ app.use(
  '/uploads/eLearningUploads',
  express.static(path.join(__dirname, '/uploads/eLearningUploads'))
 );
+
+app.use('/uploads/img', express.static(path.join(__dirname, '/uploads/img')));
+
 app.use(
  '/adminEbook/details',
  express.static(path.join(__dirname, '/uploads/eBookUploads'))
