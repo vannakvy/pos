@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const CourseContent = ({ sections, cid }) => {
+const CourseContent = ({ sections, cid, fromVideo = false }) => {
  let i = 0;
  return (
   <>
@@ -14,7 +14,6 @@ const CourseContent = ({ sections, cid }) => {
         <button
          className="btn btn-block text-left bg-info text-dark shadow"
          style={{ marginBottom: 1 }}
-         type="button"
          data-toggle="collapse"
          data-target={`#collapse${section._id}`}
          aria-expanded="true"
@@ -26,7 +25,9 @@ const CourseContent = ({ sections, cid }) => {
 
        <div
         id={`collapse${section._id}`}
-        className={`collapse ${i === 1 ? 'show' : null} `}
+        className={`collapse ${i === 1 ? 'show' : null} ${
+         fromVideo ? 'show' : null
+        }`}
         aria-labelledby={`heading${section._id}`}
         data-parent="#Example"
        >

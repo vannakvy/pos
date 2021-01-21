@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { navbarList } from '../actions/navbarActions';
+import { navbarList } from '../../actions/navbarActions';
 
 const NavElearning = () => {
  const dispatch = useDispatch();
