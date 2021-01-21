@@ -190,9 +190,27 @@ const SideBar = () => {
      goTo={'/adminEshop/orderlist'}
      icon={'fas fa-user-graduate'}
     />
+    <hr/>
         <SideBarRowComponents
+     text={'Puchases'}
+     goTo={'/adminEshop/puchases'}
+     icon={'fas fa-user-graduate'}
+    />
+            <SideBarRowComponents
+     text={'Sales'}
+     goTo={'/adminEshop/sales'}
+     icon={'fas fa-user-graduate'}
+
+    />
+            <SideBarRowComponents
      text={'Inventory'}
      goTo={'/adminEshop/inventory'}
+     icon={'fas fa-user-graduate'}
+     mar={true}
+    />
+            <SideBarRowComponents
+     text={'Reports'}
+     goTo={'/adminEshop/reports'}
      icon={'fas fa-user-graduate'}
     />
    </div>

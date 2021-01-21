@@ -10,3 +10,9 @@
   font-weight: bold;
   background-color: rgba(195, 250, 245, 0.171);
 }
+
+.ebooCourseScreen_img img {
+  max-width: 100% !important;
+  /* height: 350px !important; */
+  background: rgb(122, 122, 9);
+}

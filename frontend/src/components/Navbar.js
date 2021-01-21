@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { navbarList } from '../actions/navbarActions';
@@ -20,6 +20,9 @@ const Navbar = () => {
 
  const userLogin = useSelector((state) => state.userLogin);
  const { userInfo } = userLogin;
+ useEffect(() => {
+     
+ }, [userLogin])
 
  return (
   <>
@@ -92,8 +95,23 @@ const Navbar = () => {
        </>
       )}
 
+
+
       {userInfo ? (
-       <li className="nav-item">
+          <>
+          <div className="dropdown">
+  <button style={{padding:'8px',border:'none',fontSize:'17px'}} className="bg-warning px-4 rounded dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    {userInfo.name}
+  </button>
+  <div className="dropdown-menu p-2" aria-labelledby="dropdownMenuButton">
+      
+    <a className="dropdown-item" href="/eshop/profile">My Order</a>
+    <a className="dropdown-item" href="/logout">Profile</a>
+    <a className="dropdown-item" onClick={()=>dispatch(logout())}>Log Out</a>
+    
+  </div>
+</div>
+       {/* <li className="nav-item">
         <NavLink
          className="nav-link px-4 rounded logoutHover"
          style={{
@@ -105,7 +123,8 @@ const Navbar = () => {
         >
          LOGOUT
         </NavLink>
-       </li>
+       </li> */}
+       </>
       ) : (
        <>
         <li className="nav-item">
@@ -128,16 +147,7 @@ const Navbar = () => {
        </>
       )}
      </ul>
-     {/* <form className="form-inline my-2 my-lg-0">
-      <input
-       className="form-control mr-sm-2"
-       type="text"
-       placeholder="Search"
-      />
-      <button className="btn btn-secondary my-2 my-sm-0" type="submit">
-       Search
-      </button>
-     </form> */}
+
     </div>
    </nav>
   </>
