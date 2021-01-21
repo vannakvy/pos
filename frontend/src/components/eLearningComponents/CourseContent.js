@@ -33,11 +33,10 @@ const CourseContent = ({ sections, cid }) => {
         <div className="card-body p-0">
          {section.videos &&
           section.videos.map((video) => (
-           <Link to={`/courses/${cid}/videos/${video._id}`}>
+           <Link key={video._id} to={`/courses/${cid}/videos/${video._id}`}>
             <div
              style={{ padding: '10px 0 5px 0' }}
              className="px-4 adminHover"
-             key={video._id}
             >
              <h6>
               <i
