@@ -171,18 +171,7 @@ body {
  line-height: 1.5;
  color: #000000;
  text-align: left;
- /* background-color: rgba(226, 226, 226, 0.932); */
- background: #da4453; /* fallback for old browsers */
- background: -webkit-linear-gradient(
-  to right,
-  #89216b,
-  #da4453
- ); /* Chrome 10-25, Safari 5.1-6 */
- background: linear-gradient(
-  to right,
-  #89216b,
-  #da4453
- ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+ background-color: rgba(241, 241, 241, 0.932);
 }
 
 [tabindex='-1']:focus:not(:focus-visible) {
