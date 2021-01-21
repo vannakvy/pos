@@ -8,46 +8,7 @@ const NavEbook = () => {
  const dispatch = useDispatch();
  return (
   <>
-   <li className="nav-item ">
-    <div className="dropdown">
-     <button
-      className="btn-sm btn-outline-info dropdown-toggle"
-      style={{ fontSize: '18px' }}
-      type="button"
-      id="dropdownMenuButton"
-      data-toggle="dropdown"
-      aria-haspopup="true"
-      aria-expanded="false"
-     >
-      មុខវិទ្យារៀន
-     </button>
-     <div
-      className="dropdown-menu py-2 px-3"
-      aria-labelledby="dropdownMenuButton"
-     >
-      <NavLink className="dropdown-item" to="#">
-       Programming
-      </NavLink>
-      <NavLink className="dropdown-item" to="#">
-       Embedded System
-      </NavLink>
-      <NavLink className="dropdown-item" to="#">
-       Scratch Programming
-      </NavLink>
-
-      <NavLink className="dropdown-item" to="#">
-       AI
-      </NavLink>
-      <hr />
-      <NavLink className="dropdown-item" to="#">
-       Electectronics
-      </NavLink>
-      <NavLink className="dropdown-item" to="#">
-       Projects
-      </NavLink>
-     </div>
-    </div>
-   </li>
+  
    <li className="nav-item active">
     <NavLink
      onClick={() => dispatch(navbarList('Eshop'))}

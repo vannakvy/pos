@@ -41,21 +41,7 @@ const NavEshop = () => {
      CART
     </NavLink>
    </li>
-   {userInfo ? (
-       <>
-         
-        <div className="dropdown">
-  <button className="btn-sm btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    {userInfo.name}
-  </button>
-  <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a className="dropdown-item" href="/eshop/profile">Profile</a>
-    <a className="dropdown-item" href="/logout">Logout</a>
-   
-  </div>
-</div>
-                </>):null
-}
+  
   </>
  );
 };

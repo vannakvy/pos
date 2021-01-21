@@ -2,17 +2,9 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import "./Sidebar.css";
-import { getLanguages } from "../../actions/eBookActions/eBookCourseActions";
 import Loader from "../Loader";
 
-function Sidebar() {
-  const dispatch = useDispatch();
-  const lang = useSelector((state) => state.courses);
-  const { courses, loading } = lang;
-
-  useEffect(() => {
-    dispatch(getLanguages());
-  }, []);
+function CourseSidebar({ loading, courses, action }) {
   return (
     <div className="sidebar ml-1 mt-1">
       {loading ? (
@@ -24,7 +16,7 @@ function Sidebar() {
               courses.map((course) => (
                 <>
                   <Link
-                    to={`/ebook/${course.title}`}
+                    onClick={() => action(course._id)}
                     key={course._id}
                     className="link"
                   >
@@ -41,4 +33,4 @@ function Sidebar() {
   );
 }
 
-export default Sidebar;
+export default CourseSidebar;

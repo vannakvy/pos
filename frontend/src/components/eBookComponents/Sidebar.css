@@ -1,14 +1,16 @@
 .courseList {
   transition: all 0.7s;
-  font-size: large;
+  font-size: 15px;
 }
 
 .courseList:hover {
+  border-radius: 7px 7px 0 0;
+  margin-top: 6px;
   cursor: pointer;
-  background-color: rgb(143, 248, 252);
-  font-size: 150%;
+  color: red;
+  font-size: 110%;
   font-weight: bold;
-  color: rgb(83, 5, 5);
+  background: -webkit-linear-gradient(to right, #89216b, #da4453) !important;
 }
 a {
   text-decoration: none !important;
