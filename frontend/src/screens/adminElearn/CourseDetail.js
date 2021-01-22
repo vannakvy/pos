@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getCourseById } from '../../actions/eLearningActions/courseActions';
 import Loader from '../../components/Loader';
 import Message from '../../components/Message';
-import Sections from '../../components/Sections';
+import Sections from '../../components/eLearningComponents/Sections';
 
 const CoursesDetail = ({ match, history }) => {
  const courseId = match.params.id;

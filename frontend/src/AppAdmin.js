@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import SideBar from './components/SideBar.js';
+import SideBar from './components/eLearningComponents/SideBar';
 import AddminContentScreen from './screens/adminEbooks/AddminContentScreen.js';
 import AddminCourseScreen from './screens/adminEbooks/AddminCourseScreen.js';
 import AddminDetailScreen from './screens/adminEbooks/AddminDetailScreen.js';

@@ -164,6 +164,7 @@ section {
 }
 
 body {
+<<<<<<< HEAD
   margin: 0;
   font-family: "Ubuntu", sans-serif;
   font-size: 0.875rem;
@@ -172,6 +173,16 @@ body {
   color: #000000;
   text-align: left;
   background-color: rgba(197, 38, 38, 0.815);
+=======
+ margin: 0;
+ font-family: 'Ubuntu', sans-serif;
+ font-size: 0.875rem;
+ font-weight: 400;
+ line-height: 1.5;
+ color: #000000;
+ text-align: left;
+ background-color: rgba(240, 240, 240, 0.932);
+>>>>>>> 35c696680665e9b133703fde2dc16088fac96f2d
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {

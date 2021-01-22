@@ -4,10 +4,10 @@ import {
  listCourses,
  SearchCourses,
 } from '../../actions/eLearningActions/courseActions';
-import CourseItem from '../../components/eLearning/CourseItem';
+import CourseItem from '../../components/eLearningComponents/CourseItem';
 import Loader from '../../components/Loader';
 import Message from '../../components/Message';
-import Search from '../../components/Search';
+import Search from '../../components/eLearningComponents/Search';
 
 const CoursesScreen = () => {
  const [courseType, setCourseType] = useState('All Courses');

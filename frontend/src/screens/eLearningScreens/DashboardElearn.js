@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { listCourses } from '../../actions/eLearningActions/courseActions';
-import LandingElearn from '../../components/eLearning/LandingElearn';
-import Slider from '../../components/eLearning/Slider';
+import LandingElearn from '../../components/eLearningComponents/LandingElearn';
+import Slider from '../../components/eLearningComponents/Slider';
 import Loader from '../../components/Loader';
 import Message from '../../components/Message';
 

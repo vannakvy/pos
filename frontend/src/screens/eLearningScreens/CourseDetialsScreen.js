@@ -4,8 +4,8 @@ import { getCourseById } from '../../actions/eLearningActions/courseActions';
 import Loader from '../../components/Loader';
 import Message from '../../components/Message';
 import RatingBar from '../../components/Rating';
-import CourseContent from '../../components/eLearning/CourseContent';
-import CourseItemDetails from '../../components/eLearning/CourseItemDetails';
+import CourseContent from '../../components/eLearningComponents/CourseContent';
+import CourseItemDetails from '../../components/eLearningComponents/CourseItemDetails';
 
 const CourseDetailsScreen = ({ match }) => {
  const [test, setTest] = useState(false);
