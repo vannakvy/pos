@@ -14,6 +14,10 @@ import ProductEditScreen from './screens/eShopScreens/ProductEditScreen';
 import OrderListScreen from './screens/eShopScreens/OrderListScreen';
 import UserListScreen from './screens/eShopScreens/UserListScreen';
 import UserEditScreen from './screens/eShopScreens/UserEditScreen';
+import PuchaseScreen from './screens/eShopScreens/PuchaseScreen.jsx';
+import SaleScreen from './screens/eShopScreens/SaleScreen.jsx';
+import Inventory from './screens/eShopScreens/Inventory.jsx';
+import Report from './screens/eShopScreens/Report.jsx';
 
 const AppAdmin = () => {
  return (
@@ -52,6 +56,10 @@ const AppAdmin = () => {
       <Route path="/adminEshop/orderlist" component={OrderListScreen} />
       <Route path="/adminEshop/userlist" component={UserListScreen} />
       <Route path="/adminEshop/user/:id/edit" component={UserEditScreen} />
+      <Route path="/adminEshop/puchases" component={PuchaseScreen} />
+      <Route path="/adminEshop/sales" component={SaleScreen} />
+      <Route path="/adminEshop/inventory" component={Inventory} />
+      <Route path="/adminEshop/reports" component={Report} />
 
       <Route path="/admin" component={AdminCourses} />
      </Switch>
