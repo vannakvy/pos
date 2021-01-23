@@ -94,7 +94,11 @@ const Navbar = () => {
         ) : null}
        </>
       )}
-
+        <li className="nav-item">
+         <NavLink className="nav-link" to="/covid">
+          COVID
+         </NavLink>
+        </li>
 
 
       {userInfo ? (

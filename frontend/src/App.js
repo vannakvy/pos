@@ -23,44 +23,50 @@ import PlaceOrderScreen from './screens/eShopScreens/PlaceOrderScreen';
 import OrderScreen from './screens/eShopScreens/OrderScreen';
 //
 import HomeScreen from './screens/eShopScreens/HomeScreen';
+// import CovidScreen from './screens/covideScreens/CovidScreen';
+// import Covid from './components/covideComponents/Covid'
 
 const App = () => {
- return (
-  <Router>
-   <Navbar />
-   <Switch>
-    {/* admin */}
-    <Route path="/admin" component={AppAdmin} />
-    <Route path="/adminElearn" component={AppAdmin} />
-    <Route path="/adminEbook" component={AppAdmin} />
-    <Route path="/adminEshop" component={AppAdmin} />
-    {/* frontend */}
-    <Route path="/courses/:id/videos/:vid" component={CourseVideoScreen} />
-    <Route path="/courses/:id" component={CourseDetailsScreen} />
-    <Route path="/courses" component={CoursesScreen} />
-    <Route path="/elearning" component={DashboardElearn} />
-    {/* ebooks routes */}
+    return (
+        <Router>
+            <Navbar />
+            <Switch>
+                {/* admin */}
+                <Route path="/admin" component={AppAdmin} />
+                <Route path="/adminElearn" component={AppAdmin} />
+                <Route path="/adminEbook" component={AppAdmin} />
+                <Route path="/adminEshop" component={AppAdmin} />
 
-    <Route path="/ebook/:lang" component={EbookCourseScreen} />
-    <Route path="/ebook" component={EbookHomeScreen} />
+                {/* frontend */}
+                <Route path="/courses/:id/videos/:vid" component={CourseVideoScreen} />
+                <Route path="/courses/:id" component={CourseDetailsScreen} />
+                <Route path="/courses" component={CoursesScreen} />
+                <Route path="/elearning" component={DashboardElearn} />
+                {/* ebooks routes */}
 
-    {/* eshop routes  */}
-    <Route path="/eshop/order/:id" component={OrderScreen} />
-    <Route path="/eshop/payment" component={PaymentScreen} />
-    <Route path="/eshop/placeorder" component={PlaceOrderScreen} />
-    <Route path="/eshop/shipping" component={ShippingScreen} />
-    <Route path="/eshop/product/:id" component={ProductScreen} />
-    <Route path="/eshop/cart/:id?" component={CartScreen} />
-    <Route path="/eshop/profile" component={ProfileScreen} />
-    <Route path="/eshop" component={HomeScreen} />
+                <Route path="/ebook/:lang" component={EbookCourseScreen} />
+                <Route path="/ebook" component={EbookHomeScreen} />
 
-    <Route path="/login" component={LoginScreen} />
-    <Route path="/register" component={RegisterScreen} />
-    <Route path="/" exact component={Dashboard} />
-   </Switch>
-   <Footer />
-  </Router>
- );
+                {/* eshop routes  */}
+                <Route path="/eshop/order/:id" component={OrderScreen} />
+                <Route path="/eshop/payment" component={PaymentScreen} />
+                <Route path="/eshop/placeorder" component={PlaceOrderScreen} />
+                <Route path="/eshop/shipping" component={ShippingScreen} />
+                <Route path="/eshop/product/:id" component={ProductScreen} />
+                <Route path="/eshop/cart/:id?" component={CartScreen} />
+                <Route path="/eshop/profile" component={ProfileScreen} />
+                <Route path="/eshop" component={HomeScreen} />
+
+                {/* Covid route  */}
+                {/* <Route path="/covid" component={Covid} /> */}
+
+                <Route path="/login" component={LoginScreen} />
+                <Route path="/register" component={RegisterScreen} />
+                <Route path="/" exact component={Dashboard} />
+            </Switch>
+            <Footer />
+        </Router>
+    );
 };
 
 export default App;

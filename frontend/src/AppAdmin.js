@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import SideBar from './components/eLearningComponents/SideBar';
 import AddminContentScreen from './screens/adminEbooks/AddminContentScreen.js';
 import AddminCourseScreen from './screens/adminEbooks/AddminCourseScreen.js';
 import AddminDetailScreen from './screens/adminEbooks/AddminDetailScreen.js';
@@ -18,6 +17,7 @@ import PuchaseScreen from './screens/eShopScreens/PuchaseScreen.jsx';
 import SaleScreen from './screens/eShopScreens/SaleScreen.jsx';
 import Inventory from './screens/eShopScreens/Inventory.jsx';
 import Report from './screens/eShopScreens/Report.jsx';
+import SideBar from './components/eLearningComponents/SideBar'
 
 const AppAdmin = () => {
  return (
@@ -60,7 +60,6 @@ const AppAdmin = () => {
       <Route path="/adminEshop/sales" component={SaleScreen} />
       <Route path="/adminEshop/inventory" component={Inventory} />
       <Route path="/adminEshop/reports" component={Report} />
-
       <Route path="/admin" component={AdminCourses} />
      </Switch>
     </div>
