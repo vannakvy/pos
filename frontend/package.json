@@ -14,24 +14,16 @@
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.2",
     "@testing-library/user-event": "^12.2.2",
-<<<<<<< HEAD
-    "axios": "^0.21.1",
-    "chart.js": "^2.9.3",
-=======
     "axios": "^0.21.0",
     "canvasjs": "^1.8.3",
->>>>>>> 0c716713cbe4ba77add1e3dbc126c26968b3fa9b
     "fs": "0.0.1-security",
     "jquery": "^3.5.1",
     "leaflet": "^1.7.1",
     "numeral": "^2.0.6",
     "react": "^17.0.1",
     "react-bootstrap": "^1.4.0",
-<<<<<<< HEAD
     "react-chartjs-2": "^2.9.0",
-=======
     "react-countup": "^4.3.3",
->>>>>>> 0c716713cbe4ba77add1e3dbc126c26968b3fa9b
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
     "react-html-parser": "^2.0.2",
