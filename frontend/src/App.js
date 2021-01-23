@@ -27,6 +27,7 @@ import HomeScreen from './screens/eShopScreens/HomeScreen';
 // import Covid from './components/covideComponents/Covid'
 
 const App = () => {
+<<<<<<< HEAD
     return (
         <Router>
             <Navbar />
@@ -36,6 +37,23 @@ const App = () => {
                 <Route path="/adminElearn" component={AppAdmin} />
                 <Route path="/adminEbook" component={AppAdmin} />
                 <Route path="/adminEshop" component={AppAdmin} />
+=======
+ return (
+  <Router>
+   <Navbar />
+   <Switch>
+    {/* admin */}
+    <Route path="/adminUsers" component={AppAdmin} />
+    <Route path="/adminElearn" component={AppAdmin} />
+    <Route path="/adminEbook" component={AppAdmin} />
+    <Route path="/adminEshop" component={AppAdmin} />
+    {/* frontend */}
+    <Route path="/courses/:id/videos/:vid" component={CourseVideoScreen} />
+    <Route path="/courses/:id" component={CourseDetailsScreen} />
+    <Route path="/courses" component={CoursesScreen} />
+    <Route path="/elearning" component={DashboardElearn} />
+    {/* ebooks routes */}
+>>>>>>> 0c716713cbe4ba77add1e3dbc126c26968b3fa9b
 
                 {/* frontend */}
                 <Route path="/courses/:id/videos/:vid" component={CourseVideoScreen} />

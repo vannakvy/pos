@@ -11,7 +11,7 @@ const SideBarRow = ({ text, icon, goTo, mar, id, activeNav }) => {
      padding: '6px 16px 8px 16px',
      marginBottom: '2px',
     }}
-    className="nav-link font-weight-bold rounded adminHover"
+    className="nav-link font-weight-bold activeVideo rounded adminHover"
     activeClassName="grediant"
     id={`${id}`}
    >

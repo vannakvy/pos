@@ -155,7 +155,7 @@ const Sections = () => {
  };
 
  return (
-  <>
+  <div className="bg-light rounded">
    {errorSectionUpdate ? (
     <Message variant="danger">{errorSectionUpdate}</Message>
    ) : null}
@@ -380,7 +380,7 @@ const Sections = () => {
      </div>
     )}
    </div>
-  </>
+  </div>
  );
 };
 

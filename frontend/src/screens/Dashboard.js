@@ -19,7 +19,7 @@ const Dashboard = ({ history }) => {
   } else if (navbar === 'Ebook') {
    history.push(`/ebook`);
   } else if (navbar === 'Admin') {
-   history.push(`/admin`);
+   history.push(`/adminUsers`);
   }
  }, [history, navbar]);
 

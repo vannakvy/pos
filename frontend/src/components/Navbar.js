@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { navbarList } from '../actions/navbarActions';
@@ -6,11 +6,11 @@ import { logout } from '../actions/userActions/userActions';
 import Loader from './Loader';
 import NavDash from './NavDash';
 import Message from './Message';
-import NavElearning from './NavElearning';
+import NavElearning from './eLearningComponents/NavElearning';
 import NavEshop from './NavEshop';
 import NavEbook from './eBookComponents/NavEbook';
 import NavAdmin from './NavAdmin';
-import Header from '../components/eShopComponents/Header'
+import Header from '../components/eShopComponents/Header';
 
 const Navbar = () => {
  const dispatch = useDispatch();
@@ -20,9 +20,7 @@ const Navbar = () => {
 
  const userLogin = useSelector((state) => state.userLogin);
  const { userInfo } = userLogin;
- useEffect(() => {
-     
- }, [userLogin])
+ useEffect(() => {}, [userLogin]);
 
  return (
   <>
@@ -66,7 +64,7 @@ const Navbar = () => {
       ) : navbar === 'Elearning' ? (
        <NavElearning />
       ) : navbar === 'Eshop' ? (
-       <NavEshop/>
+       <NavEshop />
       ) : navbar === 'Ebook' ? (
        <NavEbook />
       ) : navbar === 'Admin' ? (
@@ -80,11 +78,10 @@ const Navbar = () => {
        <Message variant="danger">{error}</Message>
       ) : navbar === 'Admin' ? null : (
        <>
-        
         {userInfo && userInfo.isAdmin ? (
          <li className="nav-item">
           <NavLink
-           to="/admin"
+           to="/adminUsers"
            className="nav-link px-4 rounded grediant adminHover"
            onClick={() => dispatch(navbarList('Admin'))}
           >
@@ -94,28 +91,45 @@ const Navbar = () => {
         ) : null}
        </>
       )}
+<<<<<<< HEAD
         <li className="nav-item">
          <NavLink className="nav-link" to="/covid">
           COVID
          </NavLink>
         </li>
 
+=======
+>>>>>>> 0c716713cbe4ba77add1e3dbc126c26968b3fa9b
 
       {userInfo ? (
-          <>
-          <div className="dropdown">
-  <button style={{padding:'8px',border:'none',fontSize:'17px'}} className="bg-warning px-4 rounded dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    {userInfo.name}
-  </button>
-  <div className="dropdown-menu p-2" aria-labelledby="dropdownMenuButton">
-      
-    <a className="dropdown-item" href="/eshop/profile">My Order</a>
-    <a className="dropdown-item" href="/logout">Profile</a>
-    <a className="dropdown-item" onClick={()=>dispatch(logout())}>Log Out</a>
-    
-  </div>
-</div>
-       {/* <li className="nav-item">
+       <>
+        <div className="dropdown">
+         <button
+          style={{ padding: '8px', border: 'none', fontSize: '17px' }}
+          className="bg-warning px-4 rounded dropdown-toggle"
+          id="dropdownMenuButton"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+         >
+          {userInfo.name}
+         </button>
+         <div
+          className="dropdown-menu p-2"
+          aria-labelledby="dropdownMenuButton"
+         >
+          <a className="dropdown-item" href="/eshop/profile">
+           My Order
+          </a>
+          <a className="dropdown-item" href="/logout">
+           Profile
+          </a>
+          <a className="dropdown-item" onClick={() => dispatch(logout())}>
+           Log Out
+          </a>
+         </div>
+        </div>
+        {/* <li className="nav-item">
         <NavLink
          className="nav-link px-4 rounded logoutHover"
          style={{
@@ -151,7 +165,6 @@ const Navbar = () => {
        </>
       )}
      </ul>
-
     </div>
    </nav>
   </>

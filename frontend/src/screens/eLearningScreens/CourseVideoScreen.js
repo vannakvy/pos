@@ -3,6 +3,8 @@ import ReactPlayer from 'react-player/lazy';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getCourseEnroll } from '../../actions/eLearningActions/enrollActions';
+import { getSections } from '../../actions/eLearningActions/sectionActions';
+import CourseContent from '../../components/eLearningComponents/CourseContent';
 import Loader from '../../components/Loader';
 import Message from '../../components/Message';
 import { COUSRE_ENROLL_RESET } from '../../constants/enrollConstants';
@@ -15,9 +17,13 @@ const CourseVideoScreen = () => {
  const enrollCourse = useSelector((state) => state.enroll);
  const { loading: loadingEnroll, error: errorEnroll, enroll } = enrollCourse;
 
+ const sectionList = useSelector((state) => state.sectionList);
+ const { loading: loadingSection, error: errorSection, sections } = sectionList;
+
  useEffect(() => {
   dispatch({ type: COUSRE_ENROLL_RESET });
   dispatch(getCourseEnroll(id));
+  dispatch(getSections(id));
  }, [dispatch, id]);
 
  return (
@@ -38,16 +44,19 @@ const CourseVideoScreen = () => {
       ) : (
        <>
         <div className="row">
-         <div className="col-lg-9">
+         <div className="col-xl-3 overflow-auto" style={{ height: '810px' }}>
+          <h5>Course Content</h5>
+          <CourseContent sections={sections} cid={id} fromVideo={true} />
+         </div>
+         <div className="col-xl-9">
           <ReactPlayer
            width="100%"
            height="800px"
-           url="https://www.youtube.com/embed/TVkgz1A07n0"
+           url="https://www.youtube.com/embed/mn8pbQ-eUBI"
            controls
            playing={true}
           />
          </div>
-         <div className="col-lg-3"></div>
         </div>
        </>
       )}

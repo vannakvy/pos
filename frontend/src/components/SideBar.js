@@ -41,9 +41,9 @@ const SideBar = () => {
     onClick={() => setActiveNav('dash')}
    >
     <SideBarRow
-     text={'Dashboard'}
-     goTo={'/admin'}
-     icon={`fas fa-cog`}
+     text={'Users Dashboard'}
+     goTo={'/adminUsers'}
+     icon={`fas fa-user`}
      id={'dash'}
      activeNav={activeNav}
     />
@@ -56,18 +56,18 @@ const SideBar = () => {
    >
     <SideBarRowComponents
      text={'Courses'}
-     goTo={'/admin/courses'}
+     goTo={'/adminUsers/courses'}
      icon={'fas fa-folder'}
     />
     <SideBarRowComponents
      text={'Videos'}
-     goTo={'/admin/videos'}
+     goTo={'/adminUsers/videos'}
      icon={'fas fa-film'}
      mar={true}
     />
     <SideBarRowComponents
      text={'Students'}
-     goTo={'/admin/students'}
+     goTo={'/adminUsers/students'}
      icon={'fas fa-user-graduate'}
      mar={true}
     />
@@ -190,25 +190,24 @@ const SideBar = () => {
      goTo={'/adminEshop/orderlist'}
      icon={'fas fa-user-graduate'}
     />
-    <hr/>
-        <SideBarRowComponents
+    <hr />
+    <SideBarRowComponents
      text={'Puchases'}
      goTo={'/adminEshop/puchases'}
      icon={'fas fa-user-graduate'}
     />
-            <SideBarRowComponents
+    <SideBarRowComponents
      text={'Sales'}
      goTo={'/adminEshop/sales'}
      icon={'fas fa-user-graduate'}
-
     />
-            <SideBarRowComponents
+    <SideBarRowComponents
      text={'Inventory'}
      goTo={'/adminEshop/inventory'}
      icon={'fas fa-user-graduate'}
      mar={true}
     />
-            <SideBarRowComponents
+    <SideBarRowComponents
      text={'Reports'}
      goTo={'/adminEshop/reports'}
      icon={'fas fa-user-graduate'}
