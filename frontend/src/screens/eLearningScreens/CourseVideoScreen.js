@@ -44,18 +44,18 @@ const CourseVideoScreen = () => {
       ) : (
        <>
         <div className="row">
-         <div className="col-lg-9">
+         <div className="col-xl-3 overflow-auto" style={{ height: '810px' }}>
+          <h5>Course Content</h5>
+          <CourseContent sections={sections} cid={id} fromVideo={true} />
+         </div>
+         <div className="col-xl-9">
           <ReactPlayer
            width="100%"
            height="800px"
-           url="https://www.youtube.com/embed/TVkgz1A07n0"
+           url="https://www.youtube.com/embed/mn8pbQ-eUBI"
            controls
            playing={true}
           />
-         </div>
-         <div className="col-lg-3 overflow-auto" style={{ height: '810px' }}>
-          <h5>Course Content</h5>
-          <CourseContent sections={sections} cid={id} fromVideo={true} />
          </div>
         </div>
        </>

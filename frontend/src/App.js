@@ -30,7 +30,7 @@ const App = () => {
    <Navbar />
    <Switch>
     {/* admin */}
-    <Route path="/admin" component={AppAdmin} />
+    <Route path="/adminUsers" component={AppAdmin} />
     <Route path="/adminElearn" component={AppAdmin} />
     <Route path="/adminEbook" component={AppAdmin} />
     <Route path="/adminEshop" component={AppAdmin} />

@@ -90,7 +90,7 @@
  background: rgba(82, 255, 82, 0.932);
 }
 .grediant {
- background: linear-gradient(45deg, #1f9bcf 30%, #38d1f3 90%);
+ background: linear-gradient(45deg, #1f9bcf 30%, #38d1f3 90%) !important;
  box-shadow: 0 3px 5px 2px rgba(104, 141, 148, 0.3);
 }
 
@@ -105,6 +105,12 @@
 
 .adminHover:hover {
  background: linear-gradient(45deg, #acd6f8 30%, #a0e9fa 90%) !important;
+ box-shadow: 0 3px 5px 2px rgba(153, 231, 255, 0.3);
+ cursor: pointer;
+}
+
+.activeVideo {
+ background: linear-gradient(45deg, #acd6f8 30%, #a0e9fa 90%);
  box-shadow: 0 3px 5px 2px rgba(153, 231, 255, 0.3);
 }
 

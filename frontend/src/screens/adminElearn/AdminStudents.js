@@ -44,7 +44,7 @@ const AdminStudents = () => {
           <th scope="col">Id</th>
           <th scope="col">Name</th>
           <th scope="col">isAdmin</th>
-          <th scope="col" style={{ width: '200px' }}>
+          <th scope="col" style={{ width: '160px' }}>
            Actions
           </th>
          </tr>
@@ -66,8 +66,8 @@ const AdminStudents = () => {
              )}
             </td>
             <td className="text-center">
-             <Button type="button" variant="light" size="sm">
-              <i className="fas fa-trash text-danger"></i>
+             <Button type="button" variant="danger" size="sm">
+              <i className="fas fa-trash text-light"></i>
              </Button>
              <Button className="mx-1" type="button" variant="dark" size="sm">
               <i className="fas fa-bars"></i>

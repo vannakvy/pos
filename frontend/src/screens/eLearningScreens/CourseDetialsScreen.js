@@ -51,7 +51,7 @@ const CourseDetailsScreen = ({ match }) => {
     <>
      <div className="">
       <div
-       className={`position-fixed grediant w-100 shadow ${
+       className={`position-fixed bg-light w-100 shadow ${
         test ? null : 'd-none'
        }`}
        style={{
@@ -69,7 +69,7 @@ const CourseDetailsScreen = ({ match }) => {
        </div>
       </div>
 
-      <div className="grediant py-3 shadow">
+      <div className=" py-3 shadow">
        <div
         className="container _courseDetailHeader"
         style={{ minHeight: '40vh' }}

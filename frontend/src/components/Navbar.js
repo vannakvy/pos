@@ -81,7 +81,7 @@ const Navbar = () => {
         {userInfo && userInfo.isAdmin ? (
          <li className="nav-item">
           <NavLink
-           to="/admin"
+           to="/adminUsers"
            className="nav-link px-4 rounded grediant adminHover"
            onClick={() => dispatch(navbarList('Admin'))}
           >

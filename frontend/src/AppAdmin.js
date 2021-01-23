@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import SideBar from './components/eLearningComponents/SideBar';
+import SideBar from './components/SideBar';
 import AddminContentScreen from './screens/adminEbooks/AddminContentScreen.js';
 import AddminCourseScreen from './screens/adminEbooks/AddminCourseScreen.js';
 import AddminDetailScreen from './screens/adminEbooks/AddminDetailScreen.js';
@@ -14,6 +14,7 @@ import ProductEditScreen from './screens/eShopScreens/ProductEditScreen';
 import OrderListScreen from './screens/eShopScreens/OrderListScreen';
 import UserListScreen from './screens/eShopScreens/UserListScreen';
 import UserEditScreen from './screens/eShopScreens/UserEditScreen';
+import AdminUsers from './screens/adminUsers/AdminUsers';
 
 const AppAdmin = () => {
  return (
@@ -22,10 +23,10 @@ const AppAdmin = () => {
     <div
      className="overflow-auto px-2 py-2 border-right border-bottom"
      style={{
-      width: '280px',
+      width: '350px',
       height: '94vh',
       position: 'sticky',
-      top: '68px',
+      top: '69px',
      }}
     >
      <SideBar />
@@ -53,7 +54,7 @@ const AppAdmin = () => {
       <Route path="/adminEshop/userlist" component={UserListScreen} />
       <Route path="/adminEshop/user/:id/edit" component={UserEditScreen} />
 
-      <Route path="/admin" component={AdminCourses} />
+      <Route path="/adminUsers" component={AdminUsers} />
      </Switch>
     </div>
    </div>

@@ -1,8 +1,11 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
 
 const CourseContent = ({ sections, cid, fromVideo = false }) => {
  let i = 0;
+
+ useEffect(() => {}, []);
+
  return (
   <>
    <div className="rounded overflow-hidden shadow" id="Example">
@@ -34,20 +37,26 @@ const CourseContent = ({ sections, cid, fromVideo = false }) => {
         <div className="card-body p-0">
          {section.videos &&
           section.videos.map((video) => (
-           <Link key={video._id} to={`/courses/${cid}/videos/${video._id}`}>
-            <div
-             style={{ padding: '10px 0 5px 0' }}
-             className="px-4 adminHover"
-            >
-             <h6>
-              <i
-               className="fas fa-play-circle mr-4"
-               style={{ fontSize: '12px' }}
-              ></i>
-              {video.name}
-             </h6>
-            </div>
-           </Link>
+           <NavLink
+            className="px-4 adminHover d-block m-0"
+            activeClassName="activeVideo"
+            key={video._id}
+            to={`/courses/${cid}/videos/${video._id}`}
+           >
+            <h6 className="py-3 m-0">
+             {fromVideo ? (
+              <>
+               <i className="far fa-square mr-3"></i>
+               <i className="fas fa-check-square text-info mr-3"></i>
+              </>
+             ) : null}
+             <i
+              className="fas fa-play-circle mr-3"
+              style={{ fontSize: '12px' }}
+             ></i>
+             {video.name}
+            </h6>
+           </NavLink>
           ))}
         </div>
        </div>
