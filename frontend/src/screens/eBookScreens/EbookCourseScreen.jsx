@@ -9,6 +9,7 @@ import { disconnect } from "mongoose";
 import Loader from "../../components/Loader";
 import { getDetailByContentId } from "../../actions/eBookActions/eBookDetailActions";
 import CourseSidebar from "../../components/eBookComponents/CourseSidebar";
+import { Button } from "react-bootstrap";
 
 const EbookCourseScreen = () => {
   const param = useParams();

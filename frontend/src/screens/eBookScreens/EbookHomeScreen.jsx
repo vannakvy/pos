@@ -4,6 +4,8 @@ import { getLanguages } from "../../actions/eBookActions/eBookCourseActions";
 import Sidebar from "../../components/eBookComponents/Sidebar";
 import { FaBook } from "react-icons/fa";
 import { MdSchool } from "react-icons/md";
+import { FaArrowAltCircleRight } from "react-icons/fa";
+import "./HomeScreen.css";
 const EbookHomeScreen = () => {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -30,18 +32,23 @@ const EbookHomeScreen = () => {
               </div>
               <div className="col-md-6 mt-3 ">
                 <div className="content px-3">
-                  <h4 className="text-light mb-3">
-                    <MdSchool className="mr-2 text-info" /> WELCOME TO FREE
-                    CODING CAMBODIA{" "}
+                  <h4 className="text-light mb-3 title">
+                    សូមស្វាគមន៍មកកាន់ FREE CODING CAMBODIA{" "}
                   </h4>
-                  <p className="text-light">
-                    🐇 This website is operated by Refsnes Data as. Throughout
-                    the site, the terms "we", "us" and "our" refer to Refsnes
-                    Data as. Refsnes Data as offers this website, including all
-                    information, tools and services available from this site to
-                    you, the user, conditioned terms, conditions, policies and
-                    notices stated here. 🚀 🚀 🚀
+                  <p style={{ color: "white" }} className="text-light​​​ text ">
+                    🐇 មើល​ឃើញ​អ្វីដែល​​ថ្មីដោយ​គ្រាន់​តែ​ក្រឡេក​បន្តិច
+                    និង​ជ្រើសរើស​អ្វី​ដែល​អ្នក​ចង់​អាន និង​ឆ្លើយតប។
+                    មើល​ឯកសារ​ភ្ជាប់ ស្នើ​សុំ​ការឆ្លើយតប​ទៅ​នឹង​ព្រឹត្តិការណ៍
+                    ផ្អាក​សារ
+                    និង​ធ្វើ​បាន​ច្រើន​ទៀត​ដោយ​មិន​ចាំបាច់​បើក​អ៊ីមែល​ណា​នោះ​ទេ។
+                    ទប់ស្កាត់​អ៊ីមែល​គ្រោះថ្នាក់​បាន 99.9%
+                    មុន​ពេល​ដែល​អ៊ីមែល​ទាំង​នោះ​ទៅ​ដល់​អ្នក។
+                    ប្រសិន​បើ​យើង​គិត​ថា​មាន​អ្វី​មួយ​ដែល​គួរ​ឱ្យ​សង្ស័យ
+                    អ្នក​នឹង​ទទួល​បាន​ការព្រមាន។ 🚀 🚀 🚀
                   </p>
+                  <button className="btn-sm btn-warning rounded text">
+                    ចាប់ផ្តើម <FaArrowAltCircleRight />
+                  </button>
                 </div>
               </div>
             </div>
@@ -57,13 +64,18 @@ const EbookHomeScreen = () => {
                     <FaBook className="mr-2 text-info" /> SCRATCH PROGRMMING FOR
                     STARTER
                   </h4>
-                  <p className="text-light mt-2">
-                    🐇 This website is operated by Refsnes Data as. Throughout
-                    the site, the terms "we", "us" and "our" refer to Refsnes
-                    Data as. Refsnes Data as offers this website, including all
-                    information, tools and services available from this site to
-                    🚀 🚀 🚀
+                  <p className="text-light mt-2 text">
+                    🐇 មើល​ឃើញ​អ្វីដែល​​ថ្មីដោយ​គ្រាន់​តែ​ក្រឡេក​បន្តិច
+                    និង​ជ្រើសរើស​អ្វី​ដែល​អ្នក​ចង់​អាន និង​ឆ្លើយតប។
+                    មើល​ឯកសារ​ភ្ជាប់ ស្នើ​សុំ​ការឆ្លើយតប​ទៅ​នឹង​ព្រឹត្តិការណ៍
+                    ផ្អាក​សារ
+                    និង​ធ្វើ​បាន​ច្រើន​ទៀត​ដោយ​មិន​ចាំបាច់​បើក​អ៊ីមែល​ណា​នោះ​ទេ។
+                    ទប់ស្កាត់​អ៊ីមែល​គ្រោះថ្នាក់​បាន 99.9%
+                    មុន​ពេល​ដែល​អ៊ីមែល​ទាំង​នោះ​ទៅ​ដល់​អ្នក។ 🚀 🚀 🚀
                   </p>
+                  <button className="btn-sm btn-primary rounded text">
+                    ចាប់ផ្តើម <FaArrowAltCircleRight />
+                  </button>
                 </div>
               </div>
               <div className="col-md-5 mt-4 text-center ">
@@ -85,13 +97,18 @@ const EbookHomeScreen = () => {
                   <h4 className="text-light mb-3">
                     <FaBook className="mr-2 text-info" /> EMBEDDED SYSTEM
                   </h4>
-                  <p className="text-light mt-2">
-                    🐇 This website is operated by Refsnes Data as. Throughout
-                    the site, the terms "we", "us" and "our" refer to Refsnes
-                    Data as. Refsnes Data as offers this website, including all
-                    information, tools and services available from this site to
-                    🚀 🚀 🚀
+                  <p className="text-light mt-2 text">
+                    🐇 មើល​ឃើញ​អ្វីដែល​​ថ្មីដោយ​គ្រាន់​តែ​ក្រឡេក​បន្តិច
+                    និង​ជ្រើសរើស​អ្វី​ដែល​អ្នក​ចង់​អាន និង​ឆ្លើយតប។
+                    និង​ធ្វើ​បាន​ច្រើន​ទៀត​ដោយ​មិន​ចាំបាច់​បើក​អ៊ីមែល​ណា​នោះ​ទេ។
+                    ទប់ស្កាត់​អ៊ីមែល​គ្រោះថ្នាក់​បាន 99.9%
+                    មុន​ពេល​ដែល​អ៊ីមែល​ទាំង​នោះ​ទៅ​ដល់​អ្នក។
+                    ប្រសិន​បើ​យើង​គិត​ថា​មាន​អ្វី​មួយ​ដែល​គួរ​ឱ្យ​សង្ស័យ
+                    អ្នក​នឹង​ទទួល​បាន​ការព្រមាន។ 🚀 🚀 🚀
                   </p>
+                  <button className="btn-sm btn-secondary rounded text">
+                    ចាប់ផ្តើម <FaArrowAltCircleRight />
+                  </button>
                 </div>
               </div>
               <div className="col-md-5 mt-4 text-center ">
@@ -122,13 +139,18 @@ const EbookHomeScreen = () => {
                     <FaBook className="mr-2 text-info" /> COMPUTER PROGRAMMING
                     LANGUAGES
                   </h4>
-                  <p className="text-light mt-2">
-                    🐇 This website is operated by Refsnes Data as. Throughout
-                    the site, the terms "we", "us" and "our" refer to Refsnes
-                    Data as. Refsnes Data as offers this website, including all
-                    information, tools and services available from this site to
-                    🚀 🚀 🚀
+                  <p className="text-light mt-2 text">
+                    🐇 មើល​ឃើញ​អ្វីដែល​​ថ្មីដោយ​គ្រាន់​តែ​ក្រឡេក​បន្តិច
+                    និង​ជ្រើសរើស​អ្វី​ដែល​អ្នក​ចង់​អាន និង​ឆ្លើយតប។
+                    មើល​ឯកសារ​ភ្ជាប់ ស្នើ​សុំ​ការឆ្លើយតប​ទៅ​នឹង​ព្រឹត្តិការណ៍
+                    ផ្អាក​សារ
+                    និង​ធ្វើ​បាន​ច្រើន​ទៀត​ដោយ​មិន​ចាំបាច់​បើក​អ៊ីមែល​ណា​នោះ​ទេ។
+                    ទប់ស្កាត់​អ៊ីមែល​គ្រោះថ្នាក់​បាន 99.9%
+                    មុន​ពេល​ដែល​អ៊ីមែល​ទាំង​នោះ​ទៅ​ដល់​អ្នក។ 🚀 🚀 🚀
                   </p>
+                  <button className="btn-sm btn-outline-danger rounded text">
+                    ចាប់ផ្តើម <FaArrowAltCircleRight />
+                  </button>
                 </div>
               </div>
             </div>
