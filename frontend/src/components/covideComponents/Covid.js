@@ -76,7 +76,6 @@ const App = () => {
       <Card className="app__right">
         <CardContent>
           <div className="app__information">
-            
             <h3 className="covid_table">ករណីឆ្លងតាមប្រទេស</h3>
             <Table countries={tableData} />
             {casesType ==="recovered"? <h3>ករណីជាសះស្បើយ ទូទាំងពិភពលោក</h3>:null}

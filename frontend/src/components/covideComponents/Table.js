@@ -4,7 +4,7 @@ import numeral from "numeral";
 
 function Table({ countries }) {
   return (
-    <div className="table">
+    <div className="covid_tables">
       {countries.map((country) => (
         <tr className="tr">
           <td className="td">{country.country}</td>
