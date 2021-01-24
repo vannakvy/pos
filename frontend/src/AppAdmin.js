@@ -1,9 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-<<<<<<< HEAD
-=======
 import SideBar from './components/SideBar';
->>>>>>> 0c716713cbe4ba77add1e3dbc126c26968b3fa9b
 import AddminContentScreen from './screens/adminEbooks/AddminContentScreen.js';
 import AddminCourseScreen from './screens/adminEbooks/AddminCourseScreen.js';
 import AddminDetailScreen from './screens/adminEbooks/AddminDetailScreen.js';
@@ -17,15 +14,7 @@ import ProductEditScreen from './screens/eShopScreens/ProductEditScreen';
 import OrderListScreen from './screens/eShopScreens/OrderListScreen';
 import UserListScreen from './screens/eShopScreens/UserListScreen';
 import UserEditScreen from './screens/eShopScreens/UserEditScreen';
-<<<<<<< HEAD
-import PuchaseScreen from './screens/eShopScreens/PuchaseScreen.jsx';
-import SaleScreen from './screens/eShopScreens/SaleScreen.jsx';
-import Inventory from './screens/eShopScreens/Inventory.jsx';
-import Report from './screens/eShopScreens/Report.jsx';
-import SideBar from './components/eLearningComponents/SideBar'
-=======
 import AdminUsers from './screens/adminUsers/AdminUsers';
->>>>>>> 0c716713cbe4ba77add1e3dbc126c26968b3fa9b
 
 const AppAdmin = () => {
  return (
@@ -64,16 +53,8 @@ const AppAdmin = () => {
       <Route path="/adminEshop/orderlist" component={OrderListScreen} />
       <Route path="/adminEshop/userlist" component={UserListScreen} />
       <Route path="/adminEshop/user/:id/edit" component={UserEditScreen} />
-<<<<<<< HEAD
-      <Route path="/adminEshop/puchases" component={PuchaseScreen} />
-      <Route path="/adminEshop/sales" component={SaleScreen} />
-      <Route path="/adminEshop/inventory" component={Inventory} />
-      <Route path="/adminEshop/reports" component={Report} />
-      <Route path="/admin" component={AdminCourses} />
-=======
 
       <Route path="/adminUsers" component={AdminUsers} />
->>>>>>> 0c716713cbe4ba77add1e3dbc126c26968b3fa9b
      </Switch>
     </div>
    </div>

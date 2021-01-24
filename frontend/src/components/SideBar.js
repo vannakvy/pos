@@ -145,11 +145,7 @@ const SideBar = () => {
      icon={'fas fa-film'}
      mar={true}
     />
-    <SideBarRowComponents
-     text={'Details'}
-     goTo={'/adminEbook/details'}
-     icon={'fas fa-user-graduate'}
-    />
+ 
    </div>
 
    <div

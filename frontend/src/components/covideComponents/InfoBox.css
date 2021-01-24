@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Kantumruy&display=swap");
 .infoBox {
   flex: 1;
 }
@@ -30,4 +31,8 @@
   font-weight: 700 !important;
   font-size: 0.8rem !important;
   margin-top: 15px !important;
+}
+
+.infoBox_font {
+  font-family: "Kantumruy", sans-serif;
 }

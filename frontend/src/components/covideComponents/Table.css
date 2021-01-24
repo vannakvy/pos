@@ -6,16 +6,19 @@
   height: 400px;
 }
 
-.table tr {
+.table .tr {
   display: flex;
   justify-content: space-between;
 }
 
-.table td {
+.table .td {
   padding: 0.5rem;
   border: none;
 }
 
 .table tr:nth-of-type(odd) {
-  background-color: #f3f2f8;
+  background-color: #f537c5cc;
+}
+.table tr:nth-of-type(even) {
+  background-color: #2bfab5cc;
 }

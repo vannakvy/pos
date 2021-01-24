@@ -6,10 +6,12 @@ import multiparty from 'connect-multiparty';
 import path from 'path';
 import * as fs from 'fs';
 const dirname = path.dirname(new URL(import.meta.url).pathname);
-const __dirname =dirname.substring(0,7)
+const __dirname= dirname.substring(0,dirname.length-27);
+// console.log(a)
+// const __dirname =dirname.substring(0,7)
+console.log(__dirname)
 
 const MultiPartyMiddleware = multiparty({uploadDir:'/images'});
-console.log(MultiPartyMiddleware)
 
 const router = express.Router()
 router.use(bodyparser.json());

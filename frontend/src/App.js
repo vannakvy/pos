@@ -23,21 +23,9 @@ import PlaceOrderScreen from './screens/eShopScreens/PlaceOrderScreen';
 import OrderScreen from './screens/eShopScreens/OrderScreen';
 //
 import HomeScreen from './screens/eShopScreens/HomeScreen';
-// import CovidScreen from './screens/covideScreens/CovidScreen';
-// import Covid from './components/covideComponents/Covid'
+import Covid from './components/covideComponents/Covid'
 
 const App = () => {
-<<<<<<< HEAD
-    return (
-        <Router>
-            <Navbar />
-            <Switch>
-                {/* admin */}
-                <Route path="/admin" component={AppAdmin} />
-                <Route path="/adminElearn" component={AppAdmin} />
-                <Route path="/adminEbook" component={AppAdmin} />
-                <Route path="/adminEshop" component={AppAdmin} />
-=======
  return (
   <Router>
    <Navbar />
@@ -53,7 +41,6 @@ const App = () => {
     <Route path="/courses" component={CoursesScreen} />
     <Route path="/elearning" component={DashboardElearn} />
     {/* ebooks routes */}
->>>>>>> 0c716713cbe4ba77add1e3dbc126c26968b3fa9b
 
                 {/* frontend */}
                 <Route path="/courses/:id/videos/:vid" component={CourseVideoScreen} />
@@ -76,7 +63,7 @@ const App = () => {
                 <Route path="/eshop" component={HomeScreen} />
 
                 {/* Covid route  */}
-                {/* <Route path="/covid" component={Covid} /> */}
+                <Route path="/covid" component={Covid} />
 
                 <Route path="/login" component={LoginScreen} />
                 <Route path="/register" component={RegisterScreen} />

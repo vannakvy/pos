@@ -52,7 +52,7 @@ const App = () => {
     getCountriesData();
   }, []);
 
-  console.log(casesType);
+ 
 
   const onCountryChange = async (e) => {
     const countryCode = e.target.value;
@@ -72,16 +72,30 @@ const App = () => {
 
   return (
     <div className="app">
+
+      <Card className="app__right">
+        <CardContent>
+          <div className="app__information">
+            
+            <h3 className="covid_table">ករណីឆ្លងតាមប្រទេស</h3>
+            <Table countries={tableData} />
+            {casesType ==="recovered"? <h3>ករណីជាសះស្បើយ ទូទាំងពិភពលោក</h3>:null}
+             {casesType ==="deaths" ? <h3>ករណីស្លាប់​ ទូទាំងពិភពលោក</h3>:null}
+             {casesType ==="cases"?<h3>ករណីឆ្លង ទូទាំងពិភពលោក</h3>:null }
+            <LineGraph casesType={casesType} />
+          </div>
+        </CardContent>
+      </Card>
       <div className="app__left">
         <div className="app__header">
-          <h1>COVID-19 Tracker</h1>
+          <h1 className="ti">តារាងតាមដាន កូវិត​ ១៩ </h1>
           <FormControl className="app__dropdown">
             <Select
               variant="outlined"
               value={country}
               onChange={onCountryChange}
             >
-              <MenuItem value="worldwide">Worldwide</MenuItem>
+              <MenuItem className="text-font" value="worldwide">ទូទាំងពិភពលោក</MenuItem>
               {countries.map((country) => (
                 <MenuItem value={country.value}>{country.name}</MenuItem>
               ))}
@@ -120,16 +134,6 @@ const App = () => {
           zoom={mapZoom}
         />
       </div>
-      <Card className="app__right">
-        <CardContent>
-          <div className="app__information">
-            <h3>Live Cases by Country</h3>
-            <Table countries={tableData} />
-            <h3>Worldwide new {casesType}</h3>
-            <LineGraph casesType={casesType} />
-          </div>
-        </CardContent>
-      </Card>
     </div>
   );
 };
