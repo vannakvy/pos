@@ -123,3 +123,35 @@ export const getUserList = () => async (dispatch, getState) => {
   });
  }
 };
+
+export const SearchUser = (keyword) => async (dispatch, getState) => {
+ try {
+  const {
+   userLogin: { userInfo },
+  } = getState();
+
+  const config = {
+   headers: {
+    Authorization: `Bearer ${userInfo.token}`,
+    'Content-Type': 'application/json',
+   },
+  };
+  const { data } = await axios.get(
+   `/api/users/search/uid?keyword=${keyword.trim()}`,
+   config
+  );
+  dispatch({
+   type: USER_LIST_SUCCESS,
+   payload: data,
+  });
+  console.log(data);
+ } catch (error) {
+  dispatch({
+   type: USER_LIST_FAIL,
+   payload:
+    error.response && error.response.data.message
+     ? error.response.data.message
+     : error.message,
+  });
+ }
+};

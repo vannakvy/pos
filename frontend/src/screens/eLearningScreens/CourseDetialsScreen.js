@@ -42,8 +42,8 @@ const CourseDetailsScreen = ({ match }) => {
  return (
   <div style={{ minHeight: '100vh' }}>
    {loading ? (
-    <div className="py-5">
-     <Loader wd={180} hg={180} />
+    <div className="py-3">
+     <Loader wd={40} hg={40} />
     </div>
    ) : error ? (
     <Message variant="danger">{error}</Message>

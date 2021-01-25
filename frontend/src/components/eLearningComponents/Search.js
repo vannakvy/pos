@@ -57,7 +57,7 @@ const Search = ({ dispatch, SearchCourses }) => {
  const onChangeTest = (e) => {
   const { value } = e.target;
   setKeyword(value);
-  dispatch(SearchCourses(keyword));
+  dispatch(SearchCourses(value));
  };
 
  return (

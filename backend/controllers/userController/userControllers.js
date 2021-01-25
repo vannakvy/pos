@@ -26,6 +26,23 @@ const authUser = asyncHandler(async (req, res) => {
  }
 });
 
+//@desc    Fetch search user
+//@route   GET /api/users/search
+//@access  Private Admin
+const searchUser = asyncHandler(async (req, res) => {
+ const keyword = req.query.keyword
+  ? {
+     name: {
+      $regex: req.query.keyword,
+      $options: 'i',
+     },
+    }
+  : {};
+
+ const user = await User.find({ ...keyword });
+ res.json(user);
+});
+
 //@desc RegisterUser
 //@route POST /api/users
 //@access Public
@@ -180,4 +197,5 @@ export {
  deleteUser,
  getUserById,
  updateUser,
+ searchUser,
 };
