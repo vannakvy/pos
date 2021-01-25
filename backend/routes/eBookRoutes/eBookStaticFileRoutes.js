@@ -6,6 +6,15 @@ import path from 'path';
 import * as fs from 'fs';
 import { CLIENT_RENEG_LIMIT } from 'tls';
 const dirname = path.dirname(new URL(import.meta.url).pathname);
+<<<<<<< HEAD
+=======
+const __dirname= dirname.substring(0,dirname.length-27);
+// console.log(a)
+// const __dirname =dirname.substring(0,7)
+console.log(__dirname)
+
+const MultiPartyMiddleware = multiparty({uploadDir:'/images'});
+>>>>>>> c03703cf4f8113a1731cb1c513d23c65ee6fd46e
 
 const __dirname = dirname.substring(1, dirname.length - 18);
 console.log(__dirname);

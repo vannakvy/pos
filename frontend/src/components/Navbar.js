@@ -72,6 +72,15 @@ const Navbar = () => {
       ) : (
        ''
       )}
+       <li className="nav-item">
+          <NavLink
+           to="/covid"
+           className="nav-link px-4 rounded"
+           
+          >
+           COVID
+          </NavLink>
+         </li>
       {loading ? (
        <Loader wd={45} hg={45} />
       ) : error ? (
@@ -120,19 +129,7 @@ const Navbar = () => {
           </a>
          </div>
         </div>
-        {/* <li className="nav-item">
-        <NavLink
-         className="nav-link px-4 rounded logoutHover"
-         style={{
-          background: 'linear-gradient(to left, #ed213a, #93291e)',
-          boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-         }}
-         onClick={() => dispatch(logout())}
-         to="/"
-        >
-         LOGOUT
-        </NavLink>
-       </li> */}
+    
        </>
       ) : (
        <>

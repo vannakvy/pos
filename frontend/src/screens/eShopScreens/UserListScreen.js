@@ -33,7 +33,7 @@ const UserListScreen = ({ history }) => {
   }
 
   return (
-    <>
+    <div className="card p-2">
       <h1>Users</h1>
       {loading ? (
         <Loader />
@@ -84,7 +84,7 @@ const UserListScreen = ({ history }) => {
           </tbody>
         </Table>
       )}
-    </>
+    </div>
   )
 }
 
