@@ -1,5 +1,5 @@
 import asyncHandler from 'express-async-handler';
-import Course from '../../models/courseModel.js';
+import Course from '../../models/eLearningModels/courseModel.js';
 
 //@desc    Fetch search courses
 //@route   GET /api/search

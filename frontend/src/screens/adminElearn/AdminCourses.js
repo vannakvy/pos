@@ -15,7 +15,7 @@ import {
  COURSE_CREATE_RESET,
  COURSE_DELETE_RESET,
  COURSE_UPDATE_RESET,
-} from '../../constants/courseConstants';
+} from '../../constants/eLearningConstants/courseConstants';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import { BsSearch } from 'react-icons/bs';

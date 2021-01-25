@@ -9,11 +9,14 @@ import Loader from '../../components/Loader';
 import Message from '../../components/Message';
 import { USER_LIST_RESET } from '../../constants/userConstants';
 import { BsSearch } from 'react-icons/bs';
+import { useHistory } from 'react-router-dom';
 
 const AdminUsers = () => {
  let i = 1;
  const [keyword, setKeyword] = useState('');
+
  const dispatch = useDispatch();
+ const history = useHistory();
 
  const userList = useSelector((state) => state.userList);
  const { loading: loadingUserList, error: errorUserList, users } = userList;
@@ -32,6 +35,10 @@ const AdminUsers = () => {
  const onSubmitSearch = (e) => {
   e.preventDefault();
   dispatch(SearchUser(keyword));
+ };
+
+ const userDetails = (uid) => {
+  history.push(`/adminUsers/${uid}/details`);
  };
  return (
   <>
@@ -200,7 +207,12 @@ const AdminUsers = () => {
             <Button className="mx-1" type="button" variant="dark" size="sm">
              <i className="fas fa-bars"></i>
             </Button>
-            <Button type="button" variant="info" size="sm">
+            <Button
+             onClick={() => userDetails(user._id)}
+             type="button"
+             variant="info"
+             size="sm"
+            >
              <i className="fas fa-external-link-alt"></i>
             </Button>
            </td>

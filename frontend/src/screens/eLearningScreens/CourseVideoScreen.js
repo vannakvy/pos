@@ -7,7 +7,7 @@ import { getSections } from '../../actions/eLearningActions/sectionActions';
 import CourseContent from '../../components/eLearningComponents/CourseContent';
 import Loader from '../../components/Loader';
 import Message from '../../components/Message';
-import { COUSRE_ENROLL_RESET } from '../../constants/enrollConstants';
+import { COUSRE_ENROLL_RESET } from '../../constants/eLearningConstants/enrollConstants';
 
 const CourseVideoScreen = () => {
  const { id } = useParams();

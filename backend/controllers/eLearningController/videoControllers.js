@@ -1,6 +1,5 @@
 import asyncHandler from 'express-async-handler';
-import Course from '../../models/courseModel.js';
-import Enroll from '../../models/enrollModel.js';
+import Enroll from '../../models/eLearningModels/enrollModel.js';
 
 // @desc GET VideoEnroll
 // @route GET /api/courses/:id/videos/:vid

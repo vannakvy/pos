@@ -17,21 +17,27 @@ router.use(bodyparser.json());
 router.use(express.json());
 router.use(bodyparser.urlencoded({ extended: true }));
 
-router.post('/',MultiPartyMiddleware,(req,res)=>{
-    var Tempfile = req.files.upload;
-    var TempPathFile = Tempfile.path;
-    const taretPathUrl = path.join(__dirname,"/uploads/eBookUploads/"+Tempfile.name);
-    console.log(taretPathUrl);
-    if(path.extname(Tempfile.originalFilename).toLowerCase() ===".png"||"jpg"){
-        let newPath = taretPathUrl.substring(1);
-        fs.rename(TempPathFile,newPath,err=>{
-            res.status(200).json({
-                uploaded:true,
-                url:`${Tempfile.originalFilename}`
-            })
-            if(err) return console.log(err);
-        })
-    }
-})
+router.post('/', MultiPartyMiddleware, (req, res) => {
+ var Tempfile = req.files.upload;
+ var TempPathFile = Tempfile.path;
+ const taretPathUrl = path.join(
+  __dirname,
+  '/uploads/eBookUploads/' + Tempfile.name
+ );
+ console.log(taretPathUrl);
+ if (
+  path.extname(Tempfile.originalFilename).toLowerCase() === '.png' ||
+  'jpg'
+ ) {
+  let newPath = taretPathUrl.substring(1);
+  fs.rename(TempPathFile, newPath, (err) => {
+   res.status(200).json({
+    uploaded: true,
+    url: `${Tempfile.originalFilename}`,
+   });
+   if (err) return console.log(err);
+  });
+ }
+});
 
 export default router;

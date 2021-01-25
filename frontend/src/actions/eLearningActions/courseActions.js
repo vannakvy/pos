@@ -15,7 +15,7 @@ import {
  COURSE_DETAILS_REQUEST,
  COURSE_DETAILS_SUCCESS,
  COURSE_DETAILS_FAIL,
-} from '../../constants/courseConstants';
+} from '../../constants/eLearningConstants/courseConstants';
 import { logout } from '../userActions/userActions';
 
 export const SearchCourses = (keyword) => async (dispatch) => {

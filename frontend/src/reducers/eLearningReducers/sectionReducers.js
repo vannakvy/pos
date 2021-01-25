@@ -26,7 +26,7 @@ import {
  VIDEO_UPDATE_SUCCESS,
  VIDEO_UPDATE_FAIL,
  VIDEO_UPDATE_RESET,
-} from '../../constants/courseConstants';
+} from '../../constants/eLearningConstants/courseConstants';
 
 export const sectionListReducer = (state = { sections: [] }, action) => {
  switch (action.type) {

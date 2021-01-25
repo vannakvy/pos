@@ -21,7 +21,7 @@ import {
  VIDEO_UPDATE_REQUEST,
  VIDEO_UPDATE_SUCCESS,
  VIDEO_UPDATE_FAIL,
-} from '../../constants/courseConstants';
+} from '../../constants/eLearningConstants/courseConstants';
 
 export const getSections = (id) => async (dispatch) => {
  try {
