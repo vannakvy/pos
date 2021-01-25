@@ -33,8 +33,8 @@ const Inventory = ({ history }) => {
   //   }
 
   return (
-    <>
-      <h1>Inventory</h1>
+    <div className="card bg-warning p-2">
+      <h1 className="p-2">INVENTORY</h1>
       {loading ? (
         <Loader />
       ) : error ? (
@@ -43,15 +43,13 @@ const Inventory = ({ history }) => {
         <Table striped bordered hover responsive className="table-sm card">
           <thead>
             <tr>
-              <th>ITEM</th>
-              <th>PRODUCT CODE</th>
-              <th>SUPPLIER</th>
-              <th>QTY</th>
+              <th>N#</th>
+              <th>ITEMS</th>
               <th>TOTAL SALES</th>
               <th>TOTAL PUCHASED</th>
               <th>AVAILABLE STOCK</th>
-              <th>AVAILABLE STOCK VALUES</th>
-              <th>EXPENSES</th>
+              <th>INCOME </th>
+              <th>NET INCOME</th>
               <th></th>
             </tr>
           </thead>
@@ -89,7 +87,7 @@ const Inventory = ({ history }) => {
           </tbody>
         </Table>
       )}
-    </>
+    </div>
   );
 };
 

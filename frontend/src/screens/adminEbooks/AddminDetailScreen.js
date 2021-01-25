@@ -99,12 +99,12 @@ const AddminDetailScreen = () => {
       </div>
      </div>
     </div>
-    <div className="col-md-5">
+    <div className="col-md-5 p-2">
      <div className=" container">
       <h2>{detailBycontents && detailBycontents.title} Content Name</h2>
      </div>
 
-     <div className="row mr-1">
+     <div className="row">
       {loading ? (
        <Loader hg={60} wd={60} />
       ) : (
