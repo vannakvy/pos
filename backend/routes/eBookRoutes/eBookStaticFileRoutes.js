@@ -24,7 +24,7 @@ router.post('/', MultiPartyMiddleware, (req, res) => {
   __dirname,
   '/uploads/eBookUploads/' + Tempfile.name
  );
-
+ console.log(taretPathUrl);
  if (
   path.extname(Tempfile.originalFilename).toLowerCase() === '.png' ||
   'jpg'
