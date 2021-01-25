@@ -24,6 +24,7 @@ import OrderScreen from './screens/eShopScreens/OrderScreen';
 //
 import HomeScreen from './screens/eShopScreens/HomeScreen';
 import Covid from './components/covideComponents/Covid'
+import MyOrderScreen from './screens/eShopScreens/MyOrderScreen';
 
 const App = () => {
  return (
@@ -60,6 +61,7 @@ const App = () => {
                 <Route path="/eshop/product/:id" component={ProductScreen} />
                 <Route path="/eshop/cart/:id?" component={CartScreen} />
                 <Route path="/eshop/profile" component={ProfileScreen} />
+                <Route path="/eshop/myorder" component={MyOrderScreen} />
                 <Route path="/eshop" component={HomeScreen} />
 
                 {/* Covid route  */}
