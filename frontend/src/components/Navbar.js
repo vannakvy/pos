@@ -118,10 +118,10 @@ const Navbar = () => {
           className="dropdown-menu p-2"
           aria-labelledby="dropdownMenuButton"
          >
-          <a className="dropdown-item" href="/eshop/profile">
+          <a className="dropdown-item" href="/eshop/myorder">
            My Order
           </a>
-          <a className="dropdown-item" href="/logout">
+          <a className="dropdown-item" href="/eshop/profile">
            Profile
           </a>
           <a className="dropdown-item" onClick={() => dispatch(logout())}>
