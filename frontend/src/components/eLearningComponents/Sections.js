@@ -12,7 +12,7 @@ import {
  VIDEO_CREATE_RESET,
  VIDEO_DELETE_RESET,
  VIDEO_UPDATE_RESET,
-} from '../../constants/courseConstants';
+} from '../../constants/eLearningConstants/courseConstants';
 import {
  createSection,
  createVideo,

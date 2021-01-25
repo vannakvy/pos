@@ -27,7 +27,11 @@ import {
  videoDeleteReducer,
  videoUpdateReducer,
 } from './reducers/eLearningReducers/sectionReducers';
-import { courseEnrollReducer } from './reducers/eLearningReducers/enrollReducers';
+
+import {
+ courseEnrollReducer,
+ userEnrollCoursesReducer,
+} from './reducers/eLearningReducers/enrollReducers';
 
 import {
  getContentReducer,
@@ -84,7 +88,9 @@ const reducer = combineReducers({
  videoCreate: videoCreateReducer,
  videoDelete: videoDeleteReducer,
  videoUpdate: videoUpdateReducer,
+ //enroll
  enroll: courseEnrollReducer,
+ userEnrollCourses: userEnrollCoursesReducer,
  //  for ebook reducer
  courses: getLanguagesReducer,
  languageCreate: languageCreateReducer,

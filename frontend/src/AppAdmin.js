@@ -15,10 +15,11 @@ import OrderListScreen from './screens/eShopScreens/OrderListScreen';
 import UserListScreen from './screens/eShopScreens/UserListScreen';
 import UserEditScreen from './screens/eShopScreens/UserEditScreen';
 import AdminUsers from './screens/adminUsers/AdminUsers';
-import InventoryScreen from './screens/eShopScreens/Inventory'
-import SaleScreen from './screens/eShopScreens/SaleScreen'
-import PuchaseScreen from './screens/eShopScreens/PuchaseScreen'
-import ReportScreen from './screens/eShopScreens/ReportScreen'
+import InventoryScreen from './screens/eShopScreens/Inventory';
+import SaleScreen from './screens/eShopScreens/SaleScreen';
+import PuchaseScreen from './screens/eShopScreens/PuchaseScreen';
+import ReportScreen from './screens/eShopScreens/ReportScreen';
+import UserDetails from './screens/adminUsers/UserDetails';
 
 const AppAdmin = () => {
  return (
@@ -62,6 +63,7 @@ const AppAdmin = () => {
       <Route path="/adminEshop/sales" component={SaleScreen} />
       <Route path="/adminEshop/reports" component={ReportScreen} />
 
+      <Route path="/adminUsers/:uid/details" component={UserDetails} />
       <Route path="/adminUsers" component={AdminUsers} />
      </Switch>
     </div>
@@ -71,4 +73,3 @@ const AppAdmin = () => {
 };
 
 export default AppAdmin;
-

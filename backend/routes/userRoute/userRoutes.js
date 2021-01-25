@@ -1,4 +1,5 @@
 import express from 'express';
+import { getUserEnrollCourses } from '../../controllers/eLearningController/enrollControllers.js';
 const router = express.Router();
 import {
  authUser,
@@ -11,6 +12,7 @@ import {
  updateUser,
  searchUser,
 } from '../../controllers/userController/userControllers.js';
+
 import { protect, admin } from '../../middleware/authMiddleware.js';
 
 router.route('/').post(registerUser).get(protect, admin, getUsers);
@@ -26,4 +28,5 @@ router
  .put(protect, admin, updateUser);
 
 router.route('/search/uid').get(protect, admin, searchUser);
+router.route('/:uid/enroll').get(protect, admin, getUserEnrollCourses);
 export default router;

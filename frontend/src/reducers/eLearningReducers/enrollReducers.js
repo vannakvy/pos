@@ -3,7 +3,11 @@ import {
  COUSRE_ENROLL_REQUEST,
  COUSRE_ENROLL_RESET,
  COUSRE_ENROLL_SUCCESS,
-} from '../../constants/enrollConstants';
+ USER_ENROLL_COURSE_FAIL,
+ USER_ENROLL_COURSE_REQUEST,
+ USER_ENROLL_COURSE_RESET,
+ USER_ENROLL_COURSE_SUCCESS,
+} from '../../constants/eLearningConstants/enrollConstants';
 
 export const courseEnrollReducer = (state = { enroll: null }, action) => {
  switch (action.type) {
@@ -14,6 +18,21 @@ export const courseEnrollReducer = (state = { enroll: null }, action) => {
   case COUSRE_ENROLL_FAIL:
    return { loading: false, error: action.payload };
   case COUSRE_ENROLL_RESET:
+   return {};
+  default:
+   return state;
+ }
+};
+
+export const userEnrollCoursesReducer = (state = { courses: [] }, action) => {
+ switch (action.type) {
+  case USER_ENROLL_COURSE_REQUEST:
+   return { loading: true, courses: [] };
+  case USER_ENROLL_COURSE_SUCCESS:
+   return { loading: false, coursesEnroll: action.payload };
+  case USER_ENROLL_COURSE_FAIL:
+   return { loading: false, error: action.payload };
+  case USER_ENROLL_COURSE_RESET:
    return {};
   default:
    return state;
