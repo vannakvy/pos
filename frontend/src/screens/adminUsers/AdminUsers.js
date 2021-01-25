@@ -26,6 +26,11 @@ const AdminUsers = () => {
  const onChangeSearchUser = (e) => {
   const { value } = e.target;
   setKeyword(value);
+  dispatch(SearchUser(value));
+ };
+
+ const onSubmitSearch = (e) => {
+  e.preventDefault();
   dispatch(SearchUser(keyword));
  };
  return (
@@ -127,24 +132,26 @@ const AdminUsers = () => {
       <option value="cus_stu">CUS & STU</option>
      </select>
     </div>
-    <div
-     className="input-group mb-3 shadow rounded bg-light"
-     style={{ width: '350px' }}
-    >
-     <input
-      type="text"
-      className="form-control rounded"
-      placeholder="User Name"
-      aria-label="Username"
-      aria-describedby="basic-addon1"
-      onChange={onChangeSearchUser}
-     />
-     <div className="input-group-prepend">
-      <button className="input-group-text btn rounded bg-dark">
-       <BsSearch className="text-light" />
-      </button>
+    <form onSubmit={onSubmitSearch}>
+     <div
+      className="input-group mb-3 shadow rounded bg-light"
+      style={{ width: '350px' }}
+     >
+      <input
+       type="text"
+       className="form-control rounded"
+       placeholder="User Name"
+       aria-label="Username"
+       aria-describedby="basic-addon1"
+       onChange={onChangeSearchUser}
+      />
+      <div className="input-group-prepend">
+       <button type="submit" className="input-group-text btn rounded bg-dark">
+        <BsSearch className="text-light" />
+       </button>
+      </div>
      </div>
-    </div>
+    </form>
    </div>
 
    <div className="">

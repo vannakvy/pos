@@ -132,7 +132,7 @@ const AdminCourses = () => {
  const onChangeSearch = (e) => {
   const { value } = e.target;
   setKeyword(value);
-  dispatch(SearchCourses(keyword));
+  dispatch(SearchCourses(value));
  };
 
  const onSubmitSearchHandler = (e) => {
