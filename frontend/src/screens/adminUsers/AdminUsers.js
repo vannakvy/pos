@@ -1,16 +1,18 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import CountUp from 'react-countup';
 import { useDispatch, useSelector } from 'react-redux';
 import VisibilitySensor from 'react-visibility-sensor';
-import { getUserList } from '../../actions/userActions/userActions';
+import { getUserList, SearchUser } from '../../actions/userActions/userActions';
 import App from '../../components/eLearningComponents/ChartStudent';
 import Loader from '../../components/Loader';
 import Message from '../../components/Message';
 import { USER_LIST_RESET } from '../../constants/userConstants';
+import { BsSearch } from 'react-icons/bs';
 
 const AdminUsers = () => {
  let i = 1;
+ const [keyword, setKeyword] = useState('');
  const dispatch = useDispatch();
 
  const userList = useSelector((state) => state.userList);
@@ -20,6 +22,12 @@ const AdminUsers = () => {
   dispatch({ type: USER_LIST_RESET });
   dispatch(getUserList());
  }, [dispatch]);
+
+ const onChangeSearchUser = (e) => {
+  const { value } = e.target;
+  setKeyword(value);
+  dispatch(SearchUser(keyword));
+ };
  return (
   <>
    <div className="shadow rounded mt-1">
@@ -109,7 +117,35 @@ const AdminUsers = () => {
     </div>
    </div>
 
-   <h5 className="mt-2">All Students</h5>
+   <h4 className="mt-3 text-center">Users</h4>
+   <div className="d-flex mt-2 justify-content-between">
+    <div className="form-group shadow bg-light rounded">
+     <select className="custom-select rounded" style={{ width: '350px' }}>
+      <option value="allUsers">All Users</option>
+      <option value="student">Students</option>
+      <option value="customers">Customers</option>
+      <option value="cus_stu">CUS & STU</option>
+     </select>
+    </div>
+    <div
+     className="input-group mb-3 shadow rounded bg-light"
+     style={{ width: '350px' }}
+    >
+     <input
+      type="text"
+      className="form-control rounded"
+      placeholder="User Name"
+      aria-label="Username"
+      aria-describedby="basic-addon1"
+      onChange={onChangeSearchUser}
+     />
+     <div className="input-group-prepend">
+      <button className="input-group-text btn rounded bg-dark">
+       <BsSearch className="text-light" />
+      </button>
+     </div>
+    </div>
+   </div>
 
    <div className="">
     {loadingUserList ? (

@@ -5,6 +5,7 @@ import {
  createCourse,
  deleteCourse,
  listCourses,
+ SearchCourses,
  updateCourse,
 } from '../../actions/eLearningActions/courseActions';
 import Loader from '../../components/Loader';
@@ -17,10 +18,12 @@ import {
 } from '../../constants/courseConstants';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
+import { BsSearch } from 'react-icons/bs';
 
 const AdminCourses = () => {
  let no = 1;
  const [courseId, setCourseId] = useState('');
+ const [keyword, setKeyword] = useState('');
  const [courseType, setCourseType] = useState('All Courses');
  const [image, setImage] = useState(
   '/uploads/elearningUploads/imageDefualt.jpg'
@@ -124,6 +127,17 @@ const AdminCourses = () => {
 
  const courseDetail = (id) => {
   history.push(`/adminElearn/courses/${id}`);
+ };
+
+ const onChangeSearch = (e) => {
+  const { value } = e.target;
+  setKeyword(value);
+  dispatch(SearchCourses(keyword));
+ };
+
+ const onSubmitSearchHandler = (e) => {
+  e.preventDefault();
+  dispatch(SearchCourses(keyword));
  };
 
  useEffect(() => {
@@ -248,13 +262,50 @@ const AdminCourses = () => {
     </form>
    </div>
 
+   <div className="d-flex mt-2 justify-content-between">
+    <div className="form-group shadow bg-light rounded">
+     <select
+      className="custom-select rounded"
+      style={{ width: '350px' }}
+      value={courseType}
+      onChange={(e) => setCourseType(e.target.value)}
+     >
+      <option value="All Courses">All Courses</option>
+      <option value="Web Development">Web Development</option>
+      <option value="Programming">Programming</option>
+      <option value="Embeded System">Embeded System</option>
+      <option value="Mobile Development">Mobile Development</option>
+      <option value="Machine Learning">Machine Learning</option>
+     </select>
+    </div>
+    <form onSubmit={onSubmitSearchHandler}>
+     <div
+      className="input-group mb-3 shadow rounded bg-light"
+      style={{ width: '350px' }}
+     >
+      <input
+       type="text"
+       className="form-control rounded"
+       placeholder="Course name..."
+       aria-label="Username"
+       aria-describedby="basic-addon1"
+       onChange={onChangeSearch}
+      />
+      <div className="input-group-prepend">
+       <button type="submit" className="input-group-text btn rounded bg-dark">
+        <BsSearch className="text-light" />
+       </button>
+      </div>
+     </div>
+    </form>
+   </div>
+
    {loadingList ? (
-    <Loader wd={180} hg={180} />
+    <Loader wd={40} hg={40} />
    ) : errorList ? (
     <Message variant="danger">{errorList}</Message>
    ) : (
     <>
-     <h6>Course Type</h6>
      <table className="table table-sm">
       <thead className="thead-dark text-center">
        <tr>

@@ -46,7 +46,7 @@ app.use('/api/ebook/uploads', eBookStaticFileRoutes);
 app.use('/api/products', productRoutes);
 // app.use('/api/users', userRoutes)
 app.use('/api/orders', orderRoutes);
-// app.use('/api/upload', eShopUploadRoutes);
+app.use('/api/upload', eShopUploadRoutes);
 app.use('/api/eshop/products', productRoutes);
 app.use('/api/eshop/users', userRoutes);
 app.use('/api/eshop/orders', orderRoutes);
@@ -64,7 +64,7 @@ app.use(
  express.static(path.join(__dirname, '/uploads/eLearningUploads'))
 );
 
-app.use('/uploads/img', express.static(path.join(__dirname, '/uploads/img')));
+// app.use('/uploads/img', express.static(path.join(__dirname, '/uploads/img')));
 
 app.use(
  '/adminEbook/details',
