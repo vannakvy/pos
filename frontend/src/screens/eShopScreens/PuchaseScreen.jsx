@@ -7,6 +7,7 @@ import Loader from "../../components/eShopComponents/Loader";
 import { Form, Col, Row } from "react-bootstrap";
 
 import { listUsers, deleteUser } from "../../actions/eShopActions/userActions";
+import DropdownExampleSearchSelection from "../../components/eShopComponents/Dropdown";
 
 const PuchaseScreen = ({ history }) => {
   const dispatch = useDispatch();
@@ -24,13 +25,14 @@ const PuchaseScreen = ({ history }) => {
   return (
     <div className="bg-warning p-2">
       <h1>Puchases</h1>
+
       <Form>
         <Form.Group as={Row} controlId="formHorizontalEmail">
           <Form.Label column sm={2}>
             Product Name
           </Form.Label>
           <Col sm={4}>
-            <Form.Control type="text" placeholder="Product Name" />
+            <DropdownExampleSearchSelection />
           </Col>
           <Form.Label column sm={2}>
             Quatity and Amount

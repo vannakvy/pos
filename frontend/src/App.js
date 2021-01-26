@@ -78,7 +78,7 @@ const App = () => {
             </Switch>
             <Footer />
                 
-                <NavLink className="navbar_link rounded bg-info text-light p-2" to="/covid" style={{position:'fixed',bottom:'40px',right:'0'}}>តាមដានកូវិត១៩</NavLink>
+                <NavLink className="navbar_link rounded bg-info text-light p-2" to="/covid" style={{position:'fixed',bottom:'40px',right:'0',zIndex:'1000'}}>តាមដានកូវិត១៩</NavLink>
                 
         </Router>
     );

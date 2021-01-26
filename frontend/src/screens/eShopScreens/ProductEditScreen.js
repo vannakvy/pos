@@ -19,6 +19,7 @@ const ProductEditScreen = ({ match, history }) => {
   const [category, setCategory] = useState('')
   const [countInStock, setCountInStock] = useState(0)
   const [description, setDescription] = useState('')
+  const [supplier, setSupplier] = useState('')
   const [uploading, setUploading] = useState(false)
 
   const dispatch = useDispatch()
@@ -48,6 +49,7 @@ const ProductEditScreen = ({ match, history }) => {
         setCategory(product.category)
         setCountInStock(product.countInStock)
         setDescription(product.description)
+        setSupplier(product.supplier)
       }
     }
   }, [dispatch, history, productId, product, successUpdate])
@@ -85,6 +87,7 @@ const ProductEditScreen = ({ match, history }) => {
         image,
         brand,
         category,
+        supplier,
         description,
         countInStock,
       })
@@ -92,7 +95,7 @@ const ProductEditScreen = ({ match, history }) => {
   }
 
   return (
-    <>
+    <div className="bg-warning p-2">
       <Link to='/adminEshop/productLists' className='btn btn-light my-3'>
         Go Back
       </Link>
@@ -173,6 +176,16 @@ const ProductEditScreen = ({ match, history }) => {
               ></Form.Control>
             </Form.Group>
 
+            <Form.Group controlId='supllier'>
+              <Form.Label>Supplier</Form.Label>
+              <Form.Control
+                type='text'
+                placeholder='Enter Supplier'
+                value={supplier}
+                onChange={(e) => setSupplier(e.target.value)}
+              ></Form.Control>
+            </Form.Group>
+
             <Form.Group controlId='description'>
               <Form.Label>Description</Form.Label>
               <Form.Control
@@ -189,7 +202,7 @@ const ProductEditScreen = ({ match, history }) => {
           </Form>
         )}
       </FormContainer>
-    </>
+    </div>
   )
 }
 
