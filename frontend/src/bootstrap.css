@@ -114,9 +114,6 @@
  box-shadow: 0 3px 5px 2px rgba(153, 231, 255, 0.3);
 }
 
-/* .courseItem {
- border: 3px solid rgba(255, 0, 191, 0.37);
-} */
 .courseItem:hover {
  transition: 0.5s;
  transform: scale(1.01, 1.01);
