@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { Row, Col } from 'react-bootstrap'
+import { Row, Col, Form, Card } from 'react-bootstrap'
 import Product from '../../components/eShopComponents/Product'
 import Message from '../../components/eShopComponents/Message'
 import Loader from '../../components/eShopComponents/Loader'
@@ -11,12 +11,11 @@ import Meta from '../../components/eShopComponents/Meta'
 import { listProducts } from '../../actions/eShopActions/productActions'
 
 const HomeScreen = ({ match }) => {
-  const keyword = match.params.keyword
+  const [keyword, setKeyword] = useState(match.params.keyword)
+ 
 
   const pageNumber = match.params.pageNumber || 1
-
   const dispatch = useDispatch()
-
   const productList = useSelector((state) => state.productList)
   const { loading, error, products, page, pages } = productList
 
@@ -35,9 +34,19 @@ const HomeScreen = ({ match }) => {
           Go Back
         </Link>
       )}
-      <h1>Latest Products</h1>
+     
+      <Card>
+<div className="row justify-content-between bg-warning">
+  <div className="col-md-3"><h2>Products</h2></div>
+  <div className="col-md-3 align-self-center mt-2 mr-2">
+    <div className="form-group">
+        <input type="text" className="form-control" onChange={(e)=>setKeyword(e.target.value)} placeholder="Search ..."/>
+    </div>
+  </div>
+</div>
+      </Card>
       {loading ? (
-        <Loader />
+        <Loader w={50} h={50} />
       ) : error ? (
         <Message variant='danger'>{error}</Message>
       ) : (

@@ -16,3 +16,23 @@
   /* height: 350px !important; */
   background: rgb(122, 122, 9);
 }
+
+.htmlParser p {
+  font-family: myriad-pro, Lucida Grande, Arial, "Kantumruy", "Siemreap",
+    sans-serif;
+  padding: 5px;
+}
+.htmlParser ol li {
+  font-family: myriad-pro, Lucida Grande, Arial, "Kantumruy", "Siemreap",
+    sans-serif;
+}
+.htmlParser h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: myriad-pro, Lucida Grande, Arial, "Kantumruy", "Siemreap",
+    sans-serif;
+  margin: 10px;
+}

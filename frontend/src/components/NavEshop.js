@@ -15,30 +15,34 @@ const NavEshop = () => {
    <li className="nav-item">
     <NavLink
      onClick={() => dispatch(navbarList('Elearning'))}
-     className="nav-link"
+     className="nav-link navbar_link"
      to="/elearning"
     >
-     E-LEARNING
+     រៀនជាវីដីអូ
     </NavLink>
    </li>
    <li className="nav-item">
     <NavLink
      onClick={() => dispatch(navbarList('Ebook'))}
-     className="nav-link"
+     className="nav-link navbar_link"
      to="/ebook"
     >
-     E-BOOK
+     រៀនជាកាអាន
     </NavLink>
    </li>
-   <li className="nav-item active">
-    <NavLink className="nav-link" to="/eshop">
-     PRODUCTS
+   {/* <li className="nav-item">
+    <NavLink className="nav-link ​" to="/eshop">
+     ទិញ់ទំនិញ់
     </NavLink>
-   </li>
- 
+   </li> */}
    <li className="nav-item">
-    <NavLink className="nav-link" to="/eshop/cart">
-     CART
+    <NavLink className="nav-link navbar_link" to="/eshop">
+     ទិញ់ទំនិញ់
+    </NavLink>
+   </li>
+   <li className="nav-item">
+    <NavLink className="nav-link navbar_link" to="/eshop/cart">
+     កន្រក
     </NavLink>
    </li>
   

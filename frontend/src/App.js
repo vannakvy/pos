@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, NavLink, Redirect, Route, Switch } from 'react-router-dom';
 import Footer from './components/Footer';
 import Dashboard from './screens/Dashboard';
 import Navbar from './components/Navbar.js';
@@ -25,6 +25,8 @@ import OrderScreen from './screens/eShopScreens/OrderScreen';
 import HomeScreen from './screens/eShopScreens/HomeScreen';
 import Covid from './components/covideComponents/Covid'
 import MyOrderScreen from './screens/eShopScreens/MyOrderScreen';
+import { Button } from '@material-ui/core';
+
 
 const App = () => {
  return (
@@ -62,7 +64,10 @@ const App = () => {
                 <Route path="/eshop/cart/:id?" component={CartScreen} />
                 <Route path="/eshop/profile" component={ProfileScreen} />
                 <Route path="/eshop/myorder" component={MyOrderScreen} />
+                <Route path='/eshop/search/:keyword' component={HomeScreen} exact />
+                <Route path='/eshop/page/:pageNumber' component={HomeScreen} exact />
                 <Route path="/eshop" component={HomeScreen} />
+               
 
                 {/* Covid route  */}
                 <Route path="/covid" component={Covid} />
@@ -72,6 +77,9 @@ const App = () => {
                 <Route path="/" exact component={Dashboard} />
             </Switch>
             <Footer />
+                
+                <NavLink className="navbar_link rounded bg-info text-light p-2" to="/covid" style={{position:'fixed',bottom:'40px',right:'0'}}>តាមដានកូវិត១៩</NavLink>
+                
         </Router>
     );
 };

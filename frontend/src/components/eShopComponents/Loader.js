@@ -1,14 +1,14 @@
 import React from 'react'
 import { Spinner } from 'react-bootstrap'
 
-const Loader = () => {
+const Loader = ({w=100,h=100}) => {
   return (
     <Spinner
       animation='border'
       role='status'
       style={{
-        width: '100px',
-        height: '100px',
+        width: `${w}px`,
+        height: `${h}px`,
         margin: 'auto',
         display: 'block',
       }}

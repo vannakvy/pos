@@ -54,7 +54,13 @@ const AppAdmin = () => {
        path="/adminEshop/product/:id/edit"
        component={ProductEditScreen}
       />
+      
       <Route path="/adminEshop/productLists" component={ProductListScreen} />
+      <Route
+            path='/adminEshop/productlist/:pageNumber'
+            component={ProductListScreen}
+            exact
+          />
       <Route path="/adminEshop/orderlist" component={OrderListScreen} />
       <Route path="/adminEshop/userlist" component={UserListScreen} />
       <Route path="/adminEshop/user/:id/edit" component={UserEditScreen} />
