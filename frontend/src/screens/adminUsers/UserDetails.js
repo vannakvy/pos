@@ -7,6 +7,7 @@ import Loader from '../../components/Loader';
 import Message from '../../components/Message';
 import { USER_ENROLL_COURSE_RESET } from '../../constants/eLearningConstants/enrollConstants';
 import { USER_DETAILS_RESET } from '../../constants/userConstants';
+import CourseItemAdmin from '../../components/eLearningComponents/CourseItemAdmin';
 
 const UserDetails = () => {
  const { uid } = useParams();
@@ -60,10 +61,29 @@ const UserDetails = () => {
      </div>
     )}
    </div>
-   <h5 className="mt-2">Courses Enrolled</h5>
-   <div className="row">
-    {coursesEnroll && coursesEnroll.length !== 0 ? 'gg' : 't'}
-   </div>
+   <h5 className="mt-3">Courses Enrolled</h5>
+   {loadingUserEnrollCourses ? (
+    <Loader wd={40} hg={40} />
+   ) : errorUserEnrollCourses ? (
+    <Message variant="danger">errorUserEnrollCourses</Message>
+   ) : (
+    <>
+     {coursesEnroll && coursesEnroll.length !== 0 ? (
+      <>
+       <div className="row">
+        {coursesEnroll &&
+         coursesEnroll.map((enroll) => (
+          <div key={enroll._id} className="col-xl-4 col-lg-6">
+           <CourseItemAdmin course={enroll.courseId} />
+          </div>
+         ))}
+       </div>
+      </>
+     ) : (
+      <h6 className="mt-3 text-center">No any single course enrolled</h6>
+     )}
+    </>
+   )}
   </>
  );
 };
