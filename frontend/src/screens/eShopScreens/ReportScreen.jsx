@@ -1,98 +1,55 @@
-import React, { useEffect } from "react";
-import { LinkContainer } from "react-router-bootstrap";
-import { Table, Button } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
-import Message from "../../components/eShopComponents/Message";
-import Loader from "../../components/eShopComponents/Loader";
-import { listUsers, deleteUser } from "../../actions/eShopActions/userActions";
-
-const Report = ({ history }) => {
-  const dispatch = useDispatch();
-
-  const userList = useSelector((state) => state.userList);
-  const { loading, error, users } = userList;
-
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
-
-  const userDelete = useSelector((state) => state.userDelete);
-  const { success: successDelete } = userDelete;
-
-  //   useEffect(() => {
-  //     if (userInfo && userInfo.isAdmin) {
-  //       dispatch(listUsers())
-  //     } else {
-  //       history.push('/login')
-  //     }
-  //   }, [dispatch, history, successDelete, userInfo])
-
-  //   const deleteHandler = (id) => {
-  //     if (window.confirm('Are you sure')) {
-  //       dispatch(deleteUser(id))
-  //     }
-  //   }
-
+import React from "react";
+import "./ReportScreen.css";
+import LineChart from "../../screens/eShopScreens/LineChart";
+import {
+  MenuItem,
+  FormControl,
+  Select,
+  Card,
+  Typography,
+  CardContent,
+} from "@material-ui/core";
+const ReportScreen = () => {
   return (
-    <>
-      <h1>Report</h1>
-      {loading ? (
-        <Loader />
-      ) : error ? (
-        <Message variant="danger">{error}</Message>
-      ) : (
-        <Table striped bordered hover responsive className="table-sm card">
-          <thead>
-            <tr>
-              <th>DATE</th>
-              <th>ITEM</th>
-              <th>#P.O</th>
-              <th>PRODUCT CODE</th>
-              <th>SUPPLIER</th>
-              <th>QTY</th>
-              <th>UNIT PRICE</th>
-              <th>AVAILABLE STOCK</th>
-              <th>SOLD TO</th>
-              <th>TOTAL AMMOUNT</th>
-              <th>EXPENSES</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {users.map((user) => (
-              <tr key={user._id}>
-                <td>{user._id}</td>
-                <td>{user.name}</td>
-                <td>
-                  <a href={`mailto:${user.email}`}>{user.email}</a>
-                </td>
-                <td>
-                  {user.isAdmin ? (
-                    <i className="fas fa-check" style={{ color: "green" }}></i>
-                  ) : (
-                    <i className="fas fa-times" style={{ color: "red" }}></i>
-                  )}
-                </td>
-                <td>
-                  <LinkContainer to={`/adminEshop/user/${user._id}/edit`}>
-                    <Button variant="light" className="btn-sm">
-                      <i className="fas fa-edit"></i>
-                    </Button>
-                  </LinkContainer>
-                  <Button
-                    variant="danger"
-                    className="btn-sm"
-                    // onClick={() => deleteHandler(user._id)}
-                  >
-                    <i className="fas fa-trash"></i>
-                  </Button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
-      )}
-    </>
+    <div className="reportScreen p-2 mt-2">
+      <div className="reportScreenInfoBoxs">
+        <Card className="reportScreenInfoBox bg-warning">
+          <CardContent>
+            <h4 className="">Total Puchases</h4>
+            <h2 className="text-light">9393 $</h2>
+            <Typography className="" color="textSecondary">
+              Since 2021
+            </Typography>
+          </CardContent>
+        </Card>
+        <Card className="reportScreenInfoBox bg-info">
+          <CardContent>
+            <h4 className="">Total Sales</h4>
+            <h2 className="text-light">9393 $</h2>
+            <Typography className="" color="textSecondary">
+              Since 2021
+            </Typography>
+          </CardContent>
+        </Card>
+        <Card className="reportScreenInfoBox bg-warning">
+          <CardContent>
+            <h4 className="">Total Capital</h4>
+            <h2 className="text-info">9393 $</h2>
+            <Typography className="" color="textSecondary">
+              Since 2021
+            </Typography>
+          </CardContent>
+        </Card>
+      </div>
+
+      <Card className="reportScreen_right mt-3">
+        <CardContent>
+          <h3>dd</h3>
+          <LineChart />
+        </CardContent>
+      </Card>
+    </div>
   );
 };
 
-export default Report;
+export default ReportScreen;

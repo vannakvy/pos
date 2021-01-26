@@ -4,13 +4,16 @@ import { Table, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../../components/eShopComponents/Message";
 import Loader from "../../components/eShopComponents/Loader";
+import { Form, Col, Row } from "react-bootstrap";
+
 import { listUsers, deleteUser } from "../../actions/eShopActions/userActions";
 
 const PuchaseScreen = ({ history }) => {
   const dispatch = useDispatch();
 
   const userList = useSelector((state) => state.userList);
-  const { loading, error, users } = userList;
+  const { loading, error } = userList;
+  const users = [];
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -18,23 +21,58 @@ const PuchaseScreen = ({ history }) => {
   const userDelete = useSelector((state) => state.userDelete);
   const { success: successDelete } = userDelete;
 
-  //   useEffect(() => {
-  //     if (userInfo && userInfo.isAdmin) {
-  //       dispatch(listUsers())
-  //     } else {
-  //       history.push('/login')
-  //     }
-  //   }, [dispatch, history, successDelete, userInfo])
-
-  //   const deleteHandler = (id) => {
-  //     if (window.confirm('Are you sure')) {
-  //       dispatch(deleteUser(id))
-  //     }
-  //   }
-
   return (
-    <>
+    <div className="bg-warning p-2">
       <h1>Puchases</h1>
+      <Form>
+        <Form.Group as={Row} controlId="formHorizontalEmail">
+          <Form.Label column sm={2}>
+            Product Name
+          </Form.Label>
+          <Col sm={4}>
+            <Form.Control type="text" placeholder="Product Name" />
+          </Col>
+          <Form.Label column sm={2}>
+            Quatity and Amount
+          </Form.Label>
+          <Col sm={2}>
+            <Form.Control type="number" placeholder="Quantity" />
+          </Col>
+          <Col sm={2}>
+            <Form.Control disabled type="number" placeholder="Amount" />
+          </Col>
+        </Form.Group>
+        <Form.Group as={Row} controlId="formHorizontalEmail">
+          <Form.Label column sm={2}>
+            Puchase Date
+          </Form.Label>
+          <Col sm={4}>
+            <Form.Control type="date" placeholder="Date" />
+          </Col>
+          <Form.Label column sm={2}>
+            Supplier
+          </Form.Label>
+          <Col sm={4}>
+            <Form.Control type="text" placeholder="Supplier" />
+          </Col>
+        </Form.Group>
+        {/* // */}
+        <Form.Group as={Row} controlId="formHorizontalEmail">
+          <Form.Label column sm={2}>
+            Unit Price
+          </Form.Label>
+          <Col sm={4}>
+            <Form.Control type="number" placeholder="Unit Price" />
+          </Col>
+          <Form.Label column sm={2}>
+            Discount
+          </Form.Label>
+          <Col sm={4}>
+            <Form.Control type="text" placeholder="Discount" />
+          </Col>
+        </Form.Group>
+      </Form>
+
       {loading ? (
         <Loader />
       ) : error ? (
@@ -45,16 +83,13 @@ const PuchaseScreen = ({ history }) => {
             <tr>
               <th>DATE</th>
               <th>ITEM</th>
-              <th>#P.O</th>
               <th>PRODUCT CODE</th>
-
               <th>SUPPLIER</th>
               <th>QTY</th>
               <th>UNIT PRICE</th>
               <th>CATEGORY</th>
               <th>DISCOUNT</th>
               <th>TOTAL AMMOUNT</th>
-              <th>EXPENSES</th>
               <th></th>
             </tr>
           </thead>
@@ -92,7 +127,7 @@ const PuchaseScreen = ({ history }) => {
           </tbody>
         </Table>
       )}
-    </>
+    </div>
   );
 };
 

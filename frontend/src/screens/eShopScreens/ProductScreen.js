@@ -11,6 +11,8 @@ import {
   createProductReview,
 } from '../../actions/eShopActions/productActions'
 import { PRODUCT_CREATE_REVIEW_RESET } from '../../constants/eShopConstants/productConstants'
+import { toast,ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ProductScreen = ({ history, match }) => {
   const [qty, setQty] = useState(1)
@@ -33,7 +35,6 @@ const ProductScreen = ({ history, match }) => {
 
   useEffect(() => {
     if (successProductReview) {
-      alert('Review Submitted!')
       setRating(0)
       setComment('')
       dispatch({ type: PRODUCT_CREATE_REVIEW_RESET })
@@ -53,6 +54,12 @@ const ProductScreen = ({ history, match }) => {
         comment,
       })
     )
+  }
+
+  const toast_err = ()=>{
+    toast.success("Great",{
+      position: toast.POSITION.TOP_RIGHT
+    })
   }
 
   return (
@@ -141,6 +148,7 @@ const ProductScreen = ({ history, match }) => {
                     >
                       Add To Cart
                     </Button>
+                    
                   </ListGroup.Item>
                 </ListGroup>
               </Card>

@@ -1,10 +1,9 @@
 import React, { useEffect } from "react";
 import { LinkContainer } from "react-router-bootstrap";
-import { Table, Button } from "react-bootstrap";
+import { Table, Button, Form, Col, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../../components/eShopComponents/Message";
 import Loader from "../../components/eShopComponents/Loader";
-import { listUsers, deleteUser } from "../../actions/eShopActions/userActions";
 
 const SaleScreen = ({ history }) => {
   const dispatch = useDispatch();
@@ -18,23 +17,20 @@ const SaleScreen = ({ history }) => {
   const userDelete = useSelector((state) => state.userDelete);
   const { success: successDelete } = userDelete;
 
-  //   useEffect(() => {
-  //     if (userInfo && userInfo.isAdmin) {
-  //       dispatch(listUsers())
-  //     } else {
-  //       history.push('/login')
-  //     }
-  //   }, [dispatch, history, successDelete, userInfo])
-
-  //   const deleteHandler = (id) => {
-  //     if (window.confirm('Are you sure')) {
-  //       dispatch(deleteUser(id))
-  //     }
-  //   }
-
   return (
-    <>
+    <div className="bg-warning p-2">
       <h1>Sales</h1>
+      <Form>
+        <Form.Group as={Row} controlId="formHorizontalEmail">
+          <Form.Label column sm={2}>
+            Choose Date
+          </Form.Label>
+          <Col sm={4}>
+            <Form.Control type="date" placeholder="Date" />
+          </Col>
+        </Form.Group>
+      </Form>
+
       {loading ? (
         <Loader />
       ) : error ? (
@@ -45,15 +41,12 @@ const SaleScreen = ({ history }) => {
             <tr>
               <th>DATE</th>
               <th>ITEM</th>
-              <th>#P.O</th>
               <th>PRODUCT CODE</th>
-              <th>SUPPLIER</th>
               <th>QTY</th>
               <th>UNIT PRICE</th>
               <th>AVAILABLE STOCK</th>
               <th>SOLD TO</th>
               <th>TOTAL AMMOUNT</th>
-              <th>EXPENSES</th>
               <th></th>
             </tr>
           </thead>
@@ -91,7 +84,7 @@ const SaleScreen = ({ history }) => {
           </tbody>
         </Table>
       )}
-    </>
+    </div>
   );
 };
 

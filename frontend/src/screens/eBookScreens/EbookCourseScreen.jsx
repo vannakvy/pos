@@ -52,7 +52,9 @@ const EbookCourseScreen = () => {
               <>
                 <div className="detail_contents card card-body mb-2 ebooCourseScreen_img">
                   <h5>{detail.title}</h5>
-                  <div className="p-2 ">{ReactHtmlParser(detail.contents)}</div>
+                  <div className="p-2  htmlParser">
+                    {ReactHtmlParser(detail.contents)}
+                  </div>
                 </div>
               </>
             ))

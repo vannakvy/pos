@@ -1,0 +1,9 @@
+.reportScreenInfoBoxs {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.reportScreenInfoBox {
+  min-width: 300px;
+  min-height: 120px;
+}

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import './Navbar.css';
 import { navbarList } from '../actions/navbarActions';
 import { logout } from '../actions/userActions/userActions';
 import Loader from './Loader';
@@ -72,15 +73,7 @@ const Navbar = () => {
       ) : (
        ''
       )}
-       <li className="nav-item">
-          <NavLink
-           to="/covid"
-           className="nav-link px-4 rounded"
-           
-          >
-           COVID
-          </NavLink>
-         </li>
+    
       {loading ? (
        <Loader wd={45} hg={45} />
       ) : error ? (
@@ -91,10 +84,10 @@ const Navbar = () => {
          <li className="nav-item">
           <NavLink
            to="/adminUsers"
-           className="nav-link px-4 rounded grediant adminHover"
+           className="nav-link px-4 rounded grediant adminHover​ navbar_link"
            onClick={() => dispatch(navbarList('Admin'))}
           >
-           ADMIN
+           រៀបចំ
           </NavLink>
          </li>
         ) : null}
@@ -104,9 +97,9 @@ const Navbar = () => {
       {userInfo ? (
        <>
         <div className="dropdown">
-         <button
+         <button 
           style={{ padding: '8px', border: 'none', fontSize: '17px' }}
-          className="bg-warning px-4 rounded dropdown-toggle"
+          className="bg-warning px-4 rounded dropdown-toggle navbar_link"
           id="dropdownMenuButton"
           data-toggle="dropdown"
           aria-haspopup="true"
@@ -118,14 +111,14 @@ const Navbar = () => {
           className="dropdown-menu p-2"
           aria-labelledby="dropdownMenuButton"
          >
-          <a className="dropdown-item" href="/eshop/myorder">
-           My Order
+          <a className="dropdown-item​ navbar_link" href="/eshop/myorder">
+           ទំនិញ់ដែលបានកំម៉ង់
           </a>
-          <a className="dropdown-item" href="/eshop/profile">
-           Profile
+          <a className="dropdown-item navbar_link" href="/eshop/profile">
+           ផ្ទាល់ខ្លួន
           </a>
-          <a className="dropdown-item" onClick={() => dispatch(logout())}>
-           Log Out
+          <a className="dropdown-item navbar_link" onClick={() => dispatch(logout())}>
+           ចាកចេញ់ពីគណនី
           </a>
          </div>
         </div>
@@ -135,19 +128,19 @@ const Navbar = () => {
        <>
         <li className="nav-item">
          <NavLink
-          className="nav-link px-4 rounded"
+          className="nav-link px-4 rounded navbar_link"
           to="/login"
           style={{
            background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
            boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
           }}
          >
-          LOGIN
+          ចូលគណនី
          </NavLink>
         </li>
         <li className="nav-item">
-         <NavLink className="nav-link" to="/register">
-          SIGN UP
+         <NavLink className="nav-link​ navbar_link" to="/register">
+         បង្កើតគណនី
          </NavLink>
         </li>
        </>

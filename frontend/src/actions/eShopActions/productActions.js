@@ -23,6 +23,9 @@ import {
   PRODUCT_TOP_FAIL,
 } from '../../constants/eShopConstants/productConstants'
 import { logout } from './userActions'
+import { toast,ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 export const listProducts = (keyword = '', pageNumber = '') => async (
   dispatch
@@ -206,7 +209,7 @@ export const createProductReview = (productId, review) => async (
     }
 
     await axios.post(`/api/eshop/products/${productId}/reviews`, review, config)
-
+  
     dispatch({
       type: PRODUCT_CREATE_REVIEW_SUCCESS,
     })
