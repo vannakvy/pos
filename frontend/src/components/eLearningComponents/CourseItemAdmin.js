@@ -24,7 +24,7 @@ const CourseItemAdmin = (props) => {
      src={course.imgUrl}
      alt=""
     />
-    <div className="p-3">
+    <div className="p-3 d-flex">
      <ProgressCourse />
     </div>
    </CardActionArea>

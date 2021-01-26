@@ -44,18 +44,39 @@ const CourseVideoScreen = () => {
       ) : (
        <>
         <div className="row">
-         <div className="col-xl-3 overflow-auto" style={{ height: '810px' }}>
+         <div
+          className="col-lg-3  d-lg-block d-none overflow-auto"
+          style={{ height: '810px' }}
+         >
           <h5>Course Content</h5>
-          <CourseContent sections={sections} cid={id} fromVideo={true} />
+          {loadingSection ? (
+           <Loader wd={40} hg={40} />
+          ) : errorSection ? (
+           <Message variant="danger">{errorSection}</Message>
+          ) : (
+           <CourseContent sections={sections} cid={id} fromVideo={true} />
+          )}
          </div>
-         <div className="col-xl-9">
+         <div className="col-lg-9 col-md-12">
           <ReactPlayer
            width="100%"
            height="800px"
-           url="https://www.youtube.com/embed/mn8pbQ-eUBI"
+           url="https://player.vimeo.com/video/504697764"
            controls
            playing={true}
           />
+         </div>
+         <div className="col-md-12  d-lg-none">
+          <h5>Course Content</h5>
+          {loadingSection ? (
+           <Loader wd={40} hg={40} />
+          ) : errorSection ? (
+           <Message variant="danger">{errorSection}</Message>
+          ) : (
+           <div className="overflow-auto" style={{ height: '810px' }}>
+            <CourseContent sections={sections} cid={id} fromVideo={true} />
+           </div>
+          )}
          </div>
         </div>
        </>
