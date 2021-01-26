@@ -138,11 +138,15 @@ const Navbar = () => {
           ចូលគណនី
          </NavLink>
         </li>
+       
         <li className="nav-item">
-         <NavLink className="nav-link​ navbar_link" to="/register">
-         បង្កើតគណនី
-         </NavLink>
-        </li>
+          <NavLink
+           to="/register"
+           className="nav-link  navbar_link"
+          >
+           បង្កើតគណនី
+          </NavLink>
+         </li>
        </>
       )}
      </ul>

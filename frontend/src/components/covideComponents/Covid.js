@@ -14,6 +14,7 @@ import { sortData, prettyPrintStat } from "./util";
 import numeral from "numeral";
 import Map from "./Map";
 import "leaflet/dist/leaflet.css";
+import DropdownExampleSearchSelection from "../eShopComponents/Dropdown";
 
 const App = () => {
   const [country, setInputCountry] = useState("worldwide");
@@ -24,6 +25,8 @@ const App = () => {
   const [casesType, setCasesType] = useState("cases");
   const [mapCenter, setMapCenter] = useState({ lat: 34.80746, lng: -40.4796 });
   const [mapZoom, setMapZoom] = useState(3);
+
+
 
   useEffect(() => {
     fetch("https://disease.sh/v3/covid-19/all")
@@ -54,8 +57,8 @@ const App = () => {
 
  
 
-  const onCountryChange = async (e) => {
-    const countryCode = e.target.value;
+  const onCountryChange = async (c) => {
+    const countryCode = c;
     const url =
       countryCode === "worldwide"
         ? "https://disease.sh/v3/covid-19/all"
@@ -69,6 +72,28 @@ const App = () => {
         setMapZoom(4);
       });
   };
+
+  function lower(obj) {
+    for (var prop in obj) {
+    if (typeof obj[prop] === 'string') {
+      obj[prop] = obj[prop].toLowerCase();
+    }
+    if (typeof obj[prop] === 'object') {
+      lower(obj[prop]);
+      }
+    }
+    return obj;
+  }
+  
+  
+  countries.forEach(c => {
+   lower(c)
+});
+
+const newCounties = countries.map(contry=>(
+  { key: contry.value, value: contry.value, flag: contry.value, text: contry.name }
+))
+
 
   return (
     <div className="app">
@@ -87,9 +112,9 @@ const App = () => {
       </Card>
       <div className="app__left">
         <div className="app__header">
-          <h1 className="ti">តារាងតាមដាន កូវិត​ ១៩ </h1>
+          <h1 className="ti">តារាងតាមដាន កូវិត​១៩ </h1>
           <FormControl className="app__dropdown">
-            <Select
+            {/* <Select
               variant="outlined"
               value={country}
               onChange={onCountryChange}
@@ -98,7 +123,8 @@ const App = () => {
               {countries.map((country) => (
                 <MenuItem value={country.value}>{country.name}</MenuItem>
               ))}
-            </Select>
+            </Select> */}
+            <DropdownExampleSearchSelection countryOption={newCounties} change={onCountryChange}/>
           </FormControl>
         </div>
         <div className="app__stats">
