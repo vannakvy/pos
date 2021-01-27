@@ -1,5 +1,6 @@
 import asyncHandler from 'express-async-handler';
 import Enroll from '../../models/eLearningModels/enrollModel.js';
+import Course from '../../models/eLearningModels/courseModel.js';
 
 //@desc    Fetch search courses
 //@route   GET /api/users/:uid/enroll
@@ -7,11 +8,21 @@ import Enroll from '../../models/eLearningModels/enrollModel.js';
 const getUserEnrollCourses = asyncHandler(async (req, res) => {
  const { uid } = req.params;
  const enrollCourses = await Enroll.find({ user: uid }).populate('courseId');
- if (enrollCourses) {
-  res.json(enrollCourses);
- } else {
-  res.status(404);
-  throw new Error('Can not get Enroll courses!');
+ const courses = await Course.find({});
+
+ if (enrollCourses && courses) {
+  const courseEnroll = [];
+  enrollCourses.forEach((course) => courseEnroll.push(course.courseId));
+
+  const noEnrollCourses = courses.filter(function (array_el) {
+   return (
+    courseEnroll.filter(function (anotherOne_el) {
+     return anotherOne_el.id === array_el.id;
+    }).length == 0
+   );
+  });
+
+  res.json({ enrollCourses, noEnrollCourses });
  }
 });
 

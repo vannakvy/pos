@@ -1,5 +1,11 @@
 import React from 'react';
-import { BrowserRouter as Router, NavLink, Redirect, Route, Switch } from 'react-router-dom';
+import {
+ BrowserRouter as Router,
+ NavLink,
+ Redirect,
+ Route,
+ Switch,
+} from 'react-router-dom';
 import Footer from './components/Footer';
 import Dashboard from './screens/Dashboard';
 import Navbar from './components/Navbar.js';
@@ -23,10 +29,9 @@ import PlaceOrderScreen from './screens/eShopScreens/PlaceOrderScreen';
 import OrderScreen from './screens/eShopScreens/OrderScreen';
 //
 import HomeScreen from './screens/eShopScreens/HomeScreen';
-import Covid from './components/covideComponents/Covid'
+import Covid from './components/covideComponents/Covid';
 import MyOrderScreen from './screens/eShopScreens/MyOrderScreen';
 import { Button } from '@material-ui/core';
-
 
 const App = () => {
  return (
@@ -45,43 +50,47 @@ const App = () => {
     <Route path="/elearning" component={DashboardElearn} />
     {/* ebooks routes */}
 
-                {/* frontend */}
-                <Route path="/courses/:id/videos/:vid" component={CourseVideoScreen} />
-                <Route path="/courses/:id" component={CourseDetailsScreen} />
-                <Route path="/courses" component={CoursesScreen} />
-                <Route path="/elearning" component={DashboardElearn} />
-                {/* ebooks routes */}
+    {/* frontend */}
+    <Route path="/courses/:id/videos/:vid" component={CourseVideoScreen} />
+    <Route path="/courses/:id" component={CourseDetailsScreen} />
+    <Route path="/courses" component={CoursesScreen} />
+    <Route path="/elearning" component={DashboardElearn} />
+    {/* ebooks routes */}
 
-                <Route path="/ebook/:lang" component={EbookCourseScreen} />
-                <Route path="/ebook" component={EbookHomeScreen} />
+    <Route path="/ebook/:lang" component={EbookCourseScreen} />
+    <Route path="/ebook" component={EbookHomeScreen} />
 
-                {/* eshop routes  */}
-                <Route path="/eshop/order/:id" component={OrderScreen} />
-                <Route path="/eshop/payment" component={PaymentScreen} />
-                <Route path="/eshop/placeorder" component={PlaceOrderScreen} />
-                <Route path="/eshop/shipping" component={ShippingScreen} />
-                <Route path="/eshop/product/:id" component={ProductScreen} />
-                <Route path="/eshop/cart/:id?" component={CartScreen} />
-                <Route path="/eshop/profile" component={ProfileScreen} />
-                <Route path="/eshop/myorder" component={MyOrderScreen} />
-                <Route path='/eshop/search/:keyword' component={HomeScreen} exact />
-                <Route path='/eshop/page/:pageNumber' component={HomeScreen} exact />
-                <Route path="/eshop" component={HomeScreen} />
-               
+    {/* eshop routes  */}
+    <Route path="/eshop/order/:id" component={OrderScreen} />
+    <Route path="/eshop/payment" component={PaymentScreen} />
+    <Route path="/eshop/placeorder" component={PlaceOrderScreen} />
+    <Route path="/eshop/shipping" component={ShippingScreen} />
+    <Route path="/eshop/product/:id" component={ProductScreen} />
+    <Route path="/eshop/cart/:id?" component={CartScreen} />
+    <Route path="/eshop/profile" component={ProfileScreen} />
+    <Route path="/eshop/myorder" component={MyOrderScreen} />
+    <Route path="/eshop/search/:keyword" component={HomeScreen} exact />
+    <Route path="/eshop/page/:pageNumber" component={HomeScreen} exact />
+    <Route path="/eshop" component={HomeScreen} />
 
-                {/* Covid route  */}
-                <Route path="/covid" component={Covid} />
+    {/* Covid route  */}
+    <Route path="/covid" component={Covid} />
 
-                <Route path="/login" component={LoginScreen} />
-                <Route path="/register" component={RegisterScreen} />
-                <Route path="/" exact component={Dashboard} />
-            </Switch>
-            <Footer />
-                
-                <NavLink className="navbar_link rounded bg-info text-light p-2" to="/covid" style={{position:'fixed',bottom:'40px',right:'0',zIndex:'1000'}}>តាមដានកូវិត១៩</NavLink>
-                
-        </Router>
-    );
+    <Route path="/login" component={LoginScreen} />
+    <Route path="/register" component={RegisterScreen} />
+    <Route path="/" exact component={Dashboard} />
+   </Switch>
+   <Footer />
+
+   <NavLink
+    className="navbar_link rounded bg-info text-light p-2"
+    to="/covid"
+    style={{ position: 'fixed', bottom: '20px', right: '0', zIndex: '1000' }}
+   >
+    តាមដានកូវិត១៩
+   </NavLink>
+  </Router>
+ );
 };
 
 export default App;

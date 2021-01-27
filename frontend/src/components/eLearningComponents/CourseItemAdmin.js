@@ -20,12 +20,19 @@ const CourseItemAdmin = (props) => {
    >
     <img
      className="position-absolute"
-     style={{ width: 495, opacity: 0.1 }}
+     style={{ width: 495, opacity: 0.3 }}
      src={course.imgUrl}
      alt=""
     />
-    <div className="p-3 d-flex">
-     <ProgressCourse />
+    <div className="d-flex">
+     <div className="p-2">
+      <ProgressCourse />
+     </div>
+
+     <div className="p-2">
+      <h5>{course.name}</h5>
+      <small className="t_grediant">{course.courseType}</small>
+     </div>
     </div>
    </CardActionArea>
   </Card>
