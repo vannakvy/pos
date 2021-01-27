@@ -1,7 +1,7 @@
 .navbar_link {
-  font-family: myriad-pro, Lucida Grande, Arial, "Kantumruy", "Siemreap",
-    sans-serif;
-  font-weight: 500;
-  font-size: 19px;
-  /* color: rgba(20, 139, 139, 0.651); */
+ font-family: myriad-pro, Lucida Grande, Arial, 'Kantumruy', 'Siemreap',
+  sans-serif;
+ font-weight: 500;
+ font-size: 19px;
+ /* color: rgba(20, 139, 139, 0.651); */
 }
