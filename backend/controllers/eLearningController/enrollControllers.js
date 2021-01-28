@@ -51,4 +51,62 @@ const createEnrollCourses = asyncHandler(async (req, res) => {
  res.json(coursesEnrollded);
 });
 
-export { getUserEnrollCourses, createEnrollCourses };
+//@desc    Fatch enroll Section
+//@route   GET /api/eLearning/enrolls/:id/section
+//@access  Public
+const getEnrollSections = asyncHandler(async (req, res) => {
+ const { id } = req.params;
+ const enrollCourses = await Enroll.find({ user: req.user.id }).populate(
+  'courseId'
+ );
+
+ if (enrollCourses) {
+  const enroll = enrollCourses.find((enroll) => {
+   return enroll.courseId.id === id;
+  });
+  res.json(enroll.section);
+ } else {
+  res.status(404);
+  throw new Error('No Course Enroll');
+ }
+});
+
+//@desc    Fatch enroll video
+//@route   GET /api/eLearning/enrolls/:id/video/:vid
+//@access  Public
+const getEnrollVideos = asyncHandler(async (req, res) => {
+ const { id, vid } = req.params;
+ const enrollCourses = await Enroll.find({ user: req.user.id }).populate(
+  'courseId'
+ );
+
+ const videosee = [];
+
+ if (enrollCourses) {
+  const enroll = enrollCourses.find((enroll) => {
+   return enroll.courseId.id === id;
+  });
+
+  if (enroll) {
+   enroll.section.forEach((section) => {
+    section.videos.forEach((video) => {
+     videosee.push(video);
+    });
+   });
+   res.json(videosee);
+  } else {
+   res.status(404);
+   throw new Error('No Video match with id');
+  }
+ } else {
+  res.status(404);
+  throw new Error('No Course Enroll');
+ }
+});
+
+export {
+ getUserEnrollCourses,
+ createEnrollCourses,
+ getEnrollSections,
+ getEnrollVideos,
+};

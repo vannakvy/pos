@@ -31,6 +31,7 @@ import {
 import {
  courseEnrollReducer,
  createEnrollCoursesReducer,
+ getEnrollSectionReducer,
  userEnrollCoursesReducer,
 } from './reducers/eLearningReducers/enrollReducers';
 
@@ -93,6 +94,7 @@ const reducer = combineReducers({
  enroll: courseEnrollReducer,
  userEnrollCourses: userEnrollCoursesReducer,
  createEnrollCourses: createEnrollCoursesReducer,
+ getEnrollSection: getEnrollSectionReducer,
  //  for ebook reducer
  courses: getLanguagesReducer,
  languageCreate: languageCreateReducer,

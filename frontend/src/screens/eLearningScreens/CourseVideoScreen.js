@@ -2,26 +2,43 @@ import React, { useEffect } from 'react';
 import ReactPlayer from 'react-player/lazy';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { getCourseEnroll } from '../../actions/eLearningActions/enrollActions';
+import {
+ getCourseEnroll,
+ getEnrollSections,
+ getEnrollVideo,
+} from '../../actions/eLearningActions/enrollActions';
 import CourseContent from '../../components/eLearningComponents/CourseContent';
 import Loader from '../../components/Loader';
 import Message from '../../components/Message';
 import { COUSRE_ENROLL_RESET } from '../../constants/eLearningConstants/enrollConstants';
 
 const CourseVideoScreen = () => {
- const { id } = useParams();
+ const { id, vid } = useParams();
 
  const dispatch = useDispatch();
 
  const enrollCourse = useSelector((state) => state.enroll);
  const { loading: loadingEnroll, error: errorEnroll, enroll } = enrollCourse;
 
- console.log(enroll);
-
  useEffect(() => {
   dispatch({ type: COUSRE_ENROLL_RESET });
   dispatch(getCourseEnroll(id));
  }, [dispatch, id]);
+
+ const getEnrollSection = useSelector((state) => state.getEnrollSection);
+ const {
+  loading: loadingSection,
+  error: errorSection,
+  sections,
+ } = getEnrollSection;
+
+ useEffect(() => {
+  dispatch(getEnrollSections(id));
+ }, [dispatch, id]);
+
+ useEffect(() => {
+  dispatch(getEnrollVideo(id, vid));
+ }, [dispatch, id, vid]);
 
  return (
   <>
@@ -46,13 +63,13 @@ const CourseVideoScreen = () => {
           style={{ height: '810px' }}
          >
           <h5>Course Content</h5>
-          {loadingEnroll ? (
+          {loadingSection ? (
            <Loader wd={40} hg={40} />
-          ) : errorEnroll ? (
-           <Message variant="danger">{errorEnroll}</Message>
+          ) : errorSection ? (
+           <Message variant="danger">{errorSection}</Message>
           ) : (
            <CourseContent
-            sections={enroll && enroll.section}
+            sections={sections && sections}
             cid={id}
             fromVideo={true}
            />

@@ -3,6 +3,12 @@ import {
  COUSRE_ENROLL_FAIL,
  COUSRE_ENROLL_REQUEST,
  COUSRE_ENROLL_SUCCESS,
+ GET_ENROLL_SECTION_FAIL,
+ GET_ENROLL_SECTION_SUCCESS,
+ GET_ENROLL_VIDEO_FAIL,
+ GET_ENROLL_VIDEO_REQUEST,
+ GET_ENROLL_VIDEO_SUCCESS,
+ //  GET_ENROLL_SECTION_REQUEST,
  USER_ENROLL_COURSE_FAIL,
  USER_ENROLL_COURSE_REQUEST,
  USER_ENROLL_COURSE_SUCCESS,
@@ -101,6 +107,71 @@ export const addUserEnrollCourses = (uid, enrolls) => async (
  } catch (error) {
   dispatch({
    type: USER_ENROLL_CREATE_FAIL,
+   payload:
+    error.response && error.response.data.message
+     ? error.response.data.message
+     : error.message,
+  });
+ }
+};
+
+export const getEnrollSections = (id) => async (dispatch, getState) => {
+ try {
+  //   dispatch({ type: GET_ENROLL_SECTION_REQUEST });
+  const {
+   userLogin: { userInfo },
+  } = getState();
+
+  const config = {
+   headers: {
+    Authorization: `Bearer ${userInfo.token}`,
+   },
+  };
+  const { data } = await axios.get(
+   `/api/eLearning/enrolls/${id}/section`,
+   config
+  );
+
+  dispatch({
+   type: GET_ENROLL_SECTION_SUCCESS,
+   payload: data,
+  });
+ } catch (error) {
+  dispatch({
+   type: GET_ENROLL_SECTION_FAIL,
+   payload:
+    error.response && error.response.data.message
+     ? error.response.data.message
+     : error.message,
+  });
+ }
+};
+export const getEnrollVideo = (id, vid) => async (dispatch, getState) => {
+ try {
+  //   dispatch({ type: GET_ENROLL_VIDEO_REQUEST });
+  const {
+   userLogin: { userInfo },
+  } = getState();
+
+  const config = {
+   headers: {
+    Authorization: `Bearer ${userInfo.token}`,
+   },
+  };
+  const { data } = await axios.get(
+   `/api/eLearning/enrolls/${id}/video/${vid}`,
+   config
+  );
+
+  console.log(data);
+
+  //   dispatch({
+  //    type: GET_ENROLL_VIDEO_SUCCESS,
+  //    payload: data,
+  //   });
+ } catch (error) {
+  dispatch({
+   type: GET_ENROLL_VIDEO_FAIL,
    payload:
     error.response && error.response.data.message
      ? error.response.data.message

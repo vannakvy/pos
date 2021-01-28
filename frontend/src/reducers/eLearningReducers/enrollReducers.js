@@ -3,6 +3,10 @@ import {
  COUSRE_ENROLL_REQUEST,
  COUSRE_ENROLL_RESET,
  COUSRE_ENROLL_SUCCESS,
+ GET_ENROLL_SECTION_FAIL,
+ GET_ENROLL_SECTION_REQUEST,
+ GET_ENROLL_SECTION_RESET,
+ GET_ENROLL_SECTION_SUCCESS,
  USER_ENROLL_COURSE_FAIL,
  USER_ENROLL_COURSE_REQUEST,
  USER_ENROLL_COURSE_RESET,
@@ -50,6 +54,21 @@ export const createEnrollCoursesReducer = (state = {}, action) => {
   case USER_ENROLL_COURSE_FAIL:
    return { loading: false, error: action.payload };
   case USER_ENROLL_COURSE_RESET:
+   return {};
+  default:
+   return state;
+ }
+};
+
+export const getEnrollSectionReducer = (state = {}, action) => {
+ switch (action.type) {
+  case GET_ENROLL_SECTION_REQUEST:
+   return { loading: true, sections: [] };
+  case GET_ENROLL_SECTION_SUCCESS:
+   return { loading: false, sections: action.payload };
+  case GET_ENROLL_SECTION_FAIL:
+   return { loading: false, error: action.payload };
+  case GET_ENROLL_SECTION_RESET:
    return {};
   default:
    return state;

@@ -8,31 +8,31 @@ const NavAdmin = () => {
 
  return (
   <>
-   <li className="nav-item active">
+   <li className="nav-item">
     <NavLink
      onClick={() => dispatch(navbarList('Eshop'))}
-     className="nav-link"
+     className="nav-link navbar_link"
      to="/eshop"
     >
-     E-SHOP
+     ទិញទំនិញ
     </NavLink>
    </li>
    <li className="nav-item">
     <NavLink
      onClick={() => dispatch(navbarList('Elearning'))}
-     className="nav-link"
+     className="nav-link navbar_link"
      to="/elearning"
     >
-     E-LEARNING
+     រៀនជាវីដីអូ
     </NavLink>
    </li>
    <li className="nav-item">
     <NavLink
      onClick={() => dispatch(navbarList('Ebook'))}
-     className="nav-link"
+     className="nav-link navbar_link"
      to="/ebook"
     >
-     E-BOOK
+     រៀនជាកាអាន
     </NavLink>
    </li>
   </>
