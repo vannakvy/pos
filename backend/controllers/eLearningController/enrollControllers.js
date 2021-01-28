@@ -93,7 +93,17 @@ const getEnrollVideos = asyncHandler(async (req, res) => {
      videosee.push(video);
     });
    });
-   res.json(videosee);
+   const video = videosee.find((v) => {
+    return v._id == vid;
+   });
+
+   const i = videosee.indexOf(video);
+   let nextVideo = videosee[i + 1];
+
+   if (nextVideo === undefined) {
+    nextVideo = video;
+   }
+   res.json({ video, nextVideo });
   } else {
    res.status(404);
    throw new Error('No Video match with id');

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import ReactPlayer from 'react-player/lazy';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import {
  getCourseEnroll,
  getEnrollSections,
@@ -14,8 +14,8 @@ import { COUSRE_ENROLL_RESET } from '../../constants/eLearningConstants/enrollCo
 
 const CourseVideoScreen = () => {
  const { id, vid } = useParams();
-
  const dispatch = useDispatch();
+ const history = useHistory();
 
  const enrollCourse = useSelector((state) => state.enroll);
  const { loading: loadingEnroll, error: errorEnroll, enroll } = enrollCourse;
@@ -36,9 +36,18 @@ const CourseVideoScreen = () => {
   dispatch(getEnrollSections(id));
  }, [dispatch, id]);
 
+ const getEnrollVideoPlay = useSelector((state) => state.getEnrollVideoPlay);
+ const { loading: loadingPlay, error: errorPlay, plays } = getEnrollVideoPlay;
+
+ console.log(plays);
+
  useEffect(() => {
   dispatch(getEnrollVideo(id, vid));
  }, [dispatch, id, vid]);
+
+ const onVideoEnded = () => {
+  history.push(`/courses/${id}/videos/${plays.nextVideo._id}`);
+ };
 
  return (
   <>
@@ -76,14 +85,23 @@ const CourseVideoScreen = () => {
           )}
          </div>
          <div className="col-lg-9 col-md-12">
-          <ReactPlayer
-           className="p-1 bg-light rounded"
-           width="100%"
-           height="800px"
-           url="https://player.vimeo.com/video/504697764"
-           controls
-           playing={true}
-          />
+          {loadingPlay ? (
+           <div>
+            <Loader wd={40} hg={40} />
+           </div>
+          ) : errorPlay ? (
+           <Message variant="danger">{errorPlay}</Message>
+          ) : (
+           <ReactPlayer
+            className="p-1 bg-light rounded"
+            width="100%"
+            height="800px"
+            url={plays && plays.video.url}
+            onEnded={() => onVideoEnded()}
+            controls
+            playing={true}
+           />
+          )}
          </div>
          <div className="col-md-12  d-lg-none">
           <h5>Course Content</h5>

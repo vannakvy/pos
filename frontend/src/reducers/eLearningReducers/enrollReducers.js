@@ -7,6 +7,10 @@ import {
  GET_ENROLL_SECTION_REQUEST,
  GET_ENROLL_SECTION_RESET,
  GET_ENROLL_SECTION_SUCCESS,
+ GET_ENROLL_VIDEO_FAIL,
+ GET_ENROLL_VIDEO_REQUEST,
+ GET_ENROLL_VIDEO_RESET,
+ GET_ENROLL_VIDEO_SUCCESS,
  USER_ENROLL_COURSE_FAIL,
  USER_ENROLL_COURSE_REQUEST,
  USER_ENROLL_COURSE_RESET,
@@ -69,6 +73,21 @@ export const getEnrollSectionReducer = (state = {}, action) => {
   case GET_ENROLL_SECTION_FAIL:
    return { loading: false, error: action.payload };
   case GET_ENROLL_SECTION_RESET:
+   return {};
+  default:
+   return state;
+ }
+};
+
+export const getEnrollVideoPlayReducer = (state = {}, action) => {
+ switch (action.type) {
+  case GET_ENROLL_VIDEO_REQUEST:
+   return { loading: true, plays: {} };
+  case GET_ENROLL_VIDEO_SUCCESS:
+   return { loading: false, plays: action.payload };
+  case GET_ENROLL_VIDEO_FAIL:
+   return { loading: false, error: action.payload };
+  case GET_ENROLL_VIDEO_RESET:
    return {};
   default:
    return state;

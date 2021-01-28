@@ -59,7 +59,7 @@ const CoursesScreen = () => {
     <h5>{courseType}</h5>
 
     {loadingList ? (
-     <Loader wd={180} hg={180} />
+     <Loader wd={40} hg={40} />
     ) : errorList ? (
      <Message variant="danger">{errorList}</Message>
     ) : coursesList.length !== 0 ? (

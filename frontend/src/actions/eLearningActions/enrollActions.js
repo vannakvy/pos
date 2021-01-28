@@ -148,7 +148,7 @@ export const getEnrollSections = (id) => async (dispatch, getState) => {
 };
 export const getEnrollVideo = (id, vid) => async (dispatch, getState) => {
  try {
-  //   dispatch({ type: GET_ENROLL_VIDEO_REQUEST });
+  dispatch({ type: GET_ENROLL_VIDEO_REQUEST });
   const {
    userLogin: { userInfo },
   } = getState();
@@ -165,10 +165,10 @@ export const getEnrollVideo = (id, vid) => async (dispatch, getState) => {
 
   console.log(data);
 
-  //   dispatch({
-  //    type: GET_ENROLL_VIDEO_SUCCESS,
-  //    payload: data,
-  //   });
+  dispatch({
+   type: GET_ENROLL_VIDEO_SUCCESS,
+   payload: data,
+  });
  } catch (error) {
   dispatch({
    type: GET_ENROLL_VIDEO_FAIL,

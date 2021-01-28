@@ -32,6 +32,7 @@ import {
  courseEnrollReducer,
  createEnrollCoursesReducer,
  getEnrollSectionReducer,
+ getEnrollVideoPlayReducer,
  userEnrollCoursesReducer,
 } from './reducers/eLearningReducers/enrollReducers';
 
@@ -95,6 +96,7 @@ const reducer = combineReducers({
  userEnrollCourses: userEnrollCoursesReducer,
  createEnrollCourses: createEnrollCoursesReducer,
  getEnrollSection: getEnrollSectionReducer,
+ getEnrollVideoPlay: getEnrollVideoPlayReducer,
  //  for ebook reducer
  courses: getLanguagesReducer,
  languageCreate: languageCreateReducer,
