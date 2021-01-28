@@ -7,11 +7,10 @@ const PuchaseModel = mongoose.Schema({
         required: true, 
         ref: 'Product'
     },
-    supplier: {
-        type: String,
-        required: true
+    description: {
+        type: String
     },
-    discount: {
+    price: {
         type: String,
     },
     date: {
@@ -22,6 +21,11 @@ const PuchaseModel = mongoose.Schema({
         required: true,
         default: 0
     }, 
+    arrived:{
+        type: Boolean,
+        required: true,
+        default:false
+    }
 
 },{
     timestamps: true

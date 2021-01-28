@@ -21,18 +21,20 @@
   font-family: myriad-pro, Lucida Grande, Arial, "Kantumruy", "Siemreap",
     sans-serif;
   padding: 5px;
+  line-height: 2;
+  font-size: 110%;
 }
 .htmlParser ol li {
   font-family: myriad-pro, Lucida Grande, Arial, "Kantumruy", "Siemreap",
     sans-serif;
+  padding: 5px 0 0 0;
 }
-/* #ebookStyle h1,
+.htmlParser h1,
 h2,
 h3,
-h4,
-h5,
-h6 {
- font-family: myriad-pro, Lucida Grande, Arial, 'Kantumruy', 'Siemreap',
-  sans-serif;
- margin: 10px;
-} */
+h4 {
+  font-family: myriad-pro, Lucida Grande, Arial, "Kantumruy", "Siemreap",
+    sans-serif;
+  margin: 10px;
+  font-size: 110%;
+}
