@@ -1,30 +1,30 @@
 .ebooCourseScreen_list {
- padding: 5px;
- border: none;
- font-size: 17px;
- transition: 0.5s;
+  padding: 5px;
+  border: none;
+  font-size: 17px;
+  transition: 0.5s;
 }
 .ebooCourseScreen_list:hover {
- cursor: pointer;
- font-size: 120%;
- font-weight: bold;
- background-color: rgba(195, 250, 245, 0.171);
+  cursor: pointer;
+  font-size: 120%;
+  font-weight: bold;
+  background-color: rgba(195, 250, 245, 0.171);
 }
 
 .ebooCourseScreen_img img {
- max-width: 100% !important;
- /* height: 350px !important; */
- background: rgb(122, 122, 9);
+  max-width: 100% !important;
+  /* height: 350px !important; */
+  background: rgb(122, 122, 9);
 }
 
 .htmlParser p {
- font-family: myriad-pro, Lucida Grande, Arial, 'Kantumruy', 'Siemreap',
-  sans-serif;
- padding: 5px;
+  font-family: myriad-pro, Lucida Grande, Arial, "Kantumruy", "Siemreap",
+    sans-serif;
+  padding: 5px;
 }
 .htmlParser ol li {
- font-family: myriad-pro, Lucida Grande, Arial, 'Kantumruy', 'Siemreap',
-  sans-serif;
+  font-family: myriad-pro, Lucida Grande, Arial, "Kantumruy", "Siemreap",
+    sans-serif;
 }
 /* #ebookStyle h1,
 h2,

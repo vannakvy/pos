@@ -306,7 +306,7 @@ const AdminCourses = () => {
     <Message variant="danger">{errorList}</Message>
    ) : (
     <>
-     <table className="table table-sm">
+     <table className="table table-sm bg-light">
       <thead className="thead-dark text-center">
        <tr>
         <th scope="col">No</th>

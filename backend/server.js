@@ -15,6 +15,7 @@ import eBookStaticFileRoutes from './routes/eBookRoutes/eBookStaticFileRoutes.js
 //eshop Routes
 import productRoutes from './routes/eShopRoutes/productRoutes.js';
 import orderRoutes from './routes/eShopRoutes/orderRoutes.js';
+import InventoryRoutes from './routes/eShopRoutes/inventoryRoutes.js';
 // import eShopUploadRoutes from './routes/uploadsRoutes/eShopUploadRoutes.js';
 import eShopUploadRoutes from './routes/eShopRoutes/eShopUploadRoutes.js';
 import userRoutes from './routes/userRoute/userRoutes.js';
@@ -46,11 +47,12 @@ app.use('/api/ebook/uploads', eBookStaticFileRoutes);
 app.use('/api/products', productRoutes);
 // app.use('/api/users', userRoutes)
 app.use('/api/orders', orderRoutes);
-app.use('/api/upload', eShopUploadRoutes);
+app.use('/api/eshop/upload', eShopUploadRoutes);
 app.use('/api/eshop/products', productRoutes);
 app.use('/api/eshop/users', userRoutes);
 app.use('/api/eshop/orders', orderRoutes);
-app.use('/api/eshop/upload', eShopUploadRoutes);
+app.use('/api/eshop/orders', orderRoutes);
+app.use('/api/eshop/inventory', InventoryRoutes);
 
 app.get('/api/eshop/config/paypal', (req, res) =>
  res.send(process.env.PAYPAL_CLIENT_ID)
