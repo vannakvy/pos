@@ -28,5 +28,5 @@ router
  .put(protect, admin, updateUser);
 
 router.route('/search/uid').get(protect, admin, searchUser);
-router.route('/:uid/enroll').get(protect, admin, getUserEnrollCourses);
+router.route('/:uid/enroll').get(protect, getUserEnrollCourses);
 export default router;

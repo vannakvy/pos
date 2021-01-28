@@ -5,6 +5,7 @@ import colors from 'colors';
 import morgan from 'morgan';
 
 import searchRoutes from './routes/eLearningRoute/searchRoutes.js';
+import enrollsRoutes from './routes/eLearningRoute/enrollsRoutes.js';
 import courseRoutes from './routes/eLearningRoute/courseRoutes.js';
 import uploadRoutes from './routes/eLearningRoute/uploadRoutes.js';
 //eBook Routes import
@@ -36,6 +37,7 @@ app.use(express.json());
 app.use('/api/courses', courseRoutes);
 app.use('/api/search', searchRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/eLearning/enrolls', enrollsRoutes);
 app.use('/api/eLearning/uploads', uploadRoutes);
 
 // for eBook Routes

@@ -26,4 +26,36 @@ const getUserEnrollCourses = asyncHandler(async (req, res) => {
  }
 });
 
-export { getUserEnrollCourses };
+//@desc    Create enroll courses
+//@route   POST /api/eLearning/enrolls/:uid
+//@access  Private admin
+const createEnrollCourses = asyncHandler(async (req, res) => {
+ const { uid } = req.params;
+ const { enrolls } = req.body;
+ const courses = await Course.find({});
+ const coursesEnrollded = [];
+
+ // if (enrolls && enrolls.length !== 0) {
+ //  enrolls.forEach((cid) => {
+ //   const courses = await Course.findById(cid);
+ //   coursesEnrollded.push(courses);
+ //  });
+ // }
+
+ courses.forEach((course) => {
+  enrolls.forEach(async (cid) => {
+   if (course._id == cid) {
+    const enroll = new Enroll({
+     user: uid,
+     courseId: course._id,
+     videoId: [],
+    });
+    const createEnroll = await enroll.save();
+    coursesEnrollded.push(createEnroll);
+   }
+  });
+ });
+ res.json(coursesEnrollded);
+});
+
+export { getUserEnrollCourses, createEnrollCourses };
