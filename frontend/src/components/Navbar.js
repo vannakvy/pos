@@ -12,6 +12,7 @@ import NavEshop from './NavEshop';
 import NavEbook from './eBookComponents/NavEbook';
 import NavAdmin from './NavAdmin';
 import Header from '../components/eShopComponents/Header';
+import SettingsIcon from '@material-ui/icons/Settings';
 
 const Navbar = () => {
  const dispatch = useDispatch();
@@ -84,10 +85,10 @@ const Navbar = () => {
          <li className="nav-item">
           <NavLink
            to="/adminUsers"
-           className="nav-link px-4 rounded grediant adminHover​ navbar_link"
+           className="nav-link p-2 bg-primary rounded-circle "
            onClick={() => dispatch(navbarList('Admin'))}
           >
-           រៀបចំ
+           <SettingsIcon fontSize="meduim" color="secondary" />
           </NavLink>
          </li>
         ) : null}
