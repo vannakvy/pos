@@ -35,20 +35,13 @@ const createEnrollCourses = asyncHandler(async (req, res) => {
  const courses = await Course.find({});
  const coursesEnrollded = [];
 
- // if (enrolls && enrolls.length !== 0) {
- //  enrolls.forEach((cid) => {
- //   const courses = await Course.findById(cid);
- //   coursesEnrollded.push(courses);
- //  });
- // }
-
  courses.forEach((course) => {
   enrolls.forEach(async (cid) => {
    if (course._id == cid) {
     const enroll = new Enroll({
      user: uid,
      courseId: course._id,
-     section: [],
+     section: course.section,
     });
     const createEnroll = await enroll.save();
     coursesEnrollded.push(createEnroll);

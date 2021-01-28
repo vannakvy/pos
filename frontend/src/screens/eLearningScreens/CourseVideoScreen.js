@@ -3,7 +3,6 @@ import ReactPlayer from 'react-player/lazy';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getCourseEnroll } from '../../actions/eLearningActions/enrollActions';
-import { getSections } from '../../actions/eLearningActions/sectionActions';
 import CourseContent from '../../components/eLearningComponents/CourseContent';
 import Loader from '../../components/Loader';
 import Message from '../../components/Message';
@@ -17,21 +16,19 @@ const CourseVideoScreen = () => {
  const enrollCourse = useSelector((state) => state.enroll);
  const { loading: loadingEnroll, error: errorEnroll, enroll } = enrollCourse;
 
- const sectionList = useSelector((state) => state.sectionList);
- const { loading: loadingSection, error: errorSection, sections } = sectionList;
+ console.log(enroll);
 
  useEffect(() => {
   dispatch({ type: COUSRE_ENROLL_RESET });
   dispatch(getCourseEnroll(id));
-  dispatch(getSections(id));
  }, [dispatch, id]);
 
  return (
   <>
    <div className="container-fluid mt-2">
     {loadingEnroll ? (
-     <div className="py-5">
-      <Loader wd={180} hg={180} />
+     <div className="py-3">
+      <Loader wd={40} hg={40} />
      </div>
     ) : errorEnroll ? (
      <Message variant="danger">{errorEnroll}</Message>
@@ -49,16 +46,21 @@ const CourseVideoScreen = () => {
           style={{ height: '810px' }}
          >
           <h5>Course Content</h5>
-          {loadingSection ? (
+          {loadingEnroll ? (
            <Loader wd={40} hg={40} />
-          ) : errorSection ? (
-           <Message variant="danger">{errorSection}</Message>
+          ) : errorEnroll ? (
+           <Message variant="danger">{errorEnroll}</Message>
           ) : (
-           <CourseContent sections={sections} cid={id} fromVideo={true} />
+           <CourseContent
+            sections={enroll && enroll.section}
+            cid={id}
+            fromVideo={true}
+           />
           )}
          </div>
          <div className="col-lg-9 col-md-12">
           <ReactPlayer
+           className="p-1 bg-light rounded"
            width="100%"
            height="800px"
            url="https://player.vimeo.com/video/504697764"
@@ -68,14 +70,16 @@ const CourseVideoScreen = () => {
          </div>
          <div className="col-md-12  d-lg-none">
           <h5>Course Content</h5>
-          {loadingSection ? (
+          {loadingEnroll ? (
            <Loader wd={40} hg={40} />
-          ) : errorSection ? (
-           <Message variant="danger">{errorSection}</Message>
+          ) : errorEnroll ? (
+           <Message variant="danger">{errorEnroll}</Message>
           ) : (
-           <div className="overflow-auto" style={{ height: '810px' }}>
-            <CourseContent sections={sections} cid={id} fromVideo={true} />
-           </div>
+           <CourseContent
+            sections={enroll && enroll.section}
+            cid={id}
+            fromVideo={true}
+           />
           )}
          </div>
         </div>
