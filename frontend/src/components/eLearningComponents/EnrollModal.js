@@ -3,8 +3,10 @@ import { useDispatch } from 'react-redux';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import { BsFolderPlus } from 'react-icons/bs';
+import { useParams } from 'react-router-dom';
 
-const EnrollModal = ({ courses }) => {
+const EnrollModal = ({ courses, addUserEnrollCourses }) => {
+ const { uid } = useParams();
  const dispatch = useDispatch();
  const [enrolling, setEnrolling] = useState([]);
  const [sizee, setSizee] = useState(enrolling.length);
@@ -33,8 +35,6 @@ const EnrollModal = ({ courses }) => {
    setEnrolling(gg);
   }
  };
-
- console.log(enrolling);
 
  return (
   <div>
@@ -71,6 +71,10 @@ const EnrollModal = ({ courses }) => {
        </button>
       </div>
       <div className="container-fluid">
+       <h6 className="mt-3">
+        All Courses not Enroll yet(
+        <span className="text-danger">{courses && courses.length}</span>)
+       </h6>
        <div className="row">
         {courses &&
          courses.map((course) => (
@@ -78,47 +82,62 @@ const EnrollModal = ({ courses }) => {
            <Card
             onClick={() => addEnrollList(course._id)}
             className="mx-md-1 mx-lg-0 mx-xl-2 shadow rounded my-1 courseItem d-flex w-100"
-            style={{ minHeight: 120 }}
+            style={{ maxHeight: 180 }}
            >
             <CardActionArea className="position-relative">
-             <img
-              className="position-absolute"
-              style={{ width: 350, opacity: 0.3, top: 0 }}
-              src={course.imgUrl}
-              alt=""
-             />
-             <div className="d-flex">
+             <div className="w-100 h-100 d-flex justify-content-between position-absolute">
               <div className="p-2">
                <h5>{course.name}</h5>
                <small className="t_grediant">{course.courseType}</small>
               </div>
+              {enrolling &&
+               enrolling.map((enr) => (
+                <React.Fragment key={enr}>
+                 {course._id === enr ? (
+                  <div
+                   className="d-flex align-items-center bg-dark justify-content-center btn"
+                   style={{ maxWidth: 150 }}
+                  >
+                   <BsFolderPlus className="text-light" />
+                  </div>
+                 ) : null}
+                </React.Fragment>
+               ))}
              </div>
+             <img
+              className="w-100"
+              style={{ opacity: 1 }}
+              src={course.imgUrl}
+              alt=""
+             />
             </CardActionArea>
-            {enrolling &&
-             enrolling.map((enr) => (
-              <>
-               {course._id === enr ? (
-                <div
-                 className="d-flex align-items-center bg-dark justify-content-center btn"
-                 style={{ width: 70 }}
-                >
-                 <BsFolderPlus className="text-light" />
-                </div>
-               ) : null}
-              </>
-             ))}
            </Card>
           </div>
          ))}
        </div>
       </div>
       <div className="modal-footer">
-       <button type="button" className="btn btn-secondary" data-dismiss="modal">
+       <button
+        type="button"
+        className="btn btn-secondary rounded shadow"
+        data-dismiss="modal"
+       >
         Close
        </button>
-       <button type="button" className="btn btn-primary">
-        Save changes
-       </button>
+       {enrolling && enrolling.length === 0 ? (
+        <button type="button" className="btn grediant rounded shadow" disabled>
+         enroll
+        </button>
+       ) : (
+        <button
+         type="button"
+         className="btn grediant adminHover rounded shadow"
+         onClick={() => dispatch(addUserEnrollCourses(uid, enrolling))}
+         data-dismiss="modal"
+        >
+         enroll (<span className="text-danger">{sizee}</span>)
+        </button>
+       )}
       </div>
      </div>
     </div>

@@ -6,6 +6,9 @@ import {
  USER_ENROLL_COURSE_FAIL,
  USER_ENROLL_COURSE_REQUEST,
  USER_ENROLL_COURSE_SUCCESS,
+ USER_ENROLL_CREATE_FAIL,
+ USER_ENROLL_CREATE_REQUEST,
+ USER_ENROLL_CREATE_SUCCESS,
 } from '../../constants/eLearningConstants/enrollConstants';
 
 export const getCourseEnroll = (id) => async (dispatch, getState) => {
@@ -59,6 +62,45 @@ export const getUserEnrollCourses = (uid) => async (dispatch, getState) => {
  } catch (error) {
   dispatch({
    type: USER_ENROLL_COURSE_FAIL,
+   payload:
+    error.response && error.response.data.message
+     ? error.response.data.message
+     : error.message,
+  });
+ }
+};
+
+export const addUserEnrollCourses = (uid, enrolls) => async (
+ dispatch,
+ getState
+) => {
+ try {
+  dispatch({ type: USER_ENROLL_CREATE_REQUEST });
+
+  const {
+   userLogin: { userInfo },
+  } = getState();
+
+  const config = {
+   headers: {
+    Authorization: `Bearer ${userInfo.token}`,
+   },
+  };
+  const { data } = await axios.post(
+   `/api/eLearning/enrolls/${uid}`,
+   { enrolls },
+   config
+  );
+
+  console.log(data);
+
+  dispatch({
+   type: USER_ENROLL_CREATE_SUCCESS,
+   payload: data,
+  });
+ } catch (error) {
+  dispatch({
+   type: USER_ENROLL_CREATE_FAIL,
    payload:
     error.response && error.response.data.message
      ? error.response.data.message

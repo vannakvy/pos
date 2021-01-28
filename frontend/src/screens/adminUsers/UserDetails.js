@@ -1,11 +1,17 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
-import { getUserEnrollCourses } from '../../actions/eLearningActions/enrollActions';
+import {
+ addUserEnrollCourses,
+ getUserEnrollCourses,
+} from '../../actions/eLearningActions/enrollActions';
 import { getUserDetails } from '../../actions/eShopActions/userActions';
 import Loader from '../../components/Loader';
 import Message from '../../components/Message';
-import { USER_ENROLL_COURSE_RESET } from '../../constants/eLearningConstants/enrollConstants';
+import {
+ USER_ENROLL_COURSE_RESET,
+ USER_ENROLL_CREATE_RESET,
+} from '../../constants/eLearningConstants/enrollConstants';
 import { USER_DETAILS_RESET } from '../../constants/userConstants';
 import CourseItemAdmin from '../../components/eLearningComponents/CourseItemAdmin';
 import { Button } from '@material-ui/core';
@@ -30,12 +36,20 @@ const UserDetails = () => {
   coursesEnroll,
  } = userEnrollCourses;
 
+ const createEnrollCourses = useSelector((state) => state.createEnrollCourses);
+ const { success: seccussCreateEnroll } = createEnrollCourses;
+
  useEffect(() => {
   dispatch({ type: USER_DETAILS_RESET });
-  dispatch({ type: USER_ENROLL_COURSE_RESET });
+
   dispatch(getUserDetails(uid));
-  dispatch(getUserEnrollCourses(uid));
  }, [dispatch, uid]);
+
+ useEffect(() => {
+  dispatch({ type: USER_ENROLL_COURSE_RESET });
+  dispatch({ type: USER_ENROLL_CREATE_RESET });
+  dispatch(getUserEnrollCourses(uid));
+ }, [dispatch, uid, seccussCreateEnroll]);
 
  const back = () => {
   history.push('/adminUsers');
@@ -74,7 +88,10 @@ const UserDetails = () => {
      </span>
      )
     </h5>
-    <EnrollModal courses={coursesEnroll && coursesEnroll.noEnrollCourses} />
+    <EnrollModal
+     courses={coursesEnroll && coursesEnroll.noEnrollCourses}
+     addUserEnrollCourses={addUserEnrollCourses}
+    />
    </div>
    {loadingUserEnrollCourses ? (
     <Loader wd={40} hg={40} />

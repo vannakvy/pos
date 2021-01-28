@@ -60,7 +60,7 @@ export const courseDeleteReducer = (state = {}, action) => {
  }
 };
 
-export const courseCreateReducer = (state = { product: {} }, action) => {
+export const courseCreateReducer = (state = { course: {} }, action) => {
  switch (action.type) {
   case COURSE_CREATE_REQUEST:
    return { loading: true };
