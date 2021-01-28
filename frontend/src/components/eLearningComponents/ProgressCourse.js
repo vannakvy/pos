@@ -5,6 +5,8 @@ const ProgressCourse = () => {
  return (
   <CircularSlider
    width={180}
+   progressColorFrom="#ff00c8"
+   progressColorTo="#009c9a"
    label="Progressing"
    hideKnob="true"
    knobDraggable="false"

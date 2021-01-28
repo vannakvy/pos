@@ -20,7 +20,7 @@ const CourseItemAdmin = (props) => {
    >
     <img
      className="position-absolute"
-     style={{ width: 495, opacity: 0.3 }}
+     style={{ width: 495, opacity: 0.2 }}
      src={course.imgUrl}
      alt=""
     />
@@ -29,9 +29,9 @@ const CourseItemAdmin = (props) => {
       <ProgressCourse />
      </div>
 
-     <div className="p-2">
+     <div className="p-2" style={{ zIndex: 1 }}>
       <h5>{course.name}</h5>
-      <small className="t_grediant">{course.courseType}</small>
+      <small className="text-info">{course.courseType}</small>
      </div>
     </div>
    </CardActionArea>
