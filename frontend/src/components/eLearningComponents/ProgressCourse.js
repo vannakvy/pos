@@ -4,7 +4,7 @@ import CircularSlider from '@fseehawer/react-circular-slider';
 const ProgressCourse = () => {
  return (
   <CircularSlider
-   width={220}
+   width={180}
    label="Progressing"
    hideKnob="true"
    knobDraggable="false"

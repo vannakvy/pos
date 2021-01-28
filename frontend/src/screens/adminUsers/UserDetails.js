@@ -8,6 +8,8 @@ import Message from '../../components/Message';
 import { USER_ENROLL_COURSE_RESET } from '../../constants/eLearningConstants/enrollConstants';
 import { USER_DETAILS_RESET } from '../../constants/userConstants';
 import CourseItemAdmin from '../../components/eLearningComponents/CourseItemAdmin';
+import { Button } from '@material-ui/core';
+import EnrollModal from '../../components/eLearningComponents/EnrollModal';
 
 const UserDetails = () => {
  const { uid } = useParams();
@@ -28,8 +30,6 @@ const UserDetails = () => {
   coursesEnroll,
  } = userEnrollCourses;
 
- console.log(coursesEnroll);
-
  useEffect(() => {
   dispatch({ type: USER_DETAILS_RESET });
   dispatch({ type: USER_ENROLL_COURSE_RESET });
@@ -42,9 +42,14 @@ const UserDetails = () => {
  };
  return (
   <>
-   <button className="btn btn-sm btn-info my-1 rounded shadow" onClick={back}>
-    Back
-   </button>
+   <Button
+    variant="contained"
+    color="secondary"
+    className="my-2"
+    onClick={back}
+   >
+    back
+   </Button>
    <div className="bg-light rounded p-3 shadow">
     {loadingUserDetails ? (
      <Loader wd={40} hg={40} />
@@ -61,18 +66,27 @@ const UserDetails = () => {
      </div>
     )}
    </div>
-   <h5 className="mt-3">Courses Enrolled</h5>
+   <div className="d-flex justify-content-between mt-3">
+    <h5 className="mt-2">
+     Courses Enrolled(
+     <span className="text-danger">
+      {coursesEnroll && coursesEnroll.enrollCourses.length}
+     </span>
+     )
+    </h5>
+    <EnrollModal courses={coursesEnroll && coursesEnroll.noEnrollCourses} />
+   </div>
    {loadingUserEnrollCourses ? (
     <Loader wd={40} hg={40} />
    ) : errorUserEnrollCourses ? (
     <Message variant="danger">errorUserEnrollCourses</Message>
    ) : (
     <>
-     {coursesEnroll && coursesEnroll.length !== 0 ? (
+     {coursesEnroll && coursesEnroll.enrollCourses.length !== 0 ? (
       <>
        <div className="row">
         {coursesEnroll &&
-         coursesEnroll.map((enroll) => (
+         coursesEnroll.enrollCourses.map((enroll) => (
           <div key={enroll._id} className="col-xl-4 col-lg-6">
            <CourseItemAdmin course={enroll.courseId} />
           </div>
