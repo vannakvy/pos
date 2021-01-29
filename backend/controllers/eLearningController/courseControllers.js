@@ -1,5 +1,6 @@
 import asyncHandler from 'express-async-handler';
 import Course from '../../models/eLearningModels/courseModel.js';
+import Enroll from '../../models/eLearningModels/enrollModel.js';
 
 //@desc    Fetch search courses
 //@route   GET /api/search
@@ -158,11 +159,21 @@ const getSection = asyncHandler(async (req, res) => {
 const addSection = asyncHandler(async (req, res) => {
  const { section } = req.body;
  const course = await Course.findById(req.params.id);
+ const enrolls = await Enroll.find({ courseId: req.params.id });
 
- if (course) {
+ if (course && enrolls) {
   course.section.push({ name: section, videos: [] });
   const courseWithSection = await course.save();
-  res.json(courseWithSection);
+  if (enrolls !== []) {
+   enrolls.forEach(async (enroll) => {
+    enroll.section.push(
+     courseWithSection.section[courseWithSection.section.length - 1]
+    );
+    await enroll.save();
+   });
+  }
+
+  res.json({ message: 'ggg' });
  } else {
   res.status(404);
   throw new Error(`Can not add Section!`);
