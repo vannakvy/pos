@@ -13,6 +13,11 @@ const EnrollModal = ({ courses, addUserEnrollCourses }) => {
 
  useEffect(() => {}, [dispatch, enrolling]);
 
+ const addEnrollCourseHandler = () => {
+  dispatch(addUserEnrollCourses(uid, enrolling));
+  setEnrolling([]);
+ };
+
  const addEnrollList = (id) => {
   const courses = enrolling;
   let haveCourse = false;
@@ -54,12 +59,12 @@ const EnrollModal = ({ courses, addUserEnrollCourses }) => {
     aria-labelledby="exampleModalLabel"
     aria-hidden="true"
    >
-    <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl round">
+    <div className="modal-dialog modal-dialog-scrollable modal-xl round">
      <div className="modal-content round">
       <div className="modal-header">
        <h5 className="modal-title" id="exampleModalLabel">
         Enroll Table(
-        <span className="text-danger">{sizee}</span>)
+        <span className="text-danger">{enrolling.length}</span>)
        </h5>
        <button
         type="button"
@@ -132,7 +137,7 @@ const EnrollModal = ({ courses, addUserEnrollCourses }) => {
         <button
          type="button"
          className="btn grediant adminHover rounded shadow"
-         onClick={() => dispatch(addUserEnrollCourses(uid, enrolling))}
+         onClick={addEnrollCourseHandler}
          data-dismiss="modal"
         >
          enroll (<span className="text-danger">{sizee}</span>)

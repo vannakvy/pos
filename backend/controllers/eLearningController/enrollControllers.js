@@ -48,7 +48,7 @@ const createEnrollCourses = asyncHandler(async (req, res) => {
     const enroll = new Enroll({
      user: uid,
      courseId: course._id,
-     videoId: [],
+     section: [],
     });
     const createEnroll = await enroll.save();
     coursesEnrollded.push(createEnroll);

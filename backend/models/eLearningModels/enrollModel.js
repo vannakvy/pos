@@ -12,7 +12,7 @@ const enrollSchema = mongoose.Schema(
    required: true,
    ref: 'Course',
   },
-  videoId: [{ type: String, required: true }],
+  section: [{ type: Object, required: true }],
  },
  {
   timestamps: true,

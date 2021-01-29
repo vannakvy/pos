@@ -38,7 +38,7 @@ const CoursesDetail = ({ match, history }) => {
       <div className="col-md-4">
        <img className="w-100 rounded" src={course.imgUrl} alt="" />
       </div>
-      <div className="col-md-5">
+      <div className="col-md-4">
        <h1 className="mb-4">{course.name}</h1>
        <p>
         <span className="mr-5"></span>
@@ -49,7 +49,7 @@ const CoursesDetail = ({ match, history }) => {
         <span className="font-weight-bold text-info">{course.courseType}</span>
        </p>
       </div>
-      <div className="col-md-3 w-100 p-0">
+      <div className="col-md-4 w-100 p-0">
        <Sections />
       </div>
      </div>
