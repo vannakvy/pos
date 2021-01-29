@@ -16,6 +16,9 @@ const PuchaseModel = mongoose.Schema({
     date: {
         type: String,
     },
+    supplier:{
+        type: String
+    },
     quantity: {
         type: Number,
         required: true,

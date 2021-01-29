@@ -43,9 +43,6 @@ const productSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    supplier: {
-      type: String,
-    },
     reviews: [reviewSchema],
     rating: {
       type: Number,

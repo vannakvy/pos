@@ -74,6 +74,14 @@ import {
  orderPayReducer,
 } from './reducers/eShopReducers/orderReducers';
 import { cartReducer } from './reducers/eShopReducers/cartReducers';
+import {
+     PuchaseCreateReducer,
+     puchaseListReducer,
+     puchaseDeleteReducer,
+     puchaseUpdateReducer,
+     addRemoveStockReducer
+     
+} from './reducers/eShopReducers/inventoryReducers'
 const reducer = combineReducers({
  // courses
  navbarList: navbarListReducers,
@@ -135,6 +143,14 @@ const reducer = combineReducers({
  userUpdate: userUpdateReducer,
  userLogin: userLoginReducer,
  userRegister: userRegisterReducer,
+ puchaseCreate: PuchaseCreateReducer,
+ puchaseLists : puchaseListReducer,
+ puchaseDelete: puchaseDeleteReducer,
+ puchaseUpdate: puchaseUpdateReducer,
+ addToStockUpdate:addRemoveStockReducer
+
+ //inventory eshop
+
 });
 
 const userInfoFromStorage = localStorage.getItem('userInfo')
