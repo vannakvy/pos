@@ -98,8 +98,6 @@ export const addUserEnrollCourses = (uid, enrolls) => async (
    config
   );
 
-  console.log(data);
-
   dispatch({
    type: USER_ENROLL_CREATE_SUCCESS,
    payload: data,
@@ -162,8 +160,6 @@ export const getEnrollVideo = (id, vid) => async (dispatch, getState) => {
    `/api/eLearning/enrolls/${id}/video/${vid}`,
    config
   );
-
-  console.log(data);
 
   dispatch({
    type: GET_ENROLL_VIDEO_SUCCESS,

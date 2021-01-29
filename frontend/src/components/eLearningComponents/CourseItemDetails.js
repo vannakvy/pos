@@ -9,7 +9,10 @@ import Typography from '@material-ui/core/Typography';
 import Progress from './Progress';
 import { useDispatch, useSelector } from 'react-redux';
 import { COUSRE_ENROLL_RESET } from '../../constants/eLearningConstants/enrollConstants';
-import { getCourseEnroll } from '../../actions/eLearningActions/enrollActions';
+import {
+ getCourseEnroll,
+ getEnrollVideo,
+} from '../../actions/eLearningActions/enrollActions';
 import Loader from '../Loader';
 
 const useStyles = makeStyles({
@@ -30,13 +33,17 @@ const CourseItemDetails = (props) => {
  const enrollCourse = useSelector((state) => state.enroll);
  const { loading: loadingEnroll, enroll } = enrollCourse;
 
+ const getEnrollVideoPlay = useSelector((state) => state.getEnrollVideoPlay);
+ const { loading: loadingPlay, plays } = getEnrollVideoPlay;
+
  useEffect(() => {
   dispatch({ type: COUSRE_ENROLL_RESET });
   dispatch(getCourseEnroll(id));
+  dispatch(getEnrollVideo(id, 1));
  }, [dispatch, id]);
 
  const courseDetailLink = (id) => {
-  history.push(`/courses/${id}/videos/1`);
+  history.push(`/courses/${id}/videos/${plays.videoNotWatch._id}`);
  };
  return (
   <Card
@@ -56,7 +63,7 @@ const CourseItemDetails = (props) => {
      <h5>{course.name}</h5>
      <small className="text-info">{course.courseType}</small>
 
-     {loadingEnroll ? (
+     {loadingEnroll || loadingPlay ? (
       <button
        className="btn btn-block text-dark rounded bg-info shadow"
        disabled
@@ -71,7 +78,6 @@ const CourseItemDetails = (props) => {
        {enroll === null || enroll === undefined ? (
         <button
          className="btn btn-block text-dark rounded bg-info shadow"
-         onClick={() => courseDetailLink(course._id)}
          disabled
         >
          You're not Own this course!

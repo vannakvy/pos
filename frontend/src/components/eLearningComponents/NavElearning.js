@@ -13,7 +13,7 @@ const NavElearning = () => {
      className="nav-link navbar_link"
      to="/eshop"
     >
-     ទិញទំនិញ់
+     ទិញទំនិញ
     </NavLink>
    </li>
    <li className="nav-item">

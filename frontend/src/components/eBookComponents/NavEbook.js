@@ -8,14 +8,13 @@ const NavEbook = () => {
  const dispatch = useDispatch();
  return (
   <>
-  
    <li className="nav-item active">
     <NavLink
      onClick={() => dispatch(navbarList('Eshop'))}
      className="nav-link navbar_link"
      to="/eshop"
     >
-     ទិញទំនិញ់
+     ទិញទំនិញ
     </NavLink>
    </li>
    <li className="nav-item">

@@ -93,17 +93,31 @@ const getEnrollVideos = asyncHandler(async (req, res) => {
      videosee.push(video);
     });
    });
-   const video = videosee.find((v) => {
-    return v._id == vid;
+
+   let videoNotWatch = videosee.find((v) => {
+    return v.watched === false;
    });
 
-   const i = videosee.indexOf(video);
-   let nextVideo = videosee[i + 1];
-
-   if (nextVideo === undefined) {
-    nextVideo = video;
+   if (videoNotWatch === undefined) {
+    videoNotWatch = videosee[0];
    }
-   res.json({ video, nextVideo });
+
+   if (vid == 1) {
+    res.json({ video: {}, nextVideo: {}, videoNotWatch });
+   } else {
+    const video = videosee.find((v) => {
+     return v._id == vid;
+    });
+
+    const i = videosee.indexOf(video);
+    let nextVideo = videosee[i + 1];
+
+    if (nextVideo === undefined) {
+     nextVideo = video;
+    }
+
+    res.json({ video, nextVideo, videoNotWatch });
+   }
   } else {
    res.status(404);
    throw new Error('No Video match with id');
