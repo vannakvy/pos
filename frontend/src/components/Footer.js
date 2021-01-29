@@ -11,7 +11,6 @@ const Footer = () => {
     style={{
      minHeight: '10rem',
      padding: '4rem 0 1rem 0',
-     marginTop: '15rem',
      // background: "black",
     }}
    >

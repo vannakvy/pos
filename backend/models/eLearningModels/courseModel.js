@@ -9,7 +9,7 @@ const videoSchema = mongoose.Schema(
    required: true,
    ref: 'User',
   },
-  // watched: { type: Boolean, required: true, default: false },
+  watched: { type: Boolean, required: true, default: false },
  },
  {
   timestamps: true,

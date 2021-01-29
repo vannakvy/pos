@@ -31,7 +31,6 @@ import OrderScreen from './screens/eShopScreens/OrderScreen';
 import HomeScreen from './screens/eShopScreens/HomeScreen';
 import Covid from './components/covideComponents/Covid';
 import MyOrderScreen from './screens/eShopScreens/MyOrderScreen';
-import { Button } from '@material-ui/core';
 
 const App = () => {
  return (

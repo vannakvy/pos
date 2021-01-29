@@ -2,14 +2,14 @@ import React from 'react';
 
 import { NavLink } from 'react-router-dom';
 import { navbarList } from '../actions/navbarActions';
-import { useDispatch, useSelector } from 'react-redux'
-import { LinkContainer } from 'react-router-bootstrap'
-import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux';
+import { LinkContainer } from 'react-router-bootstrap';
+import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
 
 const NavEshop = () => {
  const dispatch = useDispatch();
- const userLogin = useSelector((state) => state.userLogin)
- const { userInfo } = userLogin
+ const userLogin = useSelector((state) => state.userLogin);
+ const { userInfo } = userLogin;
  return (
   <>
    <li className="nav-item">
@@ -30,14 +30,13 @@ const NavEshop = () => {
      រៀនជាកាអាន
     </NavLink>
    </li>
-   {/* <li className="nav-item">
-    <NavLink className="nav-link ​" to="/eshop">
-     ទិញ់ទំនិញ់
-    </NavLink>
-   </li> */}
-   <li className="nav-item">
-    <NavLink className="nav-link navbar_link" to="/eshop">
-     ទិញ់ទំនិញ់
+   <li className="nav-item active">
+    <NavLink
+     onClick={() => dispatch(navbarList('Eshop'))}
+     className="nav-link navbar_link"
+     to="/eshop"
+    >
+     ទិញទំនិញ
     </NavLink>
    </li>
    <li className="nav-item">
@@ -45,7 +44,6 @@ const NavEshop = () => {
      កន្រក
     </NavLink>
    </li>
-  
   </>
  );
 };

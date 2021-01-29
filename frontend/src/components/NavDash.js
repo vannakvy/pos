@@ -8,19 +8,19 @@ const NavDash = () => {
 
  return (
   <>
-   <li className="nav-item active">
+   <li className="nav-item">
     <NavLink
      onClick={() => dispatch(navbarList('Eshop'))}
-     className="nav-link​ navbar_link"
+     className="nav-link navbar_link"
      to="/eshop"
     >
-     ទិញ់ទំនិញ់
+     ទិញទំនិញ
     </NavLink>
    </li>
-   <li className="nav-item navbar_link">
+   <li className="nav-item">
     <NavLink
      onClick={() => dispatch(navbarList('Elearning'))}
-     className="nav-link​ navbar_link"
+     className="nav-link navbar_link"
      to="/elearning"
     >
      រៀនជាវីដីអូ
@@ -29,7 +29,7 @@ const NavDash = () => {
    <li className="nav-item">
     <NavLink
      onClick={() => dispatch(navbarList('Ebook'))}
-     className="nav-link​ navbar_link"
+     className="nav-link navbar_link"
      to="/ebook"
     >
      រៀនជាកាអាន
