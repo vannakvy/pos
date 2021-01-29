@@ -74,6 +74,7 @@ import {
  orderDetailsReducer,
  orderListMyReducer,
  orderPayReducer,
+ saleListReducer
 } from './reducers/eShopReducers/orderReducers';
 import { cartReducer } from './reducers/eShopReducers/cartReducers';
 import {
@@ -139,6 +140,7 @@ const reducer = combineReducers({
  orderPay: orderPayReducer,
  orderDeliver: orderDeliverReducer,
  orderListMy: orderListMyReducer,
+ saleList: saleListReducer,
 
  userDetails: userDetailsReducer,
  userUpdateProfile: userUpdateProfileReducer,
@@ -151,7 +153,8 @@ const reducer = combineReducers({
  puchaseLists : puchaseListReducer,
  puchaseDelete: puchaseDeleteReducer,
  puchaseUpdate: puchaseUpdateReducer,
- addToStockUpdate:addRemoveStockReducer
+ addToStockUpdate:addRemoveStockReducer,
+
 
  //inventory eshop
 

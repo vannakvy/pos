@@ -4,21 +4,19 @@ import { Table, Button, Form, Col, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../../components/eShopComponents/Message";
 import Loader from "../../components/eShopComponents/Loader";
-import { listOrders } from "../../actions/eShopActions/orderActions";
+import { listOrders, listSales } from "../../actions/eShopActions/orderActions";
 
 const SaleScreen = ({ history }) => {
   const dispatch = useDispatch();
 
-  const orderList = useSelector((state) => state.orderList);
-  const { loading, error, orders } = orderList;
+  const saleList = useSelector((state) => state.saleList);
+  const { loading, error, sales } = saleList;
+  console.log(saleList);
 
   useEffect(() => {
-    dispatch(listOrders());
+    dispatch(listSales());
   }, [dispatch, history]);
 
-  const reducers = (accumulator, item) => {
-    return accumulator + item;
-  };
   return (
     <div className="bg-warning p-2">
       <h1>Sales</h1>
@@ -70,15 +68,15 @@ const SaleScreen = ({ history }) => {
               </tr>
             </thead>
             <tbody>
-              {orders &&
-                orders.map((order) => (
-                  <tr>
-                    <td>{order.paidAt}</td>
-                    <td>{order._id}</td>
-                    <td>{order.orderItems.length}</td>
-                    <td>{order.user._id}</td>
-                    <td>{order.shippingAddress.city}</td>
-                    <td>{order.totalPrice}</td>
+              {sales &&
+                sales.map((sale) => (
+                  <tr key={sale._id}>
+                    <td>{sale.paidAt}</td>
+                    <td>{sale._id}</td>
+                    <td>{sale.orderItems.length}</td>
+                    <td>{sale.user._id}</td>
+                    <td>{sale.shippingAddress.city}</td>
+                    <td>{sale.totalPrice}</td>
                     <td>
                       <Button variant="light" className="btn-sm">
                         <i className="fas fa-edit"></i>

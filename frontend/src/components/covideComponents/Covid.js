@@ -69,28 +69,9 @@ const App = () => {
    });
  };
 
- function lower(obj) {
-  for (var prop in obj) {
-   if (typeof obj[prop] === 'string') {
-    obj[prop] = obj[prop].toLowerCase();
-   }
-   if (typeof obj[prop] === 'object') {
-    lower(obj[prop]);
-   }
-  }
-  return obj;
- }
 
- countries.forEach((c) => {
-  lower(c);
- });
 
- const newCounties = countries.map((contry) => ({
-  key: contry.value,
-  value: contry.value,
-  flag: contry.value,
-  text: contry.name,
- }));
+
 
  return (
   <div className="app">
@@ -110,7 +91,7 @@ const App = () => {
     <div className="app__header">
      <h1 className="ti">តារាងតាមដាន កូវិត​១៩ </h1>
      <FormControl className="app__dropdown">
-      {/* <Select
+      <Select
               variant="outlined"
               value={country}
               onChange={onCountryChange}
@@ -119,11 +100,8 @@ const App = () => {
               {countries.map((country) => (
                 <MenuItem value={country.value}>{country.name}</MenuItem>
               ))}
-            </Select> */}
-      <DropdownExampleSearchSelection
-       countryOption={newCounties}
-       change={onCountryChange}
-      />
+            </Select>
+   
      </FormControl>
     </div>
     <div className="app__stats">
