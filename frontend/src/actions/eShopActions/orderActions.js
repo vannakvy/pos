@@ -18,6 +18,9 @@ import {
   ORDER_DELIVER_FAIL,
   ORDER_DELIVER_SUCCESS,
   ORDER_DELIVER_REQUEST,
+  SALE_LIST_FAIL,
+  SALE_LIST_SUCCESS,
+  SALE_LIST_REQUEST,
 } from '../../constants/eShopConstants/orderConstants'
 import { logout } from '../../actions/eShopActions/userActions'
 
@@ -251,6 +254,44 @@ export const listOrders = () => async (dispatch, getState) => {
     }
     dispatch({
       type: ORDER_LIST_FAIL,
+      payload: message,
+    })
+  }
+}
+
+
+export const listSales = () => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: SALE_LIST_REQUEST,
+    })
+
+    const {
+      userLogin: { userInfo },
+    } = getState()
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    }
+
+    const { data } = await axios.get(`/api/eshop/orders/sales?abc=20`, config)
+
+    dispatch({
+      type: SALE_LIST_SUCCESS,
+      payload: data,
+    })
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message
+    if (message === 'Not authorized, token failed') {
+      dispatch(logout())
+    }
+    dispatch({
+      type: SALE_LIST_FAIL,
       payload: message,
     })
   }
