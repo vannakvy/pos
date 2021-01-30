@@ -57,6 +57,7 @@ const CourseContent = ({ sections, cid, fromVideo = false }) => {
               className="fas fa-play-circle mr-3"
               style={{ fontSize: '12px' }}
              ></i>
+             <input type="checkbox" />
              {video.name}
             </h6>
            </NavLink>
