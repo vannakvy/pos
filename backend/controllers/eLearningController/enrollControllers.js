@@ -12,7 +12,21 @@ const getUserEnrollCourses = asyncHandler(async (req, res) => {
 
  if (enrollCourses && courses) {
   const courseEnroll = [];
-  enrollCourses.forEach((course) => courseEnroll.push(course.courseId));
+  enrollCourses.forEach((enroll) => {
+   courseEnroll.push(enroll.courseId);
+   let progress = 0;
+   const videoSize = [];
+   enroll.courseId.section.forEach((sec) => {
+    sec.videos.forEach((video) => {
+     videoSize.push(video);
+    });
+   });
+   progress = Math.floor(
+    (enroll.videosWatched.length / videoSize.length) * 100
+   );
+   enroll.progressBar = progress;
+   enroll.save();
+  });
 
   const noEnrollCourses = courses.filter(function (array_el) {
    return (
@@ -41,7 +55,7 @@ const createEnrollCourses = asyncHandler(async (req, res) => {
     const enroll = new Enroll({
      user: uid,
      courseId: course._id,
-     section: course.section,
+     videosWatched: [],
     });
     const createEnroll = await enroll.save();
     coursesEnrollded.push(createEnroll);
@@ -62,9 +76,28 @@ const getEnrollSections = asyncHandler(async (req, res) => {
 
  if (enrollCourses) {
   const enroll = enrollCourses.find((enroll) => {
+   let progress = 0;
+   const videoSize = [];
+   enroll.courseId.section.forEach((sec) => {
+    sec.videos.forEach((video) => {
+     enroll.videosWatched.forEach((v) => {
+      if (video._id == v) {
+       video.watched = true;
+      }
+     });
+     videoSize.push(video);
+    });
+   });
+   progress = Math.floor(
+    (enroll.videosWatched.length / videoSize.length) * 100
+   );
+   enroll.progressBar = progress;
+   enroll.save();
+
    return enroll.courseId.id === id;
   });
-  res.json(enroll.section);
+
+  res.json(enroll.courseId.section);
  } else {
   res.status(404);
   throw new Error('No Course Enroll');
@@ -88,8 +121,13 @@ const getEnrollVideos = asyncHandler(async (req, res) => {
   });
 
   if (enroll) {
-   enroll.section.forEach((section) => {
-    section.videos.forEach((video) => {
+   enroll.courseId.section.forEach((sec) => {
+    sec.videos.forEach((video) => {
+     enroll.videosWatched.forEach((v) => {
+      if (video._id == v) {
+       video.watched = true;
+      }
+     });
      videosee.push(video);
     });
    });

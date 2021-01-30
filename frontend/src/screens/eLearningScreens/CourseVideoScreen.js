@@ -97,6 +97,7 @@ const CourseVideoScreen = () => {
             url={plays && plays.video.url}
             onEnded={() => onVideoEnded()}
             controls
+            allowFullScreen={true}
             playing={true}
            />
           )}
@@ -109,7 +110,7 @@ const CourseVideoScreen = () => {
            <Message variant="danger">{errorEnroll}</Message>
           ) : (
            <CourseContent
-            sections={enroll && enroll.section}
+            sections={sections && sections}
             cid={id}
             fromVideo={true}
            />

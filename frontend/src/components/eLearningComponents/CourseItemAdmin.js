@@ -5,7 +5,7 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import ProgressCourse from './ProgressCourse';
 
 const CourseItemAdmin = (props) => {
- const { course } = props;
+ const { enroll } = props;
  const history = useHistory();
  const courseDetailLink = (id) => {
   setTimeout(function () {
@@ -16,22 +16,22 @@ const CourseItemAdmin = (props) => {
   <Card className="mx-md-1 mx-lg-0 mx-xl-2 shadow round my-3 courseItem">
    <CardActionArea
     className="position-relative"
-    onClick={() => courseDetailLink(course._id)}
+    onClick={() => courseDetailLink(enroll.courseId._id)}
    >
     <img
      className="position-absolute"
      style={{ width: 495, opacity: 0.2 }}
-     src={course.imgUrl}
+     src={enroll.courseId.imgUrl}
      alt=""
     />
     <div className="d-flex">
      <div className="p-2">
-      <ProgressCourse />
+      <ProgressCourse progress={enroll.progressBar} />
      </div>
 
      <div className="p-2" style={{ zIndex: 1 }}>
-      <h5>{course.name}</h5>
-      <small className="text-info">{course.courseType}</small>
+      <h5>{enroll.courseId.name}</h5>
+      <small className="text-info">{enroll.courseId.courseType}</small>
      </div>
     </div>
    </CardActionArea>

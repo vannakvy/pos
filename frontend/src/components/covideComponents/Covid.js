@@ -53,8 +53,8 @@ const App = () => {
   getCountriesData();
  }, []);
 
- const onCountryChange = async (c) => {
-  const countryCode = c;
+ const onCountryChange = async (e) => {
+  const countryCode = e.target.value;
   const url =
    countryCode === 'worldwide'
     ? 'https://disease.sh/v3/covid-19/all'
@@ -68,10 +68,6 @@ const App = () => {
     setMapZoom(4);
    });
  };
-
-
-
-
 
  return (
   <div className="app">
@@ -91,17 +87,14 @@ const App = () => {
     <div className="app__header">
      <h1 className="ti">តារាងតាមដាន កូវិត​១៩ </h1>
      <FormControl className="app__dropdown">
-      <Select
-              variant="outlined"
-              value={country}
-              onChange={onCountryChange}
-            >
-              <MenuItem className="text-font" value="worldwide">ទូទាំងពិភពលោក</MenuItem>
-              {countries.map((country) => (
-                <MenuItem value={country.value}>{country.name}</MenuItem>
-              ))}
-            </Select>
-   
+      <Select variant="outlined" value={country} onChange={onCountryChange}>
+       <MenuItem className="text-font" value="worldwide">
+        ទូទាំងពិភពលោក
+       </MenuItem>
+       {countries.map((country) => (
+        <MenuItem value={country.value}>{country.name}</MenuItem>
+       ))}
+      </Select>
      </FormControl>
     </div>
     <div className="app__stats">
