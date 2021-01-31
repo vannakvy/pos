@@ -166,9 +166,35 @@ const getEnrollVideos = asyncHandler(async (req, res) => {
  }
 });
 
+//@desc    Fatch enroll video
+//@route   POST /api/eLearning/enrolls/:eid/video
+//@access  Private USER ADMIN
+const addEnrollVideo = asyncHandler(async (req, res) => {
+ const { vid } = req.body;
+ const enroll = await Enroll.findById(req.params.eid);
+ if (enroll) {
+  let have = false;
+  enroll.videosWatched.forEach((video) => {
+   if (video == vid) {
+    have = true;
+   }
+  });
+  if (have === false) {
+   enroll.videosWatched.push(vid);
+   enroll.save();
+  }
+
+  res.json(enroll);
+ } else {
+  res.status(404);
+  throw new Error('No enroll match with eid');
+ }
+});
+
 export {
  getUserEnrollCourses,
  createEnrollCourses,
  getEnrollSections,
  getEnrollVideos,
+ addEnrollVideo,
 };

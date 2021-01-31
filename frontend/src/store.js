@@ -29,6 +29,7 @@ import {
 } from './reducers/eLearningReducers/sectionReducers';
 
 import {
+ addEnrollVideoReducer,
  courseEnrollReducer,
  createEnrollCoursesReducer,
  getEnrollSectionReducer,
@@ -74,17 +75,16 @@ import {
  orderDetailsReducer,
  orderListMyReducer,
  orderPayReducer,
- saleListReducer
+ saleListReducer,
 } from './reducers/eShopReducers/orderReducers';
 import { cartReducer } from './reducers/eShopReducers/cartReducers';
 import {
-     PuchaseCreateReducer,
-     puchaseListReducer,
-     puchaseDeleteReducer,
-     puchaseUpdateReducer,
-     addRemoveStockReducer
-     
-} from './reducers/eShopReducers/inventoryReducers'
+ PuchaseCreateReducer,
+ puchaseListReducer,
+ puchaseDeleteReducer,
+ puchaseUpdateReducer,
+ addRemoveStockReducer,
+} from './reducers/eShopReducers/inventoryReducers';
 const reducer = combineReducers({
  // courses
  navbarList: navbarListReducers,
@@ -106,6 +106,7 @@ const reducer = combineReducers({
  createEnrollCourses: createEnrollCoursesReducer,
  getEnrollSection: getEnrollSectionReducer,
  getEnrollVideoPlay: getEnrollVideoPlayReducer,
+ addEnrollVideos: addEnrollVideoReducer,
  //  for ebook reducer
  courses: getLanguagesReducer,
  languageCreate: languageCreateReducer,
@@ -150,14 +151,12 @@ const reducer = combineReducers({
  userLogin: userLoginReducer,
  userRegister: userRegisterReducer,
  puchaseCreate: PuchaseCreateReducer,
- puchaseLists : puchaseListReducer,
+ puchaseLists: puchaseListReducer,
  puchaseDelete: puchaseDeleteReducer,
  puchaseUpdate: puchaseUpdateReducer,
- addToStockUpdate:addRemoveStockReducer,
-
+ addToStockUpdate: addRemoveStockReducer,
 
  //inventory eshop
-
 });
 
 const userInfoFromStorage = localStorage.getItem('userInfo')
