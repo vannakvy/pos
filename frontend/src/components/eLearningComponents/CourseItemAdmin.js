@@ -20,7 +20,10 @@ const CourseItemAdmin = (props) => {
    >
     <img
      className="position-absolute"
-     style={{ width: 495, opacity: 0.2 }}
+     style={{
+      width: 495,
+      opacity: `${enroll.progressBar === 100 ? '0.3' : '0.9'}`,
+     }}
      src={enroll.courseId.imgUrl}
      alt=""
     />

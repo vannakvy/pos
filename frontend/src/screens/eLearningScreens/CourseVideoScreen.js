@@ -97,7 +97,7 @@ const CourseVideoScreen = () => {
           ) : errorPlay ? (
            <Message variant="danger">{errorPlay}</Message>
           ) : (
-           <div className="py-2 bg-light rounded">
+           <div className="py-2 bg-light rounded shadow">
             <div className="player-wrapper">
              <ReactPlayer
               className="react-player"
