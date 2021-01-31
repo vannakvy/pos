@@ -106,7 +106,7 @@ const CourseVideoScreen = () => {
               url={plays && plays.video.url}
               onEnded={() => onVideoEnded()}
               controls
-              playing={true}
+              // playing={true}
              />
             </div>
            </div>

@@ -13,6 +13,7 @@ import NavEbook from './eBookComponents/NavEbook';
 import NavAdmin from './NavAdmin';
 import Header from '../components/eShopComponents/Header';
 import SettingsIcon from '@material-ui/icons/Settings';
+import NavCovid from './covideComponents/NavCovid';
 
 const Navbar = () => {
  const dispatch = useDispatch();
@@ -71,6 +72,8 @@ const Navbar = () => {
        <NavEbook />
       ) : navbar === 'Admin' ? (
        <NavAdmin />
+      ) : navbar === 'Covid19' ? (
+       <NavCovid />
       ) : (
        ''
       )}
