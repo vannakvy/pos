@@ -1,5 +1,6 @@
 import asyncHandler from 'express-async-handler';
 import Course from '../../models/eLearningModels/courseModel.js';
+import Enroll from '../../models/eLearningModels/enrollModel.js';
 
 //@desc    Fetch search courses
 //@route   GET /api/search
@@ -162,6 +163,7 @@ const addSection = asyncHandler(async (req, res) => {
  if (course) {
   course.section.push({ name: section, videos: [] });
   const courseWithSection = await course.save();
+
   res.json(courseWithSection);
  } else {
   res.status(404);

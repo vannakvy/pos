@@ -105,7 +105,7 @@ const UserDetails = () => {
         {coursesEnroll &&
          coursesEnroll.enrollCourses.map((enroll) => (
           <div key={enroll._id} className="col-xl-4 col-lg-6">
-           <CourseItemAdmin course={enroll.courseId} />
+           <CourseItemAdmin enroll={enroll} />
           </div>
          ))}
        </div>

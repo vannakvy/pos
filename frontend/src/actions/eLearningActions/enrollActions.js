@@ -1,5 +1,8 @@
 import axios from 'axios';
 import {
+ ADD_ENROLL_VIDEO_FAIL,
+ ADD_ENROLL_VIDEO_REQUEST,
+ ADD_ENROLL_VIDEO_SUCCESS,
  COUSRE_ENROLL_FAIL,
  COUSRE_ENROLL_REQUEST,
  COUSRE_ENROLL_SUCCESS,
@@ -168,6 +171,39 @@ export const getEnrollVideo = (id, vid) => async (dispatch, getState) => {
  } catch (error) {
   dispatch({
    type: GET_ENROLL_VIDEO_FAIL,
+   payload:
+    error.response && error.response.data.message
+     ? error.response.data.message
+     : error.message,
+  });
+ }
+};
+
+export const addEnrollVideo = (eid, vid) => async (dispatch, getState) => {
+ try {
+  dispatch({ type: ADD_ENROLL_VIDEO_REQUEST });
+  const {
+   userLogin: { userInfo },
+  } = getState();
+
+  const config = {
+   headers: {
+    Authorization: `Bearer ${userInfo.token}`,
+   },
+  };
+  const { data } = await axios.post(
+   `/api/eLearning/enrolls/${eid}/videos`,
+   { vid },
+   config
+  );
+
+  dispatch({
+   type: ADD_ENROLL_VIDEO_SUCCESS,
+   payload: data,
+  });
+ } catch (error) {
+  dispatch({
+   type: ADD_ENROLL_VIDEO_FAIL,
    payload:
     error.response && error.response.data.message
      ? error.response.data.message

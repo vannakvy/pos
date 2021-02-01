@@ -31,9 +31,11 @@ import OrderScreen from './screens/eShopScreens/OrderScreen';
 import HomeScreen from './screens/eShopScreens/HomeScreen';
 import Covid from './components/covideComponents/Covid';
 import MyOrderScreen from './screens/eShopScreens/MyOrderScreen';
-import { Button } from '@material-ui/core';
+import { navbarList } from './actions/navbarActions';
+import { useDispatch } from 'react-redux';
 
 const App = () => {
+ const dispatch = useDispatch();
  return (
   <Router>
    <Navbar />
@@ -84,6 +86,7 @@ const App = () => {
 
    <NavLink
     className="navbar_link rounded bg-info text-light p-2"
+    onClick={() => dispatch(navbarList('Covid19'))}
     to="/covid"
     style={{ position: 'fixed', bottom: '20px', right: '0', zIndex: '1000' }}
    >

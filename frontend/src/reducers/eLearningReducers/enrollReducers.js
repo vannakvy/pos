@@ -1,4 +1,8 @@
 import {
+ ADD_ENROLL_VIDEO_FAIL,
+ ADD_ENROLL_VIDEO_REQUEST,
+ ADD_ENROLL_VIDEO_RESET,
+ ADD_ENROLL_VIDEO_SUCCESS,
  COUSRE_ENROLL_FAIL,
  COUSRE_ENROLL_REQUEST,
  COUSRE_ENROLL_RESET,
@@ -88,6 +92,21 @@ export const getEnrollVideoPlayReducer = (state = {}, action) => {
   case GET_ENROLL_VIDEO_FAIL:
    return { loading: false, error: action.payload };
   case GET_ENROLL_VIDEO_RESET:
+   return {};
+  default:
+   return state;
+ }
+};
+
+export const addEnrollVideoReducer = (state = {}, action) => {
+ switch (action.type) {
+  case ADD_ENROLL_VIDEO_REQUEST:
+   return { loading: true, enroll: {} };
+  case ADD_ENROLL_VIDEO_SUCCESS:
+   return { loading: false, enroll: action.payload, success: true };
+  case ADD_ENROLL_VIDEO_FAIL:
+   return { loading: false, error: action.payload };
+  case ADD_ENROLL_VIDEO_RESET:
    return {};
   default:
    return state;

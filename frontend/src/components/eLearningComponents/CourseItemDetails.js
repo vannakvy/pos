@@ -42,6 +42,8 @@ const CourseItemDetails = (props) => {
   dispatch(getEnrollVideo(id, 1));
  }, [dispatch, id]);
 
+ console.log(plays);
+
  const courseDetailLink = (id) => {
   history.push(`/courses/${id}/videos/${plays.videoNotWatch._id}`);
  };
@@ -81,6 +83,14 @@ const CourseItemDetails = (props) => {
          disabled
         >
          You're not Own this course!
+        </button>
+       ) : plays && plays.videoNotWatch === undefined ? (
+        <button
+         className="btn btn-block text-dark rounded bg-info shadow"
+         onClick={() => courseDetailLink(course._id)}
+         disabled
+        >
+         No any Videos for Learn
         </button>
        ) : (
         <button

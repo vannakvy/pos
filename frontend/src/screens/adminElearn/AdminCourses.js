@@ -80,7 +80,9 @@ const AdminCourses = () => {
  };
 
  const deleteCourseHandler = (id) => {
-  dispatch(deleteCourse(id));
+  if (window.confirm('Are you sure?')) {
+   dispatch(deleteCourse(id));
+  }
  };
 
  const editCourseHandler = (course) => {
