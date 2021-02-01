@@ -74,7 +74,7 @@ const Navbar = () => {
       ) : (
        ''
       )}
-    
+
       {loading ? (
        <Loader wd={45} hg={45} />
       ) : error ? (
@@ -88,7 +88,7 @@ const Navbar = () => {
            className="nav-link p-2 bg-primary rounded-circle "
            onClick={() => dispatch(navbarList('Admin'))}
           >
-           <SettingsIcon fontSize="meduim" color="secondary" />
+           <SettingsIcon fontSize="default" color="secondary" />
           </NavLink>
          </li>
         ) : null}
@@ -98,7 +98,7 @@ const Navbar = () => {
       {userInfo ? (
        <>
         <div className="dropdown">
-         <button 
+         <button
           style={{ padding: '8px', border: 'none', fontSize: '17px' }}
           className="bg-warning px-4 rounded dropdown-toggle navbar_link"
           id="dropdownMenuButton"
@@ -118,12 +118,14 @@ const Navbar = () => {
           <a className="dropdown-item navbar_link" href="/eshop/profile">
            ផ្ទាល់ខ្លួន
           </a>
-          <a className="dropdown-item navbar_link" onClick={() => dispatch(logout())}>
+          <a
+           className="dropdown-item navbar_link"
+           onClick={() => dispatch(logout())}
+          >
            ចាកចេញ់ពីគណនី
           </a>
          </div>
         </div>
-    
        </>
       ) : (
        <>
@@ -139,15 +141,12 @@ const Navbar = () => {
           ចូលគណនី
          </NavLink>
         </li>
-       
+
         <li className="nav-item">
-          <NavLink
-           to="/register"
-           className="nav-link  navbar_link"
-          >
-           បង្កើតគណនី
-          </NavLink>
-         </li>
+         <NavLink to="/register" className="nav-link  navbar_link">
+          បង្កើតគណនី
+         </NavLink>
+        </li>
        </>
       )}
      </ul>

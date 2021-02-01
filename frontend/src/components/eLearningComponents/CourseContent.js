@@ -8,7 +8,7 @@ const CourseContent = ({ sections, cid, fromVideo = false }) => {
 
  return (
   <>
-   <div className="rounded overflow-hidden shadow" id="Example">
+   <div className="rounded bg-light overflow-hidden shadow" id="Example">
     {sections &&
      sections.map((section) => (
       <div key={section._id}>
@@ -46,8 +46,11 @@ const CourseContent = ({ sections, cid, fromVideo = false }) => {
             <h6 className="py-3 m-0">
              {fromVideo ? (
               <>
-               <i className="far fa-square mr-3"></i>
-               <i className="fas fa-check-square text-info mr-3"></i>
+               {video.watched ? (
+                <i className="fas fa-check-square text-info mr-3"></i>
+               ) : (
+                <i className="far fa-square mr-3"></i>
+               )}
               </>
              ) : null}
              <i
