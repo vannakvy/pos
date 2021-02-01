@@ -18,6 +18,9 @@ import {
  USER_ENROLL_CREATE_FAIL,
  USER_ENROLL_CREATE_REQUEST,
  USER_ENROLL_CREATE_SUCCESS,
+ USER_ENROLL_DELETE_FAIL,
+ USER_ENROLL_DELETE_REQUEST,
+ USER_ENROLL_DELETE_SUCCESS,
 } from '../../constants/eLearningConstants/enrollConstants';
 
 export const getCourseEnroll = (id) => async (dispatch, getState) => {
@@ -96,7 +99,7 @@ export const addUserEnrollCourses = (uid, enrolls) => async (
    },
   };
   const { data } = await axios.post(
-   `/api/eLearning/enrolls/${uid}`,
+   `/api/eLearning/enrolls/users/${uid}`,
    { enrolls },
    config
   );
@@ -108,6 +111,36 @@ export const addUserEnrollCourses = (uid, enrolls) => async (
  } catch (error) {
   dispatch({
    type: USER_ENROLL_CREATE_FAIL,
+   payload:
+    error.response && error.response.data.message
+     ? error.response.data.message
+     : error.message,
+  });
+ }
+};
+
+export const deleteUserEnrollCourses = (eid) => async (dispatch, getState) => {
+ try {
+  dispatch({ type: USER_ENROLL_DELETE_REQUEST });
+
+  const {
+   userLogin: { userInfo },
+  } = getState();
+
+  const config = {
+   headers: {
+    Authorization: `Bearer ${userInfo.token}`,
+   },
+  };
+  const { data } = await axios.delete(`/api/eLearning/enrolls/${eid}`, config);
+
+  dispatch({
+   type: USER_ENROLL_DELETE_SUCCESS,
+   payload: data,
+  });
+ } catch (error) {
+  dispatch({
+   type: USER_ENROLL_DELETE_FAIL,
    payload:
     error.response && error.response.data.message
      ? error.response.data.message

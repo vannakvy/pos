@@ -35,6 +35,10 @@ const useStyles = makeStyles((theme) => ({
   color: 'inherit',
  },
  inputInput: {
+  fontFamily: `myriad-pro, Lucida Grande, Arial, 'Kantumruy', 'Siemreap',
+  sans-serif`,
+  fontWeight: 'bold',
+  fontSize: '14px',
   padding: theme.spacing(1, 1, 1, 0),
   // vertical padding + font size from searchIcon
   paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
@@ -71,7 +75,8 @@ const Search = ({ dispatch, SearchCourses }) => {
       name="keyword"
       // onChange={(e) => setKeyword(e.target.value)}
       onChange={onChangeTest}
-      placeholder="Search…"
+      placeholder="ឈ្មោះមុខវិទ្យា..."
+      className="kh"
       classes={{
        root: classes.inputRoot,
        input: classes.inputInput,
@@ -79,8 +84,8 @@ const Search = ({ dispatch, SearchCourses }) => {
      />
      <input
       type="submit"
-      className="btn btn-sm position-relative rounded"
-      value="Search"
+      className="btn btn-sm position-relative rounded kh"
+      value="ស្វែងរក"
       style={{ bottom: '2px' }}
      />
     </form>

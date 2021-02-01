@@ -88,10 +88,12 @@ const Navbar = () => {
          <li className="nav-item">
           <NavLink
            to="/adminUsers"
-           className="nav-link p-2 bg-primary rounded-circle "
+           className=""
            onClick={() => dispatch(navbarList('Admin'))}
           >
-           <SettingsIcon fontSize="default" color="secondary" />
+           <div className="p-2 bg-primary rounded-circle m-0 d-inline-block">
+            <SettingsIcon fontSize="default" color="secondary" />
+           </div>
           </NavLink>
          </li>
         ) : null}

@@ -15,6 +15,7 @@ const EnrollModal = ({ courses, addUserEnrollCourses }) => {
 
  const addEnrollCourseHandler = () => {
   dispatch(addUserEnrollCourses(uid, enrolling));
+  setSizee(0);
   setEnrolling([]);
  };
 

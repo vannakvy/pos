@@ -48,7 +48,7 @@ const getUserEnrollCourses = asyncHandler(async (req, res) => {
 });
 
 //@desc    Create enroll courses
-//@route   POST /api/eLearning/enrolls/:uid
+//@route   POST /api/eLearning/enrolls/users/:uid
 //@access  Private admin
 const createEnrollCourses = asyncHandler(async (req, res) => {
  const { uid } = req.params;
@@ -72,6 +72,21 @@ const createEnrollCourses = asyncHandler(async (req, res) => {
  });
 
  res.json(coursesEnrollded);
+});
+
+//@desc    Delete enroll courses
+//@route   DELETE /api/eLearning/enrolls/:eid
+//@access  Private admin
+const deleteEnrollCourses = asyncHandler(async (req, res) => {
+ const enroll = await Enroll.findById(req.params.eid);
+
+ if (enroll) {
+  await enroll.remove();
+  res.json({ message: 'deleted enroll match with this eid' });
+ } else {
+  res.status(404);
+  throw new Error('No enroll course match with this eid');
+ }
 });
 
 //@desc    Fatch enroll Section
@@ -212,4 +227,5 @@ export {
  getEnrollSections,
  getEnrollVideos,
  addEnrollVideo,
+ deleteEnrollCourses,
 };

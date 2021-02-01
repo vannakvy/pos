@@ -29,7 +29,7 @@ const CoursesDetail = ({ match, history }) => {
    </button>
 
    {loading ? (
-    <Loader wd={180} hg={180} />
+    <Loader wd={40} hg={40} />
    ) : error ? (
     <Message variant="danger">{error}</Message>
    ) : (
