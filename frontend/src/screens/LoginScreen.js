@@ -17,15 +17,14 @@ const LoginScreen = ({ location, history }) => {
  const { loading, error, userInfo } = userLogin;
 
  const redirect = location.search ? location.search.split('=')[1] : '/';
- console.log(redirect);
+ console.log(history);
 
  useEffect(() => {
   if (userInfo) {
-      if(redirect==="shipping"){
-        history.push("eshop/",redirect);
-      }
-      history.push(redirect);
-   
+   if (redirect === 'shipping') {
+    history.push('eshop/', redirect);
+   }
+   history.push(redirect);
   }
  }, [history, userInfo, redirect]);
 
