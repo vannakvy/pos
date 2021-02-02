@@ -1,5 +1,6 @@
 import asyncHandler from 'express-async-handler'
 import Order from '../../models/eShopModels/orderModel.js'
+import Sale from '../../models/eShopModels/saleModel.js';
 
 // @desc    Create new order
 // @route   POST /api/orders
@@ -59,7 +60,9 @@ const getOrderById = asyncHandler(async (req, res) => {
 // @access  Private
 const updateOrderToPaid = asyncHandler(async (req, res) => {
   const order = await Order.findById(req.params.id)
-
+  // const saleProducts = order.findById({id:req.params.id});
+  // console.log(saleProducts.orderItems);
+  console.log(order);
   if (order) {
     order.isPaid = true
     order.paidAt = Date.now()
@@ -84,7 +87,7 @@ const updateOrderToPaid = asyncHandler(async (req, res) => {
 // @access  Private/Admin
 const updateOrderToDelivered = asyncHandler(async (req, res) => {
   const order = await Order.findById(req.params.id)
-
+  
   if (order) {
     order.isDelivered = true
     order.deliveredAt = Date.now()

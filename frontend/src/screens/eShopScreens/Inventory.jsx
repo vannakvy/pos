@@ -18,20 +18,6 @@ const Inventory = ({ history }) => {
   const userDelete = useSelector((state) => state.userDelete);
   const { success: successDelete } = userDelete;
 
-  //   useEffect(() => {
-  //     if (userInfo && userInfo.isAdmin) {
-  //       dispatch(listUsers())
-  //     } else {
-  //       history.push('/login')
-  //     }
-  //   }, [dispatch, history, successDelete, userInfo])
-
-  //   const deleteHandler = (id) => {
-  //     if (window.confirm('Are you sure')) {
-  //       dispatch(deleteUser(id))
-  //     }
-  //   }
-
   return (
     <div className="card bg-warning p-2">
       <h1 className="p-2">INVENTORY</h1>
@@ -40,52 +26,22 @@ const Inventory = ({ history }) => {
       ) : error ? (
         <Message variant="danger">{error}</Message>
       ) : (
-        <Table striped bordered hover responsive className="table-sm card">
-          <thead>
-            <tr>
-              <th>N#</th>
-              <th>ITEMS</th>
-              <th>TOTAL SALES</th>
-              <th>TOTAL PUCHASED</th>
-              <th>AVAILABLE STOCK</th>
-              <th>INCOME </th>
-              <th>NET INCOME</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {users.map((user) => (
-              <tr key={user._id}>
-                <td>{user._id}</td>
-                <td>{user.name}</td>
-                <td>
-                  <a href={`mailto:${user.email}`}>{user.email}</a>
-                </td>
-                <td>
-                  {user.isAdmin ? (
-                    <i className="fas fa-check" style={{ color: "green" }}></i>
-                  ) : (
-                    <i className="fas fa-times" style={{ color: "red" }}></i>
-                  )}
-                </td>
-                <td>
-                  <LinkContainer to={`/adminEshop/user/${user._id}/edit`}>
-                    <Button variant="light" className="btn-sm">
-                      <i className="fas fa-edit"></i>
-                    </Button>
-                  </LinkContainer>
-                  <Button
-                    variant="danger"
-                    className="btn-sm"
-                    // onClick={() => deleteHandler(user._id)}
-                  >
-                    <i className="fas fa-trash"></i>
-                  </Button>
-                </td>
+        <div className="card">
+          <Table striped bordered hover responsive className="table-sm">
+            <thead>
+              <tr>
+                <th>PRODUCT ID</th>
+                <th>ITEMS</th>
+                <th>TOTAL SALES</th>
+                <th>TOTAL PUCHASED</th>
+                <th>AVAILABLE STOCK</th>
+                <th>INCOME </th>
+                <th>ACTIONS</th>
               </tr>
-            ))}
-          </tbody>
-        </Table>
+            </thead>
+            <tbody></tbody>
+          </Table>
+        </div>
       )}
     </div>
   );
