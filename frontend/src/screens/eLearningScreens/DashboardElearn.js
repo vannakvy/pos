@@ -23,7 +23,7 @@ const DashboardElearn = () => {
  return (
   <>
    {loadingList ? (
-    <div className="py-5">
+    <div className="py-3">
      <Loader wd={40} hg={40} />
     </div>
    ) : errorList ? (

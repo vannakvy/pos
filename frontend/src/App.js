@@ -2,7 +2,6 @@ import React from 'react';
 import {
  BrowserRouter as Router,
  NavLink,
- Redirect,
  Route,
  Switch,
 } from 'react-router-dom';
@@ -33,6 +32,7 @@ import Covid from './components/covideComponents/Covid';
 import MyOrderScreen from './screens/eShopScreens/MyOrderScreen';
 import { navbarList } from './actions/navbarActions';
 import { useDispatch } from 'react-redux';
+import MyCoursesScreen from './screens/eLearningScreens/MyCoursesScreen';
 
 const App = () => {
  const dispatch = useDispatch();
@@ -46,19 +46,16 @@ const App = () => {
     <Route path="/adminEbook" component={AppAdmin} />
     <Route path="/adminEshop" component={AppAdmin} />
     {/* frontend */}
-    <Route path="/courses/:id/videos/:vid" component={CourseVideoScreen} />
-    <Route path="/courses/:id" component={CourseDetailsScreen} />
-    <Route path="/courses" component={CoursesScreen} />
+    <Route
+     path="/elearning/courses/:id/videos/:vid"
+     component={CourseVideoScreen}
+    />
+    <Route path="/elearning/courses/:id" component={CourseDetailsScreen} />
+    <Route path="/elearning/courses" component={CoursesScreen} />
+    <Route path="/elearning/mycourses" component={MyCoursesScreen} />
     <Route path="/elearning" component={DashboardElearn} />
-    {/* ebooks routes */}
 
-    {/* frontend */}
-    <Route path="/courses/:id/videos/:vid" component={CourseVideoScreen} />
-    <Route path="/courses/:id" component={CourseDetailsScreen} />
-    <Route path="/courses" component={CoursesScreen} />
-    <Route path="/elearning" component={DashboardElearn} />
     {/* ebooks routes */}
-
     <Route path="/ebook/:lang" component={EbookCourseScreen} />
     <Route path="/ebook" component={EbookHomeScreen} />
 

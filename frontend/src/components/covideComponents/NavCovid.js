@@ -23,7 +23,7 @@ const NavCovid = () => {
      className="nav-link navbar_link"
      to="/elearning"
     >
-     រៀនជាវីដីអូ
+     រៀនជាវីឌីអូ
     </NavLink>
    </li>
    <li className="nav-item">

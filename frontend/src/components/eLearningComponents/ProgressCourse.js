@@ -7,7 +7,7 @@ const ProgressCourse = ({ progress }) => {
    width={180}
    progressColorFrom="#ff00c8"
    progressColorTo="#009c9a"
-   label="Progressing"
+   label="រៀនបាន"
    hideKnob="true"
    knobDraggable="false"
    appendToValue="%"

@@ -50,7 +50,7 @@ const CourseVideoScreen = () => {
  const onVideoEnded = () => {
   dispatch(addEnrollVideo(enroll._id, vid));
   setTimeout(() => {
-   history.push(`/courses/${id}/videos/${plays.nextVideo._id}`);
+   history.push(`/elearning/courses/${id}/videos/${plays.nextVideo._id}`);
   }, 2000);
  };
 
@@ -58,7 +58,7 @@ const CourseVideoScreen = () => {
   <>
    <div className="container-fluid mt-2">
     {loadingEnroll ? (
-     <div className="py-2">
+     <div className="py-3">
       <Loader wd={40} hg={40} />
      </div>
     ) : errorEnroll ? (
@@ -91,7 +91,7 @@ const CourseVideoScreen = () => {
          </div>
          <div className="col-lg-9 col-md-12">
           {loadingPlay ? (
-           <div>
+           <div className="py-3">
             <Loader wd={40} hg={40} />
            </div>
           ) : errorPlay ? (
@@ -112,7 +112,7 @@ const CourseVideoScreen = () => {
            </div>
           )}
          </div>
-         <div className="col-md-12  d-lg-none">
+         <div className="col-md-12 d-lg-none mt-2">
           <h5>Course Content</h5>
           {loadingEnroll ? (
            <Loader wd={40} hg={40} />

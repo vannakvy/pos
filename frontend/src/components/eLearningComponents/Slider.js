@@ -13,7 +13,7 @@ const Slider = ({ courseList }) => {
      position: 'relative',
     }}
    >
-    <h4 className="text-center mt-4">Elearning Dashboard</h4>
+    <h4 className="text-center mt-4 kh">គេហទំព័ររៀនជាវីឌីអូ</h4>
     <Carousel
      additionalTransfrom={0}
      arrows

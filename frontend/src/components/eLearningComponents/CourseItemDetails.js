@@ -45,7 +45,7 @@ const CourseItemDetails = (props) => {
  console.log(plays);
 
  const courseDetailLink = (id) => {
-  history.push(`/courses/${id}/videos/${plays.videoNotWatch._id}`);
+  history.push(`/elearning/courses/${id}/videos/${plays.videoNotWatch._id}`);
  };
  return (
   <Card

@@ -41,7 +41,7 @@ const CourseContent = ({ sections, cid, fromVideo = false }) => {
             className="px-4 adminHover d-block m-0"
             activeClassName="activeVideo"
             key={video._id}
-            to={`/courses/${cid}/videos/${video._id}`}
+            to={`/elearning/courses/${cid}/videos/${video._id}`}
            >
             <h6 className="py-3 m-0">
              {fromVideo ? (
