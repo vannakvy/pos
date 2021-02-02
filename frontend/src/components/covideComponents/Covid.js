@@ -53,8 +53,8 @@ const App = () => {
   getCountriesData();
  }, []);
 
- const onCountryChange = async (c) => {
-  const countryCode = c;
+ const onCountryChange = async (e) => {
+  const countryCode = e.target.value;
   const url =
    countryCode === 'worldwide'
     ? 'https://disease.sh/v3/covid-19/all'
@@ -68,9 +68,6 @@ const App = () => {
     setMapZoom(4);
    });
  };
-
-
-
 
 
  return (

@@ -82,11 +82,11 @@ const App = () => {
    <Footer />
 
    <NavLink
-    className="navbar_link rounded bg-info text-light p-2"
+    className="p-1 m-2"
     to="/covid"
-    style={{ position: 'fixed', bottom: '20px', right: '0', zIndex: '1000' }}
+    style={{ position: 'fixed', bottom: '70px', right: '70px', zIndex: '1000' }}
    >
-    តាមដានកូវិត១៩
+    <img className="covid_rotate card rounded-circle" width="50px" height="50px" src="https://www.psycharchives.org/retrieve/096175aa-f7f2-4970-989d-d934c30b5551"/>
    </NavLink>
   </Router>
  );

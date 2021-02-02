@@ -176,7 +176,7 @@ const SideBar = () => {
      icon={'fas fa-folder'}
     />
     <SideBarRowComponents
-     text={'Products'}
+     text={'Stocks'}
      goTo={'/adminEshop/productLists'}
      icon={'fas fa-film'}
      mar={true}

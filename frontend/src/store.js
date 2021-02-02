@@ -155,7 +155,6 @@ const reducer = combineReducers({
  puchaseUpdate: puchaseUpdateReducer,
  addToStockUpdate:addRemoveStockReducer,
 
-
  //inventory eshop
 
 });
