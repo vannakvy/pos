@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import ReactPlayer from 'react-player/lazy';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom';
+import { Redirect, useHistory, useParams } from 'react-router-dom';
 import {
  addEnrollVideo,
  getCourseEnroll,
@@ -17,6 +17,9 @@ const CourseVideoScreen = () => {
  const { id, vid } = useParams();
  const dispatch = useDispatch();
  const history = useHistory();
+
+ const userLogin = useSelector((state) => state.userLogin);
+ console.log(userLogin);
 
  const enrollCourse = useSelector((state) => state.enroll);
  const { loading: loadingEnroll, error: errorEnroll, enroll } = enrollCourse;
@@ -57,7 +60,9 @@ const CourseVideoScreen = () => {
  return (
   <>
    <div className="container-fluid mt-2">
-    {loadingEnroll ? (
+    {userLogin && userLogin.userInfo === null ? (
+     <Redirect to={'/login'} />
+    ) : loadingEnroll ? (
      <div className="py-3">
       <Loader wd={40} hg={40} />
      </div>

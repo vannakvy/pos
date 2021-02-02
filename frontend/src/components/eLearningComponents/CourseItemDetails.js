@@ -42,8 +42,6 @@ const CourseItemDetails = (props) => {
   dispatch(getEnrollVideo(id, 1));
  }, [dispatch, id]);
 
- console.log(plays);
-
  const courseDetailLink = (id) => {
   history.push(`/elearning/courses/${id}/videos/${plays.videoNotWatch._id}`);
  };

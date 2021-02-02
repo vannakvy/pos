@@ -100,7 +100,7 @@ const CoursesScreen = () => {
       </div>
      </>
     ) : (
-     <h5 className="text-center mt-5 kh">គ្មានមុខវិទ្យាដើម្បីរៀនទេ</h5>
+     <h5 className="text-center mt-5 kh">មិនមានមុខវិទ្យាដើម្បីរៀនទេ</h5>
     )}
    </div>
   </div>
