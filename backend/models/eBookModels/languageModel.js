@@ -1,24 +1,26 @@
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
 
-const languageSchema = mongoose.Schema({
-    title: {
-        type: String,
-        required: true,
-    },
-    category:{
-        type: String
-    },
-    contents: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref:'eBookContent'
-    }]
+const languageSchema = mongoose.Schema(
+ {
+  title: {
+   type: String,
+   required: true,
+  },
+  category: {
+   type: String,
+  },
+  contents: [
+   {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'eBookContent',
+   },
+  ],
+ },
+ {
+  timestamp: true,
+ }
+);
 
-
-},{
-    timestamp: true
-})
-
-const eBookCourse = mongoose.model('eBookCourse',languageSchema);
-
+const eBookCourse = mongoose.model('eBookCourse', languageSchema);
 
 export default eBookCourse;

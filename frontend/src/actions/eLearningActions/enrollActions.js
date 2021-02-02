@@ -1,5 +1,8 @@
 import axios from 'axios';
 import {
+ ADD_ENROLL_VIDEO_FAIL,
+ ADD_ENROLL_VIDEO_REQUEST,
+ ADD_ENROLL_VIDEO_SUCCESS,
  COUSRE_ENROLL_FAIL,
  COUSRE_ENROLL_REQUEST,
  COUSRE_ENROLL_SUCCESS,
@@ -15,6 +18,9 @@ import {
  USER_ENROLL_CREATE_FAIL,
  USER_ENROLL_CREATE_REQUEST,
  USER_ENROLL_CREATE_SUCCESS,
+ USER_ENROLL_DELETE_FAIL,
+ USER_ENROLL_DELETE_REQUEST,
+ USER_ENROLL_DELETE_SUCCESS,
 } from '../../constants/eLearningConstants/enrollConstants';
 
 export const getCourseEnroll = (id) => async (dispatch, getState) => {
@@ -93,7 +99,7 @@ export const addUserEnrollCourses = (uid, enrolls) => async (
    },
   };
   const { data } = await axios.post(
-   `/api/eLearning/enrolls/${uid}`,
+   `/api/eLearning/enrolls/users/${uid}`,
    { enrolls },
    config
   );
@@ -105,6 +111,36 @@ export const addUserEnrollCourses = (uid, enrolls) => async (
  } catch (error) {
   dispatch({
    type: USER_ENROLL_CREATE_FAIL,
+   payload:
+    error.response && error.response.data.message
+     ? error.response.data.message
+     : error.message,
+  });
+ }
+};
+
+export const deleteUserEnrollCourses = (eid) => async (dispatch, getState) => {
+ try {
+  dispatch({ type: USER_ENROLL_DELETE_REQUEST });
+
+  const {
+   userLogin: { userInfo },
+  } = getState();
+
+  const config = {
+   headers: {
+    Authorization: `Bearer ${userInfo.token}`,
+   },
+  };
+  const { data } = await axios.delete(`/api/eLearning/enrolls/${eid}`, config);
+
+  dispatch({
+   type: USER_ENROLL_DELETE_SUCCESS,
+   payload: data,
+  });
+ } catch (error) {
+  dispatch({
+   type: USER_ENROLL_DELETE_FAIL,
    payload:
     error.response && error.response.data.message
      ? error.response.data.message
@@ -168,6 +204,39 @@ export const getEnrollVideo = (id, vid) => async (dispatch, getState) => {
  } catch (error) {
   dispatch({
    type: GET_ENROLL_VIDEO_FAIL,
+   payload:
+    error.response && error.response.data.message
+     ? error.response.data.message
+     : error.message,
+  });
+ }
+};
+
+export const addEnrollVideo = (eid, vid) => async (dispatch, getState) => {
+ try {
+  dispatch({ type: ADD_ENROLL_VIDEO_REQUEST });
+  const {
+   userLogin: { userInfo },
+  } = getState();
+
+  const config = {
+   headers: {
+    Authorization: `Bearer ${userInfo.token}`,
+   },
+  };
+  const { data } = await axios.post(
+   `/api/eLearning/enrolls/${eid}/videos`,
+   { vid },
+   config
+  );
+
+  dispatch({
+   type: ADD_ENROLL_VIDEO_SUCCESS,
+   payload: data,
+  });
+ } catch (error) {
+  dispatch({
+   type: ADD_ENROLL_VIDEO_FAIL,
    payload:
     error.response && error.response.data.message
      ? error.response.data.message

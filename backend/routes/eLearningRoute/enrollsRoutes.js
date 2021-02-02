@@ -5,9 +5,13 @@ import {
  createEnrollCourses,
  getEnrollSections,
  getEnrollVideos,
+ addEnrollVideo,
+ deleteEnrollCourses,
 } from '../../controllers/eLearningController/enrollControllers.js';
 
-router.route('/:uid').post(protect, admin, createEnrollCourses);
+router.route('/users/:uid').post(protect, admin, createEnrollCourses);
+router.route('/:eid').delete(protect, admin, deleteEnrollCourses);
 router.route('/:id/section').get(protect, getEnrollSections);
+router.route('/:eid/videos').post(protect, addEnrollVideo);
 router.route('/:id/video/:vid').get(protect, getEnrollVideos);
 export default router;

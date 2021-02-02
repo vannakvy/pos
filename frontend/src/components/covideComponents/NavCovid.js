@@ -1,17 +1,17 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import { navbarList } from '../../actions/navbarActions';
-import './NavEbook.css';
 
-const NavEbook = () => {
+const NavCovid = () => {
  const dispatch = useDispatch();
+
  return (
   <>
-   <li className="nav-item active">
+   <li className="nav-item">
     <NavLink
      onClick={() => dispatch(navbarList('Eshop'))}
-     className="nav-link navbar_link text-dark"
+     className="nav-link navbar_link"
      to="/eshop"
     >
      ទិញទំនិញ
@@ -20,24 +20,23 @@ const NavEbook = () => {
    <li className="nav-item">
     <NavLink
      onClick={() => dispatch(navbarList('Elearning'))}
-     className="nav-link navbar_link text-dark"
+     className="nav-link navbar_link"
      to="/elearning"
     >
      រៀនជាវីឌីអូ
     </NavLink>
    </li>
-   <li className="nav-item active">
-    <NavLink className="nav-link navbar_link text-info" to="/languages">
-     មុខវិទ្យា
-    </NavLink>
-   </li>
-   <li className="nav-item active">
-    <NavLink className="nav-link navbar_link text-info" to="/quiz">
-     សំនួរ
+   <li className="nav-item">
+    <NavLink
+     onClick={() => dispatch(navbarList('Ebook'))}
+     className="nav-link navbar_link"
+     to="/ebook"
+    >
+     រៀនជាកាអាន
     </NavLink>
    </li>
   </>
  );
 };
 
-export default NavEbook;
+export default NavCovid;

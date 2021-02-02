@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import ReactPlayer from 'react-player/lazy';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom';
+import { Redirect, useHistory, useParams } from 'react-router-dom';
 import {
+ addEnrollVideo,
  getCourseEnroll,
  getEnrollSections,
  getEnrollVideo,
@@ -16,6 +17,9 @@ const CourseVideoScreen = () => {
  const { id, vid } = useParams();
  const dispatch = useDispatch();
  const history = useHistory();
+
+ const userLogin = useSelector((state) => state.userLogin);
+ console.log(userLogin);
 
  const enrollCourse = useSelector((state) => state.enroll);
  const { loading: loadingEnroll, error: errorEnroll, enroll } = enrollCourse;
@@ -32,9 +36,12 @@ const CourseVideoScreen = () => {
   sections,
  } = getEnrollSection;
 
+ const addEnrollVideos = useSelector((state) => state.addEnrollVideos);
+ const { success: successAddEnrollVideo } = addEnrollVideos;
+
  useEffect(() => {
   dispatch(getEnrollSections(id));
- }, [dispatch, id]);
+ }, [dispatch, id, successAddEnrollVideo]);
 
  const getEnrollVideoPlay = useSelector((state) => state.getEnrollVideoPlay);
  const { loading: loadingPlay, error: errorPlay, plays } = getEnrollVideoPlay;
@@ -44,13 +51,18 @@ const CourseVideoScreen = () => {
  }, [dispatch, id, vid]);
 
  const onVideoEnded = () => {
-  history.push(`/courses/${id}/videos/${plays.nextVideo._id}`);
+  dispatch(addEnrollVideo(enroll._id, vid));
+  setTimeout(() => {
+   history.push(`/elearning/courses/${id}/videos/${plays.nextVideo._id}`);
+  }, 2000);
  };
 
  return (
   <>
    <div className="container-fluid mt-2">
-    {loadingEnroll ? (
+    {userLogin && userLogin.userInfo === null ? (
+     <Redirect to={'/login'} />
+    ) : loadingEnroll ? (
      <div className="py-3">
       <Loader wd={40} hg={40} />
      </div>
@@ -84,24 +96,28 @@ const CourseVideoScreen = () => {
          </div>
          <div className="col-lg-9 col-md-12">
           {loadingPlay ? (
-           <div>
+           <div className="py-3">
             <Loader wd={40} hg={40} />
            </div>
           ) : errorPlay ? (
            <Message variant="danger">{errorPlay}</Message>
           ) : (
-           <ReactPlayer
-            className="p-1 bg-light rounded"
-            width="100%"
-            height="800px"
-            url={plays && plays.video.url}
-            onEnded={() => onVideoEnded()}
-            controls
-            playing={true}
-           />
+           <div className="py-2 bg-light rounded shadow">
+            <div className="player-wrapper">
+             <ReactPlayer
+              className="react-player"
+              width="100%"
+              height="100%"
+              url={plays && plays.video.url}
+              onEnded={() => onVideoEnded()}
+              controls
+              // playing={true}
+             />
+            </div>
+           </div>
           )}
          </div>
-         <div className="col-md-12  d-lg-none">
+         <div className="col-md-12 d-lg-none mt-2">
           <h5>Course Content</h5>
           {loadingEnroll ? (
            <Loader wd={40} hg={40} />
@@ -109,7 +125,7 @@ const CourseVideoScreen = () => {
            <Message variant="danger">{errorEnroll}</Message>
           ) : (
            <CourseContent
-            sections={enroll && enroll.section}
+            sections={sections && sections}
             cid={id}
             fromVideo={true}
            />

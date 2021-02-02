@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import {
  addUserEnrollCourses,
+ deleteUserEnrollCourses,
  getUserEnrollCourses,
 } from '../../actions/eLearningActions/enrollActions';
 import { getUserDetails } from '../../actions/eShopActions/userActions';
@@ -11,11 +12,13 @@ import Message from '../../components/Message';
 import {
  USER_ENROLL_COURSE_RESET,
  USER_ENROLL_CREATE_RESET,
+ USER_ENROLL_DELETE_RESET,
 } from '../../constants/eLearningConstants/enrollConstants';
 import { USER_DETAILS_RESET } from '../../constants/userConstants';
 import CourseItemAdmin from '../../components/eLearningComponents/CourseItemAdmin';
 import { Button } from '@material-ui/core';
 import EnrollModal from '../../components/eLearningComponents/EnrollModal';
+import ConvertNum from '../../components/eLearningComponents/ConvertNum';
 
 const UserDetails = () => {
  const { uid } = useParams();
@@ -37,19 +40,28 @@ const UserDetails = () => {
  } = userEnrollCourses;
 
  const createEnrollCourses = useSelector((state) => state.createEnrollCourses);
- const { success: seccussCreateEnroll } = createEnrollCourses;
+ const { success: successCreateEnroll } = createEnrollCourses;
 
  useEffect(() => {
   dispatch({ type: USER_DETAILS_RESET });
-
   dispatch(getUserDetails(uid));
  }, [dispatch, uid]);
+
+ const deleteEnrollCourses = useSelector((state) => state.deleteEnrollCourses);
+ const { success: sucessDeleteEnrollCourse } = deleteEnrollCourses;
 
  useEffect(() => {
   dispatch({ type: USER_ENROLL_COURSE_RESET });
   dispatch({ type: USER_ENROLL_CREATE_RESET });
+  dispatch({ type: USER_ENROLL_DELETE_RESET });
   dispatch(getUserEnrollCourses(uid));
- }, [dispatch, uid, seccussCreateEnroll]);
+ }, [dispatch, uid, successCreateEnroll, sucessDeleteEnrollCourse]);
+
+ const deleteEnrollHandler = (eid) => {
+  if (window.confirm('Are you sure? Delete this enroll Course!')) {
+   dispatch(deleteUserEnrollCourses(eid));
+  }
+ };
 
  const back = () => {
   history.push('/adminUsers');
@@ -81,10 +93,10 @@ const UserDetails = () => {
     )}
    </div>
    <div className="d-flex justify-content-between mt-3">
-    <h5 className="mt-2">
-     Courses Enrolled(
+    <h5 className="mt-2 kh">
+     មុខវិទ្យាដែលបានចូលរៀន(
      <span className="text-danger">
-      {coursesEnroll && coursesEnroll.enrollCourses.length}
+      <ConvertNum num={coursesEnroll && coursesEnroll.enrollCourses.length} />
      </span>
      )
     </h5>
@@ -104,8 +116,11 @@ const UserDetails = () => {
        <div className="row">
         {coursesEnroll &&
          coursesEnroll.enrollCourses.map((enroll) => (
-          <div key={enroll._id} className="col-xl-4 col-lg-6">
-           <CourseItemAdmin course={enroll.courseId} />
+          <div key={enroll._id} className="col-lg-6 col-xl-4">
+           <CourseItemAdmin
+            enroll={enroll}
+            deleteEnrollHandler={deleteEnrollHandler}
+           />
           </div>
          ))}
        </div>

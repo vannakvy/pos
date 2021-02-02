@@ -43,7 +43,7 @@ const CourseItemDetails = (props) => {
  }, [dispatch, id]);
 
  const courseDetailLink = (id) => {
-  history.push(`/courses/${id}/videos/${plays.videoNotWatch._id}`);
+  history.push(`/elearning/courses/${id}/videos/${plays.videoNotWatch._id}`);
  };
  return (
   <Card
@@ -81,6 +81,14 @@ const CourseItemDetails = (props) => {
          disabled
         >
          You're not Own this course!
+        </button>
+       ) : plays && plays.videoNotWatch === undefined ? (
+        <button
+         className="btn btn-block text-dark rounded bg-info shadow"
+         onClick={() => courseDetailLink(course._id)}
+         disabled
+        >
+         No any Videos for Learn
         </button>
        ) : (
         <button

@@ -159,21 +159,12 @@ const getSection = asyncHandler(async (req, res) => {
 const addSection = asyncHandler(async (req, res) => {
  const { section } = req.body;
  const course = await Course.findById(req.params.id);
- const enrolls = await Enroll.find({ courseId: req.params.id });
 
- if (course && enrolls) {
+ if (course) {
   course.section.push({ name: section, videos: [] });
   const courseWithSection = await course.save();
-  if (enrolls !== []) {
-   enrolls.forEach(async (enroll) => {
-    enroll.section.push(
-     courseWithSection.section[courseWithSection.section.length - 1]
-    );
-    await enroll.save();
-   });
-  }
 
-  res.json({ message: 'ggg' });
+  res.json(courseWithSection);
  } else {
   res.status(404);
   throw new Error(`Can not add Section!`);

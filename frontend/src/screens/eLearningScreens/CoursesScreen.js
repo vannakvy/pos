@@ -33,30 +33,56 @@ const CoursesScreen = () => {
    }}
   >
    <div className="container">
-    <h4 className="text-center pt-3">Courses Dashboard</h4>
+    <h4 className="text-center pt-3 kh">មុខវិទ្យាទាំងអស់</h4>
 
     <div className="d-flex justify-content-between flex-wrap">
      <div style={{ width: '330px' }}>
       <select
-       className="form-control mb-3 shadow-sm rounded w-100"
+       className="form-control mb-3 shadow-sm rounded w-100 kh font-weight-bold"
        value={courseType}
        name="courseType"
        style={{ width: '340px', background: '#fff' }}
        onChange={(e) => setCourseType(e.target.value)}
       >
-       <option value="All Courses">All Courses</option>
-       <option value="Web Development">Web Development</option>
-       <option value="Programming">Programming</option>
-       <option value="Embeded System">Embeded System</option>
-       <option value="Mobile Development">Mobile Development</option>
-       <option value="Machine Learning">Machine Learning</option>
+       <option className="font-weight-bold" value="All Courses">
+        មុខវិទ្យាទាំងអស់
+       </option>
+       <option className="font-weight-bold" value="Web Development">
+        ផ្នែកសរសេរវែបផ្សាយ
+       </option>
+       <option className="font-weight-bold" value="Programming">
+        ផ្នែកសរសេរកម្មវិធី
+       </option>
+       <option className="font-weight-bold" value="Embeded System">
+        ផ្នែកប្រព័ន្ធបញ្ចារ
+       </option>
+       <option className="font-weight-bold" value="Mobile Development">
+        ផ្នែកសរសេរកម្មវិធីទូរស័ព្ទ
+       </option>
+       <option className="font-weight-bold" value="Machine Learning">
+        ផ្នែករៀនពីមា៉ស៊ីន
+       </option>
       </select>
      </div>
      <div>
       <Search dispatch={dispatch} SearchCourses={SearchCourses} />
      </div>
     </div>
-    <h5>{courseType}</h5>
+    <h5 className="kh">
+     {courseType === 'All Courses'
+      ? 'មុខវិទ្យាទាំងអស់'
+      : courseType === 'Web Development'
+      ? 'ផ្នែកសរសេរវែបផ្សាយ'
+      : courseType === 'Programming'
+      ? 'ផ្នែកសរសេរកម្មវិធី'
+      : courseType === 'Embeded System'
+      ? 'ផ្នែកប្រព័ន្ធបញ្ចារ'
+      : courseType === 'Mobile Development'
+      ? 'ផ្នែកសរសេរកម្មវិធីទូរស័ព្ទ'
+      : courseType === 'Machine Learning'
+      ? 'ផ្នែករៀនពីមា៉ស៊ីន'
+      : null}
+    </h5>
 
     {loadingList ? (
      <Loader wd={40} hg={40} />
@@ -74,7 +100,7 @@ const CoursesScreen = () => {
       </div>
      </>
     ) : (
-     <h5 className="text-center mt-5">No Courses</h5>
+     <h5 className="text-center mt-5 kh">មិនមានមុខវិទ្យាដើម្បីរៀនទេ</h5>
     )}
    </div>
   </div>

@@ -1,4 +1,8 @@
 import {
+ ADD_ENROLL_VIDEO_FAIL,
+ ADD_ENROLL_VIDEO_REQUEST,
+ ADD_ENROLL_VIDEO_RESET,
+ ADD_ENROLL_VIDEO_SUCCESS,
  COUSRE_ENROLL_FAIL,
  COUSRE_ENROLL_REQUEST,
  COUSRE_ENROLL_RESET,
@@ -15,8 +19,14 @@ import {
  USER_ENROLL_COURSE_REQUEST,
  USER_ENROLL_COURSE_RESET,
  USER_ENROLL_COURSE_SUCCESS,
+ USER_ENROLL_CREATE_FAIL,
  USER_ENROLL_CREATE_REQUEST,
+ USER_ENROLL_CREATE_RESET,
  USER_ENROLL_CREATE_SUCCESS,
+ USER_ENROLL_DELETE_FAIL,
+ USER_ENROLL_DELETE_REQUEST,
+ USER_ENROLL_DELETE_RESET,
+ USER_ENROLL_DELETE_SUCCESS,
 } from '../../constants/eLearningConstants/enrollConstants';
 
 export const courseEnrollReducer = (state = { enroll: null }, action) => {
@@ -37,7 +47,7 @@ export const courseEnrollReducer = (state = { enroll: null }, action) => {
 export const userEnrollCoursesReducer = (state = {}, action) => {
  switch (action.type) {
   case USER_ENROLL_COURSE_REQUEST:
-   return { loading: true, courses: [] };
+   return { loading: true };
   case USER_ENROLL_COURSE_SUCCESS:
    return { loading: false, coursesEnroll: action.payload };
   case USER_ENROLL_COURSE_FAIL:
@@ -55,9 +65,24 @@ export const createEnrollCoursesReducer = (state = {}, action) => {
    return { loading: true, enrolls: [] };
   case USER_ENROLL_CREATE_SUCCESS:
    return { loading: false, enrolls: action.payload, success: true };
-  case USER_ENROLL_COURSE_FAIL:
+  case USER_ENROLL_CREATE_FAIL:
    return { loading: false, error: action.payload };
-  case USER_ENROLL_COURSE_RESET:
+  case USER_ENROLL_CREATE_RESET:
+   return {};
+  default:
+   return state;
+ }
+};
+
+export const deleteEnrollCoursesReducer = (state = {}, action) => {
+ switch (action.type) {
+  case USER_ENROLL_DELETE_REQUEST:
+   return { loading: true, enroll: [] };
+  case USER_ENROLL_DELETE_SUCCESS:
+   return { loading: false, enroll: action.payload, success: true };
+  case USER_ENROLL_DELETE_FAIL:
+   return { loading: false, error: action.payload };
+  case USER_ENROLL_DELETE_RESET:
    return {};
   default:
    return state;
@@ -88,6 +113,21 @@ export const getEnrollVideoPlayReducer = (state = {}, action) => {
   case GET_ENROLL_VIDEO_FAIL:
    return { loading: false, error: action.payload };
   case GET_ENROLL_VIDEO_RESET:
+   return {};
+  default:
+   return state;
+ }
+};
+
+export const addEnrollVideoReducer = (state = {}, action) => {
+ switch (action.type) {
+  case ADD_ENROLL_VIDEO_REQUEST:
+   return { loading: true, enroll: {} };
+  case ADD_ENROLL_VIDEO_SUCCESS:
+   return { loading: false, enroll: action.payload, success: true };
+  case ADD_ENROLL_VIDEO_FAIL:
+   return { loading: false, error: action.payload };
+  case ADD_ENROLL_VIDEO_RESET:
    return {};
   default:
    return state;

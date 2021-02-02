@@ -24,7 +24,7 @@ const CourseItem = (props) => {
  const history = useHistory();
  const courseDetailLink = (id) => {
   setTimeout(function () {
-   history.push(`/courses/${id}`);
+   history.push(`/elearning/courses/${id}`);
   }, 300);
  };
  return (
@@ -37,17 +37,21 @@ const CourseItem = (props) => {
      image={course.imgUrl}
      title=""
     />
-    <Progress />
+    {/* <Progress /> */}
     <CardContent>
      <div style={{ height: '160px' }}>
       <h5>{course.name}</h5>
       <small className="text-info">{course.courseType}</small>
-      <p>{course.description}</p>
+      <p>{course.description.slice(0, 200) + '...'}</p>
      </div>
     </CardContent>
    </CardActionArea>
    <CardActions className="d-flex justify-content-end">
-    <Button color="secondary" onClick={() => courseDetailLink(course._id)}>
+    <Button
+     color="secondary"
+     onClick={() => courseDetailLink(course._id)}
+     className="invisible"
+    >
      <i className="fas fa-play" style={{ fontSize: '130%' }}></i>
     </Button>
    </CardActions>

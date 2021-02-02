@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import './Navbar.css';
 import { navbarList } from '../actions/navbarActions';
 import { logout } from '../actions/userActions/userActions';
@@ -11,18 +11,24 @@ import NavElearning from './eLearningComponents/NavElearning';
 import NavEshop from './NavEshop';
 import NavEbook from './eBookComponents/NavEbook';
 import NavAdmin from './NavAdmin';
-import Header from '../components/eShopComponents/Header';
 import SettingsIcon from '@material-ui/icons/Settings';
+import NavCovid from './covideComponents/NavCovid';
 
 const Navbar = () => {
  const dispatch = useDispatch();
-
+ const history = useHistory();
  const navbarL = useSelector((state) => state.navbarList);
  const { loading, error, navbar } = navbarL;
 
  const userLogin = useSelector((state) => state.userLogin);
  const { userInfo } = userLogin;
  useEffect(() => {}, [userLogin]);
+
+ const userLogout = () => {
+  dispatch(logout());
+  dispatch(navbarList('Dashboard'));
+  history.push('/');
+ };
 
  return (
   <>
@@ -71,6 +77,8 @@ const Navbar = () => {
        <NavEbook />
       ) : navbar === 'Admin' ? (
        <NavAdmin />
+      ) : navbar === 'Covid19' ? (
+       <NavCovid />
       ) : (
        ''
       )}
@@ -85,10 +93,12 @@ const Navbar = () => {
          <li className="nav-item">
           <NavLink
            to="/adminUsers"
-           className="nav-link p-2 bg-primary rounded-circle "
+           className=""
            onClick={() => dispatch(navbarList('Admin'))}
           >
-           <SettingsIcon fontSize="default" color="secondary" />
+           <div className="p-2 bg-primary rounded-circle m-0 d-inline-block">
+            <SettingsIcon fontSize="default" color="secondary" />
+           </div>
           </NavLink>
          </li>
         ) : null}
@@ -118,10 +128,7 @@ const Navbar = () => {
           <a className="dropdown-item navbar_link" href="/eshop/profile">
            ផ្ទាល់ខ្លួន
           </a>
-          <a
-           className="dropdown-item navbar_link"
-           onClick={() => dispatch(logout())}
-          >
+          <a className="dropdown-item navbar_link" onClick={userLogout}>
            ចាកចេញ់ពីគណនី
           </a>
          </div>

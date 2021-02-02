@@ -69,7 +69,10 @@ const App = () => {
    });
  };
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 57d162a65e8f4437cbfde4b9ff600a9c6e7d7576
  return (
   <div className="app">
    <Card className="app__right">
@@ -88,17 +91,14 @@ const App = () => {
     <div className="app__header">
      <h1 className="ti">តារាងតាមដាន កូវិត​១៩ </h1>
      <FormControl className="app__dropdown">
-      <Select
-              variant="outlined"
-              value={country}
-              onChange={onCountryChange}
-            >
-              <MenuItem className="text-font" value="worldwide">ទូទាំងពិភពលោក</MenuItem>
-              {countries.map((country) => (
-                <MenuItem value={country.value}>{country.name}</MenuItem>
-              ))}
-            </Select>
-   
+      <Select variant="outlined" value={country} onChange={onCountryChange}>
+       <MenuItem className="text-font" value="worldwide">
+        ទូទាំងពិភពលោក
+       </MenuItem>
+       {countries.map((country) => (
+        <MenuItem value={country.value}>{country.name}</MenuItem>
+       ))}
+      </Select>
      </FormControl>
     </div>
     <div className="app__stats">

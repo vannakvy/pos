@@ -12,7 +12,28 @@ const getUserEnrollCourses = asyncHandler(async (req, res) => {
 
  if (enrollCourses && courses) {
   const courseEnroll = [];
-  enrollCourses.forEach((course) => courseEnroll.push(course.courseId));
+  enrollCourses.forEach((enroll) => {
+   courseEnroll.push(enroll.courseId);
+   const videoSize = [];
+   enroll.courseId.section.forEach((sec) => {
+    sec.videos.forEach((video) => {
+     videoSize.push(video);
+    });
+   });
+
+   let progress = 0;
+
+   if (enroll.videosWatched.length === 0) {
+    progress = 0;
+   } else {
+    progress = Math.floor(
+     (enroll.videosWatched.length / videoSize.length) * 100
+    );
+   }
+
+   enroll.progressBar = progress;
+   enroll.save();
+  });
 
   const noEnrollCourses = courses.filter(function (array_el) {
    return (
@@ -27,7 +48,7 @@ const getUserEnrollCourses = asyncHandler(async (req, res) => {
 });
 
 //@desc    Create enroll courses
-//@route   POST /api/eLearning/enrolls/:uid
+//@route   POST /api/eLearning/enrolls/users/:uid
 //@access  Private admin
 const createEnrollCourses = asyncHandler(async (req, res) => {
  const { uid } = req.params;
@@ -40,15 +61,32 @@ const createEnrollCourses = asyncHandler(async (req, res) => {
    if (course._id == cid) {
     const enroll = new Enroll({
      user: uid,
+     progressBar: 0,
      courseId: course._id,
-     section: course.section,
+     videosWatched: [],
     });
     const createEnroll = await enroll.save();
     coursesEnrollded.push(createEnroll);
    }
   });
  });
+
  res.json(coursesEnrollded);
+});
+
+//@desc    Delete enroll courses
+//@route   DELETE /api/eLearning/enrolls/:eid
+//@access  Private admin
+const deleteEnrollCourses = asyncHandler(async (req, res) => {
+ const enroll = await Enroll.findById(req.params.eid);
+
+ if (enroll) {
+  await enroll.remove();
+  res.json({ message: 'deleted enroll match with this eid' });
+ } else {
+  res.status(404);
+  throw new Error('No enroll course match with this eid');
+ }
 });
 
 //@desc    Fatch enroll Section
@@ -62,9 +100,34 @@ const getEnrollSections = asyncHandler(async (req, res) => {
 
  if (enrollCourses) {
   const enroll = enrollCourses.find((enroll) => {
+   let progress = 0;
+   const videoSize = [];
+   enroll.courseId.section.forEach((sec) => {
+    sec.videos.forEach((video) => {
+     enroll.videosWatched.forEach((v) => {
+      if (video._id == v) {
+       video.watched = true;
+      }
+     });
+     videoSize.push(video);
+    });
+   });
+
+   if (enroll.videosWatched.length === 0) {
+    progress = 0;
+   } else {
+    progress = Math.floor(
+     (enroll.videosWatched.length / videoSize.length) * 100
+    );
+   }
+
+   enroll.progressBar = progress;
+   enroll.save();
+
    return enroll.courseId.id === id;
   });
-  res.json(enroll.section);
+
+  res.json(enroll.courseId.section);
  } else {
   res.status(404);
   throw new Error('No Course Enroll');
@@ -88,8 +151,13 @@ const getEnrollVideos = asyncHandler(async (req, res) => {
   });
 
   if (enroll) {
-   enroll.section.forEach((section) => {
-    section.videos.forEach((video) => {
+   enroll.courseId.section.forEach((sec) => {
+    sec.videos.forEach((video) => {
+     enroll.videosWatched.forEach((v) => {
+      if (video._id == v) {
+       video.watched = true;
+      }
+     });
      videosee.push(video);
     });
    });
@@ -128,9 +196,36 @@ const getEnrollVideos = asyncHandler(async (req, res) => {
  }
 });
 
+//@desc    Fatch enroll video
+//@route   POST /api/eLearning/enrolls/:eid/video
+//@access  Private USER ADMIN
+const addEnrollVideo = asyncHandler(async (req, res) => {
+ const { vid } = req.body;
+ const enroll = await Enroll.findById(req.params.eid);
+ if (enroll) {
+  let have = false;
+  enroll.videosWatched.forEach((video) => {
+   if (video == vid) {
+    have = true;
+   }
+  });
+  if (have === false) {
+   enroll.videosWatched.push(vid);
+   enroll.save();
+  }
+
+  res.json(enroll);
+ } else {
+  res.status(404);
+  throw new Error('No enroll match with eid');
+ }
+});
+
 export {
  getUserEnrollCourses,
  createEnrollCourses,
  getEnrollSections,
  getEnrollVideos,
+ addEnrollVideo,
+ deleteEnrollCourses,
 };
