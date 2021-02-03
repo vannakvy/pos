@@ -46,7 +46,9 @@ export default function FadeMenu(props) {
  return (
   <div>
    <Button aria-controls="fade-menu" aria-haspopup="true" onClick={handleClick}>
-    <h5>{userInfo.name}</h5>
+    <Link className="nav-link navbar_link text-dark m-0 p-0">
+     {userInfo.name}
+    </Link>
    </Button>
    <Menu
     style={{ marginTop: 60 }}
@@ -57,7 +59,7 @@ export default function FadeMenu(props) {
     onClose={handleClose}
     TransitionComponent={Fade}
    >
-    <h1>{userInfo.name}</h1>
+    <h4 className="kh">{userInfo.name}</h4>
     <hr className="mx-3 my-1" />
     <MenuItem className={'adminHover'} onClick={userOrder}>
      <MdShoppingCart className="mr-2 text-warning" />
