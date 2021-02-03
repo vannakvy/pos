@@ -13,6 +13,9 @@ import {PUCHASE_CREATE_FAIL,
   ADD_REMOVE_STOCK_REQUEST,
   ADD_REMOVE_STOCK_SUCCESS,
   ADD_REMOVE_STOCK_FAIL,
+  ADD_SALE_REQUEST,
+  ADD_SALE_SUCCESS,
+  ADD_SALE_FAIL,
 } from '../../constants/eShopConstants/inventoryConstants';
 
 export const PuchaseCreateReducer = (state = {}, action) => {
@@ -76,6 +79,19 @@ export const PuchaseCreateReducer = (state = {}, action) => {
       case ADD_REMOVE_STOCK_SUCCESS:
         return { loading: false, success: true, arrived: action.payload }
       case ADD_REMOVE_STOCK_FAIL:
+        return { loading: false, error: action.payload }
+      default:
+        return state
+    }
+  }
+
+  export const addSaleReducer = (state = {}, action) => {
+    switch (action.type) {
+      case ADD_SALE_REQUEST:
+        return { loading: true }
+      case ADD_SALE_SUCCESS:
+        return { loading: false, success: true, sale: action.payload }
+      case ADD_SALE_FAIL:
         return { loading: false, error: action.payload }
       default:
         return state

@@ -17,8 +17,8 @@ const saleSchema = mongoose.Schema({
         default: Date.now()
     },
     saleTo:{
-        type: String,
-        required: true,
+        type: mongoose.Schema.Types.ObjectId,
+        required: false,
     }
 },{
     timestamps: true

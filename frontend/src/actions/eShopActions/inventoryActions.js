@@ -15,6 +15,9 @@ import {
     ADD_REMOVE_STOCK_REQUEST,
     ADD_REMOVE_STOCK_SUCCESS,
     ADD_REMOVE_STOCK_FAIL,
+    ADD_SALE_REQUEST,
+    ADD_SALE_SUCCESS,
+    ADD_SALE_FAIL
 } from '../../constants/eShopConstants/inventoryConstants'
 
 
@@ -112,3 +115,25 @@ export const addRemoveStock = (puchaseId,arrived,product,quantity,price)=>async(
        })
     }
 }
+
+//// 
+export const addSale = (orderId)=>async(dispatch)=>{
+    try{
+    
+        dispatch({
+            type: ADD_SALE_REQUEST
+        })
+        const {data} = await axios.post(`/api/eshop/inventory/sales/${orderId}`)
+        dispatch({
+            type: ADD_SALE_SUCCESS,
+            payload: data
+        })
+    }catch(error){
+       dispatch({
+           type: ADD_SALE_FAIL,
+           payload: error
+       })
+    }
+}
+
+

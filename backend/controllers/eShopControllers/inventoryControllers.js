@@ -1,7 +1,10 @@
 
+import expressAsyncHandler from 'express-async-handler';
 import asyncHandler from 'express-async-handler'
 import Product from '../../models/eShopModels/productModel.js'
 import Puchase from '../../models/eShopModels/puchaseModel.js'
+import Order from '../../models/eShopModels/orderModel.js'
+import Sale from '../../models/eShopModels/saleModel.js';
 
 // @desc    add puchses
 // @route   POST /api/eshop/inventory/puchases
@@ -142,6 +145,30 @@ const addRemovePuchaseFromStock = asyncHandler(async(req, res)=>{
       })
     }
 })
+
+const addSales = asyncHandler(async(req, res)=>{
+  const orderId = req.params.id;
+  const order = await Order.findById(orderId);
+
+  let {orderItems, user} = order;
+
+  if(order){
+    console.log(user)
+    console.log(orderItems);
+    let saledata;
+    orderItems.map(orderItem=>(
+      sales = new Sale({
+        product: orderItem.product,
+        amount: orderItem.qty,
+        saleTo: user,
+        date: Date.now(),
+      }),
+         saledata.save()
+    ));
+  }  
+  res.json({message:'added'})
+})
+
  
 export {
  addPuchases,
@@ -149,5 +176,7 @@ export {
  updatePuchase,
  getOnePuchase,
  deletePuchase,
- addRemovePuchaseFromStock
+ addRemovePuchaseFromStock,
+ addSales
+
 };

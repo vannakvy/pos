@@ -15,6 +15,7 @@ import {
   ORDER_PAY_RESET,
   ORDER_DELIVER_RESET,
 } from '../../constants/eShopConstants/orderConstants'
+import { addSale } from '../../actions/eShopActions/inventoryActions'
 
 const OrderScreen = ({ match, history }) => {
   const orderId = match.params.id
@@ -53,7 +54,6 @@ const OrderScreen = ({ match, history }) => {
 
     const addPayPalScript = async () => {
       const { data: clientId } = await axios.get('/api/eshop/config/paypal')
-      console.log(clientId)
       const script = document.createElement('script')
       script.type = 'text/javascript'
       script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}`
@@ -78,8 +78,8 @@ const OrderScreen = ({ match, history }) => {
   }, [dispatch, orderId, successPay, successDeliver, order,userInfo,history])
 
   const successPaymentHandler = (paymentResult) => {
-    console.log(paymentResult)
-    dispatch(payOrder(orderId, paymentResult))
+    dispatch(payOrder(orderId, paymentResult)) 
+    dispatch(addSale(orderId));
   }
 
   const deliverHandler = () => {

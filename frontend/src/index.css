@@ -46,10 +46,8 @@ h1 {
 }
 
 .covid_rotate {
-  background: rgba(248, 37, 118, 0.637);
   padding: 4px;
   position: absolute;
-  opacity: 0.8;
   /* top: 50%;
   left: 50%; */
   width: 60px;
