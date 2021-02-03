@@ -88,7 +88,9 @@
 
 .player-wrapper {
  position: relative;
- padding-top: 56.25%; /* Player ratio: 100 / (1280 / 720) */
+ padding-bottom: 56.25%; /* Player ratio: 100 / (1280 / 720) */
+ padding-top: 25;
+ height: 0;
 }
 
 .react-player {
@@ -194,7 +196,7 @@ body {
  line-height: 1.5;
  color: #000000;
  text-align: left;
- background-color: rgba(240, 240, 240, 0.932);
+ background-color: rgba(248, 248, 248, 0.932);
  /* background: #da4453; */
  /* background: -webkit-linear-gradient(to right, #89216b, #da4453); */
  /* background: linear-gradient(to right, #89216b, #da4453); */

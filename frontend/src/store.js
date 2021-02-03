@@ -157,8 +157,13 @@ const reducer = combineReducers({
  puchaseLists: puchaseListReducer,
  puchaseDelete: puchaseDeleteReducer,
  puchaseUpdate: puchaseUpdateReducer,
+<<<<<<< HEAD
  addToStockUpdate:addRemoveStockReducer,
  addSaleCreate: addSaleReducer
+=======
+ addToStockUpdate: addRemoveStockReducer,
+
+>>>>>>> 3861e807e43182188867ceab9b8c937c0f72f8f3
  //inventory eshop
 
 });

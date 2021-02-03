@@ -13,6 +13,7 @@ import NavEbook from './eBookComponents/NavEbook';
 import NavAdmin from './NavAdmin';
 import SettingsIcon from '@material-ui/icons/Settings';
 import NavCovid from './covideComponents/NavCovid';
+import Menu from './Menu';
 
 const Navbar = () => {
  const dispatch = useDispatch();
@@ -107,32 +108,7 @@ const Navbar = () => {
 
       {userInfo ? (
        <>
-        <div className="dropdown">
-         <button
-          style={{ padding: '8px', border: 'none', fontSize: '17px' }}
-          className="bg-warning px-4 rounded dropdown-toggle navbar_link"
-          id="dropdownMenuButton"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-         >
-          {userInfo.name}
-         </button>
-         <div
-          className="dropdown-menu p-2"
-          aria-labelledby="dropdownMenuButton"
-         >
-          <a className="dropdown-item​ navbar_link" href="/eshop/myorder">
-           ទំនិញ់ដែលបានកំម៉ង់
-          </a>
-          <a className="dropdown-item navbar_link" href="/eshop/profile">
-           ផ្ទាល់ខ្លួន
-          </a>
-          <a className="dropdown-item navbar_link" onClick={userLogout}>
-           ចាកចេញ់ពីគណនី
-          </a>
-         </div>
-        </div>
+        <Menu userInfo={userInfo} />
        </>
       ) : (
        <>

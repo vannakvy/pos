@@ -68,7 +68,10 @@ const App = () => {
    });
  };
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3861e807e43182188867ceab9b8c937c0f72f8f3
  return (
   <div className="app">
    <Card className="app__right">

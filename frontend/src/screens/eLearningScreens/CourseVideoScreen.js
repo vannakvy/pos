@@ -18,8 +18,9 @@ const CourseVideoScreen = () => {
  const dispatch = useDispatch();
  const history = useHistory();
 
+ const redirect = `/elearning/courses/${id}/videos/${vid}`;
+
  const userLogin = useSelector((state) => state.userLogin);
- console.log(userLogin);
 
  const enrollCourse = useSelector((state) => state.enroll);
  const { loading: loadingEnroll, error: errorEnroll, enroll } = enrollCourse;
@@ -46,6 +47,8 @@ const CourseVideoScreen = () => {
  const getEnrollVideoPlay = useSelector((state) => state.getEnrollVideoPlay);
  const { loading: loadingPlay, error: errorPlay, plays } = getEnrollVideoPlay;
 
+ console.log(plays);
+
  useEffect(() => {
   dispatch(getEnrollVideo(id, vid));
  }, [dispatch, id, vid]);
@@ -60,8 +63,8 @@ const CourseVideoScreen = () => {
  return (
   <>
    <div className="container-fluid mt-2">
-    {userLogin && userLogin.userInfo === null ? (
-     <Redirect to={'/login'} />
+    {userLogin.userInfo === null || userLogin === {} ? (
+     <Redirect to={`/login?redirect=${redirect}`} />
     ) : loadingEnroll ? (
      <div className="py-3">
       <Loader wd={40} hg={40} />
