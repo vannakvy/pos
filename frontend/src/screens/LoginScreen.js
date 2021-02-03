@@ -37,11 +37,12 @@ const LoginScreen = ({ location, history }) => {
   <FormContainer>
    <h1>Sign In</h1>
    {error && <Message variant="danger">{error}</Message>}
-   {loading && <Loader wd={150} hg={150} />}
+   {loading && <Loader wd={40} hg={40} />}
    <Form onSubmit={submitHandler}>
     <Form.Group controlId="email">
      <Form.Label>Email Address</Form.Label>
      <Form.Control
+      className="bg-light rounded shadow"
       type="email"
       placeholder="Enter email"
       value={email}
@@ -52,6 +53,7 @@ const LoginScreen = ({ location, history }) => {
     <Form.Group controlId="password">
      <Form.Label>Password</Form.Label>
      <Form.Control
+      className="bg-light rounded shadow"
       type="password"
       placeholder="Enter password"
       value={password}

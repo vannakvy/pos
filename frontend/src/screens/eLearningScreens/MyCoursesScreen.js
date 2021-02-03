@@ -18,8 +18,6 @@ const MyCoursesScreen = () => {
   coursesEnroll,
  } = userEnrollCourses;
 
- console.log(userEnrollCourses);
-
  useEffect(() => {
   dispatch(getUserEnrollCourses(userLogin.userInfo._id));
  }, [dispatch, userLogin]);

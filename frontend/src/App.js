@@ -82,12 +82,17 @@ const App = () => {
    <Footer />
 
    <NavLink
-    className="navbar_link rounded bg-info text-light p-2"
+    className="navbar_link rounded text-light p-2"
     onClick={() => dispatch(navbarList('Covid19'))}
     to="/covid"
     style={{ position: 'fixed', bottom: '70px', right: '70px', zIndex: '1000' }}
    >
-    <img className="covid_rotate card rounded-circle" width="50px" height="50px" src="https://www.psycharchives.org/retrieve/096175aa-f7f2-4970-989d-d934c30b5551"/>
+    <img
+     className="covid_rotate rounded-circle"
+     width="50px"
+     height="50px"
+     src="https://www.psycharchives.org/retrieve/096175aa-f7f2-4970-989d-d934c30b5551"
+    />
    </NavLink>
   </Router>
  );

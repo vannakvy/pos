@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { GET_ENROLL_SECTION_RESET } from '../../constants/eLearningConstants/enrollConstants';
 import {
  USER_DETAILS_RESET,
  USER_LOGIN_FAIL,
@@ -16,6 +17,7 @@ import {
 
 export const login = (email, password) => async (dispatch) => {
  try {
+  dispatch({ type: GET_ENROLL_SECTION_RESET });
   dispatch({ type: USER_LOGIN_REQUEST });
 
   const config = {
