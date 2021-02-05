@@ -79,7 +79,7 @@ const OrderScreen = ({ match, history }) => {
 
   const successPaymentHandler = (paymentResult) => {
     dispatch(payOrder(orderId, paymentResult)) 
-    dispatch(addSale(orderId));
+    // dispatch(addSale(orderId));
   }
 
   const deliverHandler = () => {
@@ -135,6 +135,7 @@ const OrderScreen = ({ match, history }) => {
 
             <ListGroup.Item>
               <h2>Order Items</h2>
+              <button onClick={()=>dispatch(addSale("6011506312df9c356c465eb3"))} className="btn btn-info">Dispatch success</button>
               {order.orderItems.length === 0 ? (
                 <Message>Order is empty</Message>
               ) : (

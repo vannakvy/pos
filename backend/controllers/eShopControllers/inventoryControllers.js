@@ -5,7 +5,7 @@ import Product from '../../models/eShopModels/productModel.js'
 import Puchase from '../../models/eShopModels/puchaseModel.js'
 import Order from '../../models/eShopModels/orderModel.js'
 import Sale from '../../models/eShopModels/saleModel.js';
-
+ 
 // @desc    add puchses
 // @route   POST /api/eshop/inventory/puchases
 // @access  private
@@ -151,15 +151,13 @@ const addSales = asyncHandler(async(req, res)=>{
   const order = await Order.findById(orderId);
 
   let {orderItems, user} = order;
-
-  if(order){
-    console.log(user)
-    console.log(orderItems);
-    let saledata;
+let saledata;
+  if(orderItems.length !==0){
     orderItems.map(orderItem=>(
-      sales = new Sale({
+      saledata = new Sale({
         product: orderItem.product,
         amount: orderItem.qty,
+        price: orderItem.price,
         saleTo: user,
         date: Date.now(),
       }),
@@ -169,7 +167,22 @@ const addSales = asyncHandler(async(req, res)=>{
   res.json({message:'added'})
 })
 
- 
+// @desc    Get all sales
+// @route   GET /api/eshop/inventory/sales
+// @access  Private/Admin
+const getSales = asyncHandler(async (req, res) => {
+  const sales = await Sale.find();
+  res.json(sales)
+})
+
+
+// @desc    Get all inventory
+// @route   GET /api/eshop/inventory
+// @access  Private/Admin
+
+const getInventory = asyncHandler(async(req, res)=>{
+  res.json({message:'Succed'})
+})
 export {
  addPuchases,
  getPuchases,
@@ -177,6 +190,8 @@ export {
  getOnePuchase,
  deletePuchase,
  addRemovePuchaseFromStock,
- addSales
+ addSales,
+ getSales,
+ getInventory
 
 };

@@ -7,6 +7,11 @@ const saleSchema = mongoose.Schema({
         ref: 'Product',
         required: true
     },
+    price: {
+        type: Number,
+        required: true,
+        default:0
+    },
     amount :{
         type: Number,
         required: true

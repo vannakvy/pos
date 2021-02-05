@@ -1,5 +1,5 @@
 main {
- min-height: 80vh;
+  min-height: 80vh;
 }
 
 /* h3 {
@@ -17,64 +17,58 @@ h1 {
 } */
 
 .rating span {
- margin: 0.1rem;
+  margin: 0.1rem;
 }
 
 /* carousel */
 .carousel-item-next,
 .carousel-item-prev,
 .carousel-item.active {
- display: flex;
+  display: flex;
 }
 .carousel-caption {
- position: absolute;
- top: 0;
+  position: absolute;
+  top: 0;
 }
 
 .carousel-caption h2 {
- color: #fff;
+  color: #fff;
 }
 
 .carousel img {
- height: 300px;
- padding: 30px;
- margin: 40px;
- border-radius: 50%;
+  height: 300px;
+  padding: 30px;
+  margin: 40px;
+  border-radius: 50%;
 }
 .carousel a {
- margin: 0 auto;
+  margin: 0 auto;
 }
 
 .covid_rotate {
-<<<<<<< HEAD
-  padding: 4px;
   position: absolute;
   /* top: 50%;
-=======
- position: absolute;
- /* top: 50%;
->>>>>>> 3861e807e43182188867ceab9b8c937c0f72f8f3
   left: 50%; */
- width: 60px;
- height: 60px;
+  width: 60px;
+  height: 60px;
 
- -webkit-animation: spin 4s linear infinite;
- -moz-animation: spin 4s linear infinite;
- animation: spin 2s linear infinite;
+  -webkit-animation: spin 4s linear infinite;
+  -moz-animation: spin 4s linear infinite;
+  animation: spin 2s linear infinite;
 }
 @-moz-keyframes spin {
- 100% {
-  -moz-transform: rotate(360deg);
- }
+  100% {
+    -moz-transform: rotate(360deg);
+  }
 }
 @-webkit-keyframes spin {
- 100% {
-  -webkit-transform: rotate(360deg);
- }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
 }
 @keyframes spin {
- 100% {
-  -webkit-transform: rotate(360deg);
-  transform: rotate(360deg);
- }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
 }

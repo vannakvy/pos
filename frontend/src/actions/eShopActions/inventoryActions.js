@@ -17,8 +17,14 @@ import {
     ADD_REMOVE_STOCK_FAIL,
     ADD_SALE_REQUEST,
     ADD_SALE_SUCCESS,
-    ADD_SALE_FAIL
+    ADD_SALE_FAIL,
+    SALE_LIST_FAIL,
+    SALE_LIST_SUCCESS,
+    SALE_LIST_REQUEST,
+    
 } from '../../constants/eShopConstants/inventoryConstants'
+
+import {logout} from '../eShopActions/userActions'
 
 
 export const createPuchase = (product,date,arrived,price,quantity,description, supplier)=>async(dispatch)=>{
@@ -136,4 +142,40 @@ export const addSale = (orderId)=>async(dispatch)=>{
     }
 }
 
+
+export const listSales = () => async (dispatch, getState) => {
+    try {
+      dispatch({
+        type: SALE_LIST_REQUEST,
+      })
+  
+      const {
+        userLogin: { userInfo },
+      } = getState()
+  
+      const config = {
+        headers: {
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      }
+      const { data } = await axios.get(`/api/eshop/inventory/sales?abc=20`, config)
+      dispatch({
+        type: SALE_LIST_SUCCESS,
+        payload: data,
+      })
+    } catch (error) {
+      const message =
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message
+      if (message === 'Not authorized, token failed') {
+        dispatch(logout())
+      }
+      dispatch({
+        type: SALE_LIST_FAIL,
+        payload: message,
+      })
+    }
+  }
+  
 

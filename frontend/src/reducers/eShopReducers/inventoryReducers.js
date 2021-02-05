@@ -16,6 +16,9 @@ import {PUCHASE_CREATE_FAIL,
   ADD_SALE_REQUEST,
   ADD_SALE_SUCCESS,
   ADD_SALE_FAIL,
+  SALE_LIST_FAIL,
+  SALE_LIST_SUCCESS,
+  SALE_LIST_REQUEST,
 } from '../../constants/eShopConstants/inventoryConstants';
 
 export const PuchaseCreateReducer = (state = {}, action) => {
@@ -85,6 +88,7 @@ export const PuchaseCreateReducer = (state = {}, action) => {
     }
   }
 
+
   export const addSaleReducer = (state = {}, action) => {
     switch (action.type) {
       case ADD_SALE_REQUEST:
@@ -93,6 +97,27 @@ export const PuchaseCreateReducer = (state = {}, action) => {
         return { loading: false, success: true, sale: action.payload }
       case ADD_SALE_FAIL:
         return { loading: false, error: action.payload }
+      default:
+        return state
+    }
+  }
+
+  export const saleListReducer = (state = { sales: [] }, action) => {
+    switch (action.type) {
+      case SALE_LIST_REQUEST:
+        return {
+          loading: true,
+        }
+      case SALE_LIST_SUCCESS:
+        return {
+          loading: false,
+          sales: action.payload,
+        }
+      case SALE_LIST_FAIL:
+        return {
+          loading: false,
+          error: action.payload,
+        }
       default:
         return state
     }
