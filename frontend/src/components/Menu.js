@@ -1,9 +1,8 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Fade from '@material-ui/core/Fade';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { MdShoppingCart } from 'react-icons/md';
 import { FaUserEdit } from 'react-icons/fa';
 import { GoSignOut } from 'react-icons/go';
@@ -45,11 +44,16 @@ export default function FadeMenu(props) {
 
  return (
   <div>
-   <Button aria-controls="fade-menu" aria-haspopup="true" onClick={handleClick}>
-    <Link className="nav-link navbar_link text-dark m-0 p-0">
-     {userInfo.name}
-    </Link>
-   </Button>
+   <p
+    className="nav-link navbar_link text-dark m-0 t_grediantHover"
+    style={{ cursor: 'pointer' }}
+    aria-controls="fade-menu"
+    aria-haspopup="true"
+    onClick={handleClick}
+   >
+    {userInfo.name}
+   </p>
+
    <Menu
     style={{ marginTop: 60 }}
     id="fade-menu"
@@ -59,19 +63,19 @@ export default function FadeMenu(props) {
     onClose={handleClose}
     TransitionComponent={Fade}
    >
-    <h4 className="kh">{userInfo.name}</h4>
+    <h4 className="kh text-center my-3">{userInfo.name}</h4>
     <hr className="mx-3 my-1" />
-    <MenuItem className={'adminHover'} onClick={userOrder}>
+    <MenuItem onClick={userOrder}>
      <MdShoppingCart className="mr-2 text-warning" />
-     <Link className="navbar_link">ទំនិញដែលបានបញ្ជាទិញ</Link>
+     <p className="navbar_link m-0">ទំនិញដែលបានបញ្ជាទិញ</p>
     </MenuItem>
-    <MenuItem className={'adminHover'} onClick={userProfile}>
+    <MenuItem onClick={userProfile}>
      <FaUserEdit className="mr-2 text-info" />
-     <Link className="navbar_link">ព័ត៌មានផ្ទាល់ខ្លួន</Link>
+     <p className="navbar_link m-0">ព័ត៌មានផ្ទាល់ខ្លួន</p>
     </MenuItem>
-    <MenuItem className={'adminHover'} onClick={userLogout}>
+    <MenuItem onClick={userLogout}>
      <GoSignOut className="mr-2 text-danger" />
-     <Link className="navbar_link">ចាកចេញពីគណនី</Link>
+     <p className="navbar_link m-0">ចាកចេញពីគណនី</p>
     </MenuItem>
    </Menu>
   </div>

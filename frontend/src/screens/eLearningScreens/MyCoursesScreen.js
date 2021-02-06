@@ -5,9 +5,12 @@ import ConvertNum from '../../components/eLearningComponents/ConvertNum';
 import CourseItemAdmin from '../../components/eLearningComponents/CourseItemAdmin';
 import Loader from '../../components/Loader';
 import Message from '../../components/Message';
+import { IoMdArrowBack } from 'react-icons/io';
+import { useHistory } from 'react-router-dom';
 
 const MyCoursesScreen = () => {
  const dispatch = useDispatch();
+ const history = useHistory();
 
  const userLogin = useSelector((state) => state.userLogin);
 
@@ -19,13 +22,27 @@ const MyCoursesScreen = () => {
  } = userEnrollCourses;
 
  useEffect(() => {
+  window.scrollTo(0, 0);
   dispatch(getUserEnrollCourses(userLogin.userInfo._id));
  }, [dispatch, userLogin]);
 
  return (
   <>
-   <h4 className="text-center kh mt-3">មុខវិទ្យារបស់ខ្ញុំ</h4>
    <div className="container-xl" style={{ maxWidth: '1500px' }}>
+    <div className="row py-2">
+     <div className="col-4">
+      <button
+       className=" btn btn-dark kh font-weight-bolder p-3 rounded shadow border-none"
+       onClick={() => history.push(`/elearning`)}
+      >
+       <h6 className="m-0 text-light">
+        <IoMdArrowBack style={{ fontSize: 18 }} />
+        <span className="ml-2">ត្រឡប់ក្រោយ</span>
+       </h6>
+      </button>
+     </div>
+     <h4 className="col-4 text-center kh mt-1">មុខវិទ្យារបស់ខ្ញុំ</h4>
+    </div>
     <h5 className="mt-2">
      <span className="kh">មុខវិទ្យារបស់ខ្ញុំដែលបានចូលរៀន</span>(
      <span className="text-danger">

@@ -5,7 +5,6 @@ import {
  createCourse,
  deleteCourse,
  listCourses,
- SearchCourses,
  updateCourse,
 } from '../../actions/eLearningActions/courseActions';
 import Loader from '../../components/Loader';
@@ -17,14 +16,14 @@ import {
  COURSE_UPDATE_RESET,
 } from '../../constants/eLearningConstants/courseConstants';
 import axios from 'axios';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { BsSearch } from 'react-icons/bs';
+import queryString from 'query-string';
+import Paginate from '../../components/eLearningComponents/Paginate';
+import { BiDetail } from 'react-icons/bi';
 
-const AdminCourses = () => {
- let no = 1;
+const AdminCourses = ({ match }) => {
  const [courseId, setCourseId] = useState('');
- const [keyword, setKeyword] = useState('');
- const [courseType, setCourseType] = useState('All Courses');
  const [image, setImage] = useState(
   '/uploads/elearningUploads/imageDefualt.jpg'
  );
@@ -34,6 +33,13 @@ const AdminCourses = () => {
   courseType: 'Web Development',
   description: '',
  });
+
+ const pageNumber = match.params.pageNumber || 1;
+ let no = pageNumber === 1 ? 1 : (pageNumber - 1) * 20 + 1;
+ const location = useLocation();
+ const query = queryString.parse(location.search);
+ const courseType = query.courseType || 'AllCourses';
+ const keyword = query.keyword || '';
 
  const history = useHistory();
 
@@ -58,6 +64,8 @@ const AdminCourses = () => {
   loading: loadingList,
   error: errorList,
   courses: coursesList,
+  page,
+  pages,
  } = courseList;
 
  const handdleSubmit = (e) => {
@@ -133,21 +141,34 @@ const AdminCourses = () => {
 
  const onChangeSearch = (e) => {
   const { value } = e.target;
-  setKeyword(value);
-  dispatch(SearchCourses(value));
+  history.push(`/adminElearn/courses/search/page/1?keyword=${value}`);
  };
 
  const onSubmitSearchHandler = (e) => {
   e.preventDefault();
-  dispatch(SearchCourses(keyword));
+  history.push(`/adminElearn/courses/search/page/1?keyword=${keyword}`);
  };
 
  useEffect(() => {
+  window.scrollTo(0, 0);
   dispatch({ type: COURSE_UPDATE_RESET });
   dispatch({ type: COURSE_CREATE_RESET });
   dispatch({ type: COURSE_DELETE_RESET });
-  dispatch(listCourses(courseType));
- }, [dispatch, successCreate, successDelete, successUpdate, courseType]);
+  dispatch(listCourses(courseType, pageNumber, keyword, 20));
+ }, [
+  dispatch,
+  successCreate,
+  successDelete,
+  successUpdate,
+  courseType,
+  pageNumber,
+  keyword,
+ ]);
+
+ const onChangeCourseType = (e) => {
+  window.scrollTo(0, 0);
+  history.push(`/adminElearn/courses?courseType=${e.target.value}`);
+ };
 
  return (
   <>
@@ -179,13 +200,13 @@ const AdminCourses = () => {
        <input
         type="text"
         name="name"
-        className="form-control mb-3"
+        className="form-control mb-3 bg-light rounded"
         onChange={onChangeHandler}
         value={newCourse.name}
        />
        <h6>Course Type:</h6>
        <select
-        className="form-control mb-3"
+        className="form-control mb-3 bg-light rounded"
         name="courseType"
         onChange={onChangeHandler}
         value={newCourse.courseType}
@@ -199,6 +220,7 @@ const AdminCourses = () => {
        <h6>Image:</h6>
        <Form.Group controlId="image">
         <Form.Control
+         className="bg-light rounded"
          type="text"
          placeholder="Enter image url"
          value={image}
@@ -206,6 +228,7 @@ const AdminCourses = () => {
          onChange={(e) => setImage(e.target.value)}
         ></Form.Control>
         <Form.File
+         className="bg-light"
          id="image-file"
          label="Choose File"
          custom
@@ -217,7 +240,7 @@ const AdminCourses = () => {
       <Col md={6}>
        <h6>Description:</h6>
        <textarea
-        className="form-control mb-3"
+        className="form-control mb-3 bg-light rounded"
         rows="11"
         name="description"
         onChange={onChangeHandler}
@@ -265,33 +288,45 @@ const AdminCourses = () => {
    </div>
 
    <div className="d-flex mt-2 justify-content-between">
-    <div className="form-group shadow bg-light rounded">
+    <div style={{ width: '330px' }}>
      <select
-      className="custom-select rounded"
-      style={{ width: '350px' }}
+      className="form-control mb-3 shadow-sm rounded w-100 kh font-weight-bold"
       value={courseType}
-      onChange={(e) => setCourseType(e.target.value)}
+      name="courseType"
+      style={{ width: '350px', background: '#fff' }}
+      onChange={onChangeCourseType}
      >
-      <option value="All Courses">All Courses</option>
-      <option value="Web Development">Web Development</option>
-      <option value="Programming">Programming</option>
-      <option value="Embeded System">Embeded System</option>
-      <option value="Mobile Development">Mobile Development</option>
-      <option value="Machine Learning">Machine Learning</option>
+      <option className="font-weight-bold" value="AllCourses">
+       មុខវិទ្យាទាំងអស់
+      </option>
+      <option className="font-weight-bold" value="WebDevelopment">
+       ផ្នែកសរសេរវែបផ្សាយ
+      </option>
+      <option className="font-weight-bold" value="Programming">
+       ផ្នែកសរសេរកម្មវិធី
+      </option>
+      <option className="font-weight-bold" value="EmbededSystem">
+       ផ្នែកប្រព័ន្ធបញ្ចារ
+      </option>
+      <option className="font-weight-bold" value="MobileDevelopment">
+       ផ្នែកសរសេរកម្មវិធីទូរស័ព្ទ
+      </option>
+      <option className="font-weight-bold" value="MachineLearning">
+       ផ្នែករៀនពីមា៉ស៊ីន
+      </option>
      </select>
     </div>
+
     <form onSubmit={onSubmitSearchHandler}>
-     <div
-      className="input-group mb-3 shadow rounded bg-light"
-      style={{ width: '350px' }}
-     >
+     <div className="input-group mb-3 rounded" style={{ width: '350px' }}>
       <input
        type="text"
-       className="form-control rounded"
+       className="form-control rounded shadow"
        placeholder="Course name..."
-       aria-label="Username"
+       aria-label="courseName"
        aria-describedby="basic-addon1"
        onChange={onChangeSearch}
+       style={{ background: '#fff' }}
       />
       <div className="input-group-prepend">
        <button type="submit" className="input-group-text btn rounded bg-dark">
@@ -330,10 +365,7 @@ const AdminCourses = () => {
           <td>{course.user}</td>
           <td className="text-center py-2 px-0" style={{ fontSize: '17px' }}>
            <Button onClick={() => courseDetail(course._id)}>
-            <i
-             className="fas fa-sign-in-alt text-info"
-             style={{ fontSize: '130%' }}
-            ></i>
+            <BiDetail className="text-info" style={{ fontSize: '130%' }} />
            </Button>
            <Button
             color="primary"
@@ -358,6 +390,13 @@ const AdminCourses = () => {
      </table>
     </>
    )}
+   <Paginate
+    pages={pages}
+    page={page}
+    keyword={keyword ? keyword : ''}
+    isAdmin
+    courseType={courseType}
+   />
   </>
  );
 };

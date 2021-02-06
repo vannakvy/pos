@@ -13,7 +13,7 @@ const enrollSchema = mongoose.Schema(
    ref: 'Course',
   },
   progressBar: { type: Number, required: true, default: 0 },
-  videosWatched: [{ type: String, required: true }],
+  videosWatched: [{ type: String }],
  },
  {
   timestamps: true,

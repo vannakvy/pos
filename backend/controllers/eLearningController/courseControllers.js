@@ -1,11 +1,12 @@
 import asyncHandler from 'express-async-handler';
 import Course from '../../models/eLearningModels/courseModel.js';
-import Enroll from '../../models/eLearningModels/enrollModel.js';
 
 //@desc    Fetch search courses
 //@route   GET /api/search
 //@access  Public
 const searchCourse = asyncHandler(async (req, res) => {
+ const pageSize = 9;
+ const page = Number(req.query.pageNumer) || 1;
  const keyword = req.query.keyword
   ? {
      name: {
@@ -15,8 +16,11 @@ const searchCourse = asyncHandler(async (req, res) => {
     }
   : {};
 
- const courses = await Course.find({ ...keyword });
- res.json(courses);
+ const count = await Course.countDocuments({ ...keyword });
+ const courses = await Course.find({ ...keyword })
+  .limit(pageSize)
+  .skip(pageSize * (page - 1));
+ res.json({ courses, page, pages: Math.ceil(count / pageSize) });
 });
 
 //@desc    Fetch all courses
@@ -24,31 +28,48 @@ const searchCourse = asyncHandler(async (req, res) => {
 //@access  Public
 const getCourses = asyncHandler(async (req, res) => {
  const { type } = req.params;
+ const pageSize = Number(req.query.pageSize) || 9;
+ const page = Number(req.query.pageNumber) || 1;
+ const keyword = req.query.keyword
+  ? {
+     name: {
+      $regex: req.query.keyword,
+      $options: 'i',
+     },
+    }
+  : {};
 
- let courseType = '';
+ let coursetype = '';
 
  if (type === 'AllCourses') {
-  courseType = 'All Courses';
+  coursetype = 'All Courses';
  } else if (type === 'WebDevelopment') {
-  courseType = 'Web Development';
+  coursetype = 'Web Development';
  } else if (type === 'Programming') {
-  courseType = 'Programming';
+  coursetype = 'Programming';
  } else if (type === 'EmbededSystem') {
-  courseType = 'Embeded System';
+  coursetype = 'Embeded System';
  } else if (type === 'MobileDevelopment') {
-  courseType = 'Mobile Development';
+  coursetype = 'Mobile Development';
  } else if (type === 'MachineLearning') {
-  courseType = 'Machine Learning';
+  coursetype = 'Machine Learning';
  }
 
- let courses = [];
+ const courseType =
+  coursetype !== 'All Courses' ? { courseType: coursetype } : {};
 
- if (courseType !== 'All Courses') {
-  courses = await Course.find({ courseType: courseType });
-  res.json(courses);
+ if (Object.keys(keyword).length !== 0) {
+  const count = await Course.countDocuments({ ...keyword });
+  const courses = await Course.find({ ...keyword })
+   .limit(pageSize)
+   .skip(pageSize * (page - 1));
+  res.json({ courses, page, pages: Math.ceil(count / pageSize), count });
  } else {
-  courses = await Course.find({});
-  res.json(courses);
+  const count = await Course.countDocuments({ ...courseType });
+  const courses = await Course.find({ ...courseType })
+   .limit(pageSize)
+   .skip(pageSize * (page - 1));
+  res.json({ courses, page, pages: Math.ceil(count / pageSize), count });
  }
 });
 

@@ -138,7 +138,11 @@
 
 .courseItem:hover {
  transition: 0.5s;
- transform: scale(1.01, 1.01);
+ transform: translate(0, -10px);
+}
+
+.courseItem:hover button div div h5 {
+ color: #007bff !important;
 }
 
 .logoutHover:hover {
@@ -169,6 +173,7 @@
 }
 
 html {
+ scroll-behavior: smooth;
  font-family: 'Ubuntu', sans-serif;
  line-height: 1.15;
  -webkit-text-size-adjust: 100%;
@@ -6215,7 +6220,7 @@ a.close.disabled {
 }
 
 .modal-dialog-scrollable .modal-body {
- overflow-y: auto;
+ overflow-y: scroll;
 }
 
 .modal-dialog-centered {

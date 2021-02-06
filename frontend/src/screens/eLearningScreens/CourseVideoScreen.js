@@ -41,15 +41,15 @@ const CourseVideoScreen = () => {
  const { success: successAddEnrollVideo } = addEnrollVideos;
 
  useEffect(() => {
+  window.scrollTo(0, 0);
   dispatch(getEnrollSections(id));
  }, [dispatch, id, successAddEnrollVideo]);
 
  const getEnrollVideoPlay = useSelector((state) => state.getEnrollVideoPlay);
  const { loading: loadingPlay, error: errorPlay, plays } = getEnrollVideoPlay;
 
- console.log(plays);
-
  useEffect(() => {
+  window.scrollTo(0, 0);
   dispatch(getEnrollVideo(id, vid));
  }, [dispatch, id, vid]);
 

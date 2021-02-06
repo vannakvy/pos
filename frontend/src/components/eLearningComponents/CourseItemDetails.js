@@ -84,11 +84,11 @@ const CourseItemDetails = (props) => {
         </button>
        ) : plays && plays.videoNotWatch === undefined ? (
         <button
-         className="btn btn-block text-dark rounded bg-info shadow"
+         className="btn btn-block text-dark rounded bg-info shadow kh"
          onClick={() => courseDetailLink(course._id)}
          disabled
         >
-         No any Videos for Learn
+         មុខវិទ្យានេះមិនទាន់មា​នវិឌីអូដើម្បីរៀនឡើយ
         </button>
        ) : (
         <button

@@ -60,7 +60,7 @@ const EnrollModal = ({ courses, addUserEnrollCourses }) => {
     aria-labelledby="exampleModalLabel"
     aria-hidden="true"
    >
-    <div className="modal-dialog modal-dialog-scrollable modal-xl round">
+    <div className="modal-dialog modal-xl">
      <div className="modal-content round">
       <div className="modal-header">
        <h5 className="modal-title" id="exampleModalLabel">

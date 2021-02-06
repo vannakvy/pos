@@ -50,7 +50,20 @@ const App = () => {
      path="/elearning/courses/:id/videos/:vid"
      component={CourseVideoScreen}
     />
-    <Route path="/elearning/courses/:id" component={CourseDetailsScreen} />
+    <Route
+     path="/elearning/courses/:id"
+     component={CourseDetailsScreen}
+     exact
+    />
+    <Route
+     path="/elearning/courses/search/page/:pageNumber"
+     component={CoursesScreen}
+     exact
+    />
+    <Route
+     path="/elearning/courses/page/:pageNumber"
+     component={CoursesScreen}
+    />
     <Route path="/elearning/courses" component={CoursesScreen} />
     <Route path="/elearning/mycourses" component={MyCoursesScreen} />
     <Route path="/elearning" component={DashboardElearn} />
@@ -92,6 +105,7 @@ const App = () => {
      width="50px"
      height="50px"
      src="https://www.psycharchives.org/retrieve/096175aa-f7f2-4970-989d-d934c30b5551"
+     alt=""
     />
    </NavLink>
   </Router>

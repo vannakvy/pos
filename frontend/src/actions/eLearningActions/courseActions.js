@@ -38,27 +38,17 @@ export const SearchCourses = (keyword) => async (dispatch) => {
  }
 };
 
-export const listCourses = (type) => async (dispatch) => {
- let courseType = '';
-
- if (type === 'All Courses') {
-  courseType = 'AllCourses';
- } else if (type === 'Web Development') {
-  courseType = 'WebDevelopment';
- } else if (type === 'Programming') {
-  courseType = 'Programming';
- } else if (type === 'Embeded System') {
-  courseType = 'EmbededSystem';
- } else if (type === 'Mobile Development') {
-  courseType = 'MobileDevelopment';
- } else if (type === 'Machine Learning') {
-  courseType = 'MachineLearning';
- }
-
+export const listCourses = (
+ courseType,
+ pageNumber,
+ keyword = '',
+ pageSize = ''
+) => async (dispatch) => {
  try {
   dispatch({ type: COURSE_LIST_REQUEST });
-
-  const { data } = await axios.get(`/api/courses/courseType/${courseType}`);
+  const { data } = await axios.get(
+   `/api/courses/courseType/${courseType}?pageNumber=${pageNumber}&keyword=${keyword}&pageSize=${pageSize}`
+  );
   dispatch({
    type: COURSE_LIST_SUCCESS,
    payload: data,

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import InputBase from '@material-ui/core/InputBase';
-
-import SearchIcon from '@material-ui/icons/Search';
+import { IoIosSearch } from 'react-icons/io';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
  search: {
@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
   borderRadius: theme.shape.borderRadius,
   backgroundColor: fade(theme.palette.common.white, 1),
   '&:hover': {
-   backgroundColor: fade(theme.palette.common.white, 0.25),
+   backgroundColor: fade(theme.palette.common.white, 0.9),
   },
   marginRight: theme.spacing(0),
   marginLeft: 0,
@@ -50,18 +50,21 @@ const useStyles = makeStyles((theme) => ({
  },
 }));
 
-const Search = ({ dispatch, SearchCourses }) => {
+const Search = ({ dispatch, SearchCourses, pageNumber }) => {
+ const history = useHistory();
  const classes = useStyles();
  const [keyword, setKeyword] = useState('');
  const onSubmitHandler = (e) => {
   e.preventDefault();
-  dispatch(SearchCourses(keyword));
+  window.scrollTo(0, 0);
+  history.push(`/elearning/courses/search/page/1?keyword=${keyword}`);
  };
 
  const onChangeTest = (e) => {
   const { value } = e.target;
   setKeyword(value);
-  dispatch(SearchCourses(value));
+  window.scrollTo(0, 0);
+  history.push(`/elearning/courses/search/page/1?keyword=${value}`);
  };
 
  return (
@@ -69,7 +72,7 @@ const Search = ({ dispatch, SearchCourses }) => {
    <div className={classes.search}>
     <form onSubmit={onSubmitHandler}>
      <div className={classes.searchIcon}>
-      <SearchIcon />
+      <IoIosSearch style={{ fontSize: '20px' }} />
      </div>
      <InputBase
       name="keyword"

@@ -14,10 +14,12 @@ const DashboardElearn = () => {
   loading: loadingList,
   error: errorList,
   courses: coursesList,
+  pages,
+  page,
  } = courseList;
 
  useEffect(() => {
-  dispatch(listCourses('All Courses'));
+  dispatch(listCourses('AllCourses'));
  }, [dispatch]);
 
  return (

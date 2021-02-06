@@ -39,6 +39,14 @@ const AppAdmin = () => {
     <div className="container-fluid">
      <Switch>
       {/* elearning */}
+      <Route
+       path="/adminElearn/courses/search/page/:pageNumber"
+       component={AdminCourses}
+      />
+      <Route
+       path="/adminElearn/courses/page/:pageNumber"
+       component={AdminCourses}
+      />
       <Route path="/adminElearn/courses/:id" component={CoursesDetail} />
       <Route path="/adminElearn/courses" component={AdminCourses} />
       <Route path="/adminElearn/videos" component={AdminVideos} />
@@ -54,13 +62,13 @@ const AppAdmin = () => {
        path="/adminEshop/product/:id/edit"
        component={ProductEditScreen}
       />
-      
+
       <Route path="/adminEshop/productLists" component={ProductListScreen} />
       <Route
-            path='/adminEshop/productlist/:pageNumber'
-            component={ProductListScreen}
-            exact
-          />
+       path="/adminEshop/productlist/:pageNumber"
+       component={ProductListScreen}
+       exact
+      />
       <Route path="/adminEshop/orderlist" component={OrderListScreen} />
       <Route path="/adminEshop/userlist" component={UserListScreen} />
       <Route path="/adminEshop/user/:id/edit" component={UserEditScreen} />
