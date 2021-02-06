@@ -62,7 +62,7 @@ const updateOrderToPaid = asyncHandler(async (req, res) => {
   const order = await Order.findById(req.params.id)
   // const saleProducts = order.findById({id:req.params.id});
   // console.log(saleProducts.orderItems);
-  console.log(order);
+
   if (order) {
     order.isPaid = true
     order.paidAt = Date.now()
@@ -74,7 +74,8 @@ const updateOrderToPaid = asyncHandler(async (req, res) => {
     }
 
     const updatedOrder = await order.save()
-
+   
+  
     res.json(updatedOrder)
   } else {
     res.status(404)
@@ -117,13 +118,7 @@ const getOrders = asyncHandler(async (req, res) => {
   res.json(orders)
 })
 
-// @desc    Get all sales
-// @route   GET /api/orders/sales
-// @access  Private/Admin
-const getSales = asyncHandler(async (req, res) => {
-  const sales = await Order.find({isPaid:true}).populate('user', 'id name')
-  res.json(sales)
-})
+
 export {
   addOrderItems,
   getOrderById,
@@ -131,5 +126,4 @@ export {
   updateOrderToDelivered,
   getMyOrders,
   getOrders,
-  getSales
 }

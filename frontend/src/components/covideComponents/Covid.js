@@ -49,7 +49,6 @@ const App = () => {
      setTableData(sortedData);
     });
   };
-
   getCountriesData();
  }, []);
 
@@ -87,14 +86,17 @@ const App = () => {
     <div className="app__header">
      <h1 className="ti">តារាងតាមដាន កូវិត​១៩ </h1>
      <FormControl className="app__dropdown">
-      <Select variant="outlined" value={country} onChange={onCountryChange}>
-       <MenuItem className="text-font" value="worldwide">
-        ទូទាំងពិភពលោក
-       </MenuItem>
-       {countries.map((country) => (
-        <MenuItem value={country.value}>{country.name}</MenuItem>
-       ))}
-      </Select>
+      <Select
+              variant="outlined"
+              value={country}
+              onChange={onCountryChange}
+            >
+              <MenuItem className="text-font" value="worldwide">ទូទាំងពិភពលោក</MenuItem>
+              {countries.map((country) => (
+                <MenuItem value={country.value}>{country.name}</MenuItem>
+              ))}
+            </Select>
+   
      </FormControl>
     </div>
     <div className="app__stats">

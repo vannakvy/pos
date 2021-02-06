@@ -15,9 +15,6 @@ const Inventory = ({ history }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-  const userDelete = useSelector((state) => state.userDelete);
-  const { success: successDelete } = userDelete;
-
   return (
     <div className="card bg-warning p-2">
       <h1 className="p-2">INVENTORY</h1>

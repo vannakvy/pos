@@ -7,6 +7,11 @@ const saleSchema = mongoose.Schema({
         ref: 'Product',
         required: true
     },
+    price: {
+        type: Number,
+        required: true,
+        default:0
+    },
     amount :{
         type: Number,
         required: true
@@ -17,8 +22,8 @@ const saleSchema = mongoose.Schema({
         default: Date.now()
     },
     saleTo:{
-        type: String,
-        required: true,
+        type: mongoose.Schema.Types.ObjectId,
+        required: false,
     }
 },{
     timestamps: true

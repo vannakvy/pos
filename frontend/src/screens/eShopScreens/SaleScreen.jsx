@@ -4,14 +4,15 @@ import { Table, Button, Form, Col, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../../components/eShopComponents/Message";
 import Loader from "../../components/eShopComponents/Loader";
-import { listOrders, listSales } from "../../actions/eShopActions/orderActions";
+import { listOrders } from "../../actions/eShopActions/orderActions";
+import { listSales } from "../../actions/eShopActions/inventoryActions";
 
 const SaleScreen = ({ history }) => {
   const dispatch = useDispatch();
 
   const saleList = useSelector((state) => state.saleList);
   const { loading, error, sales } = saleList;
-  console.log(saleList);
+  console.log(sales);
 
   useEffect(() => {
     dispatch(listSales());
@@ -57,26 +58,25 @@ const SaleScreen = ({ history }) => {
             <thead>
               <tr>
                 <th>DATE</th>
-
-                <th>ORDER ID</th>
+                <th>Product ID</th>
                 <th>QTY</th>
-
                 <th>SOLD TO</th>
-                <th>SHIPPING Adreess</th>
-                <th>AMMOUNT</th>
-                <th>aCTIONS</th>
+                <th>PRICE</th>
+                <th>AMOUNT</th>
+                <th>ACTIONS</th>
               </tr>
             </thead>
             <tbody>
               {sales &&
                 sales.map((sale) => (
                   <tr key={sale._id}>
-                    <td>{sale.paidAt}</td>
-                    <td>{sale._id}</td>
-                    <td>{sale.orderItems.length}</td>
-                    <td>{sale.user._id}</td>
-                    <td>{sale.shippingAddress.city}</td>
-                    <td>{sale.totalPrice}</td>
+                    <td>{sale.date}</td>
+                    <td>{sale.product !== null ? sale.product : "_ _ _"}</td>
+                    <td>{sale.amount}</td>
+                    <td>{sale.saleTo}</td>
+                    <td>{sale.price}</td>
+                    <td>{sale.price * sale.amount}</td>
+
                     <td>
                       <Button variant="light" className="btn-sm">
                         <i className="fas fa-edit"></i>

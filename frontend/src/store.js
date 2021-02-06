@@ -76,7 +76,7 @@ import {
  orderDetailsReducer,
  orderListMyReducer,
  orderPayReducer,
- saleListReducer,
+ 
 } from './reducers/eShopReducers/orderReducers';
 import { cartReducer } from './reducers/eShopReducers/cartReducers';
 import {
@@ -85,6 +85,8 @@ import {
  puchaseDeleteReducer,
  puchaseUpdateReducer,
  addRemoveStockReducer,
+ addSaleReducer,
+ saleListReducer,
 } from './reducers/eShopReducers/inventoryReducers';
 const reducer = combineReducers({
  // courses
@@ -156,9 +158,10 @@ const reducer = combineReducers({
  puchaseLists: puchaseListReducer,
  puchaseDelete: puchaseDeleteReducer,
  puchaseUpdate: puchaseUpdateReducer,
- addToStockUpdate: addRemoveStockReducer,
-
+ addToStockUpdate:addRemoveStockReducer,
+ addSaleCreate: addSaleReducer
  //inventory eshop
+
 });
 
 const userInfoFromStorage = localStorage.getItem('userInfo')

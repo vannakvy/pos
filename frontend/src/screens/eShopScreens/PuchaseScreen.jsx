@@ -241,7 +241,7 @@ const PuchaseScreen = ({ history }) => {
                 puchases.map((puchase) => (
                   <tr key={puchase._id}>
                     <td>{puchase.date}</td>
-                    <td>{puchase.product.name}</td>
+                    <td>"check later'</td>
                     <td>{puchase.quantity}</td>
                     <td>{puchase.price}</td>
                     <td>{puchase.supplier}</td>
