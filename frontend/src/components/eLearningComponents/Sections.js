@@ -273,7 +273,7 @@ const Sections = () => {
 
    <div className="border w-100 rounded">
     <div className="d-flex justify-content-between">
-     <h4 className="mt-3 pl-3">SECTIONS</h4>
+     <h4 className="mt-2 pl-3">SECTIONS</h4>
      <IconButton
       aria-label="create"
       color="primary"

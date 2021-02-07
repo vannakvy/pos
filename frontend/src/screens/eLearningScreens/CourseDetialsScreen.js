@@ -18,6 +18,7 @@ const CourseDetailsScreen = ({ match }) => {
  const { loading, error, course } = courseDetail;
 
  useEffect(() => {
+  window.scrollTo(0, 0);
   let scrollY = 0;
   let opi = 0;
   window.onscroll = function () {

@@ -94,6 +94,7 @@ const AdminCourses = ({ match }) => {
  };
 
  const editCourseHandler = (course) => {
+  window.scrollTo(0, 0);
   setCourseId(course._id);
   setImage(course.imgUrl);
   setNewCourse({
@@ -172,8 +173,7 @@ const AdminCourses = ({ match }) => {
 
  return (
   <>
-   <h4 className="text-center mt-2">Admin Courses</h4>
-
+   {/* <h4 className="text-center mt-2">Admin Courses</h4> */}
    <div className="d-flex justify-content-between">
     <div></div>
     <div

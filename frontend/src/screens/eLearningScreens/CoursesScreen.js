@@ -62,7 +62,7 @@ const CoursesScreen = ({ match, history }) => {
        </h6>
       </button>
      </div>
-     <h4 className="col-4 text-center kh mt-1">មុខវិទ្យាទាំងអស់</h4>
+     <h4 className="col-4 text-center kh mt-1">មុខវិទ្យា</h4>
     </div>
 
     <div

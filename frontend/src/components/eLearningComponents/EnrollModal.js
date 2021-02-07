@@ -87,7 +87,7 @@ const EnrollModal = ({ courses, addUserEnrollCourses }) => {
           <div key={course._id} className="col-lg-4 col-md-6">
            <Card
             onClick={() => addEnrollList(course._id)}
-            className="mx-md-1 mx-lg-0 mx-xl-2 shadow rounded my-1 courseItem d-flex w-100"
+            className="mx-md-1 mx-lg-0 mx-xl-2 shadow rounded my-2 courseItem d-flex w-100"
             style={{ maxHeight: 180 }}
            >
             <CardActionArea className="position-relative">
