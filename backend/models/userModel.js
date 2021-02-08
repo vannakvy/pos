@@ -21,9 +21,9 @@ const userSchema = mongoose.Schema(
    required: true,
    default: false,
   },
-  level: {
-   type: Number,
-   default: 0,
+  isTeacher: {
+   type: Boolean,
+   default: false,
   },
  },
  {

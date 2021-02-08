@@ -103,6 +103,20 @@ const Navbar = () => {
           </NavLink>
          </li>
         ) : null}
+
+        {userInfo && userInfo.isTeacher ? (
+         <li className="nav-item">
+          <NavLink
+           to="/teacherCourses"
+           className=""
+           onClick={() => dispatch(navbarList('Admin'))}
+          >
+           <button className="kh btn grediant rounded adminHover">
+            <h5 className="m-0">គ្រូ</h5>
+           </button>
+          </NavLink>
+         </li>
+        ) : null}
        </>
       )}
 
