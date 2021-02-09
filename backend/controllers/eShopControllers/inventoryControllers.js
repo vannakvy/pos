@@ -181,6 +181,10 @@ const getSales = asyncHandler(async (req, res) => {
 // @access  Private/Admin
 
 const getInventory = asyncHandler(async(req, res)=>{
+  
+
+  let inventory;
+
   res.json({message:'Succed'})
 })
 export {
