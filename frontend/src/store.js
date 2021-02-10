@@ -88,6 +88,8 @@ import {
     addSaleReducer,
     saleListReducer,
 } from './reducers/eShopReducers/inventoryReducers';
+
+import { supplierCreateReducer, supplierDeleteReducer, supplierUpdateReducer, supplierListReducer } from './reducers/eShopReducers/supplierReducers'
 const reducer = combineReducers({
     // courses
     navbarList: navbarListReducers,
@@ -159,8 +161,12 @@ const reducer = combineReducers({
     puchaseDelete: puchaseDeleteReducer,
     puchaseUpdate: puchaseUpdateReducer,
     addToStockUpdate: addRemoveStockReducer,
-    addSaleCreate: addSaleReducer
-    //inventory eshop
+    addSaleCreate: addSaleReducer,
+    //supplier 
+    supplierUpdate: supplierUpdateReducer,
+    supplierDelete: supplierDeleteReducer,
+    supplierCreate: supplierCreateReducer,
+    supplierList: supplierListReducer
 
 });
 

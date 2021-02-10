@@ -15,7 +15,6 @@ import OrderListScreen from './screens/eShopScreens/OrderListScreen';
 import UserListScreen from './screens/eShopScreens/UserListScreen';
 import UserEditScreen from './screens/eShopScreens/UserEditScreen';
 import AdminUsers from './screens/adminUsers/AdminUsers';
-import InventoryScreen from './screens/eShopScreens/Inventory';
 import SaleScreen from './screens/eShopScreens/SaleScreen';
 import PuchaseScreen from './screens/eShopScreens/PuchaseScreen';
 import ReportScreen from './screens/eShopScreens/ReportScreen';
@@ -24,6 +23,7 @@ import AddProductScreen from './screens/eShopScreens/AddProductScreen';
 import Stock from './screens/eShopScreens/Stock';
 import PurchaseProductScreen from './screens/eShopScreens/PurchaseProductScreen';
 import SaleByPassScreen from './screens/eShopScreens/SaleByPassScreen';
+import Supplier from './screens/eShopScreens/Supplier';
 
 const AppAdmin = () => {
     return (
@@ -77,7 +77,7 @@ const AppAdmin = () => {
                         <Route path="/adminEshop/orderlist" component={OrderListScreen} />
                         <Route path="/adminEshop/userlist" component={UserListScreen} />
                         <Route path="/adminEshop/user/:id/edit" component={UserEditScreen} />
-                        <Route path="/adminEshop/inventory" component={InventoryScreen} />
+                        <Route path="/adminEshop/inventory" component={Supplier} />
                         <Route path="/adminEshop/puchases" component={PurchaseProductScreen} />
                         <Route path="/adminEshop/sales" component={SaleByPassScreen} />
                         <Route path="/adminEshop/addProducts" component={AddProductScreen} />
