@@ -70,17 +70,17 @@ const CourseItemDetails = (props) => {
       >
        <span className="d-flex">
         <Loader wd={23} hg={23} color={'text-dark'} mg={`0`} />
-        <span className="ml-3">Loading...</span>
+        <span className="ml-3 kh">កំពុងដំណើរការ...</span>
        </span>
       </button>
      ) : (
       <>
        {enroll === null || enroll === undefined ? (
         <button
-         className="btn btn-block text-dark rounded bg-info shadow"
+         className="btn btn-block text-dark rounded bg-info shadow kh"
          disabled
         >
-         You're not Own this course!
+         អ្នកមិនទាន់អាចចូលរៀនមុខវិទ្យានេះបាននៅឡើយ
         </button>
        ) : plays && plays.videoNotWatch === undefined ? (
         <button
@@ -88,14 +88,14 @@ const CourseItemDetails = (props) => {
          onClick={() => courseDetailLink(course._id)}
          disabled
         >
-         មុខវិទ្យានេះមិនទាន់មា​នវិឌីអូដើម្បីរៀនឡើយ
+         មុខវិទ្យានេះមិនទាន់មា​នវិឌីអូដើម្បីរៀននៅឡើយ
         </button>
        ) : (
         <button
-         className="btn btn-block text-dark rounded bg-info shadow"
+         className="btn btn-block text-dark rounded bg-info shadow kh"
          onClick={() => courseDetailLink(course._id)}
         >
-         Go to Course
+         ចូលទៅកាន់មុខវិទ្យានេះ
         </button>
        )}
       </>
