@@ -17,7 +17,7 @@ const CoursesShow = ({ courseType, type }) => {
   async function fetchData() {
    setLoading(true);
    const { data } = await axios(
-    `/api/courses/courseType/${courseType}?pageNumber=1&keyword=&pageSize=4`
+    `/api/courses/courseType/${courseType}?pageNumber=1&keyword=&pageSize=10`
    );
    const { courses, count } = data;
    setCourses(courses);

@@ -33,6 +33,7 @@ import MyOrderScreen from './screens/eShopScreens/MyOrderScreen';
 import { navbarList } from './actions/navbarActions';
 import { useDispatch } from 'react-redux';
 import MyCoursesScreen from './screens/eLearningScreens/MyCoursesScreen';
+import AppTeacher from './AppTeacher';
 
 const App = () => {
  const dispatch = useDispatch();
@@ -41,6 +42,8 @@ const App = () => {
    <Navbar />
    <Switch>
     {/* admin */}
+    <Route path="/teacherCourses" component={AppTeacher} />
+    <Route path="/teacherStudents" component={AppTeacher} />
     <Route path="/adminUsers" component={AppAdmin} />
     <Route path="/adminElearn" component={AppAdmin} />
     <Route path="/adminEbook" component={AppAdmin} />

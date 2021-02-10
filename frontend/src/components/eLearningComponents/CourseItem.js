@@ -38,7 +38,7 @@ const CourseItem = (props) => {
     />
     {/* <Progress /> */}
     <CardContent>
-     <div style={{ height: `${courseShow ? '60px' : '160px'}` }}>
+     <div style={{ height: `${courseShow ? '80px' : '160px'}` }}>
       <h5>{course.name}</h5>
       <small className="text-info">{course.courseType}</small>
       {courseShow ? null : <p>{course.description.slice(0, 200) + '...'}</p>}
