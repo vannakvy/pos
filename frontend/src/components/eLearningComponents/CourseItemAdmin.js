@@ -8,9 +8,7 @@ import { MdDeleteSweep } from 'react-icons/md';
 const CourseItemAdmin = ({ enroll, deleteEnrollHandler = false }) => {
  const history = useHistory();
  const courseDetailLink = (id) => {
-  setTimeout(function () {
-   //  history.push(`/courses/${id}`);
-  }, 300);
+  setTimeout(function () {}, 300);
  };
  return (
   <Card className="mx-md-1 mx-lg-0 mx-xl-2 shadow round my-3 courseItem">
