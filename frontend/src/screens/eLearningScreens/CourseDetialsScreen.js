@@ -6,11 +6,17 @@ import Message from '../../components/Message';
 import RatingBar from '../../components/Rating';
 import CourseContent from '../../components/eLearningComponents/CourseContent';
 import CourseItemDetails from '../../components/eLearningComponents/CourseItemDetails';
+import queryString from 'query-string';
+import { Redirect, useLocation } from 'react-router-dom';
 
 const CourseDetailsScreen = ({ match }) => {
  const [test, setTest] = useState(false);
  const [opii, setOpii] = useState(0);
  const { id } = match.params;
+ const location = useLocation();
+ const query = queryString.parse(location.search);
+ const mycourses = query.mycourses || false;
+ console.log(location);
 
  const dispatch = useDispatch();
 
@@ -37,9 +43,14 @@ const CourseDetailsScreen = ({ match }) => {
     setTest(false);
    }
   };
-
   dispatch(getCourseById(id));
  }, [dispatch, id]);
+ //  if (mycourses && mycourses && plays && plays.videoNotWatch._id)
+ //   return (
+ //    <Redirect
+ //     to={`/elearning/courses/${id}/videos/${plays.videoNotWatch._id}`}
+ //    />
+ //   );
  return (
   <div style={{ minHeight: '100vh' }}>
    {loading ? (
