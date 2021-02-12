@@ -14,8 +14,6 @@ const MyCoursesScreen = () => {
 
  const userLogin = useSelector((state) => state.userLogin);
 
- console.log(userLogin);
-
  const userEnrollCourses = useSelector((state) => state.userEnrollCourses);
  const {
   loading: loadingUserEnrollCourses,
