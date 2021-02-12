@@ -146,7 +146,7 @@
 
 .courseItem:hover {
  transition: 0.5s;
- transform: translate(0, -10px);
+ transform: translate(0, -7px);
 }
 
 .courseItem:hover button div div h5 {

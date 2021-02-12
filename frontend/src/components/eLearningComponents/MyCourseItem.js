@@ -4,9 +4,8 @@ import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import { MdDeleteSweep } from 'react-icons/md';
 import Progress from 'react-circle-progress-bar';
-import CardActions from '@material-ui/core/CardActions';
 
-const CourseItemAdmin = ({ enroll, deleteEnrollHandler = false }) => {
+const MyCourseItem = ({ enroll, deleteEnrollHandler = false }) => {
  const history = useHistory();
  const courseDetailLink = (enroll) => {
   setTimeout(function () {
@@ -17,27 +16,24 @@ const CourseItemAdmin = ({ enroll, deleteEnrollHandler = false }) => {
  };
  return (
   <Card className="mx-md-1 mx-lg-0 mx-xl-2 shadow round my-3 courseItem">
-   <CardActionArea className="position-relative">
+   <CardActionArea
+    className="position-relative"
+    onClick={() => courseDetailLink(enroll)}
+   >
     <img
      className="position-absolute"
      style={{
-      maxWidth: 380,
+      minWidth: 300,
+      maxWidth: 350,
       opacity: `${enroll.progressBar === 100 ? '0.1' : '1'}`,
      }}
      src={enroll.courseId.imgUrl}
      alt=""
     />
 
-    <div className="d-flex justify-content-between" style={{ height: 150 }}>
-     <div className="d-flex" onClick={() => courseDetailLink(enroll)}>
-      <div
-       className="p-2 kh"
-       style={{
-        fontWeight: 'bolder',
-        zIndex: 1,
-        position: 'relative',
-       }}
-      >
+    <div className="d-flex justify-content-between" style={{ height: 170 }}>
+     <div className="d-flex">
+      <div className="p-2 kh" style={{ fontWeight: 'bolder', zIndex: 1 }}>
        <Progress
         style={{ width: '70px' }}
         ballStrokeWidth={16}
@@ -55,21 +51,19 @@ const CourseItemAdmin = ({ enroll, deleteEnrollHandler = false }) => {
        <small className="text-info">{enroll.courseId.courseType}</small>
       </div>
      </div>
+     {deleteEnrollHandler && deleteEnrollHandler ? (
+      <div style={{ zIndex: 1 }}>
+       <MdDeleteSweep
+        onClick={() => deleteEnrollHandler(enroll._id)}
+        className="m-2 text-light t_grediantHover"
+        style={{ fontSize: '30px' }}
+       />
+      </div>
+     ) : null}
     </div>
    </CardActionArea>
-   <CardActions>
-    {deleteEnrollHandler && deleteEnrollHandler ? (
-     <div className="d-flex justify-content-end w-100" style={{ zIndex: 1 }}>
-      <MdDeleteSweep
-       onClick={() => deleteEnrollHandler(enroll._id)}
-       className="text-danger t_grediantHover"
-       style={{ fontSize: '25px', cursor: 'pointer' }}
-      />
-     </div>
-    ) : null}
-   </CardActions>
   </Card>
  );
 };
 
-export default CourseItemAdmin;
+export default MyCourseItem;
