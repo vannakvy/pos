@@ -7,6 +7,10 @@ import {
  COUSRE_ENROLL_REQUEST,
  COUSRE_ENROLL_RESET,
  COUSRE_ENROLL_SUCCESS,
+ GET_ENROLL_DETAIL_FAIL,
+ GET_ENROLL_DETAIL_REQUEST,
+ GET_ENROLL_DETAIL_RESET,
+ GET_ENROLL_DETAIL_SUCCESS,
  GET_ENROLL_SECTION_FAIL,
  GET_ENROLL_SECTION_REQUEST,
  GET_ENROLL_SECTION_RESET,
@@ -38,6 +42,21 @@ export const courseEnrollReducer = (state = { enroll: null }, action) => {
   case COUSRE_ENROLL_FAIL:
    return { loading: false, error: action.payload };
   case COUSRE_ENROLL_RESET:
+   return {};
+  default:
+   return state;
+ }
+};
+
+export const getEnrollDetailReducer = (state = {}, action) => {
+ switch (action.type) {
+  case GET_ENROLL_DETAIL_REQUEST:
+   return { loading: true };
+  case GET_ENROLL_DETAIL_SUCCESS:
+   return { loading: false, enrollDetail: action.payload };
+  case GET_ENROLL_DETAIL_FAIL:
+   return { loading: false, error: action.payload };
+  case GET_ENROLL_DETAIL_RESET:
    return {};
   default:
    return state;
