@@ -34,7 +34,7 @@ const MyCourseItem = ({ enroll, deleteEnrollHandler = false }) => {
     <div className="d-flex justify-content-between" style={{ height: 170 }}>
      <div className="d-flex">
       <div className="p-2 kh" style={{ fontWeight: 'bolder', zIndex: 1 }}>
-       <Progress
+       {/* <Progress
         style={{ width: '70px' }}
         ballStrokeWidth={16}
         gradient={[
@@ -43,7 +43,7 @@ const MyCourseItem = ({ enroll, deleteEnrollHandler = false }) => {
         ]}
         subtitle={'រៀនបាន'}
         progress={enroll.progressBar}
-       />
+       /> */}
       </div>
 
       <div className="p-2" style={{ zIndex: 1 }}>
