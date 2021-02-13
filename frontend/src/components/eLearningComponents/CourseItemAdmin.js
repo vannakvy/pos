@@ -3,8 +3,9 @@ import { useHistory } from 'react-router-dom';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import { MdDeleteSweep } from 'react-icons/md';
-import Progress from 'react-circle-progress-bar';
 import CardActions from '@material-ui/core/CardActions';
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
 
 const CourseItemAdmin = ({ enroll, deleteEnrollHandler = false }) => {
  const history = useHistory();
@@ -21,7 +22,7 @@ const CourseItemAdmin = ({ enroll, deleteEnrollHandler = false }) => {
     <img
      className="position-absolute"
      style={{
-      maxWidth: 380,
+      maxWidth: 500,
       opacity: `${enroll.progressBar === 100 ? '0.1' : '1'}`,
      }}
      src={enroll.courseId.imgUrl}
@@ -38,16 +39,21 @@ const CourseItemAdmin = ({ enroll, deleteEnrollHandler = false }) => {
         position: 'relative',
        }}
       >
-       <Progress
-        style={{ width: '70px' }}
-        ballStrokeWidth={16}
-        gradient={[
-         { stop: 0.5, color: '#fa6c7e' },
-         { stop: 1, color: '#5eaefd' },
-        ]}
-        subtitle={'រៀនបាន'}
-        progress={enroll.progressBar}
-       />
+       <div style={{ width: '70px' }}>
+        <CircularProgressbar
+         value={enroll.progressBar}
+         text={`${enroll.progressBar}%`}
+         circleRatio={0.75}
+         strokeWidth={4}
+         styles={buildStyles({
+          rotation: 1 / 2 + 1 / 8,
+          strokeLinecap: 'butt',
+          trailColor: '#eee',
+          textColor: '#fa6c7e',
+          pathColor: '#fa6c7e',
+         })}
+        />
+       </div>
       </div>
 
       <div className="p-2" style={{ zIndex: 1 }}>
@@ -63,7 +69,7 @@ const CourseItemAdmin = ({ enroll, deleteEnrollHandler = false }) => {
       <MdDeleteSweep
        onClick={() => deleteEnrollHandler(enroll._id)}
        className="text-danger t_grediantHover"
-       style={{ fontSize: '25px', cursor: 'pointer' }}
+       style={{ fontSize: '20px', cursor: 'pointer' }}
       />
      </div>
     ) : null}

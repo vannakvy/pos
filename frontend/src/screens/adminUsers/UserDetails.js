@@ -116,7 +116,7 @@ const UserDetails = () => {
        <div className="row">
         {coursesEnroll &&
          coursesEnroll.enrollCourses.map((enroll) => (
-          <div key={enroll._id} className="col-md-6 col-lg-4 col-xl-3">
+          <div key={enroll._id} className="col-md-6 col-lg-4 col-xl-4">
            <CourseItemAdmin
             enroll={enroll}
             deleteEnrollHandler={deleteEnrollHandler}

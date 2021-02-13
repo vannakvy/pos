@@ -34,6 +34,7 @@ import { navbarList } from './actions/navbarActions';
 import { useDispatch } from 'react-redux';
 import MyCoursesScreen from './screens/eLearningScreens/MyCoursesScreen';
 import AppTeacher from './AppTeacher';
+import MyCoursesDetailScreen from './screens/eLearningScreens/MyCoursesDetailScreens';
 
 const App = () => {
  const dispatch = useDispatch();
@@ -51,7 +52,7 @@ const App = () => {
     {/* frontend */}
     <Route
      path="/elearning/enroll/:eid/courses/:id"
-     component={CourseDetailsScreen}
+     component={MyCoursesDetailScreen}
     />
     <Route
      path="/elearning/courses/:id/videos/:vid"
