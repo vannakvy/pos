@@ -20,6 +20,7 @@ const MyCoursesDetailScreen = () => {
  } = enrollDetailStore;
 
  useEffect(() => {
+  window.scrollTo(0, 0);
   dispatch({ type: GET_ENROLL_DETAIL_RESET });
   dispatch(getEnrollDetail(eid));
  }, [dispatch, eid]);
@@ -36,35 +37,27 @@ const MyCoursesDetailScreen = () => {
      <>
       {enrollDetail && enrollDetail ? (
        <>
-        <div className="row mt-1">
-         <div className="col-md-6 col-lg-6">
-          <img
-           className="rounded py-2 bg-light shadow w-100"
-           src={enrollDetail.courseId.imgUrl}
-           alt=""
+        <div className="p-1 bg-light shadow rounded">
+         <img className="w-100" src={enrollDetail.courseId.imgUrl} alt="" />
+        </div>
+        <div className="row mt-2">
+         <div className="col-md-8">
+          <h5 className>{enrollDetail.courseId.name}</h5>
+         </div>
+         <div className="col-md-4">
+          <CircularProgressbar
+           value={enrollDetail.progressBar}
+           text={`${enrollDetail.progressBar}%`}
+           circleRatio={0.75}
+           strokeWidth={4}
+           styles={buildStyles({
+            rotation: 1 / 2 + 1 / 8,
+            strokeLinecap: 'butt',
+            trailColor: '#eee',
+            textColor: '#fa6c7e',
+            pathColor: '#fa6c7e',
+           })}
           />
-         </div>
-         <div className="col-md-3 col-lg-3">
-          <div className="bg-light shadow w-100 rounded h-100 p-1">
-           <h5>{enrollDetail.courseId.name}</h5>
-          </div>
-         </div>
-         <div className="col-md-3 col-lg-3">
-          <div className="bg-light shadow rounded d-flex w-100 h-100 p-1">
-           <CircularProgressbar
-            value={enrollDetail.progressBar}
-            text={`${enrollDetail.progressBar}%`}
-            circleRatio={0.75}
-            strokeWidth={4}
-            styles={buildStyles({
-             rotation: 1 / 2 + 1 / 8,
-             strokeLinecap: 'butt',
-             trailColor: '#eee',
-             textColor: '#fa6c7e',
-             pathColor: '#fa6c7e',
-            })}
-           />
-          </div>
          </div>
         </div>
        </>
