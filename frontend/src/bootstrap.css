@@ -148,6 +148,17 @@
  transition: 0.5s;
  transform: translate(0, -7px);
 }
+.indicator {
+ display: flex;
+ justify-content: center;
+ text-align: center;
+ position: absolute;
+ top: 0;
+ width: 100%;
+ height: 100%;
+ margin: 0 auto;
+ user-select: none;
+}
 
 .courseItem:hover button div div h5 {
  color: #007bff !important;
