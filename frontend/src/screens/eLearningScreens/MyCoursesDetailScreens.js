@@ -35,7 +35,7 @@ const MyCoursesDetailScreen = () => {
  }, [dispatch, eid]);
  return (
   <>
-   <div className="container">
+   <div className="">
     {loadingEnrollDetail ? (
      <div className="py-2">
       <Loader wd={40} hg={40} />
