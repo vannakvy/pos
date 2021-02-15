@@ -7,12 +7,13 @@ import { GET_ENROLL_DETAIL_RESET } from '../../constants/eLearningConstants/enro
 import Message from '../../components/Message';
 import { Parallax } from 'react-parallax';
 import { Chart } from 'react-google-charts';
+import CourseContent from '../../components/eLearningComponents/CourseContent';
 
 const insideStyles = {
  background: 'white',
  padding: 20,
  position: 'absolute',
- top: '50%',
+ top: '30%',
  left: '50%',
  transform: 'translate(-50%,-50%)',
 };
@@ -46,30 +47,38 @@ const MyCoursesDetailScreen = () => {
      <>
       {enrollDetail && enrollDetail ? (
        <>
-        <div className="shadow py-1 rounded">
+        <div className="shadow p-1 bg-light">
          <Parallax bgImage={enrollDetail.courseId.imgUrl} strength={500}>
-          <div style={{ height: '60vh' }}>
-           <h3>gg</h3>
+          <div style={{ height: '40vh' }}>
            <div style={insideStyles} className="rounded shadow">
-            <h3 className="m-0">{enrollDetail.courseId.name}</h3>
+            <h5 className="m-0">{enrollDetail.courseId.name}</h5>
            </div>
           </div>
          </Parallax>
         </div>
 
-        <div className="container">
+        <div className="container w-100">
          <div className="row mt-2">
-          <div className="col-md-8">
-           <div className="_bg-light shadow rounded p-2">
-            <h4>Descriptions:</h4>
+          <div className="col-md-8 p-1">
+           <div className="_bg-light shadow rounded p-3">
+            <h5 className="kh">ព័ត៌មានផ្សេងៗ:</h5>
             <p>
              <span className="mr-5"></span>
              {enrollDetail.courseId.description}
             </p>
            </div>
+           <div className="my-3">
+            <h5 className="kh">វីឌីអូសម្រាប់មុខវិទ្យានេះ</h5>
+            <CourseContent
+             sections={enrollDetail.courseId.section}
+             cid={id}
+             fromVideo={true}
+            />
+           </div>
           </div>
-          <div className="col-md-4">
-           <div className="shadow rounded p-2 _bg-light kh w-100">
+          <div className="col-md-4 p-1">
+           <div className="shadow rounded p-2 _bg-light kh">
+            <h5 className="kh text-center mt-1 mb-0">លទ្ធផលការសិក្សា</h5>
             <Chart
              width={'100%'}
              height={'300px'}
@@ -81,62 +90,14 @@ const MyCoursesDetailScreen = () => {
              }
              data={[
               ['Task', 'Hours per Day'],
-              ['Work', 11],
-              ['Eat', 2],
-              ['Commute', 2],
-              ['Watch TV', 2],
-              ['Sleep', 7],
+              ['Finished', enrollDetail.progressBar],
+              ['Not yet', 100 - enrollDetail.progressBar],
              ]}
              options={{
-              title: 'My Daily Activities',
               // Just add this option
               is3D: true,
              }}
              rootProps={{ 'data-testid': '2' }}
-            />
-            <Chart
-             width={'100%'}
-             height={'400px'}
-             chartType="PieChart"
-             loader={
-              <div style={{ padding: '130px 0' }}>
-               <Loader wd={40} hg={40} />
-              </div>
-             }
-             data={[
-              ['Language', 'Speakers (in millions)'],
-              ['Assamese', 13],
-              ['Bengali', 83],
-              ['Bodo', 1.4],
-              ['Dogri', 2.3],
-              ['Gujarati', 46],
-              ['Hindi', 300],
-              ['Kannada', 38],
-              ['Kashmiri', 5.5],
-              ['Konkani', 5],
-              ['Maithili', 20],
-              ['Malayalam', 33],
-              ['Manipuri', 1.5],
-              ['Marathi', 72],
-              ['Nepali', 2.9],
-              ['Oriya', 33],
-              ['Punjabi', 29],
-              ['Sanskrit', 0.01],
-              ['Santhali', 6.5],
-              ['Sindhi', 2.5],
-              ['Tamil', 61],
-              ['Telugu', 74],
-              ['Urdu', 52],
-             ]}
-             options={{
-              title: 'Indian Language Use',
-              legend: 'none',
-              pieSliceText: 'label',
-              slices: {
-               4: { offset: 0.2 },
-              },
-             }}
-             rootProps={{ 'data-testid': '5' }}
             />
            </div>
           </div>
