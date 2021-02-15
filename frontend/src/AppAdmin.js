@@ -24,6 +24,7 @@ import Stock from './screens/eShopScreens/Stock';
 import PurchaseProductScreen from './screens/eShopScreens/PurchaseProductScreen';
 import SaleByPassScreen from './screens/eShopScreens/SaleByPassScreen';
 import Supplier from './screens/eShopScreens/Supplier';
+import PurchaseListScreen from './screens/eShopScreens/PurchaseListScreen';
 
 const AppAdmin = () => {
     return (
@@ -68,6 +69,9 @@ const AppAdmin = () => {
                         />
                         <Route path="/adminEshop/productLists/:pageNumber" component={Stock} />
                         <Route path="/adminEshop/productLists" component={Stock} />
+
+                        <Route path="/adminEshop/purchaselists/:pageNumber" component={PurchaseListScreen} />
+                        <Route path="/adminEshop/purchaselists" component={PurchaseListScreen} />
 
                         <Route
                             path="/adminEshop/addProduct/:pageNumber"

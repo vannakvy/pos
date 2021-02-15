@@ -203,7 +203,7 @@ const AddProductScreen = ({ history, match }) => {
               <th>NO #</th>
               <th>ITEM NAME</th>
               <th>PRICE</th>
-              <th>IMAGE</th>
+              <th>QUANTITY</th>
               <th>DESCRIPTION</th>
               <th>ACTIONS</th>
             </tr>
@@ -219,7 +219,7 @@ const AddProductScreen = ({ history, match }) => {
                       <td>{product._id}</td>
                       <td>{product.name}</td>
                       <td>{product.price}</td>
-                      <td>Image</td>
+                      <td>{product.countInStock}</td>
                       <td>{product.description}</td>
                       <td>
                         <i

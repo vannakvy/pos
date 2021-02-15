@@ -18,6 +18,7 @@ import productRoutes from './routes/eShopRoutes/productRoutes.js';
 import supplierRoutes from './routes/eShopRoutes/supplierRoutes.js'
 import orderRoutes from './routes/eShopRoutes/orderRoutes.js';
 import InventoryRoutes from './routes/eShopRoutes/inventoryRoutes.js';
+import purchaseRoutes from './routes/eShopRoutes/purchaseRoutes.js';
 // import eShopUploadRoutes from './routes/uploadsRoutes/eShopUploadRoutes.js';
 import eShopUploadRoutes from './routes/eShopRoutes/eShopUploadRoutes.js';
 import userRoutes from './routes/userRoute/userRoutes.js';
@@ -53,10 +54,14 @@ app.use('/api/orders', orderRoutes);
 app.use('/api/eshop/upload', eShopUploadRoutes);
 app.use('/api/eshop/products', productRoutes);
 app.use('/api/eshop/suppliers', supplierRoutes);
+app.use('/api/eshop/purchases', purchaseRoutes);
 app.use('/api/eshop/users', userRoutes);
 app.use('/api/eshop/orders', orderRoutes);
 app.use('/api/eshop/orders', orderRoutes);
 app.use('/api/eshop/inventory', InventoryRoutes);
+
+
+
 app.get('/api/eshop/config/paypal', (req, res) =>
     res.send(process.env.PAYPAL_CLIENT_ID)
 );

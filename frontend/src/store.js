@@ -89,7 +89,18 @@ import {
     saleListReducer,
 } from './reducers/eShopReducers/inventoryReducers';
 
-import { supplierCreateReducer, supplierDeleteReducer, supplierUpdateReducer, supplierListReducer } from './reducers/eShopReducers/supplierReducers'
+import {
+    supplierCreateReducer,
+    supplierDeleteReducer,
+    supplierUpdateReducer,
+    supplierListReducer
+} from './reducers/eShopReducers/supplierReducers'
+import {
+    purchaseCreateReducer,
+    purchaseDeleteReducer,
+    purchaseUpdateReducer,
+    purchaseListReducer
+} from './reducers/eShopReducers/purchaseReducers'
 const reducer = combineReducers({
     // courses
     navbarList: navbarListReducers,
@@ -166,8 +177,12 @@ const reducer = combineReducers({
     supplierUpdate: supplierUpdateReducer,
     supplierDelete: supplierDeleteReducer,
     supplierCreate: supplierCreateReducer,
-    supplierList: supplierListReducer
-
+    supplierList: supplierListReducer,
+    // purchases 
+    purchaseUpdate: purchaseUpdateReducer,
+    purchaseDelete: purchaseDeleteReducer,
+    purchaseCreate: purchaseCreateReducer,
+    purchaseList: purchaseListReducer
 });
 
 const userInfoFromStorage = localStorage.getItem('userInfo')

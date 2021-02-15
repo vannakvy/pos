@@ -13,18 +13,19 @@ const PuchaseModel = mongoose.Schema({
             },
         },
     ],
-    TotalAmount: {
+    totalAmount: {
         type: String,
         required: true,
         defalut: 0
     },
-    TotalQty: {
+    totalQty: {
         type: String,
         required: true,
         defalut: 0
     },
     purchaseAt: {
         type: Date,
+
     },
     supplier: {
         type: mongoose.Schema.Types.ObjectId,
@@ -33,12 +34,13 @@ const PuchaseModel = mongoose.Schema({
     },
     arrivedAt: {
         Type: Date,
+
     },
 
 }, {
     timestamps: true
 })
 
-const Puchase = mongoose.model('Puchase', PuchaseModel);
+const Purchase = mongoose.model('Purchase', PuchaseModel);
 
-export default Puchase;
+export default Purchase;
