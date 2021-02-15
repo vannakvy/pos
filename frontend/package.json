@@ -35,11 +35,7 @@
     "react-countup": "^4.3.3",
     "react-customizable-progressbar": "^1.0.2",
     "react-dom": "^17.0.1",
-<<<<<<< HEAD
     "react-flip-move": "^3.0.4",
-=======
-    "react-google-charts": "^3.0.15",
->>>>>>> 568ad72a1e1ddda3c412cbe14114a50e399ee563
     "react-helmet": "^6.1.0",
     "react-html-parser": "^2.0.2",
     "react-icons": "^4.1.0",
