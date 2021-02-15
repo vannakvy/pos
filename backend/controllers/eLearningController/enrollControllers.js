@@ -2,6 +2,29 @@ import asyncHandler from 'express-async-handler';
 import Enroll from '../../models/eLearningModels/enrollModel.js';
 import Course from '../../models/eLearningModels/courseModel.js';
 
+//@desc    Fetch Enroll Details
+//@route   GET /api/elearning/enroll/:eid
+//@access  Public
+const getEnrollDetail = asyncHandler(async (req, res) => {
+ const enroll = await Enroll.findById(req.params.eid).populate('courseId');
+
+ if (enroll) {
+  enroll.courseId.section.forEach((sec) => {
+   sec.videos.forEach((video) => {
+    enroll.videosWatched.forEach((v) => {
+     if (video._id == v) {
+      video.watched = true;
+     }
+    });
+   });
+  });
+  res.json(enroll);
+ } else {
+  res.status(404);
+  throw new Error(`Enroll Not Found`);
+ }
+});
+
 //@desc    Fetch search courses
 //@route   GET /api/users/:uid/enroll
 //@access  Public
@@ -222,6 +245,7 @@ const addEnrollVideo = asyncHandler(async (req, res) => {
 });
 
 export {
+ getEnrollDetail,
  getUserEnrollCourses,
  createEnrollCourses,
  getEnrollSections,

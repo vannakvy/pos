@@ -13,14 +13,14 @@ const Progress = () => {
  const [progress, setProgress] = useState(0);
 
  useEffect(() => {
-  setProgress(50);
+  setProgress(100);
  }, [progress, setProgress]);
 
  return (
   <div className={classes.root}>
    <LinearProgress
     style={{ height: '5px' }}
-    color="primary"
+    color="secondary"
     variant="determinate"
     value={progress}
    />

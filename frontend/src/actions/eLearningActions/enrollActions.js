@@ -6,6 +6,9 @@ import {
  COUSRE_ENROLL_FAIL,
  COUSRE_ENROLL_REQUEST,
  COUSRE_ENROLL_SUCCESS,
+ GET_ENROLL_DETAIL_FAIL,
+ GET_ENROLL_DETAIL_REQUEST,
+ GET_ENROLL_DETAIL_SUCCESS,
  GET_ENROLL_SECTION_FAIL,
  //  GET_ENROLL_SECTION_RESET,
  GET_ENROLL_SECTION_SUCCESS,
@@ -238,6 +241,35 @@ export const addEnrollVideo = (eid, vid) => async (dispatch, getState) => {
  } catch (error) {
   dispatch({
    type: ADD_ENROLL_VIDEO_FAIL,
+   payload:
+    error.response && error.response.data.message
+     ? error.response.data.message
+     : error.message,
+  });
+ }
+};
+
+export const getEnrollDetail = (eid) => async (dispatch, getState) => {
+ try {
+  dispatch({ type: GET_ENROLL_DETAIL_REQUEST });
+  const {
+   userLogin: { userInfo },
+  } = getState();
+
+  const config = {
+   headers: {
+    Authorization: `Bearer ${userInfo.token}`,
+   },
+  };
+  const { data } = await axios.get(`/api/eLearning/enrolls/${eid}`, config);
+
+  dispatch({
+   type: GET_ENROLL_DETAIL_SUCCESS,
+   payload: data,
+  });
+ } catch (error) {
+  dispatch({
+   type: GET_ENROLL_DETAIL_FAIL,
    payload:
     error.response && error.response.data.message
      ? error.response.data.message

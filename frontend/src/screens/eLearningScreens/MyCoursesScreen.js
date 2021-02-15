@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserEnrollCourses } from '../../actions/eLearningActions/enrollActions';
 import ConvertNum from '../../components/eLearningComponents/ConvertNum';
-import CourseItemAdmin from '../../components/eLearningComponents/CourseItemAdmin';
+import MyCourseItem from '../../components/eLearningComponents/MyCourseItem';
 import Loader from '../../components/Loader';
 import Message from '../../components/Message';
 import { IoMdArrowBack } from 'react-icons/io';
@@ -11,11 +11,7 @@ import { useHistory } from 'react-router-dom';
 const MyCoursesScreen = () => {
  const dispatch = useDispatch();
  const history = useHistory();
-
  const userLogin = useSelector((state) => state.userLogin);
-
- console.log(userLogin);
-
  const userEnrollCourses = useSelector((state) => state.userEnrollCourses);
  const {
   loading: loadingUserEnrollCourses,
@@ -30,7 +26,7 @@ const MyCoursesScreen = () => {
 
  return (
   <>
-   <div className="container-xl" style={{ maxWidth: '1500px' }}>
+   <div className="container">
     <div className="row py-2">
      <div className="col-4">
       <button
@@ -63,8 +59,8 @@ const MyCoursesScreen = () => {
         <div className="row">
          {coursesEnroll &&
           coursesEnroll.enrollCourses.map((enroll) => (
-           <div key={enroll._id} className="col-xl-4 col-md-6">
-            <CourseItemAdmin enroll={enroll} />
+           <div key={enroll._id} className="col-lg-4 col-md-6 col-6">
+            <MyCourseItem enroll={enroll} />
            </div>
           ))}
         </div>

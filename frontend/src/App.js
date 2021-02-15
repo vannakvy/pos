@@ -34,6 +34,7 @@ import { navbarList } from './actions/navbarActions';
 import { useDispatch } from 'react-redux';
 import MyCoursesScreen from './screens/eLearningScreens/MyCoursesScreen';
 import AppTeacher from './AppTeacher';
+import MyCoursesDetailScreen from './screens/eLearningScreens/MyCoursesDetailScreens';
 
 const App = () => {
  const dispatch = useDispatch();
@@ -49,6 +50,10 @@ const App = () => {
     <Route path="/adminEbook" component={AppAdmin} />
     <Route path="/adminEshop" component={AppAdmin} />
     {/* frontend */}
+    <Route
+     path="/elearning/enroll/:eid/courses/:id"
+     component={MyCoursesDetailScreen}
+    />
     <Route
      path="/elearning/courses/:id/videos/:vid"
      component={CourseVideoScreen}
@@ -70,11 +75,9 @@ const App = () => {
     <Route path="/elearning/courses" component={CoursesScreen} />
     <Route path="/elearning/mycourses" component={MyCoursesScreen} />
     <Route path="/elearning" component={DashboardElearn} />
-
     {/* ebooks routes */}
     <Route path="/ebook/:lang" component={EbookCourseScreen} />
     <Route path="/ebook" component={EbookHomeScreen} />
-
     {/* eshop routes  */}
     <Route path="/eshop/order/:id" component={OrderScreen} />
     <Route path="/eshop/payment" component={PaymentScreen} />
@@ -87,10 +90,8 @@ const App = () => {
     <Route path="/eshop/search/:keyword" component={HomeScreen} exact />
     <Route path="/eshop/page/:pageNumber" component={HomeScreen} exact />
     <Route path="/eshop" component={HomeScreen} />
-
     {/* Covid route  */}
     <Route path="/covid" component={Covid} />
-
     <Route path="/login" component={LoginScreen} />
     <Route path="/register" component={RegisterScreen} />
     <Route path="/" exact component={Dashboard} />
