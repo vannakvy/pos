@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Form, Col, Row, Button, Table } from "react-bootstrap";
+import { Form, Col, Row, Button, Table, Modal } from "react-bootstrap";
 import { listProducts } from "../../actions/eShopActions/productActions";
 import { listSupplier } from "../../actions/eShopActions/supplierActions";
 import ConvertNum from "../../components/eLearningComponents/ConvertNum";
@@ -8,9 +8,23 @@ import { listProductDetails } from "../../actions/eShopActions/productActions";
 import { createPurchase } from "../../actions/eShopActions/purchaseActions";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Pagination3 from "../../components/eShopComponents/Pagination3";
+import Loader from "../../components/Loader";
+import { useHistory } from "react-router-dom";
+import { DateTime } from "luxon";
 
-const PurchaseProductScreen = () => {
+import {
+  listPurchases,
+  deletePurchase,
+  listPurchaseDetails,
+} from "../../actions/eShopActions/purchaseActions";
+
+const PurchaseProductScreen = ({ match }) => {
   const dispatch = useDispatch();
+  const history = useHistory();
+  const pageNumber = match.params.pageNumber || 1;
+  let orderItems = 1;
+
   const [supplier, setSupplier] = useState("choose Supplier");
   const [recieveAt, setRecieveAt] = useState(Date.now());
   const [createAt, setCreateAt] = useState(Date.now());
@@ -22,19 +36,35 @@ const PurchaseProductScreen = () => {
   const [totalAmount, setTotalAmount] = useState(0);
   const [totalQty, setTotalQty] = useState(0);
 
+  const [show, setShow] = useState(false);
+  const [detailShow, setDetailShow] = useState(false);
+  const [purchaseId, setPurchaseId] = useState("");
+  const [update, setUpdate] = useState("");
+
   //for making order number
   let order = 1;
 
   const { products } = useSelector((state) => state.productList);
   const { suppliers } = useSelector((state) => state.supplierList);
-  const { loading, product: prod } = useSelector(
-    (state) => state.productDetails
+  const { product: prod } = useSelector((state) => state.productDetails);
+  const { loading, error, purchases, page, pages } = useSelector(
+    (state) => state.purchaseList
   );
+  const purchaseDelete = useSelector((state) => state.purchaseDelete);
+  const { success } = purchaseDelete;
+  const purchaseDetail = useSelector((state) => state.purchaseDetail);
+  const { purchase: pur, loading: loadingDetail } = purchaseDetail;
+
+  const purchaseCreate = useSelector((state) => state.purchaseCreate);
+
+  useEffect(() => {
+    dispatch(listPurchases("", pageNumber));
+  }, [history, pageNumber, dispatch, purchaseDelete, purchaseCreate]);
 
   useEffect(() => {
     dispatch(listSupplier());
     dispatch(listProducts());
-  }, []);
+  }, [Arr]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -57,9 +87,9 @@ const PurchaseProductScreen = () => {
       setShippingCost("");
       setRecieveAt("");
       setArr([]);
-      setTotalAmount("");
+      setTotalAmount(0);
       setSupplier("");
-      setTotalQty("");
+      setTotalQty(0);
     }
   };
 
@@ -68,7 +98,18 @@ const PurchaseProductScreen = () => {
     dispatch(listProductDetails(e.target.value));
     setProduct(e.target.value);
   };
-
+  const handleEdit = (p) => {
+    // setCreateAt(p.createdAt);
+    // setRecieveAt(p.purchaseAt);
+    // setShippingCost(p.shippingCost)
+    console.log(p);
+    console.log(p.totalQty);
+    setArr(p.puchaseItems);
+    setCreateAt(p.createAt);
+    setRecieveAt(p.recieveAt);
+    console.log(p.recieveAt);
+    // console.groupEnd(p.)
+  };
   const addPurchase = () => {
     window.scrollTo(0, 0);
     let pro = prod.name;
@@ -84,8 +125,10 @@ const PurchaseProductScreen = () => {
         },
       ]);
       toast.success("Adding to the list successfully...");
-      setTotalAmount(totalAmount + parseInt(price));
-      setTotalQty(totalQty + parseInt(quantity));
+      setTotalAmount(
+        parseInt(totalAmount) + parseInt(price) * parseInt(quantity)
+      );
+      setTotalQty(parseInt(totalQty) + parseInt(quantity));
       setProduct("");
       setQuantity("");
       setPrice("");
@@ -236,7 +279,7 @@ const PurchaseProductScreen = () => {
               </Button>
               <ToastContainer
                 position="top-right"
-                autoClose={3000}
+                autoClose={2000}
                 hideProgressBar={false}
                 newestOnTop={false}
                 closeOnClick
@@ -323,6 +366,145 @@ const PurchaseProductScreen = () => {
             </Form.Group>
           </Form>
         </div>
+      </div>
+
+      {/* Table for showing all of the purchases */}
+      <div className="card mt-3">
+        <Table striped bordered hover responsive className="table-sm mt-2">
+          <thead>
+            <tr>
+              <th>NO #</th>
+              <th>TOTAL ITEMS</th>
+              <th>TOTAL QUANTITY</th>
+              <th>TOTAL PRICE</th>
+
+              <th>SUPPLIERS</th>
+              <th>Purchase At</th>
+              <th>RECIEVE DATE</th>
+              <th>ACTIONS</th>
+            </tr>
+          </thead>
+          <tbody>
+            {loading ? (
+              <Loader wd={50} hg={50} />
+            ) : (
+              <>
+                {purchases &&
+                  purchases.map((purchase) => (
+                    <tr key={purchase._id}>
+                      <td>{order++}</td>
+                      <td>{purchase.puchaseItems.length}</td>
+                      <td>{purchase.totalQty}</td>
+                      <td>{purchase.totalAmount}</td>
+                      <td>{purchase.supplier.name}</td>
+                      <td>{purchase.createdAt}</td>
+                      <td>{purchase.purchaseAt}</td>
+                      <td>
+                        <i
+                          className="fas fa-edit ml-2 text-info"
+                          onClick={() => handleEdit(purchase)}
+                        ></i>
+                        <i
+                          className="fas fa-trash ml-2 text-danger"
+                          onClick={() => {
+                            setPurchaseId(purchase._id);
+                            setShow(true);
+                          }}
+                        ></i>
+                        <i
+                          class="fas fa-angle-double-right text-info ml-2"
+                          onClick={() => {
+                            setDetailShow(true);
+                            dispatch(listPurchaseDetails(purchase._id));
+                          }}
+                        ></i>
+                      </td>
+                    </tr>
+                  ))}
+              </>
+            )}
+          </tbody>
+        </Table>
+        <Pagination3 pages={pages} page={page} isAdmin={true} />
+        <Modal show={show} onHide={() => setShow(false)}>
+          <Modal.Header closeButton className="bg-warning">
+            <Modal.Title>Attention !</Modal.Title>
+          </Modal.Header>
+          <Modal.Body className="bg-warning">
+            Are You Sure you want to delete the purchase?
+          </Modal.Body>
+          <Modal.Footer>
+            <Button
+              variant="warning"
+              size="sm"
+              onClick={() => {
+                setShow(false);
+                setPurchaseId("");
+              }}
+            >
+              No
+            </Button>
+            <Button
+              variant="info"
+              size="sm"
+              onClick={() => {
+                setShow(false);
+                dispatch(deletePurchase(purchaseId));
+              }}
+            >
+              Yes
+            </Button>
+          </Modal.Footer>
+        </Modal>
+
+        {/* Modal for showing detail */}
+        <Modal show={detailShow} onHide={() => setDetailShow(false)}>
+          <Modal.Header closeButton className="bg-warning">
+            <Modal.Title>Attention !</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Table striped bordered hover responsive className="table-sm mt-2">
+              <thead>
+                <tr>
+                  <th>NO #</th>
+                  <th>ITEMS</th>
+                  <th>PRICE</th>
+                  <th>QUANTITY</th>
+                  <th>Amount</th>
+                </tr>
+              </thead>
+              <tbody>
+                {loadingDetail ? (
+                  <Loader wd={50} hg={50} />
+                ) : (
+                  <>
+                    {pur &&
+                      pur.puchaseItems.map((item) => (
+                        <tr key={item._id}>
+                          <td>{orderItems++}</td>
+                          <td>{item.name}</td>
+                          <td>{item.price}</td>
+                          <td>{item.qty}</td>
+                          <td>{item.price * item.qty}</td>
+                        </tr>
+                      ))}
+                  </>
+                )}
+              </tbody>
+            </Table>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button
+              variant="warning"
+              size="sm"
+              onClick={() => {
+                setDetailShow(false);
+              }}
+            >
+              Cancel
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </div>
     </div>
   );

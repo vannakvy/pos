@@ -70,8 +70,8 @@ const AppAdmin = () => {
                         <Route path="/adminEshop/productLists/:pageNumber" component={Stock} />
                         <Route path="/adminEshop/productLists" component={Stock} />
 
-                        <Route path="/adminEshop/purchaselists/:pageNumber" component={PurchaseListScreen} />
-                        <Route path="/adminEshop/purchaselists" component={PurchaseListScreen} />
+                        <Route path="/adminEshop/purchaselists/:pageNumber" component={PurchaseProductScreen} />
+                        {/* <Route path="/adminEshop/purchaselists" component={PurchaseListScreen} /> */}
 
                         <Route
                             path="/adminEshop/addProduct/:pageNumber"

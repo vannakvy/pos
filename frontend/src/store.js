@@ -93,13 +93,15 @@ import {
     supplierCreateReducer,
     supplierDeleteReducer,
     supplierUpdateReducer,
-    supplierListReducer
+    supplierListReducer,
+
 } from './reducers/eShopReducers/supplierReducers'
 import {
     purchaseCreateReducer,
     purchaseDeleteReducer,
     purchaseUpdateReducer,
-    purchaseListReducer
+    purchaseListReducer,
+    purchaseDetailsReducer
 } from './reducers/eShopReducers/purchaseReducers'
 const reducer = combineReducers({
     // courses
@@ -182,7 +184,8 @@ const reducer = combineReducers({
     purchaseUpdate: purchaseUpdateReducer,
     purchaseDelete: purchaseDeleteReducer,
     purchaseCreate: purchaseCreateReducer,
-    purchaseList: purchaseListReducer
+    purchaseList: purchaseListReducer,
+    purchaseDetail: purchaseDetailsReducer
 });
 
 const userInfoFromStorage = localStorage.getItem('userInfo')

@@ -13,6 +13,6 @@ router.route('/').get(getPurchases).post(protect, admin, createPurchase)
 router
     .route('/:id')
     .delete(protect, admin, deletePurchase)
-    .put(protect, admin, updatePurchase).get(getPurchaseDetail)
+    .put(protect, admin).get(getPurchaseDetail)
 
 export default router

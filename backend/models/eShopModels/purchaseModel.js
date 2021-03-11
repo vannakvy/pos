@@ -1,18 +1,19 @@
 import mongoose from 'mongoose'
 
-
+const purchaseItem = mongoose.Schema({
+    name: { type: String, required: true },
+    qty: { type: Number, required: true },
+    price: { type: Number, required: true },
+    product: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'Product',
+    },
+}, {
+    timestamps: true
+})
 const PuchaseModel = mongoose.Schema({
-    puchaseItems: [
-        {
-            qty: { type: Number, required: true },
-            price: { type: Number, required: true },
-            product: {
-                type: mongoose.Schema.Types.ObjectId,
-                required: true,
-                ref: 'Product',
-            },
-        },
-    ],
+    puchaseItems: [purchaseItem],
     totalAmount: {
         type: String,
         required: true,

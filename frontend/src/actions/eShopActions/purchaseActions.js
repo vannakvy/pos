@@ -14,7 +14,11 @@ import {
 
     PURCHASE_DELETE_REQUEST,
     PURCHASE_DELETE_SUCCESS,
-    PURCHASE_DELETE_FAIL
+    PURCHASE_DELETE_FAIL,
+
+    PURCHASE_DETAILS_REQUEST,
+    PURCHASE_DETAILS_SUCCESS,
+    PURCHASE_DETAILS_FAIL
 } from '../../constants/eShopConstants/puchaseConstants'
 
 
@@ -51,8 +55,29 @@ const listPurchases = (keyword = "", pageNumber = "") => async (
     }
 };
 
+export const listPurchaseDetails = (id) => async (dispatch) => {
+    try {
+        dispatch({ type: PURCHASE_DETAILS_REQUEST });
 
-const deletePurchase = (id) => async (dispatch, getState) => {
+        const { data } = await axios.get(`/api/eshop/purchases/${id}`);
+
+        dispatch({
+            type: PURCHASE_DETAILS_SUCCESS,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: PURCHASE_DETAILS_FAIL,
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message,
+        });
+    }
+};
+
+
+const deletePurchase = (purchaseId, update) => async (dispatch, getState) => {
     try {
         dispatch({
             type: PURCHASE_DELETE_REQUEST,
@@ -68,7 +93,9 @@ const deletePurchase = (id) => async (dispatch, getState) => {
             },
         };
 
-        await axios.delete(`/api/eshop/purchases/${id}`, config);
+        await axios.delete(`/api/eshop/purchases/${purchaseId}`, config);
+
+        toast.success("Purchases deleted successfully !");
 
         dispatch({
             type: PURCHASE_DELETE_SUCCESS,
@@ -131,6 +158,7 @@ const createPurchase = (
             type: PURCHASE_CREATE_SUCCESS,
             payload: data,
         });
+        toast.success("Purchases created successfully !");
     } catch (error) {
         const message =
             error.response && error.response.data.message

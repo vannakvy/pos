@@ -14,7 +14,11 @@ import {
 
     PURCHASE_DELETE_REQUEST,
     PURCHASE_DELETE_SUCCESS,
-    PURCHASE_DELETE_FAIL
+    PURCHASE_DELETE_FAIL,
+
+    PURCHASE_DETAILS_REQUEST,
+    PURCHASE_DETAILS_SUCCESS,
+    PURCHASE_DETAILS_FAIL
 } from '../../constants/eShopConstants/puchaseConstants'
 
 
@@ -26,7 +30,7 @@ const purchaseListReducer = (state = { purchases: [] }, action) => {
         case PURCHASE_LIST_SUCCESS:
             return {
                 loading: false,
-                purchases: action.payload.products,
+                purchases: action.payload.purchases,
                 pages: action.payload.pages,
                 page: action.payload.page,
             }
@@ -36,7 +40,19 @@ const purchaseListReducer = (state = { purchases: [] }, action) => {
             return state
     }
 }
-
+const purchaseDetailsReducer = (state = { purchase: { puchaseItems: [] } }, action
+) => {
+    switch (action.type) {
+        case PURCHASE_DETAILS_REQUEST:
+            return { ...state, loading: true, }
+        case PURCHASE_DETAILS_SUCCESS:
+            return { loading: false, purchase: action.payload }
+        case PURCHASE_DETAILS_FAIL:
+            return { loading: false, error: action.payload }
+        default:
+            return state
+    }
+}
 const purchaseDeleteReducer = (state = {}, action) => {
     switch (action.type) {
         case PURCHASE_DELETE_REQUEST:
@@ -77,4 +93,4 @@ const purchaseUpdateReducer = (state = { purchase: {} }, action) => {
 }
 
 
-export { purchaseCreateReducer, purchaseDeleteReducer, purchaseUpdateReducer, purchaseListReducer };
+export { purchaseCreateReducer, purchaseDeleteReducer, purchaseUpdateReducer, purchaseListReducer, purchaseDetailsReducer };

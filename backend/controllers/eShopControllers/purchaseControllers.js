@@ -8,21 +8,19 @@ import Purchase from '../../models/eShopModels/purchaseModel.js'
 // @route   GET /api/purchases
 // @access  private/Admin
 const getPurchases = asyncHandler(async (req, res) => {
-    console.log("testing")
     const pageSize = 10;
-    const page = Number(req.squery.pageNumber) || 1
-    // const keyword = req.squery.keyword ? {
-    //     name: {
-    //         $regex: req.squery.keyword,
-    //         $options: 'i',
-    //     }
-    // } : {}
+    const page = Number(req.query.pageNumber) || 1
+    const keyword = req.query.keyword ? {
+        name: {
+            $regex: req.squery.keyword,
+            $options: 'i',
+        }
+    } : {}
 
-    // const count = await Purchase.countDocuments({ ...keyword })
-    // console.log(count)
-    // const purchases = await Purchase.find({ ...keyword }).limit(pageSize).skip(pageSize * (page - 1))
-    // res.json({ purchases, page, pages: Math.ceil(count / pageSize) })
-    res.json({ mm: "s" })
+    const count = await Purchase.countDocuments({ ...keyword })
+    const purchases = await Purchase.find({ ...keyword }).populate('supplier', 'id name').limit(pageSize).skip(pageSize * (page - 1))
+    res.json({ purchases, page, pages: Math.ceil(count / pageSize) })
+
 })
 
 // @desc    Delete a purchase
@@ -30,7 +28,6 @@ const getPurchases = asyncHandler(async (req, res) => {
 // @access  Private/Admin
 const deletePurchase = asyncHandler(async (req, res) => {
     const purchase = await Purchase.findById(req.params.id)
-
     if (purchase) {
         await purchase.remove()
         res.json({ message: 'purchase removed' })
@@ -52,14 +49,13 @@ const createPurchase = asyncHandler(async (req, res) => {
         shippingCost,
         totalAmount,
         totalQty } = req.body;
-    console.log(req.body);
     let purchaseItem = [];
     let stockQty = 0;
     let obj;
     for (let i = 0; i < Arr.length; i++) {
         let re = await Product.findOne({ name: Arr[i].product });
         if (re) {
-            obj = { qty: Arr[i].quantity, price: Arr[i].price, product: re._id }
+            obj = { name: Arr[i].product, qty: Arr[i].quantity, price: Arr[i].price, product: re._id }
             purchaseItem.push(obj);
             if (re.quantity === undefined) {
                 stockQty = 0;
@@ -74,14 +70,13 @@ const createPurchase = asyncHandler(async (req, res) => {
             re.countInStock = re.countInStock + parseInt(Arr[i].quantity)
             re.save(err => {
                 if (err) console.log(err)
-                console.log("product saved")
             })
         }
     }
     const purchase = new Purchase({
         supplier: supplier,
-        createAt: createAt,
-        recieveAt: recieveAt,
+        createdAt: createAt,
+        purchaseAt: recieveAt,
         shippingCost: shippingCost,
         totalAmount: totalAmount,
         totalQty: totalQty,
@@ -90,8 +85,8 @@ const createPurchase = asyncHandler(async (req, res) => {
 
     const purchased = await purchase.save(err => {
         if (err) {
-            console.log(err)
-            res.res.json({ error: "cantt not add purchase" })
+
+            res.json({ error: "cantt not add purchase" })
         } else {
             res.status(201).json(purchased);
         }
@@ -124,12 +119,16 @@ const updatePurchase = asyncHandler(async (req, res) => {
 })
 
 const getPurchaseDetail = asyncHandler(async (req, res) => {
-    const purchase = await Purchase.findById(req.params.id)
+    const purchase = await Purchase.findById(req.params.id);
+
+    // const story = await Purchase.findOne({ id: req.params.id }).populate('puchaseItems');
+    console.log(purchase)
+
     if (purchase) {
+        res.json(purchase)
     } else {
         res.status(404)
         throw new Error('Purchase not found')
-
     }
 })
 
