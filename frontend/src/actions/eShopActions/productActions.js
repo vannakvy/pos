@@ -35,7 +35,6 @@ export const listProducts = (keyword = "", pageNumber = "") => async (
     const { data } = await axios.get(
       `/api/eshop/products?keyword=${keyword}&pageNumber=${pageNumber}`
     );
-    console.log(data)
     dispatch({
       type: PRODUCT_LIST_SUCCESS,
       payload: data,
@@ -54,7 +53,6 @@ export const listProducts = (keyword = "", pageNumber = "") => async (
 export const listProductDetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_DETAILS_REQUEST });
-
     const { data } = await axios.get(`/api/eshop/products/${id}`);
 
     dispatch({

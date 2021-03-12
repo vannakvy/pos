@@ -2,9 +2,8 @@ import mongoose from 'mongoose'
 
 
 const PuchaseModel = mongoose.Schema({
-    product: [
+    puchaseItems: [
         {
-            name: { type: String, required: true },
             qty: { type: Number, required: true },
             price: { type: Number, required: true },
             product: {
@@ -14,11 +13,15 @@ const PuchaseModel = mongoose.Schema({
             },
         },
     ],
-    description: {
-        type: String
-    },
-    price: {
+    TotalAmount: {
         type: String,
+        required: true,
+        defalut: 0
+    },
+    TotalQty: {
+        type: String,
+        required: true,
+        defalut: 0
     },
     purchaseAt: {
         type: Date,
@@ -31,15 +34,11 @@ const PuchaseModel = mongoose.Schema({
     arrivedAt: {
         Type: Date,
     },
-    quantity: {
-        type: Number,
-        required: true,
-        default: 0
-    },
 
 }, {
     timestamps: true
 })
 
 const Puchase = mongoose.model('Puchase', PuchaseModel);
+
 export default Puchase;

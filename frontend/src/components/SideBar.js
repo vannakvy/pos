@@ -193,6 +193,11 @@ const SideBar = () => {
                     icon={'fas fa-user-graduate'}
                 />
                 <SideBarRowComponents
+                    text={'Puchase Lists'}
+                    goTo={'/adminEshop/purchaselists'}
+                    icon={'fas fa-user-graduate'}
+                />
+                <SideBarRowComponents
                     text={'Saled Bypass'}
                     goTo={'/adminEshop/sales'}
                     icon={'fas fa-user-graduate'}

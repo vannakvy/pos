@@ -19,9 +19,6 @@ const Stock = ({ history, match }) => {
   }, [history, pageNumber, dispatch]);
   return (
     <div className="stock">
-      <div className="stock  bg-warning p-3">
-        <h3>Hello Stock</h3>
-      </div>
       <div className="card">
         <Table striped bordered hover responsive className="table-sm mt-2">
           <thead>
@@ -29,13 +26,13 @@ const Stock = ({ history, match }) => {
               <th>NO #</th>
               <th>ITEM NAME</th>
               <th>PRICE</th>
-              <th>IMAGE</th>
+              <th>QUANTITY</th>
               <th>DESCRIPTION</th>
             </tr>
           </thead>
           <tbody>
             {loading ? (
-              <Loader wh={50} hg={50} />
+              <Loader wd={50} hg={50} />
             ) : (
               <>
                 {products &&
@@ -44,7 +41,7 @@ const Stock = ({ history, match }) => {
                       <td>{product._id}</td>
                       <td>{product.name}</td>
                       <td>{product.price}</td>
-                      <td>Image</td>
+                      <td>{product.countInStock}</td>
                       <td>{product.description}</td>
                     </tr>
                   ))}
