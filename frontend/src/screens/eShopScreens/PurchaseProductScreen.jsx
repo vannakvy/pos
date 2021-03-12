@@ -7,17 +7,7 @@ const PurchaseProductScreen = () => {
       <div className="purchaseProductScreen p-2 bg-warning">
         <Form>
           <Form.Group as={Row}>
-            <Form.Label column sm={1}>
-              Inv ID
-            </Form.Label>
-            <Col sm={3}>
-              <Form.Control
-                size="sm"
-                type="text"
-                placeholder="Invice ID"
-                value=""
-              />
-            </Col>
+            
             <Form.Label column sm={1}>
               Date
             </Form.Label>
