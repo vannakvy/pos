@@ -7,6 +7,7 @@ import Loader from '../../components/Loader';
 import Message from '../../components/Message';
 import { IoMdArrowBack } from 'react-icons/io';
 import { useHistory } from 'react-router-dom';
+import Watch from '../../components/eLearningComponents/Watch';
 
 const MyCoursesScreen = () => {
  const dispatch = useDispatch();
@@ -49,7 +50,10 @@ const MyCoursesScreen = () => {
      )
     </h5>
     {loadingUserEnrollCourses ? (
-     <Loader wd={40} hg={40} />
+     //  <Loader wd={40} hg={40} />
+     <div className="text-center">
+      <Watch color="#282c34" height={40} type="Watch" width={40} />
+     </div>
     ) : errorUserEnrollCourses ? (
      <Message variant="danger">{errorUserEnrollCourses}</Message>
     ) : (
