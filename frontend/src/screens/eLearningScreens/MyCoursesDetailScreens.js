@@ -3,11 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getEnrollDetail } from '../../actions/eLearningActions/enrollActions';
 import Loader from '../../components/Loader';
+import Load from '../../components/eLearningComponents/Watch';
 import { GET_ENROLL_DETAIL_RESET } from '../../constants/eLearningConstants/enrollConstants';
 import Message from '../../components/Message';
 import { Parallax } from 'react-parallax';
 import { Chart } from 'react-google-charts';
 import CourseContent from '../../components/eLearningComponents/CourseContent';
+import LoaderFullScreen from '../../components/eLearningComponents/LoaderFullScreen';
 
 const insideStyles = {
  background: 'white',
@@ -38,9 +40,7 @@ const MyCoursesDetailScreen = () => {
   <>
    <div className="">
     {loadingEnrollDetail ? (
-     <div className="py-2">
-      <Loader wd={40} hg={40} />
-     </div>
+     <LoaderFullScreen />
     ) : errorEnrollDetail ? (
      <Message variant="danger">{errorEnrollDetail}</Message>
     ) : (
@@ -84,8 +84,8 @@ const MyCoursesDetailScreen = () => {
              height={'300px'}
              chartType="PieChart"
              loader={
-              <div style={{ padding: '130px 0' }}>
-               <Loader wd={40} hg={40} />
+              <div className="text-center" style={{ padding: '130px 0' }}>
+               <Load color="#282c34" type="Watch" width={40} height={40} />
               </div>
              }
              data={[
