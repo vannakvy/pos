@@ -28,13 +28,24 @@ const getPurchases = asyncHandler(async (req, res) => {
 // @access  Private/Admin
 const deletePurchase = asyncHandler(async (req, res) => {
     const purchase = await Purchase.findById(req.params.id)
+    
     if (purchase) {
+        if(purchase.puchaseItems.length>0){
+            let prod;
+            // for(let i=0;i<purchase.puchaseItems.length;i++){
+            //     prod = await Product.findById(purchase.puchaseItems[i].product)
+            //     prod.countInStock = prod.countInStock - purchase.puchaseItems[i].qty
+            //     // prod.price = 
+            //     prod.save()
+            // }
+        }
         await purchase.remove()
         res.json({ message: 'purchase removed' })
     } else {
         res.status(404)
         throw new Error('purchase not found')
     }
+
 })
 
 // @desc    Create a purchase
@@ -42,57 +53,59 @@ const deletePurchase = asyncHandler(async (req, res) => {
 // @access  Private/Admin
 const createPurchase = asyncHandler(async (req, res) => {
     const {
-        supplier,
         recieveAt,
         createAt,
         Arr,
-        shippingCost,
         totalAmount,
         totalQty } = req.body;
-    let purchaseItem = [];
-    let stockQty = 0;
-    let obj;
-    for (let i = 0; i < Arr.length; i++) {
-        let re = await Product.findOne({ name: Arr[i].product });
-        if (re) {
-            obj = { name: Arr[i].product, qty: Arr[i].quantity, price: Arr[i].price, product: re._id }
-            purchaseItem.push(obj);
-            if (re.quantity === undefined) {
-                stockQty = 0;
-            } else {
-                stockQty = re.quantity
-            }
+        console.log(Arr)
+    // let purchaseItem = [];
+    // let stockQty = 0;
+    // let obj;
+    // for (let i = 0; i < Arr.length; i++) {
+    //     let re = await Product.findOne({ name: Arr[i].product });
+    //     if (re) {
+    //         obj = { name: Arr[i].product, qty: Arr[i].quantity, price: Arr[i].price, product: re._id }
+    //         purchaseItem.push(obj);
+    //         if (re.quantity === undefined) {
+    //             stockQty = 0;
+    //         } else {
+    //             stockQty = re.quantity
+    //         }
 
-            let profit = 5 * (parseInt(stockQty) + parseInt(Arr[i].quantity));
-            let TotalSales = profit + (parseInt(stockQty) * parseInt(re.price)) + (parseInt(Arr[i].quantity) * parseInt(Arr[i].price));
-            let result = TotalSales / (parseInt(stockQty) + parseInt(Arr[i].quantity));
-            re.price = result;
-            re.countInStock = re.countInStock + parseInt(Arr[i].quantity)
-            re.save(err => {
-                if (err) console.log(err)
-            })
-        }
-    }
-    const purchase = new Purchase({
-        supplier: supplier,
-        createdAt: createAt,
-        purchaseAt: recieveAt,
-        shippingCost: shippingCost,
-        totalAmount: totalAmount,
-        totalQty: totalQty,
-        puchaseItems: purchaseItem
-    })
+    //         let profit = 5 * (parseInt(stockQty) + parseInt(Arr[i].quantity));
+    //         let TotalSales = profit + (parseInt(stockQty) * parseInt(re.price)) + (parseInt(Arr[i].quantity) * parseInt(Arr[i].price));
+    //         let result = TotalSales / (parseInt(stockQty) + parseInt(Arr[i].quantity));
+    //         re.price = result;
+    //         re.countInStock = re.countInStock + parseInt(Arr[i].quantity)
+    //         re.save(err => {
+    //             if (err) console.log(err)
+    //         })
+    //     }
+    // }
+    // const purchase = new Purchase({
+    //     supplier: supplier,
+    //     createdAt: createAt,
+    //     purchaseAt: recieveAt,
+    //     shippingCost: shippingCost,
+    //     totalAmount: totalAmount,
+    //     totalQty: totalQty,
+    //     puchaseItems: purchaseItem
+    // })
 
-    const purchased = await purchase.save(err => {
-        if (err) {
+    // const purchased = await purchase.save(err => {
+    //     if (err) {
 
-            res.json({ error: "cantt not add purchase" })
-        } else {
-            res.status(201).json(purchased);
-        }
-    });
+    //         res.json({ error: "cantt not add purchase" })
+    //     } else {
+    //         res.status(201).json(purchased);
+    //     }
+    // });
+    res.json({message:"ddd testing "})
 
 })
+
+
 
 // @desc    Update a supplier
 // @route   PUT /api/suppliers/:id
@@ -122,7 +135,7 @@ const getPurchaseDetail = asyncHandler(async (req, res) => {
     const purchase = await Purchase.findById(req.params.id);
 
     // const story = await Purchase.findOne({ id: req.params.id }).populate('puchaseItems');
-    console.log(purchase)
+    // console.log(purchase)
 
     if (purchase) {
         res.json(purchase)

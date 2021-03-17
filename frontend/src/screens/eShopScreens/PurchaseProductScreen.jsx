@@ -11,7 +11,6 @@ import "react-toastify/dist/ReactToastify.css";
 import Pagination3 from "../../components/eShopComponents/Pagination3";
 import Loader from "../../components/Loader";
 import { useHistory } from "react-router-dom";
-import { DateTime } from "luxon";
 
 import {
   listPurchases,
@@ -26,8 +25,8 @@ const PurchaseProductScreen = ({ match }) => {
   let orderItems = 1;
 
   const [supplier, setSupplier] = useState("choose Supplier");
-  const [recieveAt, setRecieveAt] = useState(Date.now());
-  const [createAt, setCreateAt] = useState(Date.now());
+  const [recieveAt, setRecieveAt] = useState(new Date());
+  const [createAt, setCreateAt] = useState(new Date());
   const [shippingCost, setShippingCost] = useState("");
   const [product, setProduct] = useState("Choose a product");
   const [quantity, setQuantity] = useState(0);
@@ -35,6 +34,7 @@ const PurchaseProductScreen = ({ match }) => {
   const [Arr, setArr] = useState([]);
   const [totalAmount, setTotalAmount] = useState(0);
   const [totalQty, setTotalQty] = useState(0);
+  const [salePrice, setSalePrice] = useState(0);
 
   const [show, setShow] = useState(false);
   const [detailShow, setDetailShow] = useState(false);
@@ -68,27 +68,15 @@ const PurchaseProductScreen = ({ match }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log("Working ");
     if (Arr.length === 0) {
       toast.error("There is no Items for purchasing!");
     } else {
-      dispatch(
-        createPurchase(
-          supplier,
-          recieveAt,
-          createAt,
-          Arr,
-          shippingCost,
-          totalAmount,
-          totalQty
-        )
-      );
-
+      dispatch(createPurchase(recieveAt, createAt, Arr, totalAmount, totalQty));
       setCreateAt("");
-      setShippingCost("");
       setRecieveAt("");
       setArr([]);
       setTotalAmount(0);
-      setSupplier("");
       setTotalQty(0);
     }
   };
@@ -98,18 +86,7 @@ const PurchaseProductScreen = ({ match }) => {
     dispatch(listProductDetails(e.target.value));
     setProduct(e.target.value);
   };
-  const handleEdit = (p) => {
-    // setCreateAt(p.createdAt);
-    // setRecieveAt(p.purchaseAt);
-    // setShippingCost(p.shippingCost)
-    console.log(p);
-    console.log(p.totalQty);
-    setArr(p.puchaseItems);
-    setCreateAt(p.createAt);
-    setRecieveAt(p.recieveAt);
-    console.log(p.recieveAt);
-    // console.groupEnd(p.)
-  };
+
   const addPurchase = () => {
     window.scrollTo(0, 0);
     let pro = prod.name;
@@ -121,46 +98,49 @@ const PurchaseProductScreen = ({ match }) => {
         {
           product: pro,
           price: price,
+          supplier: supplier,
+          shippingCost: shippingCost,
+          salePrice: salePrice,
           quantity: quantity,
         },
       ]);
-      toast.success("Adding to the list successfully...");
+      // toast.success("Adding to the list successfully...");
       setTotalAmount(
         parseInt(totalAmount) + parseInt(price) * parseInt(quantity)
       );
       setTotalQty(parseInt(totalQty) + parseInt(quantity));
-      setProduct("");
-      setQuantity("");
-      setPrice("");
+      setProduct(null);
+      setQuantity(0);
+      setPrice(0);
+      setSalePrice(0);
+      setSupplier(null);
+      setShippingCost(0);
     }
   };
 
   return (
     <div className="">
       <div className="purchaseProductScreen p-2 bg-warning">
-        <Form onSubmit={handleSubmit}>
+        <Form>
           <Form.Group as={Row}>
-<<<<<<< HEAD
-            
-=======
             <Form.Label column sm={1}>
-              Suppliers
+              Product
             </Form.Label>
             <Col sm={3}>
               <Form.Control
+                onChange={handleProductChange}
                 as="select"
                 size="sm"
-                onChange={(e) => setSupplier(e.target.value)}
                 custom
-                defaultValue={supplier}
               >
-                {suppliers &&
-                  suppliers.map((supplier) => (
-                    <option value={supplier._id}>{supplier.name}</option>
+                <option disabled>Choose a product</option>
+                {products &&
+                  products.map((product) => (
+                    <option value={product._id}>{product.name}</option>
                   ))}
               </Form.Control>
             </Col>
->>>>>>> 08ff8522545611274e0cc9b735a2bc5617ac70a8
+
             <Form.Label column sm={1}>
               Date
             </Form.Label>
@@ -230,21 +210,24 @@ const PurchaseProductScreen = ({ match }) => {
 
           <Form.Group as={Row}>
             <Form.Label column sm={1}>
-              Product
+              Suppliers
             </Form.Label>
             <Col sm={3}>
               <Form.Control
-                onChange={handleProductChange}
                 as="select"
                 size="sm"
+                onChange={(e) => setSupplier(e.target.value)}
                 custom
+                defaultValue={supplier}
               >
-                {products &&
-                  products.map((product) => (
-                    <option value={product._id}>{product.name}</option>
+                <option disabled>choose a supplier</option>
+                {suppliers &&
+                  suppliers.map((supplier) => (
+                    <option value={supplier._id}>{supplier.name}</option>
                   ))}
               </Form.Control>
             </Col>
+
             <Form.Label column sm={1}>
               Quantity
             </Form.Label>
@@ -270,8 +253,21 @@ const PurchaseProductScreen = ({ match }) => {
               />
             </Col>
           </Form.Group>
+
           <Form.Group as={Row}>
+            <Form.Label column sm={1}>
+              Sale Price
+            </Form.Label>
             <Col sm={3}>
+              <Form.Control
+                size="sm"
+                type="number"
+                placeholder="Sale Price"
+                value={salePrice}
+                onChange={(e) => setSalePrice(e.target.value)}
+              />
+            </Col>
+            <Col sm={4}>
               <Button
                 type="button"
                 size="sm"
@@ -281,96 +277,65 @@ const PurchaseProductScreen = ({ match }) => {
               >
                 Add to List
               </Button>
-              <ToastContainer
-                position="top-right"
-                autoClose={2000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-              />
             </Col>
-          </Form.Group>
-        </Form>
-      </div>
-      <div className="card mt-2 ">
-        <Table striped bordered hover responsive className="table-sm">
-          <thead>
-            <tr>
-              <th>NO #</th>
-              <th>Product Name</th>
-              <th>QUANTITY</th>
-              <th>PRICE</th>
-              <th>ACTIONS</th>
-            </tr>
-          </thead>
-          <tbody>
-            {Arr.map((arr) => (
-              <tr>
-                <td>{order++}</td>
-                <td>{arr.product}</td>
-                <td>{arr.quantity}</td>
-                <td>{arr.price}</td>
-                <td>
-                  <i
-                    className="fas fa-trash ml-2 text-danger"
-                    onClick={() => {
-                      setArr(Arr.filter((a) => a.product !== arr.product));
-                      setTotalAmount(totalAmount - parseInt(arr.price));
-                    }}
-                  ></i>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
-
-        <div className="save_stock m-1">
-          <Form>
-            <Form.Group as={Row}>
-              <Form.Label column sm={2}>
-                Total Amount
-              </Form.Label>
-              <Col sm={3}>
-                <Form.Control
-                  disabled
-                  size="sm"
-                  type="number"
-                  placeholder="Total Amount"
-                  value={totalAmount}
-                />
-              </Col>
-              <Form.Label column sm={2}>
-                Total Qty
-              </Form.Label>
-              <Col sm={3}>
-                <Form.Control
-                  disabled
-                  size="sm"
-                  type="number"
-                  placeholder="Total Amount"
-                  value={totalQty}
-                />
-              </Col>
-
-              <Col sm={2}>
+            {Arr.length > 0 ? (
+              <Col sm={4}>
                 <Button
                   type="submit"
                   size="sm"
-                  variant="primary"
+                  variant="info"
                   className="rounded"
-                  onClick={handleSubmit}
+                  onClick={() => console.log("Testing")}
                 >
                   Save Stock
                 </Button>
               </Col>
-            </Form.Group>
-          </Form>
-        </div>
+            ) : null}
+          </Form.Group>
+        </Form>
       </div>
+      {Arr.length > 0 ? (
+        <>
+          <div className="card mt-2 ">
+            <Table striped bordered hover responsive className="table-sm">
+              <thead>
+                <tr>
+                  <th>NO #</th>
+                  <th>PRODUCT NAME</th>
+                  <th>QUANTITY</th>
+                  <th>PRICE</th>
+                  <th>SALE PRICE</th>
+                  <th>SUPPLIER</th>
+                  <th>SHIPPING COST</th>
+                  <th>ACTIONS</th>
+                </tr>
+              </thead>
+              <tbody>
+                {Arr.map((arr) => (
+                  <tr>
+                    <td>{order++}</td>
+                    <td>{arr.product}</td>
+                    <td>{arr.quantity}</td>
+                    <td>{arr.price}</td>
+                    <td>{arr.salePrice}</td>
+                    <td>{arr.supplier}</td>
+                    <td>{arr.shippingCost}</td>
+                    <td>
+                      <i
+                        className="fas fa-trash ml-2 text-danger"
+                        onClick={() => {
+                          setArr(Arr.filter((a) => a.product !== arr.product));
+                          setTotalAmount(totalAmount - parseInt(arr.price));
+                        }}
+                      ></i>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+          </div>
+        </>
+      ) : null}
 
       {/* Table for showing all of the purchases */}
       <div className="card mt-3">
@@ -381,7 +346,6 @@ const PurchaseProductScreen = ({ match }) => {
               <th>TOTAL ITEMS</th>
               <th>TOTAL QUANTITY</th>
               <th>TOTAL PRICE</th>
-
               <th>SUPPLIERS</th>
               <th>Purchase At</th>
               <th>RECIEVE DATE</th>
@@ -406,7 +370,7 @@ const PurchaseProductScreen = ({ match }) => {
                       <td>
                         <i
                           className="fas fa-edit ml-2 text-info"
-                          onClick={() => handleEdit(purchase)}
+                          // onClick={() => handleEdit(purchase)}
                         ></i>
                         <i
                           className="fas fa-trash ml-2 text-danger"
@@ -473,8 +437,9 @@ const PurchaseProductScreen = ({ match }) => {
                   <th>NO #</th>
                   <th>ITEMS</th>
                   <th>PRICE</th>
+                  <th>SALE PRICE</th>
                   <th>QUANTITY</th>
-                  <th>Amount</th>
+                  <th>AMOUNT</th>
                 </tr>
               </thead>
               <tbody>
@@ -488,6 +453,7 @@ const PurchaseProductScreen = ({ match }) => {
                           <td>{orderItems++}</td>
                           <td>{item.name}</td>
                           <td>{item.price}</td>
+                          <td>{item.salePrice ? item.salePrice : 0.0}</td>
                           <td>{item.qty}</td>
                           <td>{item.price * item.qty}</td>
                         </tr>
@@ -509,6 +475,17 @@ const PurchaseProductScreen = ({ match }) => {
             </Button>
           </Modal.Footer>
         </Modal>
+        <ToastContainer
+          position="top-right"
+          autoClose={2000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
       </div>
     </div>
   );
