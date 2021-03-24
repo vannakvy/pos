@@ -4,54 +4,64 @@ import { getCourseById } from '../../actions/eLearningActions/courseActions';
 import Loader from '../../components/Loader';
 import Message from '../../components/Message';
 import Sections from '../../components/eLearningComponents/Sections';
+import { Parallax } from 'react-parallax';
+
+const insideStyles = {
+ background: 'rgba(255, 255, 255, 0.7)',
+ padding: 20,
+ position: 'absolute',
+ top: '50%',
+ left: '50%',
+ transform: 'translate(-50%,-50%)',
+};
 
 const CoursesDetail = ({ match, history }) => {
  const courseId = match.params.id;
  const dispatch = useDispatch();
 
+ const courseDetail = useSelector((state) => state.courseDetail);
+ const { loading, error, course } = courseDetail;
+
  useEffect(() => {
   dispatch(getCourseById(courseId));
  }, [dispatch, courseId]);
-
- const courseDetail = useSelector((state) => state.courseDetail);
- const { loading, error, course } = courseDetail;
 
  const goBack = () => {
   history.push(`/adminElearn/courses`);
  };
  return (
   <>
-   <button
-    onClick={goBack}
-    className="btn mt-2 mb-3 py-2 px-4 text-dark grediant rounded adminHover"
-   >
-    Back
-   </button>
-
    {loading ? (
-    <Loader wd={40} hg={40} />
+    <div className="my-3">
+     <Loader wd={40} hg={40} />
+    </div>
    ) : error ? (
     <Message variant="danger">{error}</Message>
    ) : (
     <>
-     <div className="container-fluid row">
-      <div className="col-md-4">
-       <img className="w-100 rounded" src={course.imgUrl} alt="" />
+     <Parallax className="rounded" bgImage={course.imgUrl} strength={300}>
+      <div style={{ height: '40vh' }}>
+       <div style={insideStyles} className="rounded shadow">
+        <h5 className="m-0">{course.name}</h5>
+        <p>
+         Course Type:{' '}
+         <span className="font-weight-bold text-info">{course.courseType}</span>
+        </p>
+        <p>
+         <span className="mr-5"></span>
+         {course.description}
+        </p>
+       </div>
       </div>
-      <div className="col-md-4">
-       <h1 className="mb-4">{course.name}</h1>
-       <p>
-        <span className="mr-5"></span>
-        {course.description}
-       </p>
-       <p>
-        Course Type:{' '}
-        <span className="font-weight-bold text-info">{course.courseType}</span>
-       </p>
-      </div>
-      <div className="col-md-4 w-100 p-0">
-       <Sections />
-      </div>
+     </Parallax>
+     <button
+      onClick={goBack}
+      className="btn btn-dark px-4 rounded my-1 shadow kh"
+     >
+      ថយក្រោយ
+     </button>
+     <div className="container-fluid">
+      <Sections />
      </div>
     </>
    )}

@@ -2,14 +2,10 @@ import React from 'react';
 
 import { NavLink } from 'react-router-dom';
 import { navbarList } from '../actions/navbarActions';
-import { useDispatch, useSelector } from 'react-redux';
-import { LinkContainer } from 'react-router-bootstrap';
-import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
 
 const NavEshop = () => {
  const dispatch = useDispatch();
- const userLogin = useSelector((state) => state.userLogin);
- const { userInfo } = userLogin;
  return (
   <>
    <li className="nav-item">
