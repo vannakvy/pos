@@ -115,16 +115,8 @@ const deletePurchase = (purchaseId, update) => async (dispatch, getState) => {
     }
 };
 
-const createPurchase = (
-    supplier,
-    recieveAt,
-    createAt,
-    Arr,
-    shippingCost,
-    totalAmount,
-    totalQty
-
-) => async (dispatch, getState) => {
+const createPurchase = (Arr,purchaseAt) => async (dispatch, getState) => {
+    
     try {
         dispatch({
             type: PURCHASE_CREATE_REQUEST,
@@ -139,20 +131,7 @@ const createPurchase = (
                 Authorization: `Bearer ${userInfo.token}`,
             },
         };
-
-        const { data } = await axios.post(
-            `/api/eshop/purchases`,
-            {
-                supplier,
-                recieveAt,
-                createAt,
-                Arr,
-                shippingCost,
-                totalAmount,
-                totalQty
-            },
-            config
-        );
+        const { data } = await axios.post(`/api/eshop/purchases`,{Arr,purchaseAt},config);
 
         dispatch({
             type: PURCHASE_CREATE_SUCCESS,

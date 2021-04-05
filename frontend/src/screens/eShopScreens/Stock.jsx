@@ -14,6 +14,7 @@ const Stock = ({ history, match }) => {
   const { loading, error, products, page, pages } = useSelector(
     (state) => state.productList
   );
+  console.log(products);
   let order = 1;
   useEffect(() => {
     dispatch(listProducts("", pageNumber));
@@ -23,14 +24,12 @@ const Stock = ({ history, match }) => {
       <div className="card">
         <Table striped bordered hover responsive className="table-sm mt-2">
           <thead>
-            <tr>
+            <tr className="bg-info text-light">
               <th>NO #</th>
               <th>ITEM NAME</th>
-              <th>SALE</th>
               <th>PURCHASE</th>
-
-              <th>QUANTITY</th>
-              <th>PRICE</th>
+              <th> SALE PRICE</th>
+              <th>STOCK</th>
               <th>AMOUNT</th>
               <th>DETAIL</th>
             </tr>
@@ -45,12 +44,11 @@ const Stock = ({ history, match }) => {
                     <tr key={product._id}>
                       <td>{order++}</td>
                       <td>{product.name}</td>
-                      {/* <td>{product.price}</td> */}
-                      <td>0.0 $</td>
-                      <td>0.0 $</td>
-                      <td>0.0 $</td>
-                      <td>0.0 $</td>
-                      <td>{product.countInStock}</td>
+                      <td>purchase $</td>
+                      <td>{product.salePrice[0].price}</td>
+                      <td>{product.countInStock.balanceQty}</td>
+                      <td>{product.countInStock.balanceAmount}</td>
+
                       <td className="fas fa-edit text-info">
                         <Link to="/adminEshop/stockDetail/123">Home</Link>
                       </td>

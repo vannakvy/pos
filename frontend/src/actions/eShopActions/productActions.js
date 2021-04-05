@@ -109,7 +109,6 @@ export const deleteProduct = (id) => async (dispatch, getState) => {
 export const createProduct = (
   name,
   price,
-  salePrice,
   image,
   category,
   description
@@ -131,10 +130,9 @@ export const createProduct = (
 
     const { data } = await axios.post(
       `/api/eshop/products`,
-      { name, price,salePrice, image, category, description },
+      { name, price, image, category, description },
       config
     );
-
     dispatch({
       type: PRODUCT_CREATE_SUCCESS,
       payload: data,
@@ -154,7 +152,15 @@ export const createProduct = (
   }
 };
 
-export const updateProduct = (proId, name, price,salePrice, image, category, description) => async (dispatch, getState) => {
+export const updateProduct = (
+  proId,
+  name,
+  price,
+  salePrice,
+  image,
+  category,
+  description
+) => async (dispatch, getState) => {
   try {
     dispatch({
       type: PRODUCT_UPDATE_REQUEST,
@@ -173,7 +179,7 @@ export const updateProduct = (proId, name, price,salePrice, image, category, des
 
     const { data } = await axios.put(
       `/api/eshop/products/${proId}`,
-      { name, price,salePrice, image, category, description },
+      { name, price, salePrice, image, category, description },
       config
     );
 

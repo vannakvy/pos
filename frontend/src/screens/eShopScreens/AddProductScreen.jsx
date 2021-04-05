@@ -23,12 +23,10 @@ const AddProductScreen = ({ history, match }) => {
   const [uploading, setUploading] = useState(false);
   const [update, setUpdate] = useState(false);
   const [proId, setProId] = useState("");
-  const [salePrice, setSalePrice] = useState(0);
 
   const clearInput = () => {
     setName("");
     setPrice("");
-    setSalePrice(0);
     setImage("");
     setCategory("");
     setDescription("");
@@ -58,9 +56,19 @@ const AddProductScreen = ({ history, match }) => {
   const handleSubmitHandler = (e) => {
     e.preventDefault();
     if (update) {
-      dispatch(updateProduct(proId, name, price,salePrice, image, category, description));
+      dispatch(
+        updateProduct(
+          proId,
+          name,
+          price,
+
+          image,
+          category,
+          description
+        )
+      );
     } else {
-      dispatch(createProduct(name, price,salePrice, image, category, description));
+      dispatch(createProduct(name, price, image, category, description));
     }
     clearInput();
   };
@@ -76,7 +84,7 @@ const AddProductScreen = ({ history, match }) => {
   const { loading, error, products, page, pages } = useSelector(
     (state) => state.productList
   );
-
+  console.log(products);
   const productDelete = useSelector((state) => state.productDelete);
   const productUpdate = useSelector((state) => state.productUpdate);
   const {
@@ -107,9 +115,9 @@ const AddProductScreen = ({ history, match }) => {
               />
             </Col>
             <Form.Label column sm={1}>
-              
+              Price
             </Form.Label>
-            <Col sm={2}>
+            <Col sm={3}>
               <Form.Control
                 size="sm"
                 type="number"
@@ -118,16 +126,7 @@ const AddProductScreen = ({ history, match }) => {
                 onChange={(e) => setPrice(e.target.value)}
               />
             </Col>
-            <Col sm={2}>
-              <Form.Control
-                size="sm"
-                type="number"
-                placeholder="Sale Price"
-                value={salePrice}
-                onChange={(e) => setPrice(e.target.value)}
-              />
-            </Col>
-            
+
             <Col sm={3}>
               <Form.File
                 id="custom-file"
@@ -208,12 +207,9 @@ const AddProductScreen = ({ history, match }) => {
       <div className="card mt-2 ">
         <Table striped bordered hover responsive className="table-sm">
           <thead>
-            <tr>
+            <tr className="bg-info text-light">
               <th>NO #</th>
               <th>ITEM NAME</th>
-              <th>PRICE</th>
-              <th>SALE PRICE</th>
-              <th>QUANTITY</th>
               <th>DESCRIPTION</th>
               <th>ACTIONS</th>
             </tr>
@@ -228,9 +224,6 @@ const AddProductScreen = ({ history, match }) => {
                     <tr key={product._id}>
                       <td>{product._id}</td>
                       <td>{product.name}</td>
-                      <td>{product.price}</td>
-                      <td>{product.salePrice}</td>
-                      <td>{product.countInStock}</td>
                       <td>{product.description}</td>
                       <td>
                         <i

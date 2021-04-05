@@ -26,6 +26,7 @@ import SaleByPassScreen from './screens/eShopScreens/SaleByPassScreen';
 import Supplier from './screens/eShopScreens/Supplier';
 import PurchaseListScreen from './screens/eShopScreens/PurchaseListScreen';
 import StockDetail from './screens/eShopScreens/StockDetail';
+import EshopDashboard from './screens/eShopScreens/EshopDashboard';
 
 const AppAdmin = () => {
     return (
@@ -64,6 +65,7 @@ const AppAdmin = () => {
                         <Route path="/adminEbook/details/:id" component={AddminDetailScreen} />
 
                         {/* for eshop admin routes  */}
+                        
                         <Route
                             path="/adminEshop/product/:id/edit"
                             component={ProductEditScreen}
@@ -88,7 +90,7 @@ const AppAdmin = () => {
                         <Route path="/adminEshop/addProducts" component={AddProductScreen} />
                         <Route path="/adminEshop/reports" component={ReportScreen} />
                         <Route path="/adminEshop/stockDetail/:id" component={StockDetail} />
-
+                        <Route path="/adminEshop" component={EshopDashboard}/>
                         <Route path="/adminUsers/:uid/details" component={UserDetails} />
                         <Route path="/adminUsers" component={AdminUsers} />
                     </Switch>

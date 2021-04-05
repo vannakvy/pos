@@ -3,50 +3,79 @@ import { useSelector, useDispatch } from "react-redux";
 import { Form, Col, Row, Button, Table, Modal } from "react-bootstrap";
 import { listProducts } from "../../actions/eShopActions/productActions";
 import { listSupplier } from "../../actions/eShopActions/supplierActions";
-import ConvertNum from "../../components/eLearningComponents/ConvertNum";
+import Loader from "../../components/eShopComponents/Loader";
 import { listProductDetails } from "../../actions/eShopActions/productActions";
 import { createPurchase } from "../../actions/eShopActions/purchaseActions";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Pagination3 from "../../components/eShopComponents/Pagination3";
-import Loader from "../../components/Loader";
-import { useHistory } from "react-router-dom";
+import Select from "react-select";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
+import { useHistory } from "react-router-dom";
 import {
   listPurchases,
   deletePurchase,
   listPurchaseDetails,
 } from "../../actions/eShopActions/purchaseActions";
+import PurchaseTable from "../../components/eShopComponents/PurchaseTable";
+import addPurchaseTable from "./addPurchaseTable";
+import TableAddPurchase from "../../components/eShopComponents/TableAddPurchase";
+
+const unitOptions = [
+  { value: "can", label: "can" },
+  { value: "cotton", label: "cotton" },
+  { value: "letter", label: "letter" },
+];
 
 const PurchaseProductScreen = ({ match }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const pageNumber = match.params.pageNumber || 1;
   let orderItems = 1;
+  let order = 1;
 
-  const [supplier, setSupplier] = useState("choose Supplier");
-  const [recieveAt, setRecieveAt] = useState(new Date());
-  const [createAt, setCreateAt] = useState(new Date());
+  const [supplier, setSupplier] = useState({});
+  const [purchaseAt, setpurchaseAt] = useState(new Date());
   const [shippingCost, setShippingCost] = useState("");
   const [product, setProduct] = useState("Choose a product");
   const [quantity, setQuantity] = useState(0);
   const [price, setPrice] = useState(0);
   const [Arr, setArr] = useState([]);
-  const [totalAmount, setTotalAmount] = useState(0);
-  const [totalQty, setTotalQty] = useState(0);
   const [salePrice, setSalePrice] = useState(0);
 
   const [show, setShow] = useState(false);
   const [detailShow, setDetailShow] = useState(false);
   const [purchaseId, setPurchaseId] = useState("");
   const [update, setUpdate] = useState("");
-
-  //for making order number
-  let order = 1;
-
+  const [unit, setUnit] = useState("");
   const { products } = useSelector((state) => state.productList);
   const { suppliers } = useSelector((state) => state.supplierList);
+  const { stock, setStock } = useState(0);
+  let supplierOptions = [];
+  if (suppliers) {
+    for (let i = 0; i < suppliers.length; i++) {
+      supplierOptions.push({
+        value: suppliers[i]._id,
+        label: suppliers[i].name,
+      });
+    }
+  }
+
+  // const supplierOptions = suppliers.map(sup=>{value:sup.name,lebel:sup.name})
+
   const { product: prod } = useSelector((state) => state.productDetails);
+  console.log(prod);
+  let productOptions = [];
+  if (products) {
+    for (let i = 0; i < products.length; i++) {
+      productOptions.push({
+        value: products[i]._id,
+        label: products[i].name,
+      });
+    }
+  }
   const { loading, error, purchases, page, pages } = useSelector(
     (state) => state.purchaseList
   );
@@ -56,7 +85,6 @@ const PurchaseProductScreen = ({ match }) => {
   const { purchase: pur, loading: loadingDetail } = purchaseDetail;
 
   const purchaseCreate = useSelector((state) => state.purchaseCreate);
-
   useEffect(() => {
     dispatch(listPurchases("", pageNumber));
   }, [history, pageNumber, dispatch, purchaseDelete, purchaseCreate]);
@@ -68,23 +96,18 @@ const PurchaseProductScreen = ({ match }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Working ");
     if (Arr.length === 0) {
       toast.error("There is no Items for purchasing!");
     } else {
-      dispatch(createPurchase(recieveAt, createAt, Arr, totalAmount, totalQty));
-      setCreateAt("");
-      setRecieveAt("");
+      dispatch(createPurchase(Arr, purchaseAt));
       setArr([]);
-      setTotalAmount(0);
-      setTotalQty(0);
     }
   };
 
-  const handleProductChange = (e) => {
+  const handleProductChange = (product) => {
     //get all product detail for showing in the disable fild
-    dispatch(listProductDetails(e.target.value));
-    setProduct(e.target.value);
+    dispatch(listProductDetails(product.value));
+    setProduct(product.value);
   };
 
   const addPurchase = () => {
@@ -96,7 +119,8 @@ const PurchaseProductScreen = ({ match }) => {
       setArr([
         ...Arr,
         {
-          product: pro,
+          unit: unit,
+          product: product,
           price: price,
           supplier: supplier,
           shippingCost: shippingCost,
@@ -104,53 +128,49 @@ const PurchaseProductScreen = ({ match }) => {
           quantity: quantity,
         },
       ]);
-      // toast.success("Adding to the list successfully...");
-      setTotalAmount(
-        parseInt(totalAmount) + parseInt(price) * parseInt(quantity)
-      );
-      setTotalQty(parseInt(totalQty) + parseInt(quantity));
-      setProduct(null);
+      toast.success("Adding to the list successfully...");
+      // clear input after add to database
+      setProduct("");
       setQuantity(0);
       setPrice(0);
       setSalePrice(0);
-      setSupplier(null);
+      setSupplier("");
       setShippingCost(0);
+      setUnit("");
     }
   };
 
   return (
     <div className="">
       <div className="purchaseProductScreen p-2 bg-warning">
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <Form.Group as={Row}>
-            <Form.Label column sm={1}>
-              Product
-            </Form.Label>
-            <Col sm={3}>
-              <Form.Control
-                onChange={handleProductChange}
-                as="select"
-                size="sm"
-                custom
-              >
-                <option disabled>Choose a product</option>
-                {products &&
-                  products.map((product) => (
-                    <option value={product._id}>{product.name}</option>
-                  ))}
-              </Form.Control>
-            </Col>
-
             <Form.Label column sm={1}>
               Date
             </Form.Label>
             <Col sm={3}>
+              {/* <DatePicker
+                className="p-1 rounded"
+                selected={purchaseAt}
+                onChange={(date) => setpurchaseAt(date)}
+              /> */}
               <Form.Control
-                onChange={(e) => setCreateAt(e.target.value)}
-                size="sm"
                 type="date"
-                placeholder="Date Create"
-                value={createAt}
+                value={purchaseAt}
+                placeholder="Date"
+                onChange={(e) => setpurchaseAt(e.target.value)}
+              />
+            </Col>
+            <Form.Label column sm={1}>
+              Product
+            </Form.Label>
+            <Col sm={3}>
+              <Select
+                options={productOptions}
+                onChange={handleProductChange}
+                defaultValue={""}
+                value={product.value}
+                placeholder="Product"
               />
             </Col>
             <Form.Label column sm={1}>
@@ -161,7 +181,7 @@ const PurchaseProductScreen = ({ match }) => {
                 size="sm"
                 type="text"
                 placeholder="Stock"
-                value={prod.countInStock}
+                value={prod.countInStock ? prod.countInStock.balanceQty : 0}
                 disabled
               />
             </Col>
@@ -183,15 +203,15 @@ const PurchaseProductScreen = ({ match }) => {
               />
             </Col>
             <Form.Label column sm={1}>
-              Recieve
+              Suppliers
             </Form.Label>
             <Col sm={3}>
-              <Form.Control
-                size="sm"
-                type="date"
-                placeholder="Recieve Date"
-                value={recieveAt}
-                onChange={(e) => setRecieveAt(e.target.value)}
+              <Select
+                options={supplierOptions}
+                onChange={(supplier) => setSupplier(supplier.value)}
+                defaultValue={supplierOptions[2]}
+                value={supplier.value}
+                placeholder="Supplier"
               />
             </Col>
             <Form.Label column sm={1}>
@@ -203,31 +223,14 @@ const PurchaseProductScreen = ({ match }) => {
                 size="sm"
                 type="number"
                 placeholder="Current Price"
-                value={prod.price}
+                value={
+                  prod.priceSale ? prod.salePrice[prod.salePrice - 1].price : 0
+                }
               />
             </Col>
           </Form.Group>
 
           <Form.Group as={Row}>
-            <Form.Label column sm={1}>
-              Suppliers
-            </Form.Label>
-            <Col sm={3}>
-              <Form.Control
-                as="select"
-                size="sm"
-                onChange={(e) => setSupplier(e.target.value)}
-                custom
-                defaultValue={supplier}
-              >
-                <option disabled>choose a supplier</option>
-                {suppliers &&
-                  suppliers.map((supplier) => (
-                    <option value={supplier._id}>{supplier.name}</option>
-                  ))}
-              </Form.Control>
-            </Col>
-
             <Form.Label column sm={1}>
               Quantity
             </Form.Label>
@@ -252,6 +255,18 @@ const PurchaseProductScreen = ({ match }) => {
                 onChange={(e) => setPrice(e.target.value)}
               />
             </Col>
+            <Form.Label column sm={1}>
+              Unit
+            </Form.Label>
+            <Col sm={3}>
+              <Select
+                value={unit.value}
+                onChange={(unit) => setUnit(unit.value)}
+                options={unitOptions}
+                defaultValue={unitOptions[2]}
+                placeholder="Unit"
+              />
+            </Col>
           </Form.Group>
 
           <Form.Group as={Row}>
@@ -267,6 +282,7 @@ const PurchaseProductScreen = ({ match }) => {
                 onChange={(e) => setSalePrice(e.target.value)}
               />
             </Col>
+
             <Col sm={4}>
               <Button
                 type="button"
@@ -285,115 +301,29 @@ const PurchaseProductScreen = ({ match }) => {
                   size="sm"
                   variant="info"
                   className="rounded"
-                  onClick={() => console.log("Testing")}
                 >
-                  Save Stock
+                  Save to Stock
                 </Button>
               </Col>
             ) : null}
           </Form.Group>
         </Form>
       </div>
-      {Arr.length > 0 ? (
-        <>
-          <div className="card mt-2 ">
-            <Table striped bordered hover responsive className="table-sm">
-              <thead>
-                <tr>
-                  <th>NO #</th>
-                  <th>PRODUCT NAME</th>
-                  <th>QUANTITY</th>
-                  <th>PRICE</th>
-                  <th>SALE PRICE</th>
-                  <th>SUPPLIER</th>
-                  <th>SHIPPING COST</th>
-                  <th>ACTIONS</th>
-                </tr>
-              </thead>
-              <tbody>
-                {Arr.map((arr) => (
-                  <tr>
-                    <td>{order++}</td>
-                    <td>{arr.product}</td>
-                    <td>{arr.quantity}</td>
-                    <td>{arr.price}</td>
-                    <td>{arr.salePrice}</td>
-                    <td>{arr.supplier}</td>
-                    <td>{arr.shippingCost}</td>
-                    <td>
-                      <i
-                        className="fas fa-trash ml-2 text-danger"
-                        onClick={() => {
-                          setArr(Arr.filter((a) => a.product !== arr.product));
-                          setTotalAmount(totalAmount - parseInt(arr.price));
-                        }}
-                      ></i>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </Table>
-          </div>
-        </>
-      ) : null}
+      {Arr.length < 1 ? null : <TableAddPurchase setArr={setArr} arr={Arr} />}
 
       {/* Table for showing all of the purchases */}
       <div className="card mt-3">
-        <Table striped bordered hover responsive className="table-sm mt-2">
-          <thead>
-            <tr>
-              <th>NO #</th>
-              <th>TOTAL ITEMS</th>
-              <th>TOTAL QUANTITY</th>
-              <th>TOTAL PRICE</th>
-              <th>SUPPLIERS</th>
-              <th>Purchase At</th>
-              <th>RECIEVE DATE</th>
-              <th>ACTIONS</th>
-            </tr>
-          </thead>
-          <tbody>
-            {loading ? (
-              <Loader wd={50} hg={50} />
-            ) : (
-              <>
-                {purchases &&
-                  purchases.map((purchase) => (
-                    <tr key={purchase._id}>
-                      <td>{order++}</td>
-                      <td>{purchase.puchaseItems.length}</td>
-                      <td>{purchase.totalQty}</td>
-                      <td>{purchase.totalAmount}</td>
-                      <td>{purchase.supplier.name}</td>
-                      <td>{purchase.createdAt}</td>
-                      <td>{purchase.purchaseAt}</td>
-                      <td>
-                        <i
-                          className="fas fa-edit ml-2 text-info"
-                          // onClick={() => handleEdit(purchase)}
-                        ></i>
-                        <i
-                          className="fas fa-trash ml-2 text-danger"
-                          onClick={() => {
-                            setPurchaseId(purchase._id);
-                            setShow(true);
-                          }}
-                        ></i>
-                        <i
-                          class="fas fa-angle-double-right text-info ml-2"
-                          onClick={() => {
-                            setDetailShow(true);
-                            dispatch(listPurchaseDetails(purchase._id));
-                          }}
-                        ></i>
-                      </td>
-                    </tr>
-                  ))}
-              </>
-            )}
-          </tbody>
-        </Table>
+        <PurchaseTable
+          loading={loading}
+          purchases={purchases}
+          listPurchaseDetails={listPurchaseDetails}
+          setShow={setShow}
+          setDetailShow={setDetailShow}
+          setPurchaseId={setPurchaseId}
+        />
         <Pagination3 pages={pages} page={page} isAdmin={true} />
+
+        {/* this modal is to ask to confirm to delete the purchase */}
         <Modal show={show} onHide={() => setShow(false)}>
           <Modal.Header closeButton className="bg-warning">
             <Modal.Title>Attention !</Modal.Title>
@@ -425,7 +355,7 @@ const PurchaseProductScreen = ({ match }) => {
           </Modal.Footer>
         </Modal>
 
-        {/* Modal for showing detail */}
+        {/* Modal for showing  purchase detail */}
         <Modal show={detailShow} onHide={() => setDetailShow(false)}>
           <Modal.Header closeButton className="bg-warning">
             <Modal.Title>Attention !</Modal.Title>
@@ -433,7 +363,7 @@ const PurchaseProductScreen = ({ match }) => {
           <Modal.Body>
             <Table striped bordered hover responsive className="table-sm mt-2">
               <thead>
-                <tr>
+                <tr className="bg-info text-light">
                   <th>NO #</th>
                   <th>ITEMS</th>
                   <th>PRICE</th>
