@@ -1,9 +1,19 @@
 import React from 'react';
+import MyDropzone from './DropZone';
 
 const AdminVideos = () => {
  return (
   <>
-   <h4 className="text-center">Admin Videos</h4>
+   <MyDropzone />
+   <iframe
+    src="https://player.vimeo.com/video/525626229"
+    width="1280"
+    height="720"
+    frameborder="0"
+    allow="picture-in-picture"
+    allowfullscreen
+    title="gg"
+   ></iframe>
   </>
  );
 };

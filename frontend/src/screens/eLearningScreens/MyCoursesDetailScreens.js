@@ -47,7 +47,7 @@ const MyCoursesDetailScreen = () => {
      <>
       {enrollDetail && enrollDetail ? (
        <>
-        <div className="shadow p-1 bg-light">
+        <div className="shadow">
          <Parallax bgImage={enrollDetail.courseId.imgUrl} strength={500}>
           <div style={{ height: '40vh' }}>
            <div style={insideStyles} className="rounded shadow">

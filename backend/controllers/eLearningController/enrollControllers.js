@@ -38,20 +38,26 @@ const getUserEnrollCourses = asyncHandler(async (req, res) => {
   enrollCourses.forEach((enroll) => {
    courseEnroll.push(enroll.courseId);
    const videoSize = [];
+   const vWatched = [];
    enroll.courseId.section.forEach((sec) => {
     sec.videos.forEach((video) => {
      videoSize.push(video);
+     enroll.videosWatched.forEach((v) => {
+      if (v == video._id) {
+       vWatched.push(v);
+      }
+     });
     });
    });
 
+   //  console.log(videoSize);
+
    let progress = 0;
 
-   if (enroll.videosWatched.length === 0) {
+   if (vWatched.length === 0) {
     progress = 0;
    } else {
-    progress = Math.floor(
-     (enroll.videosWatched.length / videoSize.length) * 100
-    );
+    progress = Math.floor((vWatched.length / videoSize.length) * 100);
    }
 
    enroll.progressBar = progress;
@@ -135,6 +141,8 @@ const getEnrollSections = asyncHandler(async (req, res) => {
      videoSize.push(video);
     });
    });
+
+   //  console.log(videoSize);
 
    if (enroll.videosWatched.length === 0) {
     progress = 0;
