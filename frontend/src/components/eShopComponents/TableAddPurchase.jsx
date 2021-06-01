@@ -14,7 +14,7 @@ const TableAddPurchase = ({ arr, setArr }) => {
             <th>QUANTITY</th>
             <th>UNIT</th>
             <th>PRICE</th>
-            <th>SALE PRICE</th>
+
             <th>SUPPLIER</th>
             <th>SHIPPING COST</th>
             <th>ACTIONS</th>
@@ -24,11 +24,11 @@ const TableAddPurchase = ({ arr, setArr }) => {
           {arr.map((ar) => (
             <tr>
               <td>{order++}</td>
+              <td>{ar.purchaseAt}</td>
               <td>{ar.product}</td>
               <td>{ar.quantity}</td>
               <td>{ar.unit}</td>
               <td>{ar.price}</td>
-              <td>{ar.salePrice}</td>
               <td>{ar.supplier}</td>
               <td>{ar.shippingCost}</td>
               <td>

@@ -7,7 +7,7 @@ const BoxDashboard = ({ icon, title, data }) => {
       <div className="card card-body rounded">
         <div className="row align-items-center">
           <div className="col-5">
-            <i class={`icon-dashboard ${icon}`}></i>
+            <i className={`icon-dashboard ${icon}`}></i>
           </div>
           <div className="col-7">
             <h5 className="text-info">{title}</h5>

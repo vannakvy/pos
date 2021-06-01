@@ -17,10 +17,13 @@ const PurchaseTable = ({
       <thead>
         <tr className="bg-info text-light">
           <th>NO #</th>
-          <th>Date</th>
-          <th>TOTAL ITEMS</th>
-          <th>TOTAL QUANTITY</th>
-          <th>TOTAL PRICE</th>
+          <th>DATE</th>
+          <th>PRODUCT</th>
+          <th>QTY</th>
+          <th>PRICE</th>
+          <th>UNIT</th>
+          <th>SHIPPING</th>
+          <th>SUPPLIER</th>
           <th>ACTIONS</th>
         </tr>
       </thead>
@@ -33,10 +36,13 @@ const PurchaseTable = ({
               purchases.map((purchase) => (
                 <tr key={purchase._id}>
                   <td>{order++}</td>
-                  <td>{purchase.purchaseAt}</td>
-                  <td>{purchase.purchaseItems.length}</td>
-                  <td>{purchase.totalQty}</td>
-                  <td>{purchase.totalAmount}</td>
+                  <td>{purchase.createdAt}</td>
+                  <td>{purchase.product.name}</td>
+                  <td>{purchase.qty}</td>
+                  <td>{purchase.price}</td>
+                  <td>{purchase.unit}</td>
+                  <td>{purchase.shippingCost}</td>
+                  <td>{purchase.supplier.name}</td>
                   <td>
                     <i
                       className="fas fa-edit ml-2 text-info"
@@ -50,7 +56,7 @@ const PurchaseTable = ({
                       }}
                     ></i>
                     <i
-                      class="fas fa-angle-double-right text-info ml-2"
+                      className="fas fa-angle-double-right text-info ml-2"
                       onClick={() => {
                         setDetailShow(true);
                         dispatch(listPurchaseDetails(purchase._id));

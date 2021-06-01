@@ -16,16 +16,6 @@ const reviewSchema = mongoose.Schema(
   }
 );
 
-const priceSchema = mongoose.Schema(
-  {
-    date: { type: Date, required: true, default: Date.now() },
-    price: { type: Number, required: true, default: 0 },
-  },
-  {
-    timestamps: true,
-  }
-);
-
 const productSchema = mongoose.Schema(
   {
     name: {
@@ -55,15 +45,20 @@ const productSchema = mongoose.Schema(
       required: true,
       default: 0,
     },
-    price: {
+    endStock: {
       type: Number,
       required: true,
       default: 0,
     },
-    salePrice: [priceSchema],
-    countInStock: {
-      balanceQty: { type: Number, required: true, default: 0 },
-      balanceAmount: { type: Number, required: true, default: 0 },
+    endStockAmount: {
+      type: Number,
+      required: true,
+      default: 0,
+    },
+    salePrice: {
+      type: Number,
+      required: true,
+      default: 0,
     },
   },
   {

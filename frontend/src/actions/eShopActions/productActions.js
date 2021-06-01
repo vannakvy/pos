@@ -107,8 +107,8 @@ export const deleteProduct = (id) => async (dispatch, getState) => {
 };
 
 export const createProduct = (
+  salePrice,
   name,
-  price,
   image,
   category,
   description
@@ -130,7 +130,7 @@ export const createProduct = (
 
     const { data } = await axios.post(
       `/api/eshop/products`,
-      { name, price, image, category, description },
+      { salePrice, name, image, category, description },
       config
     );
     dispatch({

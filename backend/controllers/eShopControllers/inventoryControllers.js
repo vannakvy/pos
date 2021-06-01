@@ -3,7 +3,7 @@ import asyncHandler from "express-async-handler";
 import Product from "../../models/eShopModels/productModel.js";
 import Purchase from "../../models/eShopModels/purchaseModel.js";
 import Order from "../../models/eShopModels/orderModel.js";
-import Sale from "../../models/eShopModels/saleModel.js";
+// import Sale from "../../models/eShopModels/saleModel.js";
 
 // @desc    add puchses
 // @route   POST /api/eshop/inventory/puchases

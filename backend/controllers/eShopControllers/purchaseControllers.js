@@ -1,8 +1,8 @@
 import asyncHandler from "express-async-handler";
 import Product from "../../models/eShopModels/productModel.js";
 import Purchase from "../../models/eShopModels/purchaseModel.js";
-import Price from "../../models/eShopModels/priceModel.js";
 
+1;
 // @desc    Fetch all purchases
 // @route   GET /api/purchases
 // @access  private/Admin
@@ -20,6 +20,7 @@ const getPurchases = asyncHandler(async (req, res) => {
 
   const count = await Purchase.countDocuments({ ...keyword });
   const purchases = await Purchase.find({ ...keyword })
+    .populate("product", "id name")
     .populate("supplier", "id name")
     .limit(pageSize)
     .skip(pageSize * (page - 1));
@@ -42,7 +43,6 @@ const deletePurchase = asyncHandler(async (req, res) => {
       //     prod.save()
       // }
       // await purchase.remove();
-      console.log(purchase);
     }
     res.json({ message: "purchase removed" });
   } else {
@@ -55,64 +55,43 @@ const deletePurchase = asyncHandler(async (req, res) => {
 // @route   POST /api/purchases
 // @access  Private/Admin
 const createPurchase = asyncHandler(async (req, res) => {
-  const { Arr, purchaseAt } = req.body;
-  let purchaseItem = [];
-
-  let i;
-  let price;
-  let obj;
-  let savePrice;
-  let totalQty = 0;
-  let totalAmount = 0;
-  let prod;
-
-  if (Arr) {
-    for (i = 0; i < Arr.length; i++) {
-      price = new Price({
-        date: purchaseAt,
-        product: Arr[i].product,
-        price: Arr[i].salePrice,
+  const {
+    product,
+    unit,
+    newPrice: price,
+    supplier,
+    shippingCost,
+    purchaseAt,
+    quantity,
+  } = req.body;
+  console.log(req.body);
+  let prod = await Product.findById(product);
+  !prod
+    ? res.json({ error: "The product is not found" })
+    : (prod.endStock = parseInt(prod.endStock) + parseInt(quantity));
+  prod.endStockAmount =
+    parseFloat(prod.endStockAmount) + parseInt(quantity) * parseFloat(price);
+  console.log(prod.endStock);
+  await prod.save((err) => {
+    if (err) {
+      res.json({ error: "Can not save this product", a: err });
+    } else {
+      const purchase = new Purchase({
+        product,
+        unit,
+        price,
+        supplier,
+        shippingCost,
+        purchaseAt,
+        quantity,
       });
-      savePrice = await price.save();
-      prod = await Product.findById(Arr[i].product);
-      // if (prod) {
-      //   prod.countInStock.balanceQty =
-      //     prod.countInStock.balanceQty + Arr[i].qty;
-      //   prod.countInStock.balanceAmount =
-      //     prod.countInStock.balanceAmount + Arr[i].qty * Arr[i].price;
-      //   await prod.save();
-      // }
-
-      console.log(prod.countInStock.balanceQt, prod.countInStock.balanceAmount);
-
-      obj = {
-        unit: Arr[i].unit,
-        product: Arr[i].product,
-        qty: Arr[i].quantity,
-        price: Arr[i].price,
-        salePrice: savePrice._id,
-        supplier: Arr[i].supplier,
-        shippingCost: Arr[i].shippingCost,
-      };
-      purchaseItem.push(obj);
-      totalQty = parseInt(totalQty) + parseInt(Arr[i].quantity);
-      totalAmount =
-        parseInt(totalAmount) +
-        parseInt(Arr[i].price) * parseInt(Arr[i].quantity);
+      purchase.save((err) =>
+        err
+          ? res.json({ message: "Cannot create the purchase", error: err })
+          : res.json({ message: "Created sucessfully", purchase })
+      );
     }
-  }
-
-  const purchase = new Purchase({
-    purchaseAt: purchaseAt,
-    totalAmount: totalAmount,
-    totalQty: totalQty,
-    purchaseItems: purchaseItem,
   });
-  let a = purchase.save((err) =>
-    err
-      ? res.json({ message: "Cannot create the purchase" })
-      : res.json({ message: "Created sucessfully" })
-  );
 });
 
 // @desc    Update a supplier

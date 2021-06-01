@@ -52,41 +52,35 @@ const deleteProduct = asyncHandler(async (req, res) => {
 // @route   POST /api/products
 // @access  Private/Admin
 const createProduct = asyncHandler(async (req, res) => {
-  const { name, price, image, description, category } = req.body;
+  const { salePrice, name, image, description, category } = req.body;
+  console.log(req.body);
   const product = new Product({
     name: name,
-    price: price,
     image: image,
     category: category,
-    countInStock: {
-      balanceQty: 0,
-      balanceAmount: 0,
-    },
-    salePrice: [
-      {
-        date: Date.now(),
-        price: 0,
-      },
-    ],
+    endStock: 0,
+    endStockAmount: 0,
     numReviews: 0,
     description: description,
     rating: 0,
+    salePrice: salePrice,
   });
 
-  const createdProduct = await product.save();
-  res.status(201).json(createdProduct);
-   
+  const createdProduct = await product.save((err) => {
+    err
+      ? res.status(201).json({ message: "cannot created" })
+      : res.status(201).json({ message: "created" });
+  });
 });
 
 // @desc    Update a product
 // @route   PUT /api/products/:id
 // @access  Private/Admin
 const updateProduct = asyncHandler(async (req, res) => {
-  const { name, price, salePrice, description, image, category } = req.body;
+  const { name, salePrice, description, image, category } = req.body;
   const product = await Product.findById(req.params.id);
   if (product) {
     product.name = name;
-    product.price = price;
     product.salePrice = salePrice;
     product.description = description;
     product.image = image;
@@ -104,7 +98,6 @@ const updateProduct = asyncHandler(async (req, res) => {
 // @access  Private
 const createProductReview = asyncHandler(async (req, res) => {
   const { rating, comment } = req.body;
-
   const product = await Product.findById(req.params.id);
 
   if (product) {
