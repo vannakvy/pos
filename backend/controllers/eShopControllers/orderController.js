@@ -31,7 +31,6 @@ const addOrderItems = asyncHandler(async (req, res) => {
       shippingPrice,
       totalPrice,
     });
-
     const createdOrder = await order.save();
     res.status(201).json(createdOrder);
   }
@@ -63,7 +62,7 @@ const updateOrderToPaid = asyncHandler(async (req, res) => {
   const order = await Order.findById(req.params.id);
   // const saleProducts = order.findById({id:req.params.id});
   // console.log(saleProducts.orderItems);
-
+  console.log(req.body);
   if (order) {
     order.isPaid = true;
     order.paidAt = Date.now();
@@ -72,6 +71,7 @@ const updateOrderToPaid = asyncHandler(async (req, res) => {
       status: req.body.status,
       update_time: req.body.update_time,
       email_address: req.body.payer.email_address,
+      image: req.body.image,
     };
 
     const updatedOrder = await order.save();

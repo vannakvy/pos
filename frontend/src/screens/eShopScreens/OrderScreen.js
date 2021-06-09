@@ -28,13 +28,13 @@ import { addSale } from "../../actions/eShopActions/inventoryActions";
 
 const OrderScreen = ({ match, history }) => {
   const orderId = match.params.id;
-
   const [sdkReady, setSdkReady] = useState(false);
-
   const dispatch = useDispatch();
-
   const orderDetails = useSelector((state) => state.orderDetails);
   const { order, loading, error } = orderDetails;
+  const [image, setImage] = useState(
+    "/uploads\\eShopUploads\\image-1618158938047.jpg"
+  );
 
   const orderPay = useSelector((state) => state.orderPay);
   const { loading: loadingPay, success: successPay } = orderPay;
@@ -46,7 +46,6 @@ const OrderScreen = ({ match, history }) => {
   const { userInfo } = userLogin;
 
   const { paymentMethod } = useSelector((state) => state.cart);
-  console.log(paymentMethod);
 
   if (!loading) {
     //   Calculate prices
@@ -71,7 +70,18 @@ const OrderScreen = ({ match, history }) => {
         },
       };
       const { data } = await axios.post("/api/eshop/upload", formData, config);
-      console.log(data);
+      if (data) {
+        let paymentResult = {
+          id: "",
+          status: "COMPLETED",
+          update_time: new Date(),
+          payer: {
+            email_address: `${paymentMethod}@gmail.com`,
+          },
+          image: data,
+        };
+        dispatch(payOrder(orderId, paymentResult));
+      }
     } catch (error) {}
   };
 
@@ -106,7 +116,7 @@ const OrderScreen = ({ match, history }) => {
   }, [dispatch, orderId, successPay, successDeliver, order, userInfo, history]);
 
   const successPaymentHandler = (paymentResult) => {
-    console.log(paymentResult);
+    // console.log(paymentResult);
     dispatch(payOrder(orderId, paymentResult));
     // dispatch(addSale(orderId));
   };
@@ -114,14 +124,13 @@ const OrderScreen = ({ match, history }) => {
   const deliverHandler = () => {
     dispatch(deliverOrder(order));
   };
-
   return loading ? (
     <Loader />
   ) : error ? (
     <Message variant="danger">{error}</Message>
   ) : (
     <>
-      <h1>Order {order._id}</h1>
+      <h4>Order {order._id}</h4>
       <Row>
         <Col md={8}>
           <ListGroup variant="flush">
@@ -161,15 +170,14 @@ const OrderScreen = ({ match, history }) => {
                 <Message variant="danger">Not Paid</Message>
               )}
             </ListGroup.Item>
-
             <ListGroup.Item>
               <h2>Order Items</h2>
 
-              {order.orderItems.length === 0 ? (
+              {order?.orderItems.length === 0 ? (
                 <Message>Order is empty</Message>
               ) : (
                 <ListGroup variant="flush">
-                  {order.orderItems.map((item, index) => (
+                  {order?.orderItems?.map((item, index) => (
                     <ListGroup.Item key={index}>
                       <Row>
                         <Col md={1}>
@@ -230,22 +238,39 @@ const OrderScreen = ({ match, history }) => {
               {!order.isPaid && (
                 <>
                   {paymentMethod !== "PayPal" ? (
-                    <ListGroup.Item>
-                      <Form>
-                        <Form.Group as={Row}>
-                          <Form.Label md={3}>Reciept</Form.Label>
-                          <Col md={9}>
-                            <Form.File
-                              id="custom-file"
-                              size="sm"
-                              label="Reciept"
-                              custom
-                              onChange={uploadFileHandler}
-                            />
+                    <>
+                      <ListGroup.Item>
+                        <Row>
+                          <Col>
+                            <h4>
+                              សូមបញចូលវិកាយបតិបង់ប្រាក់របស់អ្នកដើម្បីបំពេញការបញ្ចាទិញ់
+                            </h4>
                           </Col>
-                        </Form.Group>
-                      </Form>
-                    </ListGroup.Item>
+                        </Row>
+                      </ListGroup.Item>
+                      <ListGroup.Item>
+                        <Row>
+                          <Col>លេខគណនី {paymentMethod}</Col>
+                          <Col>ANCET4059355</Col>
+                        </Row>
+                      </ListGroup.Item>
+                      <ListGroup.Item>
+                        <Form>
+                          <Form.Group as={Row}>
+                            <Form.Label md={3}>វិកាយបត្តិ​</Form.Label>
+                            <Col md={9}>
+                              <Form.File
+                                id="custom-file"
+                                size="sm"
+                                label="ចុចទីនេះ"
+                                custom
+                                onChange={uploadFileHandler}
+                              />
+                            </Col>
+                          </Form.Group>
+                        </Form>
+                      </ListGroup.Item>
+                    </>
                   ) : (
                     <ListGroup.Item>
                       {loadingPay && <Loader />}
@@ -266,15 +291,22 @@ const OrderScreen = ({ match, history }) => {
                 userInfo.isAdmin &&
                 order.isPaid &&
                 !order.isDelivered && (
-                  <ListGroup.Item>
-                    <Button
-                      type="button"
-                      className="btn btn-block"
-                      onClick={deliverHandler}
-                    >
-                      Mark As Delivered
-                    </Button>
-                  </ListGroup.Item>
+                  <>
+                    <ListGroup.Item>
+                      <Col xs={6} md={4}>
+                        <Image src={image} fluid rounded />
+                      </Col>
+                    </ListGroup.Item>
+                    <ListGroup.Item>
+                      <Button
+                        type="button"
+                        className="btn btn-block"
+                        onClick={deliverHandler}
+                      >
+                        Mark As Delivered
+                      </Button>
+                    </ListGroup.Item>
+                  </>
                 )}
             </ListGroup>
           </Card>
