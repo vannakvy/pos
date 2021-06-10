@@ -357,7 +357,7 @@ const Sections = () => {
           className="btn btn-success px-4 rounded shadow kh mr-1"
           onClick={addSectionHandler}
          >
-          បង្កើតសិកសិន
+          បញ្ចូលសិកសិន
          </button>
         </>
        ) : (
@@ -366,7 +366,7 @@ const Sections = () => {
           className="btn btn-warning px-4 rounded shadow kh mr-1"
           onClick={updateSectionHandler}
          >
-          កែប្រែសិកសិន
+          រក្សាទុកសិកសិន
          </button>
         </>
        )}
@@ -433,7 +433,7 @@ const Sections = () => {
        {video && video.url === '' ? null : (
         <div className="player-wrapper my-1">
          <iframe
-          className="react-player"
+          className="react-player rounded"
           src={video.url}
           width="100%"
           height="100%"
@@ -450,16 +450,16 @@ const Sections = () => {
           className="btn btn-success rounded shadow kh mr-1"
           onClick={() => addVideoHandler()}
          >
-          បន្ថែមវីឌីអូក្នុងមុខវិទ្យា
+          បញ្ចូលវីឌីអូក្នុងមុខវិទ្យា
          </button>
         </>
        ) : (
         <>
          <button
-          className="btn btn-warning rounded shadow kh mr-1"
+          className="btn btn-success rounded shadow kh mr-1"
           onClick={updateVideoHandler}
          >
-          កែប្រែវីឌីអូ
+          រក្សាទុកវីឌីអូ
          </button>
          <button
           className="btn btn-outline-danger rounded shadow kh mr-1"
