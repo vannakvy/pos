@@ -9,12 +9,12 @@ import './HomeScreen.css';
 const EbookHomeScreen = () => {
  const dispatch = useDispatch();
  useEffect(() => {
-  window.scroll(0, 0);
+  // window.scroll(0, 0);
   dispatch(getLanguages());
  }, []);
  return (
   <div className="container-lg ebookHomeScreen">
-   <div className="bg-light p-4 my-5 shadow-sm rounded-lg">
+   {/* <div className="bg-light p-4 my-5 shadow-sm rounded-lg">
     <div className="row align-items-center">
      <div className="col-md-5 text-center ">
       <img
@@ -23,7 +23,7 @@ const EbookHomeScreen = () => {
        alt=""
       />
      </div>
-     <div className="col-md-7 mt-3">
+     <div className="col-md-7">
       <div className="content px-3">
        <h4 className="mb-3 kh">
         សូមស្វាគមន៍មកកាន់ <span className="ubuntu">FREE CODING CAMBODIA</span>
@@ -47,7 +47,7 @@ const EbookHomeScreen = () => {
    </div>
    <div className="bg-light p-4 my-5 shadow-sm rounded-lg">
     <div className="row align-items-center">
-     <div className="col-md-7 mt-3 ">
+     <div className="col-md-7">
       <div className="content px-3">
        <h4 className="mb-3">
         <FaBook className="mr-2 text-info" /> SCRATCH PROGRMMING FOR STARTER
@@ -65,7 +65,7 @@ const EbookHomeScreen = () => {
        </button>
       </div>
      </div>
-     <div className="col-md-5 mt-4 text-center">
+     <div className="col-md-5 text-center">
       <img
        className="w-100"
        src="https://u.cubeupload.com/christan/ProjectEditor.png"
@@ -76,7 +76,7 @@ const EbookHomeScreen = () => {
    </div>
    <div className="bg-light p-4 my-5 shadow-sm rounded-lg">
     <div className="row align-items-center">
-     <div className="col-md-7 mt-3 ">
+     <div className="col-md-7">
       <div className="content px-3">
        <h4 className="mb-3">
         <FaBook className="mr-2 text-info" /> EMBEDDED SYSTEM
@@ -95,7 +95,7 @@ const EbookHomeScreen = () => {
        </button>
       </div>
      </div>
-     <div className="col-md-5 mt-4 text-center ">
+     <div className="col-md-5 text-center ">
       <img
        className="w-100"
        // style={{ width: "360px" }}
@@ -106,9 +106,9 @@ const EbookHomeScreen = () => {
     </div>
    </div>
 
-   <div className="bg-light p-4 my-5 shadow-sm rounded-lg">
+   <div className="bg-light p-4 mt-5 mb-3 shadow-sm rounded-lg">
     <div className="row align-items-center">
-     <div className="col-md-5 mt-4 text-center ">
+     <div className="col-md-5 text-center ">
       <img
        className="w-100"
        // style={{ width: "360px" }}
@@ -116,7 +116,7 @@ const EbookHomeScreen = () => {
        alt=""
       />
      </div>
-     <div className="col-md-7 mt-3 ">
+     <div className="col-md-7">
       <div className="content px-3">
        <h4 className="mb-3">
         <FaBook className="mr-2 text-info" /> COMPUTER PROGRAMMING LANGUAGES
@@ -133,6 +133,85 @@ const EbookHomeScreen = () => {
         ចាប់ផ្តើម <FaArrowAltCircleRight />
        </button>
       </div>
+     </div>
+    </div>
+   </div> */}
+   <h3 className="text-center kh my-3">ភាសាកុំព្យូទ័រ</h3>
+   <div className="row">
+    <div className="col-md-6">
+     <div className="round bg-light p-4 shadow-sm adminHover text-center mb-4">
+      <p
+       className="ubuntu text-center font-weight-bold"
+       style={{ fontSize: 50 }}
+      >
+       HTML
+      </p>
+      <p className="text-center font-weight-bold">
+       The language for building web pages
+      </p>
+      <button
+       className="btn btn-dark kh shadow-sm rounded-pill mb-4"
+       style={{ width: 250 }}
+      >
+       ចាប់ផ្តើមរៀន
+      </button>
+     </div>
+    </div>
+    <div className="col-md-6">
+     <div className="round bg-light p-4 shadow-sm adminHover text-center mb-4">
+      <p
+       className="ubuntu text-center font-weight-bold"
+       style={{ fontSize: 50 }}
+      >
+       CSS
+      </p>
+      <p className="text-center font-weight-bold">
+       The language for styling web pages
+      </p>
+      <button
+       className="btn btn-dark kh shadow-sm rounded-pill mb-4"
+       style={{ width: 250 }}
+      >
+       ចាប់ផ្តើមរៀន
+      </button>
+     </div>
+    </div>
+    <div className="col-md-6">
+     <div className="round bg-light p-4 shadow-sm adminHover text-center mb-4">
+      <p
+       className="ubuntu text-center font-weight-bold"
+       style={{ fontSize: 50 }}
+      >
+       JavaScript
+      </p>
+      <p className="text-center font-weight-bold">
+       The language for programming web pages
+      </p>
+      <button
+       className="btn btn-dark kh shadow-sm rounded-pill mb-4"
+       style={{ width: 250 }}
+      >
+       ចាប់ផ្តើមរៀន
+      </button>
+     </div>
+    </div>
+    <div className="col-md-6">
+     <div className="round bg-light p-4 shadow-sm adminHover text-center mb-4">
+      <p
+       className="ubuntu text-center font-weight-bold"
+       style={{ fontSize: 50 }}
+      >
+       PYTHON
+      </p>
+      <p className="text-center font-weight-bold">
+       A popular programming language
+      </p>
+      <button
+       className="btn btn-dark kh shadow-sm rounded-pill mb-4"
+       style={{ width: 250 }}
+      >
+       ចាប់ផ្តើមរៀន
+      </button>
      </div>
     </div>
    </div>

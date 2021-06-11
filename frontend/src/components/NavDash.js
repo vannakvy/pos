@@ -11,7 +11,7 @@ const NavDash = () => {
    <li className="nav-item">
     <NavLink
      onClick={() => dispatch(navbarList('Eshop'))}
-     className="nav-link navbar_link rounded-lg navHover"
+     className="nav-link navbar_link rounded navHover"
      activeClassName="activeLink"
      to="/eshop"
     >
@@ -21,7 +21,7 @@ const NavDash = () => {
    <li className="nav-item">
     <NavLink
      onClick={() => dispatch(navbarList('Elearning'))}
-     className="nav-link navbar_link rounded-lg navHover"
+     className="nav-link navbar_link rounded navHover"
      activeClassName="activeLink"
      to="/elearning"
     >
@@ -31,7 +31,7 @@ const NavDash = () => {
    <li className="nav-item">
     <NavLink
      onClick={() => dispatch(navbarList('Ebook'))}
-     className="nav-link navbar_link rounded-lg navHover"
+     className="nav-link navbar_link rounded navHover"
      activeClassName="activeLink"
      to="/ebook"
     >

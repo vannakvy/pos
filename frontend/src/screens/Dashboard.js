@@ -13,6 +13,7 @@ const Dashboard = ({ history }) => {
  const { navbar } = navbarL;
 
  useEffect(() => {
+  window.scroll(0, 0);
   if (navbar === 'Dashboard') {
    history.push(`/`);
   } else if (navbar === 'Elearning') {
