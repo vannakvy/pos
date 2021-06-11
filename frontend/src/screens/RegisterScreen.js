@@ -18,14 +18,16 @@ const RegisterScreen = ({ location, history }) => {
 
  const userRegister = useSelector((state) => state.userRegister);
  const { loading, error, userInfo } = userRegister;
+ const userLogin = useSelector((state) => state.userLogin);
+ const { userInfo: user } = userLogin;
 
  const redirect = location.search ? location.search.split('=')[1] : '/';
 
  useEffect(() => {
-  if (userInfo) {
+  if (userInfo || user) {
    history.push(redirect);
   }
- }, [history, userInfo, redirect]);
+ }, [history, userInfo, redirect, user]);
 
  const submitHandler = (e) => {
   e.preventDefault();

@@ -62,7 +62,7 @@ const CourseVideoScreen = () => {
 
  return (
   <>
-   <div className="container-fluid mt-2">
+   <div className="container-fluid mt-2" style={{ minHeight: '90vh' }}>
     {userLogin.userInfo === null || userLogin === {} ? (
      <Redirect to={`/login?redirect=${redirect}`} />
     ) : loadingEnroll ? (

@@ -1,9 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
- listCourses,
- SearchCourses,
-} from '../../actions/eLearningActions/courseActions';
+import { listCourses } from '../../actions/eLearningActions/courseActions';
 import CourseItem from '../../components/eLearningComponents/CourseItem';
 import Loader from '../../components/Loader';
 import Message from '../../components/Message';
@@ -44,32 +41,30 @@ const CoursesScreen = ({ match, history }) => {
  return (
   <div
    style={{
-    // background: 'url(/uploads/img/lightning_PNG19.png) no-repeat fixed center',
+    background: 'rgb(235, 235, 235)',
     backgroundSize: '100%',
-    minHeight: '60vh',
    }}
   >
-   <div className="container">
-    <div className="row py-2">
+   <div className="container" style={{ minHeight: '90vh' }}>
+    <div className="row pt-3">
      <div className="col-4">
       <button
-       className=" btn btn-dark kh font-weight-bolder p-3 rounded shadow border-none"
+       className="btn btn-dark kh font-weight-bolder rounded shadow"
        onClick={() => history.push(`/elearning`)}
       >
        <h6 className="m-0 text-light">
         <IoMdArrowBack style={{ fontSize: 18 }} />
-        <span className="ml-2">ត្រឡប់ក្រោយ</span>
+        <span className="ml-1">ត្រឡប់ក្រោយ</span>
        </h6>
       </button>
      </div>
      <h4 className="col-4 text-center kh mt-1">មុខវិទ្យា</h4>
     </div>
-
     <div
-     className="d-flex justify-content-between flex-wrap sticky-top"
-     style={{ top: 80 }}
+     className="d-flex justify-content-between flex-wrap w-100"
+     //  style={{ position: 'sticky', top: 200, zIndex: 2 }}
     >
-     <div style={{ width: '330px' }}>
+     <div style={{ width: '270px' }}>
       <select
        className="form-control mb-3 shadow-sm rounded w-100 kh font-weight-bold"
        value={courseType}
@@ -98,13 +93,10 @@ const CoursesScreen = ({ match, history }) => {
       </select>
      </div>
      <div>
-      <Search
-       dispatch={dispatch}
-       SearchCourses={SearchCourses}
-       pageNumber={pageNumber}
-      />
+      <Search />
      </div>
     </div>
+
     <h5 className="kh">
      {courseType === 'AllCourses'
       ? 'មុខវិទ្យាទាំងអស់'
@@ -135,7 +127,7 @@ const CoursesScreen = ({ match, history }) => {
       <div className="row">
        {courses &&
         courses.map((course) => (
-         <div key={course._id} className="col-md-6 col-lg-4 my-2">
+         <div key={course._id} className="col-md-4 col-lg-3 col-6 m-0 px-1">
           <CourseItem course={course} />
          </div>
         ))}

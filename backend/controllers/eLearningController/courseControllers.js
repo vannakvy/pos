@@ -28,7 +28,7 @@ const searchCourse = asyncHandler(async (req, res) => {
 //@access  Public
 const getCourses = asyncHandler(async (req, res) => {
  const { type } = req.params;
- const pageSize = Number(req.query.pageSize) || 9;
+ const pageSize = Number(req.query.pageSize) || 12;
  const page = Number(req.query.pageNumber) || 1;
  const keyword = req.query.keyword
   ? {

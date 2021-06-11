@@ -18,11 +18,12 @@ const DashboardElearn = () => {
  } = courseList;
 
  useEffect(() => {
+  window.scroll(0, 0);
   dispatch(listCourses('AllCourses'));
  }, [dispatch]);
 
  return (
-  <>
+  <div style={{ minHeight: '90vh' }}>
    {loadingList ? (
     <div className="py-3">
      <Loader wd={40} hg={40} />
@@ -32,7 +33,7 @@ const DashboardElearn = () => {
    ) : (
     <>
      <LandingElearn />
-     <div className="position-relative" style={{ bottom: '150px' }}>
+     <div>
       <Slider courseList={coursesList} />
       <CoursesShow courseType={'WebDevelopment'} type={'ផ្នែកសរសេរវែបផ្សាយ'} />
       <CoursesShow courseType={'Programming'} type={'ផ្នែកសរសេរកម្មវិធី'} />
@@ -45,7 +46,7 @@ const DashboardElearn = () => {
      </div>
     </>
    )}
-  </>
+  </div>
  );
 };
 

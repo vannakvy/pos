@@ -7,7 +7,7 @@ import ConvertNum from './ConvertNum';
 import CourseItem from './CourseItem';
 import { useHistory } from 'react-router-dom';
 
-const CoursesShow = ({ courseType, type }) => {
+const CoursesShow = ({ courseType, type, speed = 5000 }) => {
  const history = useHistory();
  const [courses, setCourses] = useState();
  const [loading, setLoading] = useState(true);
@@ -30,11 +30,9 @@ const CoursesShow = ({ courseType, type }) => {
  return (
   <>
    <div
-    className="container-fluid"
+    className="container"
     style={{
      paddingBottom: '30px',
-     position: 'relative',
-     maxWidth: '1500px',
     }}
    >
     <div className="d-flex justify-content-between">
@@ -61,8 +59,8 @@ const CoursesShow = ({ courseType, type }) => {
      <Carousel
       additionalTransfrom={0}
       arrows
-      // autoPlay
-      autoPlaySpeed={2000}
+      autoPlay
+      autoPlaySpeed={speed}
       centerMode={false}
       className="pb-2"
       containerClass="container-with-dots"
@@ -79,23 +77,23 @@ const CoursesShow = ({ courseType, type }) => {
        desktop: {
         breakpoint: {
          max: 3000,
-         min: 1024,
+         min: 992,
         },
         items: 4,
         partialVisibilityGutter: 40,
        },
        mobile: {
         breakpoint: {
-         max: 464,
+         max: 767,
          min: 0,
         },
-        items: 1,
+        items: 2,
         partialVisibilityGutter: 30,
        },
        tablet: {
         breakpoint: {
-         max: 1024,
-         min: 464,
+         max: 991,
+         min: 768,
         },
         items: 3,
         partialVisibilityGutter: 30,
@@ -108,8 +106,8 @@ const CoursesShow = ({ courseType, type }) => {
      >
       {courses &&
        courses.map((course) => (
-        <div key={course._id} className="p-1 px-md-1 px-lg-3">
-         <CourseItem course={course} courseShow={true} />
+        <div key={course._id} className="px-1">
+         <CourseItem course={course} />
         </div>
        ))}
      </Carousel>
