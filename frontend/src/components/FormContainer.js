@@ -6,7 +6,7 @@ const FormContainer = ({ children }) => {
   <Container>
    <Row
     className="justify-content-md-center align-items-center"
-    style={{ minHeight: '70vh' }}
+    style={{ minHeight: '70vh', marginBottom: '30vh' }}
    >
     <Col xs={12} md={6}>
      {children}

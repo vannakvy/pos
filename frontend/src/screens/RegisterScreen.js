@@ -40,7 +40,7 @@ const RegisterScreen = ({ location, history }) => {
 
  return (
   <FormContainer>
-   <h1>Sign Up</h1>
+   <h1 className="kh">បញ្ចូលព័ត៌មានផ្ទាល់ខ្លួន</h1>
    {message && <Message variant="danger">{message}</Message>}
    {error && <Message variant="danger">{error}</Message>}
    {loading && <Loader wd={40} hg={40} />}

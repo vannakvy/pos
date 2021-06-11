@@ -34,7 +34,7 @@ const Navbar = () => {
   <>
    <nav className="navbar navbar-expand-lg shadow-sm bg-light sticky-top">
     <NavLink
-     className="navbar-brand"
+     className="navbar-brand mb-1"
      to="/"
      onClick={() => dispatch(navbarList('Dashboard'))}
     >
@@ -161,7 +161,7 @@ const Navbar = () => {
          </li>
         ) : null}
 
-        {userInfo && userInfo.isTeacher ? (
+        {/* {userInfo && userInfo.isTeacher ? (
          <li className="nav-item">
           <NavLink
            to="/teacherCourses"
@@ -173,7 +173,7 @@ const Navbar = () => {
            </button>
           </NavLink>
          </li>
-        ) : null}
+        ) : null} */}
        </>
       )}
 
