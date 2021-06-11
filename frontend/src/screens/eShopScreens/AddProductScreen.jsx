@@ -16,7 +16,7 @@ const AddProductScreen = ({ history, match }) => {
   const dispatch = useDispatch();
 
   const [name, setName] = useState("");
-  const [price, setPrice] = useState(0);
+  const [salePrice, setSalePrice] = useState(0);
   const [image, setImage] = useState("");
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
@@ -26,7 +26,7 @@ const AddProductScreen = ({ history, match }) => {
 
   const clearInput = () => {
     setName("");
-    setPrice("");
+    setSalePrice("");
     setImage("");
     setCategory("");
     setDescription("");
@@ -56,9 +56,11 @@ const AddProductScreen = ({ history, match }) => {
   const handleSubmitHandler = (e) => {
     e.preventDefault();
     if (update) {
-      dispatch(updateProduct(proId, name, price, image, category, description));
+      dispatch(
+        updateProduct(proId, name, salePrice, image, category, description)
+      );
     } else {
-      dispatch(createProduct(name, price, image, category, description));
+      dispatch(createProduct(salePrice, name, image, category, description));
     }
     clearInput();
   };
@@ -74,7 +76,7 @@ const AddProductScreen = ({ history, match }) => {
   const { loading, error, products, page, pages } = useSelector(
     (state) => state.productList
   );
-  console.log(products);
+
   const productDelete = useSelector((state) => state.productDelete);
   const productUpdate = useSelector((state) => state.productUpdate);
   const {
@@ -112,13 +114,11 @@ const AddProductScreen = ({ history, match }) => {
                 size="sm"
                 type="number"
                 placeholder="Price"
-                value={price}
-                onChange={(e) => setPrice(e.target.value)}
+                value={salePrice}
+                onChange={(e) => setSalePrice(e.target.value)}
               />
             </Col>
-            <Form.Label column sm={1}>
-              Image
-            </Form.Label>
+
             <Col sm={3}>
               <Form.File
                 id="custom-file"
@@ -199,11 +199,12 @@ const AddProductScreen = ({ history, match }) => {
       <div className="card mt-2 ">
         <Table striped bordered hover responsive className="table-sm">
           <thead>
-            <tr>
+            <tr className="bg-info text-light">
               <th>NO #</th>
               <th>ITEM NAME</th>
-              <th>PRICE</th>
-              <th>QUANTITY</th>
+              <th>SALE PRICE</th>
+              <th>END STOCK</th>
+              <th>END STOCK AMOUNT</th>
               <th>DESCRIPTION</th>
               <th>ACTIONS</th>
             </tr>
@@ -218,8 +219,9 @@ const AddProductScreen = ({ history, match }) => {
                     <tr key={product._id}>
                       <td>{product._id}</td>
                       <td>{product.name}</td>
-                      <td>{product.price}</td>
-                      <td>{product.countInStock}</td>
+                      <td>{product.salePrice}</td>
+                      <td>{product.endStock}</td>
+                      <td>{product.endStockAmount}</td>
                       <td>{product.description}</td>
                       <td>
                         <i
@@ -227,7 +229,7 @@ const AddProductScreen = ({ history, match }) => {
                           onClick={() => {
                             setProId(product._id);
                             setName(product.name);
-                            setPrice(product.price);
+                            setSalePrice(product.price);
                             setImage(product.image);
                             setCategory(product.category);
                             setDescription(product.description);
