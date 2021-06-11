@@ -10,7 +10,6 @@ import Message from './Message';
 import NavElearning from './eLearningComponents/NavElearning';
 import NavEshop from './NavEshop';
 import NavEbook from './eBookComponents/NavEbook';
-import NavAdmin from './NavAdmin';
 import SettingsIcon from '@material-ui/icons/Settings';
 import NavCovid from './covideComponents/NavCovid';
 import Menu from './Menu';
@@ -35,7 +34,7 @@ const Navbar = () => {
   <>
    <nav className="navbar navbar-expand-lg shadow-sm bg-light sticky-top">
     <NavLink
-     className="navbar-brand"
+     className="navbar-brand mb-1"
      to="/"
      onClick={() => dispatch(navbarList('Dashboard'))}
     >
@@ -123,12 +122,11 @@ const Navbar = () => {
 
     <div className="collapse navbar-collapse" id="navbarColor02">
      <ul className="navbar-nav ml-auto">
+      {navbar !== 'Dashboard' ? <NavDash /> : null}
       {loading ? (
        <Loader wd={45} hg={45} />
       ) : error ? (
        <Message variant="danger">{error}</Message>
-      ) : navbar === 'Dashboard' ? (
-       <NavDash />
       ) : navbar === 'Elearning' ? (
        <NavElearning />
       ) : navbar === 'Eshop' ? (
@@ -136,7 +134,7 @@ const Navbar = () => {
       ) : navbar === 'Ebook' ? (
        <NavEbook />
       ) : navbar === 'Admin' ? (
-       <NavAdmin />
+       <></>
       ) : navbar === 'Covid19' ? (
        <NavCovid />
       ) : (
@@ -163,7 +161,7 @@ const Navbar = () => {
          </li>
         ) : null}
 
-        {userInfo && userInfo.isTeacher ? (
+        {/* {userInfo && userInfo.isTeacher ? (
          <li className="nav-item">
           <NavLink
            to="/teacherCourses"
@@ -175,7 +173,7 @@ const Navbar = () => {
            </button>
           </NavLink>
          </li>
-        ) : null}
+        ) : null} */}
        </>
       )}
 

@@ -40,7 +40,7 @@ const CourseDetailsScreen = ({ match }) => {
   dispatch(getCourseById(id));
  }, [dispatch, id]);
  return (
-  <div style={{ minHeight: '100vh' }}>
+  <div style={{ minHeight: '90vh' }}>
    {loading ? (
     <div className="py-3">
      <Loader wd={40} hg={40} />
@@ -50,25 +50,6 @@ const CourseDetailsScreen = ({ match }) => {
    ) : (
     <>
      <div className="">
-      <div
-       className={`position-fixed bg-light w-100 shadow ${
-        test ? null : 'd-none'
-       }`}
-       style={{
-        top: 68,
-        opacity: `${opii}`,
-        zIndex: 1,
-       }}
-      >
-       <div className="container-fluid">
-        <div className="m-1 pl-3" style={{ borderLeft: '3px solid black' }}>
-         <h5 className="my-0">{course.name}</h5>
-         <small>{course.courseType}</small>
-         <RatingBar size={'small'} />
-        </div>
-       </div>
-      </div>
-
       <div className=" py-3 shadow">
        <div
         className="container _courseDetailHeader"

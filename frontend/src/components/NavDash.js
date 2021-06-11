@@ -11,7 +11,8 @@ const NavDash = () => {
    <li className="nav-item">
     <NavLink
      onClick={() => dispatch(navbarList('Eshop'))}
-     className="nav-link navbar_link"
+     className="nav-link navbar_link rounded navHover"
+     activeClassName="activeLink"
      to="/eshop"
     >
      ទិញទំនិញ
@@ -20,7 +21,8 @@ const NavDash = () => {
    <li className="nav-item">
     <NavLink
      onClick={() => dispatch(navbarList('Elearning'))}
-     className="nav-link navbar_link"
+     className="nav-link navbar_link rounded navHover"
+     activeClassName="activeLink"
      to="/elearning"
     >
      រៀនជាវីឌីអូ
@@ -29,7 +31,8 @@ const NavDash = () => {
    <li className="nav-item">
     <NavLink
      onClick={() => dispatch(navbarList('Ebook'))}
-     className="nav-link navbar_link"
+     className="nav-link navbar_link rounded navHover"
+     activeClassName="activeLink"
      to="/ebook"
     >
      រៀនជាកាអាន

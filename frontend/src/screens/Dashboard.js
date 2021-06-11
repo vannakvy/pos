@@ -4,12 +4,16 @@ import About from '../components/About';
 import Context from '../components/Context';
 import Gallery from '../components/Gallery';
 import LandingPage from '../components/LandingPage';
+import PageComEbook from '../components/PageComEbook';
+import PageComElearn from '../components/PageComElearn';
+import PageComEshop from '../components/PageComEshop';
 
 const Dashboard = ({ history }) => {
  const navbarL = useSelector((state) => state.navbarList);
  const { navbar } = navbarL;
 
  useEffect(() => {
+  window.scroll(0, 0);
   if (navbar === 'Dashboard') {
    history.push(`/`);
   } else if (navbar === 'Elearning') {
@@ -24,16 +28,17 @@ const Dashboard = ({ history }) => {
  }, [history, navbar]);
 
  return (
-  <>
-   <div className="container-fluid">
+  <div className="overflow-hidden">
+   <div className="container-md mt-sm-0 mt-md-5">
     <LandingPage />
-    <Gallery />
-    <h3 className="text-center">About Us</h3>
-    <LandingPage />
+    {/* <Gallery /> */}
+    <PageComElearn />
+    <PageComEbook />
+    <PageComEshop />
     <About />
     <Context />
    </div>
-  </>
+  </div>
  );
 };
 

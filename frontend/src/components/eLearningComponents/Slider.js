@@ -35,25 +35,25 @@ const Slider = ({ courseList }) => {
       desktop: {
        breakpoint: {
         max: 3000,
-        min: 1024,
+        min: 992,
        },
-       items: 3,
+       items: 4,
        partialVisibilityGutter: 40,
       },
       mobile: {
        breakpoint: {
-        max: 464,
+        max: 767,
         min: 0,
        },
-       items: 1,
+       items: 2,
        partialVisibilityGutter: 30,
       },
       tablet: {
        breakpoint: {
-        max: 1024,
-        min: 464,
+        max: 991,
+        min: 768,
        },
-       items: 2,
+       items: 3,
        partialVisibilityGutter: 30,
       },
      }}
@@ -64,7 +64,7 @@ const Slider = ({ courseList }) => {
     >
      {courseList &&
       courseList.map((course) => (
-       <div key={course._id} className="p-1 px-md-1 px-lg-3">
+       <div key={course._id} className="px-1">
         <CourseItem course={course} />
        </div>
       ))}

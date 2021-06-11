@@ -18,14 +18,16 @@ const RegisterScreen = ({ location, history }) => {
 
  const userRegister = useSelector((state) => state.userRegister);
  const { loading, error, userInfo } = userRegister;
+ const userLogin = useSelector((state) => state.userLogin);
+ const { userInfo: user } = userLogin;
 
  const redirect = location.search ? location.search.split('=')[1] : '/';
 
  useEffect(() => {
-  if (userInfo) {
+  if (userInfo || user) {
    history.push(redirect);
   }
- }, [history, userInfo, redirect]);
+ }, [history, userInfo, redirect, user]);
 
  const submitHandler = (e) => {
   e.preventDefault();
@@ -38,7 +40,7 @@ const RegisterScreen = ({ location, history }) => {
 
  return (
   <FormContainer>
-   <h1>Sign Up</h1>
+   <h1 className="kh">បញ្ចូលព័ត៌មានផ្ទាល់ខ្លួន</h1>
    {message && <Message variant="danger">{message}</Message>}
    {error && <Message variant="danger">{error}</Message>}
    {loading && <Loader wd={40} hg={40} />}

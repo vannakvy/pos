@@ -15,7 +15,7 @@ import eBookDetailRoutes from './routes/eBookRoutes/eBookDetailRoutes.js';
 import eBookStaticFileRoutes from './routes/eBookRoutes/eBookStaticFileRoutes.js';
 //eshop Routes
 import productRoutes from './routes/eShopRoutes/productRoutes.js';
-import supplierRoutes from './routes/eShopRoutes/supplierRoutes.js'
+import supplierRoutes from './routes/eShopRoutes/supplierRoutes.js';
 import orderRoutes from './routes/eShopRoutes/orderRoutes.js';
 import InventoryRoutes from './routes/eShopRoutes/inventoryRoutes.js';
 import purchaseRoutes from './routes/eShopRoutes/purchaseRoutes.js';
@@ -32,7 +32,7 @@ connectDB();
 const app = express();
 
 if (process.env.NODE_ENV === 'development') {
-    app.use(morgan('dev'));
+ app.use(morgan('dev'));
 }
 
 app.use(express.json());
@@ -60,46 +60,44 @@ app.use('/api/eshop/orders', orderRoutes);
 app.use('/api/eshop/orders', orderRoutes);
 app.use('/api/eshop/inventory', InventoryRoutes);
 
-
-
 app.get('/api/eshop/config/paypal', (req, res) =>
-    res.send(process.env.PAYPAL_CLIENT_ID)
+ res.send(process.env.PAYPAL_CLIENT_ID)
 );
 
 // app.use('/adminEbook/details', express.static('./routes/eBookRoutes/uploads'))
 
 const __dirname = path.resolve();
 app.use(
-    '/uploads/eLearningUploads',
-    express.static(path.join(__dirname, '/uploads/eLearningUploads'))
+ '/uploads/eLearningUploads',
+ express.static(path.join(__dirname, '/uploads/eLearningUploads'))
 );
 
-// app.use('/uploads/img', express.static(path.join(__dirname, '/uploads/img')));
+app.use('/uploads/img', express.static(path.join(__dirname, '/uploads/img')));
 
 app.use(
-    '/adminEbook/details',
-    express.static(path.join(__dirname, '/uploads/eBookUploads'))
+ '/adminEbook/details',
+ express.static(path.join(__dirname, '/uploads/eBookUploads'))
 );
 app.use(
-    '/ebook',
-    express.static(path.join(__dirname, '/uploads/eBookUploads'))
+ '/ebook',
+ express.static(path.join(__dirname, '/uploads/eBookUploads'))
 );
 
 app.use(
-    '/uploads/eShopUploads',
-    express.static(path.join(__dirname, '/uploads/eShopUploads'))
+ '/uploads/eShopUploads',
+ express.static(path.join(__dirname, '/uploads/eShopUploads'))
 );
 
 if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, '/frontend/build')));
+ app.use(express.static(path.join(__dirname, '/frontend/build')));
 
-    app.get('*', (req, res) =>
-        res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
-    );
+ app.get('*', (req, res) =>
+  res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
+ );
 } else {
-    app.get('/', (req, res) => {
-        res.send('API is running....');
-    });
+ app.get('/', (req, res) => {
+  res.send('API is running....');
+ });
 }
 
 app.use(notFound);
@@ -110,8 +108,8 @@ app.use(errorHandler);
 const PORT = process.env.PORT || 6000;
 
 app.listen(
-    PORT,
-    console.log(
-        `Server running in ${process.env.NODE_ENV} mode on port ${PORT}`.yellow.bold
-    )
+ PORT,
+ console.log(
+  `Server running in ${process.env.NODE_ENV} mode on port ${PORT}`.yellow.bold
+ )
 );

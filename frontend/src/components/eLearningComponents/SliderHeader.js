@@ -6,14 +6,14 @@ import SliderHeaderItem from './SliderHeaderItem';
 const SliderHeader = () => {
  return (
   <>
-   <div style={{ paddingTop: '50px', paddingBottom: '180px' }}>
+   <div>
     <Carousel
      additionalTransfrom={0}
      arrows={false}
      autoPlay
      autoPlaySpeed={1000}
      centerMode={false}
-     className="py-2"
+     className="w-100"
      containerClass="container-with-dots"
      dotListClass=""
      draggable
@@ -58,7 +58,7 @@ const SliderHeader = () => {
      <SliderHeaderItem
       description="Appending currency sign to a purchase form in your e-commerce site using plain JavaScript."
       headline="w3js.com - web front-end studio"
-      image="https://images.unsplash.com/photo-1549989476-69a92fa57c36?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
+      image="uploads\eLearningUploads\image-1611910863163.png"
      />
      <SliderHeaderItem
       description="Appending currency sign to a purchase form in your e-commerce site using plain JavaScript."

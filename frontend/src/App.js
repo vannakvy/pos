@@ -40,78 +40,85 @@ const App = () => {
  const dispatch = useDispatch();
  return (
   <Router>
-   <Navbar />
-   <Switch>
-    {/* admin */}
-    <Route path="/teacherCourses" component={AppTeacher} />
-    <Route path="/teacherStudents" component={AppTeacher} />
-    <Route path="/adminUsers" component={AppAdmin} />
-    <Route path="/adminElearn" component={AppAdmin} />
-    <Route path="/adminEbook" component={AppAdmin} />
-    <Route path="/adminEshop" component={AppAdmin} />
-    {/* frontend */}
-    <Route
-     path="/elearning/enroll/:eid/courses/:id"
-     component={MyCoursesDetailScreen}
-    />
-    <Route
-     path="/elearning/courses/:id/videos/:vid"
-     component={CourseVideoScreen}
-    />
-    <Route
-     path="/elearning/courses/:id"
-     component={CourseDetailsScreen}
-     exact
-    />
-    <Route
-     path="/elearning/courses/search/page/:pageNumber"
-     component={CoursesScreen}
-     exact
-    />
-    <Route
-     path="/elearning/courses/page/:pageNumber"
-     component={CoursesScreen}
-    />
-    <Route path="/elearning/courses" component={CoursesScreen} />
-    <Route path="/elearning/mycourses" component={MyCoursesScreen} />
-    <Route path="/elearning" component={DashboardElearn} />
-    {/* ebooks routes */}
-    <Route path="/ebook/:lang" component={EbookCourseScreen} />
-    <Route path="/ebook" component={EbookHomeScreen} />
-    {/* eshop routes  */}
-    <Route path="/eshop/order/:id" component={OrderScreen} />
-    <Route path="/eshop/payment" component={PaymentScreen} />
-    <Route path="/eshop/placeorder" component={PlaceOrderScreen} />
-    <Route path="/eshop/shipping" component={ShippingScreen} />
-    <Route path="/eshop/product/:id" component={ProductScreen} />
-    <Route path="/eshop/cart/:id?" component={CartScreen} />
-    <Route path="/eshop/profile" component={ProfileScreen} />
-    <Route path="/eshop/myorder" component={MyOrderScreen} />
-    <Route path="/eshop/search/:keyword" component={HomeScreen} exact />
-    <Route path="/eshop/page/:pageNumber" component={HomeScreen} exact />
-    <Route path="/eshop" component={HomeScreen} />
-    {/* Covid route  */}
-    <Route path="/covid" component={Covid} />
-    <Route path="/login" component={LoginScreen} />
-    <Route path="/register" component={RegisterScreen} />
-    <Route path="/" exact component={Dashboard} />
-   </Switch>
-   <Footer />
+   <div style={{ background: 'rgb(235,235,235)' }}>
+    <Navbar />
+    <Switch>
+     {/* admin */}
+     <Route path="/teacherCourses" component={AppTeacher} />
+     <Route path="/teacherStudents" component={AppTeacher} />
+     <Route path="/adminUsers" component={AppAdmin} />
+     <Route path="/adminElearn" component={AppAdmin} />
+     <Route path="/adminEbook" component={AppAdmin} />
+     <Route path="/adminEshop" component={AppAdmin} />
+     {/* frontend */}
+     <Route
+      path="/elearning/enroll/:eid/courses/:id"
+      component={MyCoursesDetailScreen}
+     />
+     <Route
+      path="/elearning/courses/:id/videos/:vid"
+      component={CourseVideoScreen}
+     />
+     <Route
+      path="/elearning/courses/:id"
+      component={CourseDetailsScreen}
+      exact
+     />
+     <Route
+      path="/elearning/courses/search/page/:pageNumber"
+      component={CoursesScreen}
+      exact
+     />
+     <Route
+      path="/elearning/courses/page/:pageNumber"
+      component={CoursesScreen}
+     />
+     <Route path="/elearning/courses" component={CoursesScreen} />
+     <Route path="/elearning/mycourses" component={MyCoursesScreen} />
+     <Route path="/elearning" component={DashboardElearn} />
+     {/* ebooks routes */}
+     <Route path="/ebook/:lang" component={EbookCourseScreen} />
+     <Route path="/ebook" component={EbookHomeScreen} />
+     {/* eshop routes  */}
+     <Route path="/eshop/order/:id" component={OrderScreen} />
+     <Route path="/eshop/payment" component={PaymentScreen} />
+     <Route path="/eshop/placeorder" component={PlaceOrderScreen} />
+     <Route path="/eshop/shipping" component={ShippingScreen} />
+     <Route path="/eshop/product/:id" component={ProductScreen} />
+     <Route path="/eshop/cart/:id?" component={CartScreen} />
+     <Route path="/eshop/profile" component={ProfileScreen} />
+     <Route path="/eshop/myorder" component={MyOrderScreen} />
+     <Route path="/eshop/search/:keyword" component={HomeScreen} exact />
+     <Route path="/eshop/page/:pageNumber" component={HomeScreen} exact />
+     <Route path="/eshop" component={HomeScreen} />
+     {/* Covid route  */}
+     <Route path="/covid" component={Covid} />
+     <Route path="/login" component={LoginScreen} />
+     <Route path="/register" component={RegisterScreen} />
+     <Route path="/" exact component={Dashboard} />
+    </Switch>
+    <Footer />
 
-   <NavLink
-    className="navbar_link rounded text-light p-2"
-    onClick={() => dispatch(navbarList('Covid19'))}
-    to="/covid"
-    style={{ position: 'fixed', bottom: '70px', right: '70px', zIndex: '1000' }}
-   >
-    <img
-     className="covid_rotate rounded-circle"
-     width="50px"
-     height="50px"
-     src="https://www.psycharchives.org/retrieve/096175aa-f7f2-4970-989d-d934c30b5551"
-     alt=""
-    />
-   </NavLink>
+    <NavLink
+     className="navbar_link rounded text-light p-2"
+     onClick={() => dispatch(navbarList('Covid19'))}
+     to="/covid"
+     style={{
+      position: 'fixed',
+      bottom: '70px',
+      right: '70px',
+      zIndex: '1000',
+     }}
+    >
+     <img
+      className="covid_rotate rounded-circle"
+      width="50px"
+      height="50px"
+      src="https://www.psycharchives.org/retrieve/096175aa-f7f2-4970-989d-d934c30b5551"
+      alt=""
+     />
+    </NavLink>
+   </div>
   </Router>
  );
 };

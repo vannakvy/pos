@@ -13,12 +13,13 @@ const useStyles = makeStyles({
   maxWidth: 345,
  },
  media: {
-  height: 200,
+  height: 150,
+  borderRadius: '3px 3px 0 0',
  },
 });
 
 const CourseItem = (props) => {
- const { course, courseShow = false } = props;
+ const { course } = props;
  const classes = useStyles();
  const history = useHistory();
  const courseDetailLink = (id) => {
@@ -27,7 +28,10 @@ const CourseItem = (props) => {
   }, 300);
  };
  return (
-  <Card className="mx-md-1 mx-lg-0 mx-xl-2 shadow round my-1 courseItem">
+  <Card
+   className="shadow rounded my-1 courseItem w-100 mx-0"
+   style={{ padding: '2px' }}
+  >
    <CardActionArea onClick={() => courseDetailLink(course._id)}>
     <CardMedia
      className={classes.media}
@@ -38,24 +42,23 @@ const CourseItem = (props) => {
     />
     {/* <Progress /> */}
     <CardContent>
-     <div style={{ height: `${courseShow ? '60px' : '160px'}` }}>
+     <div className="itemHigh">
       <h5>{course.name}</h5>
       <small className="text-info">{course.courseType}</small>
-      {courseShow ? null : <p>{course.description.slice(0, 200) + '...'}</p>}
+      <p>{course.description.slice(0, 100) + '...'}</p>
      </div>
     </CardContent>
    </CardActionArea>
-   {courseShow ? null : (
-    <CardActions className="d-flex justify-content-end">
-     <Button
-      color="secondary"
-      onClick={() => courseDetailLink(course._id)}
-      className="invisible"
-     >
-      <i className="fas fa-play" style={{ fontSize: '130%' }}></i>
-     </Button>
-    </CardActions>
-   )}
+
+   <CardActions className="d-flex justify-content-end">
+    <Button
+     color="secondary"
+     onClick={() => courseDetailLink(course._id)}
+     className="invisible"
+    >
+     <i className="fas fa-play" style={{ fontSize: '130%' }}></i>
+    </Button>
+   </CardActions>
   </Card>
  );
 };

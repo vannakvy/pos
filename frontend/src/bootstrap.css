@@ -49,6 +49,10 @@
   'Liberation Mono', 'Courier New', monospace;
 }
 
+/* #testColor{
+  color: rgba(10, 0, 97, 0.596);
+} */
+
 /* width */
 ::-webkit-scrollbar {
  width: 5px;
@@ -71,6 +75,10 @@
  background: #b30000;
 }
 
+.landingPage {
+ right: 0 !important;
+}
+
 ._text-light {
  color: #fff;
 }
@@ -83,6 +91,10 @@
  background-color: #000000 !important;
 }
 
+.itemHigh {
+ height: 100px;
+}
+
 @media only screen and (min-width: 992px) {
  ._courseDetailHeader {
   height: 40vh;
@@ -91,6 +103,12 @@
 @media only screen and (max-width: 991px) {
  ._courseDetailHeader {
   min-height: 40vh;
+ }
+}
+
+@media only screen and (min-width: 1200px) {
+ .itemHigh {
+  height: 120px;
  }
 }
 
@@ -108,7 +126,7 @@
 }
 
 .test {
- background: rgba(82, 255, 82, 0.932);
+ background: rgb(235, 235, 235);
 }
 .grediant {
  background: linear-gradient(45deg, #1f9bcf 30%, #38d1f3 90%) !important;
@@ -134,7 +152,7 @@
 }
 
 .adminHover:hover {
- background: linear-gradient(45deg, #acd6f8 30%, #a0e9fa 90%) !important;
+ background: linear-gradient(45deg, #acd6f8 30%, #f3fdff 90%) !important;
  box-shadow: 0 3px 5px 2px rgba(153, 231, 255, 0.3);
  cursor: pointer;
 }
@@ -171,6 +189,7 @@
 
 .activeLink {
  background: rgb(25, 39, 68);
+ color: #fff !important;
 }
 
 *,
@@ -180,7 +199,7 @@
 }
 
 .nav-item {
- margin: 0 0.5rem !important;
+ margin: 0;
 }
 
 .ubuntu {
@@ -188,7 +207,7 @@
 }
 
 .round {
- border-radius: 15px !important;
+ border-radius: 8px !important;
 }
 
 html {
@@ -536,7 +555,7 @@ h6,
 .h6 {
  margin-bottom: 0.5rem;
  font-weight: 600;
- line-height: 1.2;
+ line-height: 1.5;
  color: #1a1a1a;
 }
 
@@ -2263,7 +2282,7 @@ pre code {
  display: block;
  width: 100%;
  height: calc(1.5em + 1.5rem);
- padding: 0.75rem 1.5rem;
+ padding: 0.5rem 1rem;
  font-size: 0.875rem;
  font-weight: 400;
  line-height: 1.5;
@@ -2814,7 +2833,7 @@ textarea.form-control.is-invalid {
  user-select: none;
  background-color: transparent;
  border: 0 solid transparent;
- padding: 0.75rem 1.5rem;
+ padding: 0.6rem 1rem;
  font-size: 0.875rem;
  line-height: 1.5rem;
  border-radius: 0;
@@ -2978,8 +2997,8 @@ fieldset:disabled a.btn {
 
 .btn-info {
  color: #fff;
- background-color: #1f9bcf;
- border-color: #1f9bcf;
+ background-color: #26bafa;
+ border-color: #26bafa;
 }
 
 .btn-info:hover {
@@ -4866,8 +4885,8 @@ input[type='button'].btn-block {
   position: absolute;
  }
  .navbar-expand-lg .navbar-nav .nav-link {
-  padding-right: 0.5rem;
-  padding-left: 0.5rem;
+  padding-right: 0.8rem;
+  padding-left: 0.8rem;
  }
  .navbar-expand-lg > .container,
  .navbar-expand-lg > .container-fluid,
@@ -10601,7 +10620,7 @@ a.text-dark:focus {
 }
 
 .nav-item {
- margin-right: 2rem;
+ margin-right: 0.2rem;
 }
 
 .btn {

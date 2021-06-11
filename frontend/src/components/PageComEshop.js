@@ -1,24 +1,35 @@
 import React from 'react';
-import { useHistory } from 'react-router';
+import { BiRightArrowCircle } from 'react-icons/bi';
+import { useDispatch } from 'react-redux';
+import { navbarList } from '../actions/navbarActions';
 import VisibilitySensor from 'react-visibility-sensor';
 
-const LandingPage = () => {
- const history = useHistory();
+const PageComEshop = () => {
+ const dispatch = useDispatch();
+ const gotoEshop = () => {
+  dispatch(navbarList('Eshop'));
+ };
  return (
   <>
    <VisibilitySensor partialVisibility={true}>
     {({ isVisible }) => (
      <div
-      onClick={() => history.push('/register')}
-      className={`row align-items-center bg-light shadow-sm mb-5 adminHover ${
+      onClick={gotoEshop}
+      style={{ position: 'relative', transition: '1s', right: -200 }}
+      className={`row align-items-center bg-light shadow-sm my-5 adminHover ${
        isVisible ? 'landingPage' : ''
       }`}
-      style={{
-       transition: '1s',
-       position: 'relative',
-       right: 200,
-      }}
      >
+      <div className="col-lg-6 col-sm-12 text-center">
+       <img
+        className="my-5"
+        style={{
+         width: '80%',
+        }}
+        src="/uploads\img\arduino-uno.png"
+        alt=""
+       />
+      </div>
       <div
        className="col-lg-6 col-sm-12 p-sm-5 d-flex align-items-center"
        style={{ minHeight: '30vh' }}
@@ -27,7 +38,7 @@ const LandingPage = () => {
         <div className="col-lg-1"></div>
         <div className="col-lg-10">
          <h3 className="kh p-3 p-sm-0">
-          សូមស្វាគមន៍មកាន់គេហទំព័ររៀនពី​បច្ចេកវិទ្យាឌីជីថល
+          និងអាចទិញសម្ភារៈដើម្បីរៀនយ៉ាងងាយស្រួល និងសុវត្ដិភាព
          </h3>
          <p className="lead kh" style={{ fontSize: 16 }}>
           <span className="ml-5"></span>{' '}
@@ -37,26 +48,18 @@ const LandingPage = () => {
           ដែលមានបំណងចង់បន្តការសិក្សាថ្នាក់បរិញ្ញាបត្រជាន់ខ្ពស់អប់រំ
           ឯកទេសប្រឹក្សាគរុកោសល្យ
          </p>
-         <button
-          className="btn btn-danger kh rounded shadow text-dark"
-          onClick={() => history.push('/register')}
-         >
-          ចុះឈ្មោះឥឡូវនេះ
-         </button>
+         <div className="d-flex justify-content-end">
+          <button
+           className="btn btn-info kh rounded shadow text-dark mb-5"
+           onClick={gotoEshop}
+          >
+           ចាប់ផ្ដើម{' '}
+           <BiRightArrowCircle className="mb-1" style={{ fontSize: 18 }} />
+          </button>
+         </div>
         </div>
         <div className="col-lg-1"></div>
        </div>
-      </div>
-      <div className="col-lg-6 col-sm-12 text-center">
-       <img
-        className="my-5"
-        style={{
-         width: '80%',
-         //   height: "50%",
-        }}
-        src="/uploads\img\how-design-thinking-transforming-learning-experience-free-ebook.png"
-        alt=""
-       />
       </div>
      </div>
     )}
@@ -65,4 +68,4 @@ const LandingPage = () => {
  );
 };
 
-export default LandingPage;
+export default PageComEshop;
