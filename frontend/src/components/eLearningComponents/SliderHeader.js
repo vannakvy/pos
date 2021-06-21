@@ -11,7 +11,7 @@ const SliderHeader = () => {
      additionalTransfrom={0}
      arrows={false}
      autoPlay
-     autoPlaySpeed={1000}
+     autoPlaySpeed={6000}
      centerMode={false}
      className="w-100"
      containerClass="container-with-dots"
@@ -24,6 +24,7 @@ const SliderHeader = () => {
      minimumTouchDrag={80}
      renderButtonGroupOutside={false}
      renderDotsOutside={false}
+     transitionDuration={100}
      responsive={{
       desktop: {
        breakpoint: {
@@ -50,7 +51,7 @@ const SliderHeader = () => {
        partialVisibilityGutter: 30,
       },
      }}
-     showDots={false}
+     showDots={true}
      sliderClass=""
      slidesToSlide={1}
      swipeable
