@@ -25,6 +25,7 @@ import userRoutes from './routes/userRoute/userRoutes.js';
 
 import connectDB from './config/db.js';
 import { notFound, errorHandler } from './middleware/errorMiddleware.js';
+import textRoutes from './routes/testRoutes.js';
 
 dotenv.config();
 connectDB();
@@ -59,10 +60,12 @@ app.use('/api/eshop/users', userRoutes);
 app.use('/api/eshop/orders', orderRoutes);
 app.use('/api/eshop/orders', orderRoutes);
 app.use('/api/eshop/inventory', InventoryRoutes);
-
 app.get('/api/eshop/config/paypal', (req, res) =>
  res.send(process.env.PAYPAL_CLIENT_ID)
 );
+
+// test
+app.use('/api/text', textRoutes);
 
 // app.use('/adminEbook/details', express.static('./routes/eBookRoutes/uploads'))
 
@@ -76,6 +79,10 @@ app.use('/uploads/img', express.static(path.join(__dirname, '/uploads/img')));
 
 app.use(
  '/adminEbook/details',
+ express.static(path.join(__dirname, '/uploads/eBookUploads'))
+);
+app.use(
+ '/uploads/eBookUploads',
  express.static(path.join(__dirname, '/uploads/eBookUploads'))
 );
 app.use(
@@ -105,7 +112,7 @@ app.use(errorHandler);
 
 //for ebook uploads
 
-const PORT = process.env.PORT || 6000;
+const PORT = process.env.PORT || 2100;
 
 app.listen(
  PORT,
