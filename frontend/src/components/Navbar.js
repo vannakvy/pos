@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, useHistory } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import './Navbar.css';
 import { navbarList } from '../actions/navbarActions';
 import { logout } from '../actions/userActions/userActions';
@@ -16,7 +16,6 @@ import Menu from './Menu';
 
 const Navbar = () => {
  const dispatch = useDispatch();
- const history = useHistory();
  const navbarL = useSelector((state) => state.navbarList);
  const { loading, error, navbar } = navbarL;
 
@@ -24,15 +23,12 @@ const Navbar = () => {
  const { userInfo } = userLogin;
  useEffect(() => {}, [userLogin]);
 
- const userLogout = () => {
-  dispatch(logout());
-  dispatch(navbarList('Dashboard'));
-  history.push('/');
- };
-
  return (
   <>
-   <nav className="navbar navbar-expand-lg shadow-sm bg-light sticky-top">
+   <nav
+    className="navbar navbar-expand-lg sticky-top bg-light"
+    // style={{ background: 'rgb(235,235,235)' }}
+   >
     <NavLink
      className="navbar-brand mb-1"
      to="/"

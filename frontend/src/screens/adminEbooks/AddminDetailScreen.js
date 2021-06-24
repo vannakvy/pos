@@ -47,9 +47,9 @@ const AddminDetailScreen = () => {
   dispatch(getDetailByContentId(id));
  }, [dispatch, detailDelete, detailCreate, detailUpdate, id]);
  return (
-  <div className="details mt-2">
-   <div className="row">
-    <div className="col-md-7">
+  <div className="details mt-2 w-100">
+   <div className="row w-100">
+    <div className="col-md-6">
      <div className="container">
       <div className="form-group">
        <label htmlFor="title">Title</label>
@@ -99,12 +99,12 @@ const AddminDetailScreen = () => {
       </div>
      </div>
     </div>
-    <div className="col-md-5 p-2">
-     <div className=" container">
-      <h2>{detailBycontents && detailBycontents.title} Content Name</h2>
+    <div className="col-md-6 w-100">
+     <div className>
+      <h2>{detailBycontents && detailBycontents.title}</h2>
      </div>
 
-     <div className="row">
+     <div className="w-100 m-0 p-0">
       {loading ? (
        <Loader hg={60} wd={60} />
       ) : (
@@ -112,11 +112,13 @@ const AddminDetailScreen = () => {
        detailBycontents.details &&
        detailBycontents.details.map((detail) => (
         <div
-         className="col-md-12 shadow-lg p-1 mt-2 bg-light rounded"
+         className="shadow-lg p-1 mt-2 bg-light rounded w-100"
          key={detail._id}
         >
          <h3>{detail.title}</h3>
-         <div className="imgAdmin">{ReactHtmlParser(detail.contents)}</div>
+         <div className="imgAdmin w-100">
+          {ReactHtmlParser(detail.contents)}
+         </div>
          <div className="event">
           <button
            className="btn-sm btn-info m-2"

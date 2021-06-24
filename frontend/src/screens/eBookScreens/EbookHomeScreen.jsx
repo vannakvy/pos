@@ -1,19 +1,32 @@
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { getLanguages } from '../../actions/eBookActions/eBookCourseActions';
-import Sidebar from '../../components/eBookComponents/Sidebar';
 import { FaBook } from 'react-icons/fa';
-import { MdSchool } from 'react-icons/md';
 import { FaArrowAltCircleRight } from 'react-icons/fa';
-import { NavLink } from 'react-router-dom';
 import './HomeScreen.css';
+import axios from 'axios';
+import { GET_ONE_LANGUAGE_SUCCESS } from '../../constants/eBookConstants/eBookCourseConstants';
+import { useHistory } from 'react-router-dom';
 
 const EbookHomeScreen = () => {
  const dispatch = useDispatch();
+ const history = useHistory();
  useEffect(() => {
   // window.scroll(0, 0);
   dispatch(getLanguages());
  }, []);
+
+ const gotoDetails = async (lang) => {
+  const { data } = await axios.get(`/api/ebook/courses/${lang}`);
+  dispatch({
+   type: GET_ONE_LANGUAGE_SUCCESS,
+   payload: data,
+  });
+  if (data && data[0]) {
+   history.push(`/ebook/${lang}/${data[0]._id || 1}`);
+  }
+ };
+
  return (
   <>
    <div className="py-0 py-md-5" style={{ background: 'rgb(25,39,68)' }}>
@@ -138,14 +151,13 @@ const EbookHomeScreen = () => {
        <p className="text-center font-weight-bold">
         The language for building web pages
        </p>
-       <NavLink to="/ebook/HTML">
-        <button
-         className="btn btn-dark kh shadow-sm rounded-pill mb-4"
-         style={{ width: 250 }}
-        >
-         ចាប់ផ្តើមរៀន
-        </button>
-       </NavLink>
+       <button
+        className="btn btn-dark kh shadow-sm rounded-pill mb-4"
+        style={{ width: 250 }}
+        onClick={() => gotoDetails('HTML')}
+       >
+        ចាប់ផ្តើមរៀន
+       </button>
       </div>
      </div>
      <div className="col-md-6">
@@ -162,6 +174,7 @@ const EbookHomeScreen = () => {
        <button
         className="btn btn-dark kh shadow-sm rounded-pill mb-4"
         style={{ width: 250 }}
+        onClick={() => gotoDetails('CSS')}
        >
         ចាប់ផ្តើមរៀន
        </button>
@@ -181,6 +194,7 @@ const EbookHomeScreen = () => {
        <button
         className="btn btn-dark kh shadow-sm rounded-pill mb-4"
         style={{ width: 250 }}
+        onClick={() => gotoDetails('JavaScript')}
        >
         ចាប់ផ្តើមរៀន
        </button>

@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import About from '../components/About';
 import Context from '../components/Context';
-import Gallery from '../components/Gallery';
 import LandingPage from '../components/LandingPage';
 import PageComEbook from '../components/PageComEbook';
 import PageComElearn from '../components/PageComElearn';
@@ -29,9 +28,11 @@ const Dashboard = ({ history }) => {
 
  return (
   <div className="overflow-hidden">
-   <div className="container-md mt-sm-0 mt-md-5">
+   <div
+    className="mt-lg-0 mt-xl-5"
+    style={{ maxWidth: 1400, margin: '0 auto' }}
+   >
     <LandingPage />
-    {/* <Gallery /> */}
     <PageComElearn />
     <PageComEbook />
     <PageComEshop />

@@ -55,6 +55,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
     "react-select": "^4.2.1",
+    "react-slick": "^0.28.1",
     "react-toastify": "^7.0.0",
     "react-visibility-sensor": "^5.1.1",
     "redux": "^4.0.5",
@@ -62,6 +63,7 @@
     "redux-thunk": "^2.3.0",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^2.0.3",
+    "slick-carousel": "^1.8.1",
     "vimeo": "^2.1.1",
     "vimeo-upload": "^0.1.6",
     "web-vitals": "^0.2.4"

@@ -6,6 +6,7 @@ import LandingElearn from '../../components/eLearningComponents/LandingElearn';
 import Slider from '../../components/eLearningComponents/Slider';
 import Loader from '../../components/Loader';
 import Message from '../../components/Message';
+import SlideChangeHooks from '../../components/eLearningComponents/Test';
 
 const DashboardElearn = () => {
  const dispatch = useDispatch();
@@ -24,6 +25,7 @@ const DashboardElearn = () => {
 
  return (
   <div style={{ minHeight: '90vh' }}>
+   <SlideChangeHooks />
    {loadingList ? (
     <div className="py-3">
      <Loader wd={40} hg={40} />
@@ -32,7 +34,7 @@ const DashboardElearn = () => {
     <Message variant="danger">{errorList}</Message>
    ) : (
     <>
-     <LandingElearn />
+     {/* <LandingElearn /> */}
      <div>
       <Slider courseList={coursesList} />
       <CoursesShow courseType={'WebDevelopment'} type={'ផ្នែកសរសេរវែបផ្សាយ'} />
