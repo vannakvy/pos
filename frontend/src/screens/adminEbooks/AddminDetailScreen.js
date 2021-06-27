@@ -149,6 +149,40 @@ const AddminDetailScreen = () => {
      </div>
     </div>
    </div>
+   <div>
+    <div className="fixed-bottom shadow" style={{ marginLeft: '243px' }}>
+     <div
+      className="btn-toolbar border border-secondary bg-light"
+      role="toolbar"
+      aria-label="Toolbar with button groups"
+     >
+      <div className="btn-group mr-2" role="group" aria-label="First group">
+       <button type="button" className="btn btn-secondary ">
+        Button
+       </button>
+      </div>
+      <div className="btn-group mr-2" role="group" aria-label="Second group">
+       <button type="button" className="btn btn-secondary">
+        code
+       </button>
+      </div>
+      <div className="btn-group" role="group" aria-label="Third group">
+       <button type="button" className="btn btn-secondary">
+        Show
+       </button>
+      </div>
+     </div>
+     <div className="position-absolute ml-0">
+      <button>X</button>
+     </div>
+     <textarea
+      className="form-control"
+      aria-label="With textarea"
+      rows="10"
+      placeholder="Text here..."
+     ></textarea>
+    </div>
+   </div>
   </div>
  );
 };
