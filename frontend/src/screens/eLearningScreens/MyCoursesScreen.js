@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserEnrollCourses } from '../../actions/eLearningActions/enrollActions';
 import ConvertNum from '../../components/eLearningComponents/ConvertNum';
-import MyCourseItem from '../../components/eLearningComponents/MyCourseItem';
+import CourseItemOwn from '../../components/eLearningComponents/CourseItemOwn';
 import Loader from '../../components/Loader';
 import Message from '../../components/Message';
 import { IoMdArrowBack } from 'react-icons/io';
@@ -27,8 +27,11 @@ const MyCoursesScreen = () => {
 
  return (
   <>
-   <div className="container" style={{ minHeight: '100vh' }}>
-    <div className="row py-2">
+   <div
+    className=""
+    style={{ minHeight: '100vh', maxWidth: 1300, margin: '0 auto' }}
+   >
+    <div className="row p-2 w-100">
      <div className="col-4">
       <button
        className=" btn btn-dark kh font-weight-bolder p-3 rounded shadow border-none"
@@ -43,7 +46,7 @@ const MyCoursesScreen = () => {
      <h4 className="col-4 text-center kh mt-1">មុខវិទ្យារបស់ខ្ញុំ</h4>
     </div>
     <h5 className="mt-2">
-     <span className="kh">មុខវិទ្យារបស់ខ្ញុំដែលបានចូលរៀន</span>(
+     <span className="kh pl-2 w-100">មុខវិទ្យារបស់ខ្ញុំដែលបានចូលរៀន</span>(
      <span className="text-danger">
       <ConvertNum num={coursesEnroll && coursesEnroll.enrollCourses.length} />
      </span>
@@ -59,16 +62,12 @@ const MyCoursesScreen = () => {
     ) : (
      <>
       {coursesEnroll && coursesEnroll.enrollCourses.length !== 0 ? (
-       <>
-        <div className="row">
-         {coursesEnroll &&
-          coursesEnroll.enrollCourses.map((enroll) => (
-           <div key={enroll._id} className="col-lg-4 col-md-6 col-6">
-            <MyCourseItem enroll={enroll} />
-           </div>
-          ))}
-        </div>
-       </>
+       <div className="d-flex flex-wrap justify-content-around">
+        {coursesEnroll &&
+         coursesEnroll.enrollCourses.map((enroll) => (
+          <CourseItemOwn enroll={enroll} key={enroll._id} />
+         ))}
+       </div>
       ) : (
        <h6 className="mt-3 text-center">No any single course enrolled</h6>
       )}

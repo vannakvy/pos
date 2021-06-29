@@ -45,8 +45,11 @@ const CoursesScreen = ({ match, history }) => {
     backgroundSize: '100%',
    }}
   >
-   <div className="container" style={{ minHeight: '90vh' }}>
-    <div className="row pt-3">
+   <div
+    className=""
+    style={{ minHeight: '90vh', maxWidth: 1300, margin: '0 auto' }}
+   >
+    <div className="row pt-3 px-2 w-100">
      <div className="col-4">
       <button
        className="btn btn-dark kh font-weight-bolder rounded shadow"
@@ -124,12 +127,10 @@ const CoursesScreen = ({ match, history }) => {
      <Message variant="danger">{errorList}</Message>
     ) : courses.length !== 0 ? (
      <>
-      <div className="row">
+      <div className="d-flex flex-wrap justify-content-around">
        {courses &&
         courses.map((course) => (
-         <div key={course._id} className="col-md-4 col-lg-3 col-6 m-0 px-1">
-          <CourseItem course={course} />
-         </div>
+         <CourseItem course={course} key={course._id} />
         ))}
       </div>
       <div className="d-flex justify-content-around">

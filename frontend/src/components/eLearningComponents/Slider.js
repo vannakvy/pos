@@ -36,7 +36,7 @@ const Slider = ({ courseList }) => {
       desktop: {
        breakpoint: {
         max: 3000,
-        min: 1300,
+        min: 1200,
        },
        items: 5,
        partialVisibilityGutter: 40,
@@ -51,7 +51,7 @@ const Slider = ({ courseList }) => {
       },
       tablet: {
        breakpoint: {
-        max: 1300,
+        max: 1200,
         min: 992,
        },
        items: 4,
