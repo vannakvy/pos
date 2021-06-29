@@ -118,7 +118,7 @@ const Navbar = () => {
 
     <div className="collapse navbar-collapse" id="navbarColor02">
      <ul className="navbar-nav ml-auto">
-      {navbar !== 'Dashboard' ? <NavDash /> : null}
+      <NavDash />
       {loading ? (
        <Loader wd={45} hg={45} />
       ) : error ? (
@@ -129,11 +129,7 @@ const Navbar = () => {
        <NavEshop />
       ) : navbar === 'Ebook' ? (
        <NavEbook />
-      ) : navbar === 'Admin' ? (
-       <></>
-      ) : navbar === 'Covid19' ? (
-       <NavCovid />
-      ) : (
+      ) : navbar === 'Admin' ? null : navbar === 'Covid19' ? null : (
        ''
       )}
 

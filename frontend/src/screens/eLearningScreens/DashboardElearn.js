@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { listCourses } from '../../actions/eLearningActions/courseActions';
 import CoursesShow from '../../components/eLearningComponents/CoursesShow';
-import LandingElearn from '../../components/eLearningComponents/LandingElearn';
 import Slider from '../../components/eLearningComponents/Slider';
 import Loader from '../../components/Loader';
 import Message from '../../components/Message';
@@ -24,8 +23,13 @@ const DashboardElearn = () => {
  }, [dispatch]);
 
  return (
-  <div style={{ minHeight: '90vh' }}>
+  <div style={{ minHeight: '90vh', maxWidth: 1400, margin: '0 auto' }}>
    <SlideChangeHooks />
+   <div className="" style={{ background: 'rgb(25,39,68)' }}>
+    <h5 className="text-center kh text-light" style={{ padding: '16px' }}>
+     ផ្នែកបង្រៀនជាវីឌីអូ
+    </h5>
+   </div>
    {loadingList ? (
     <div className="py-3">
      <Loader wd={40} hg={40} />

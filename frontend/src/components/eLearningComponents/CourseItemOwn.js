@@ -1,12 +1,12 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
+import Progress from './Progress';
+import CircularStatic from './CircleProgress';
 
 const useStyles = makeStyles({
  root: {
@@ -17,21 +17,19 @@ const useStyles = makeStyles({
  },
 });
 
-const CourseItem = (props) => {
- const { course } = props;
+const CourseItemOwn = (props) => {
+ const { enroll } = props;
+ console.log(enroll);
+ const course = enroll.courseId;
  const classes = useStyles();
  const history = useHistory();
- const courseDetailLink = (id) => {
-  setTimeout(function () {
-   history.push(`/elearning/courses/${id}`);
-  }, 300);
- };
+
  return (
   <div
    className="shadow mb-3 courseItem bg-light"
-   style={{ padding: '1px', maxWidth: '230px' }}
+   style={{ padding: '1px', minWidth: '200px', maxWidth: '230px' }}
   >
-   <CardActionArea onClick={() => courseDetailLink(course._id)}>
+   <CardActionArea>
     <CardMedia
      className={classes.media}
      component="img"
@@ -39,27 +37,23 @@ const CourseItem = (props) => {
      image={course.imgUrl}
      title=""
     />
-    {/* <Progress /> */}
+
     <CardContent>
      <div style={{ height: '100px' }}>
       <h5>{course.name}</h5>
       <small className="text-info">{course.courseType}</small>
-      <p>{course.description.slice(0, 50) + '...'}</p>
      </div>
     </CardContent>
    </CardActionArea>
 
-   <CardActions className="d-flex justify-content-end">
-    <Button
-     color="secondary"
-     onClick={() => courseDetailLink(course._id)}
-     className="invisible"
-    >
-     <i className="fas fa-play" style={{ fontSize: '130%' }}></i>
-    </Button>
+   <CardActions className="d-flex justify-content-between">
+    <CircularStatic progressBar={enroll.progressBar} />
+    <button type="button" className="btn btn-sm btn-light kh">
+     ចាប់ផ្ដើម
+    </button>
    </CardActions>
   </div>
  );
 };
 
-export default CourseItem;
+export default CourseItemOwn;

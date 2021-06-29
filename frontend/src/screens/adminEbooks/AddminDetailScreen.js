@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import ReactHtmlParser from 'react-html-parser';
 import './DetailScreen.css';
+import Editor from '@monaco-editor/react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import Loader from '../../components/Loader';
@@ -20,6 +21,8 @@ const AddminDetailScreen = () => {
  const [contents, setContents] = useState('');
  const [squery, setSquery] = useState('add');
  const [detailId, setDetailId] = useState('');
+ const [openEditor, setOpenEditor] = useState(false);
+ const [code, setCode] = useState('');
 
  const { detailBycontents, loading } = useSelector(
   (state) => state.detailByContentId
@@ -46,11 +49,14 @@ const AddminDetailScreen = () => {
  useEffect(() => {
   dispatch(getDetailByContentId(id));
  }, [dispatch, detailDelete, detailCreate, detailUpdate, id]);
+
+ const openEditorHandler = () => {
+  setOpenEditor(!openEditor);
+ };
  return (
-  <div className="details mt-2 w-100">
-   <div className="row w-100">
-    <div className="col-md-6">
-     <div className="container">
+  <div className="details mt-2 container">
+   {/* <div className="col-md-6"> */}
+   {/* <div className="container">
       <div className="form-group">
        <label htmlFor="title">Title</label>
        <input
@@ -97,90 +103,98 @@ const AddminDetailScreen = () => {
         </>
        )}
       </div>
-     </div>
+     </div>*/}
+   {/* </div> */}
+   <div className="w-100">
+    <div className>
+     <h2>{detailBycontents && detailBycontents.title}</h2>
     </div>
-    <div className="col-md-6 w-100">
-     <div className>
-      <h2>{detailBycontents && detailBycontents.title}</h2>
-     </div>
 
-     <div className="w-100 m-0 p-0">
-      {loading ? (
-       <Loader hg={60} wd={60} />
-      ) : (
-       detailBycontents &&
-       detailBycontents.details &&
-       detailBycontents.details.map((detail) => (
-        <div
-         className="shadow-lg p-1 mt-2 bg-light rounded w-100"
-         key={detail._id}
-        >
-         <h3>{detail.title}</h3>
-         <div className="imgAdmin w-100">
-          {ReactHtmlParser(detail.contents)}
-         </div>
-         <div className="event">
-          <button
-           className="btn-sm btn-info m-2"
-           onClick={() => {
-            setTitle(detail.title);
-            setContents(detail.contents);
-            setDetailId(detail._id);
-            setSquery('update');
-           }}
-          >
-           Edit
-          </button>
-          <button
-           className="btn-sm btn-danger"
-           onClick={() => {
-            dispatch(deleteDetail(detail._id));
-            setSquery('add');
-            setTitle('');
-            setContents('');
-           }}
-          >
-           Delete
-          </button>
-         </div>
+    <div className="w-100 m-0 p-0">
+     {loading ? (
+      <Loader hg={60} wd={60} />
+     ) : (
+      detailBycontents &&
+      detailBycontents.details &&
+      detailBycontents.details.map((detail) => (
+       <div
+        className="shadow-lg p-1 mt-2 bg-light rounded w-100"
+        key={detail._id}
+       >
+        <h3>{detail.title}</h3>
+        <div className="imgAdmin w-100">{ReactHtmlParser(detail.contents)}</div>
+        <div className="event">
+         <button
+          className="btn-sm btn-info m-2"
+          onClick={() => {
+           setTitle(detail.title);
+           setContents(detail.contents);
+           setDetailId(detail._id);
+           setSquery('update');
+          }}
+         >
+          Edit
+         </button>
+         <button
+          className="btn-sm btn-danger"
+          onClick={() => {
+           dispatch(deleteDetail(detail._id));
+           setSquery('add');
+           setTitle('');
+           setContents('');
+          }}
+         >
+          Delete
+         </button>
         </div>
-       ))
-      )}
-     </div>
+       </div>
+      ))
+     )}
     </div>
    </div>
-   <div>
-    <div className="fixed-bottom shadow" style={{ marginLeft: '243px' }}>
+
+   <div className="w-100">
+    <div
+     className="position-fixed shadow"
+     style={{
+      width: '1110px',
+      margin: '0 auto',
+      transition: '0.2s',
+      bottom: `${openEditor ? '-1px' : '-40vh'}`,
+     }}
+    >
      <div
-      className="btn-toolbar border border-secondary bg-light"
+      className="btn-toolbar border border-secondary bg-light w-100"
       role="toolbar"
       aria-label="Toolbar with button groups"
      >
-      <div className="btn-group mr-2" role="group" aria-label="First group">
+      <div className="btn-group" role="group" aria-label="First group">
        <button type="button" className="btn btn-secondary ">
         Button
        </button>
       </div>
-      <div className="btn-group mr-2" role="group" aria-label="Second group">
+      <div className="btn-group" role="group" aria-label="Second group">
        <button type="button" className="btn btn-secondary">
         code
        </button>
       </div>
       <div className="btn-group" role="group" aria-label="Third group">
-       <button type="button" className="btn btn-secondary">
+       <button
+        type="button"
+        className="btn btn-secondary"
+        onClick={openEditorHandler}
+       >
         Show
        </button>
       </div>
      </div>
-     <div className="position-absolute ml-0">
-      <button>X</button>
-     </div>
-     <textarea
-      className="form-control"
-      aria-label="With textarea"
-      rows="10"
-      placeholder="Text here..."
-     ></textarea>
+     <Editor
+      height="40vh"
+      theme="vs-dark"
+      defaultLanguage="html"
+      value={code}
+      onChange={(e) => setCode(e)}
+     />
     </div>
    </div>
   </div>
