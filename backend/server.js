@@ -70,6 +70,7 @@ app.use('/api/text', textRoutes);
 // app.use('/adminEbook/details', express.static('./routes/eBookRoutes/uploads'))
 
 const __dirname = path.resolve();
+
 app.use(
  '/uploads/eLearningUploads',
  express.static(path.join(__dirname, '/uploads/eLearningUploads'))

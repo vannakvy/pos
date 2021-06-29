@@ -42,9 +42,6 @@ const getOneLanguage = (id) => async (dispatch) => {
    type: GET_ONE_LANGUAGE_SUCCESS,
    payload: data,
   });
-  if (data && data[0]) {
-   dispatch(getDetailByContentId(data[0]._id));
-  }
  } catch (error) {
   dispatch({
    type: GET_ONE_LANGUAGE_FAIL,

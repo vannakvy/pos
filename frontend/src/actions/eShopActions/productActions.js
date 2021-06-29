@@ -106,6 +106,8 @@ export const deleteProduct = (id) => async (dispatch, getState) => {
   }
 };
 
+//creating the product
+
 export const createProduct = (
   salePrice,
   name,
@@ -152,16 +154,24 @@ export const createProduct = (
   }
 };
 
+
+// updating the product
 export const updateProduct = (
   proId,
   name,
-  price,
-  salePrice,
+  salePrice=0,
   image,
   category,
   description
 ) => async (dispatch, getState) => {
   try {
+
+    console.log(proId,
+      name,
+      salePrice,
+      image,
+      category,
+      description)
     dispatch({
       type: PRODUCT_UPDATE_REQUEST,
     });
@@ -179,7 +189,7 @@ export const updateProduct = (
 
     const { data } = await axios.put(
       `/api/eshop/products/${proId}`,
-      { name, price, salePrice, image, category, description },
+      { name, salePrice, image, category, description },
       config
     );
 

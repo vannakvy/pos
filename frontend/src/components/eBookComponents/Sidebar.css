@@ -1,17 +1,21 @@
 .courseList {
-  transition: all 0.7s;
-  font-size: 15px;
+ transition: all 0.7s;
+ font-size: 15px;
 }
 
 .courseList:hover {
-  border-radius: 7px 7px 0 0;
-  margin-top: 6px;
-  cursor: pointer;
-  color: red;
-  font-size: 110%;
-  font-weight: bold;
-  background: -webkit-linear-gradient(to right, #89216b, #da4453) !important;
+ border-radius: 7px 7px 0 0;
+ margin-top: 6px;
+ cursor: pointer;
+ color: red;
+ font-size: 110%;
+ font-weight: bold;
+ background: -webkit-linear-gradient(to right, #89216b, #da4453) !important;
 }
 a {
-  text-decoration: none !important;
+ text-decoration: none !important;
+}
+
+.navSide {
+ left: 0 !important;
 }

@@ -27,7 +27,7 @@ const MyCoursesScreen = () => {
 
  return (
   <>
-   <div className="container">
+   <div className="container" style={{ minHeight: '100vh' }}>
     <div className="row py-2">
      <div className="col-4">
       <button

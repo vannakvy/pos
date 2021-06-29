@@ -64,3 +64,9 @@ main {
   transform: rotate(360deg);
  }
 }
+
+.dotHover:hover {
+ color: rgb(124, 124, 124);
+ background-color: rgb(124, 124, 124);
+ /* border-radius: 50%; */
+}

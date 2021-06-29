@@ -7,13 +7,14 @@ const Slider = ({ courseList }) => {
  return (
   <>
    <div
-    className="container"
     style={{
+     maxWidth: 1400,
      paddingBottom: '30px',
      position: 'relative',
+     margin: '0 auto',
     }}
    >
-    <h4 className="text-center mt-4 kh">គេហទំព័ររៀនជាវីឌីអូ</h4>
+    {/* <h4 className="text-center mt-4 kh">គេហទំព័ររៀនជាវីឌីអូ</h4> */}
     <Carousel
      additionalTransfrom={0}
      arrows
@@ -35,9 +36,9 @@ const Slider = ({ courseList }) => {
       desktop: {
        breakpoint: {
         max: 3000,
-        min: 992,
+        min: 1300,
        },
-       items: 4,
+       items: 5,
        partialVisibilityGutter: 40,
       },
       mobile: {
@@ -50,7 +51,15 @@ const Slider = ({ courseList }) => {
       },
       tablet: {
        breakpoint: {
-        max: 991,
+        max: 1300,
+        min: 992,
+       },
+       items: 4,
+       partialVisibilityGutter: 30,
+      },
+      gg: {
+       breakpoint: {
+        max: 992,
         min: 768,
        },
        items: 3,

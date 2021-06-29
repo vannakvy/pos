@@ -77,7 +77,7 @@ const App = () => {
      <Route path="/elearning/mycourses" component={MyCoursesScreen} />
      <Route path="/elearning" component={DashboardElearn} />
      {/* ebooks routes */}
-     <Route path="/ebook/:lang" component={EbookCourseScreen} />
+     <Route path="/ebook/:lang/:id" component={EbookCourseScreen} />
      <Route path="/ebook" component={EbookHomeScreen} />
      {/* eshop routes  */}
      <Route path="/eshop/order/:id" component={OrderScreen} />
@@ -97,7 +97,7 @@ const App = () => {
      <Route path="/register" component={RegisterScreen} />
      <Route path="/" exact component={Dashboard} />
     </Switch>
-    <Footer />
+    {/* <Footer /> */}
 
     <NavLink
      className="navbar_link rounded text-light p-2"
