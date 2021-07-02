@@ -31,11 +31,12 @@ const PurchaseListScreen = ({ match }) => {
   const { success } = purchaseDelete;
   const purchaseDetail = useSelector((state) => state.purchaseDetail);
   const { purchase: pur } = purchaseDetail;
-  console.log(pur);
+
   // const { purchaseItems } = purchase;
   useEffect(() => {
     dispatch(listPurchases("", pageNumber));
   }, [history, pageNumber, dispatch, purchaseDelete, purchaseDetail]);
+console.log(purchases,"ddd")
   return (
     <div className="stock">
       <div className="card">
@@ -58,14 +59,14 @@ const PurchaseListScreen = ({ match }) => {
             ) : (
               <>
                 {purchases &&
-                  purchases.map((purchase) => (
+                  purchases?.map((purchase) => (
                     <tr key={purchase._id}>
                       <td>{order++}</td>
                       <td>{purchase._id}</td>
                       <td>{purchase.puchaseItems.length}</td>
                       <td>{purchase.totalQty}</td>
                       <td>{purchase.totalAmount}</td>
-                      <td>{purchase.supplier.name}</td>
+                      {/* <td>{purchase?.supplier?.name}</td> */}
                       <td>{purchase.createdAt}</td>
                       <td>{purchase.purchaseAt}</td>
                       <td>
