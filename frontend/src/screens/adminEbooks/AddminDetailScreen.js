@@ -3,10 +3,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import ReactHtmlParser from 'react-html-parser';
 import './DetailScreen.css';
-import Editor from '@monaco-editor/react';
+import CodeEditor from '../../components/eLearningComponents/CodeEditor';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
-import Loader from '../../components/Loader';
 import {
  getDetailByContentId,
  deleteDetail,
@@ -19,14 +18,12 @@ const AddminDetailScreen = () => {
  const { id } = useParams();
  const [title, setTitle] = useState('');
  const [contents, setContents] = useState('');
- const [squery, setSquery] = useState('add');
+ const [squery, setSquery] = useState('');
  const [detailId, setDetailId] = useState('');
  const [openEditor, setOpenEditor] = useState(false);
- const [code, setCode] = useState('');
+ const [code, setCode] = useState({ detail: '', codeShow: '', liveCode: '' });
 
- const { detailBycontents, loading } = useSelector(
-  (state) => state.detailByContentId
- );
+ const { detailBycontents } = useSelector((state) => state.detailByContentId);
  const detailDelete = useSelector((state) => state.detailDelete);
  const detailCreate = useSelector((state) => state.detailCreate);
  const detailUpdate = useSelector((state) => state.detailUpdate);
@@ -37,7 +34,6 @@ const AddminDetailScreen = () => {
    dispatch(updateDetail(title, contents, detailId));
   }
 
-  setTitle('');
   setContents('');
  };
 
@@ -50,11 +46,13 @@ const AddminDetailScreen = () => {
   dispatch(getDetailByContentId(id));
  }, [dispatch, detailDelete, detailCreate, detailUpdate, id]);
 
+ console.log(detailBycontents);
+
  const openEditorHandler = () => {
   setOpenEditor(!openEditor);
  };
  return (
-  <div className="details mt-2 container">
+  <div className="details mt-2" style={{ maxWidth: '1110px' }}>
    {/* <div className="col-md-6"> */}
    {/* <div className="container">
       <div className="form-group">
@@ -105,42 +103,49 @@ const AddminDetailScreen = () => {
       </div>
      </div>*/}
    {/* </div> */}
-   <div className="w-100">
-    <div className>
-     <h2>{detailBycontents && detailBycontents.title}</h2>
-    </div>
-
+   <div
+    className={`w-100 shadow-lg p-1 mt-2 bg-light rounded ${
+     squery === 'update' || squery === 'add' ? 'd-block' : 'd-none'
+    }`}
+    style={{ marginBottom: '48vh' }}
+   >
+    <div className="imgAdmin w-100">{ReactHtmlParser(contents)}</div>
+   </div>
+   <div
+    className={`w-100 ${
+     squery === 'update' || squery === 'add' ? 'd-none' : 'd-block'
+    }`}
+    style={{ marginBottom: '48vh' }}
+   >
     <div className="w-100 m-0 p-0">
-     {loading ? (
-      <Loader hg={60} wd={60} />
-     ) : (
-      detailBycontents &&
+     {detailBycontents &&
       detailBycontents.details &&
       detailBycontents.details.map((detail) => (
        <div
         className="shadow-lg p-1 mt-2 bg-light rounded w-100"
         key={detail._id}
        >
-        <h3>{detail.title}</h3>
         <div className="imgAdmin w-100">{ReactHtmlParser(detail.contents)}</div>
         <div className="event">
          <button
-          className="btn-sm btn-info m-2"
+          className="btn btn-sm btn-info m-2 shadow"
           onClick={() => {
-           setTitle(detail.title);
            setContents(detail.contents);
            setDetailId(detail._id);
            setSquery('update');
+           setOpenEditor(true);
+           window.scroll(0, 0);
           }}
          >
           Edit
          </button>
          <button
-          className="btn-sm btn-danger"
+          className="btn btn-sm btn-danger shadow"
           onClick={() => {
-           dispatch(deleteDetail(detail._id));
-           setSquery('add');
-           setTitle('');
+           if (window.confirm('Delete?')) {
+            dispatch(deleteDetail(detail._id));
+           }
+           setSquery('');
            setContents('');
           }}
          >
@@ -148,54 +153,29 @@ const AddminDetailScreen = () => {
          </button>
         </div>
        </div>
-      ))
-     )}
+      ))}
     </div>
    </div>
 
-   <div className="w-100">
-    <div
-     className="position-fixed shadow"
-     style={{
-      width: '1110px',
-      margin: '0 auto',
-      transition: '0.2s',
-      bottom: `${openEditor ? '-1px' : '-40vh'}`,
-     }}
-    >
-     <div
-      className="btn-toolbar border border-secondary bg-light w-100"
-      role="toolbar"
-      aria-label="Toolbar with button groups"
+   <div
+    className="position-fixed"
+    style={{
+     margin: '0 auto',
+     transition: '0.2s',
+     width: 1110,
+     bottom: `${openEditor ? '-1px' : '-45vh'}`,
+    }}
+   >
+    <div className="btn-group" role="group" aria-label="Third group">
+     <button
+      type="button"
+      className="btn btn-dark rounded-top"
+      onClick={openEditorHandler}
      >
-      <div className="btn-group" role="group" aria-label="First group">
-       <button type="button" className="btn btn-secondary ">
-        Button
-       </button>
-      </div>
-      <div className="btn-group" role="group" aria-label="Second group">
-       <button type="button" className="btn btn-secondary">
-        code
-       </button>
-      </div>
-      <div className="btn-group" role="group" aria-label="Third group">
-       <button
-        type="button"
-        className="btn btn-secondary"
-        onClick={openEditorHandler}
-       >
-        Show
-       </button>
-      </div>
-     </div>
-     <Editor
-      height="40vh"
-      theme="vs-dark"
-      defaultLanguage="html"
-      value={code}
-      onChange={(e) => setCode(e)}
-     />
+      Show
+     </button>
     </div>
+    <CodeEditor contents={contents} setContents={setContents} />
    </div>
   </div>
  );
