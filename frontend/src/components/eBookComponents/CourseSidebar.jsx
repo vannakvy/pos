@@ -35,7 +35,7 @@ const CourseSidebar = ({ courses, lang }) => {
        <NavLink
         to={`/ebook/${lang}/${course._id}`}
         key={course._id}
-        className="py-2 pl-3 adminHover nav-link bg-light"
+        className="py-2 pl-3 nav-link bg-light"
         style={{ margin: '1px' }}
         activeClassName="bg-dark text-light"
        >
@@ -108,7 +108,7 @@ const CourseSidebar = ({ courses, lang }) => {
         <NavLink
          to={`/ebook/${lang}/${course.title}`}
          key={course._id}
-         className="py-2 pl-3 adminHover nav-link bg-light"
+         className="py-2 pl-3 nav-link bg-light"
          style={{ margin: '1px' }}
          activeClassName="bg-dark text-light"
          onClick={() => setNavSide(false)}

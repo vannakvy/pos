@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import ReactHtmlParser from 'react-html-parser';
 import './DetailScreen.css';
-import CodeEditor from '../../components/eLearningComponents/CodeEditor';
+import CodeEditor from '../../components/eBookComponents/CodeEditor';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import {
@@ -12,16 +12,16 @@ import {
  addDetail,
  updateDetail,
 } from '../../actions/eBookActions/eBookDetailActions';
+import Editor from '@monaco-editor/react';
 
 const AddminDetailScreen = () => {
  const dispatch = useDispatch();
  const { id } = useParams();
- const [title, setTitle] = useState('');
  const [contents, setContents] = useState('');
  const [squery, setSquery] = useState('');
  const [detailId, setDetailId] = useState('');
  const [openEditor, setOpenEditor] = useState(false);
- const [code, setCode] = useState({ detail: '', codeShow: '', liveCode: '' });
+ const [code, setCode] = useState({ codeShow: '', codeLive: '' });
 
  const { detailBycontents } = useSelector((state) => state.detailByContentId);
  const detailDelete = useSelector((state) => state.detailDelete);
@@ -29,9 +29,9 @@ const AddminDetailScreen = () => {
  const detailUpdate = useSelector((state) => state.detailUpdate);
  const handleSubmit = () => {
   if (squery === 'add') {
-   dispatch(addDetail(title, contents, id));
+   dispatch(addDetail(contents, id, code.codeLive, code.codeShow));
   } else {
-   dispatch(updateDetail(title, contents, detailId));
+   dispatch(updateDetail(contents, detailId, code.codeLive, code.codeShow));
   }
 
   setContents('');
@@ -45,8 +45,6 @@ const AddminDetailScreen = () => {
  useEffect(() => {
   dispatch(getDetailByContentId(id));
  }, [dispatch, detailDelete, detailCreate, detailUpdate, id]);
-
- console.log(detailBycontents);
 
  const openEditorHandler = () => {
   setOpenEditor(!openEditor);
@@ -109,7 +107,18 @@ const AddminDetailScreen = () => {
     }`}
     style={{ marginBottom: '48vh' }}
    >
-    <div className="imgAdmin w-100">{ReactHtmlParser(contents)}</div>
+    <div className="imgAdmin w-100">
+     {ReactHtmlParser(contents)}
+     <Editor
+      className="round"
+      style={{ backgroud: 'rgb(30, 30, 30)' }}
+      theme="vs-dark"
+      height="150px"
+      defaultLanguage="html"
+      value={code.codeShow}
+      options={{ readOnly: true }}
+     />
+    </div>
    </div>
    <div
     className={`w-100 ${
@@ -125,7 +134,21 @@ const AddminDetailScreen = () => {
         className="shadow-lg p-1 mt-2 bg-light rounded w-100"
         key={detail._id}
        >
-        <div className="imgAdmin w-100">{ReactHtmlParser(detail.contents)}</div>
+        <div className="imgAdmin w-100">
+         {ReactHtmlParser(detail.contents)}
+         <Editor
+          className="round"
+          style={{ backgroud: 'rgb(30, 30, 30)' }}
+          theme="vs-dark"
+          height="150px"
+          defaultLanguage="html"
+          value={detail.codeShow}
+          options={{ readOnly: true }}
+         />
+         <button className="btn kh btn-dark mt-2 rounded px-4">
+          ចាប់ផ្ដើមអនុវត្ដ
+         </button>
+        </div>
         <div className="event">
          <button
           className="btn btn-sm btn-info m-2 shadow"
@@ -175,7 +198,12 @@ const AddminDetailScreen = () => {
       Show
      </button>
     </div>
-    <CodeEditor contents={contents} setContents={setContents} />
+    <CodeEditor
+     contents={contents}
+     setContents={setContents}
+     code={code}
+     setCode={setCode}
+    />
    </div>
   </div>
  );

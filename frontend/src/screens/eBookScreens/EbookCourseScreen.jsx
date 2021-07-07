@@ -7,6 +7,13 @@ import { getOneLanguage } from '../../actions/eBookActions/eBookCourseActions';
 import Loader from '../../components/Loader';
 import { getDetailByContentId } from '../../actions/eBookActions/eBookDetailActions';
 import CourseSidebar from '../../components/eBookComponents/CourseSidebar';
+import Editor from '@monaco-editor/react';
+import { Controlled as ControlledEditor } from 'react-codemirror2';
+import 'codemirror/lib/codemirror.css';
+import 'codemirror/theme/material.css';
+import 'codemirror/mode/xml/xml';
+import 'codemirror/mode/javascript/javascript';
+import 'codemirror/mode/css/css';
 
 const EbookCourseScreen = () => {
  const param = useParams();
@@ -32,11 +39,9 @@ const EbookCourseScreen = () => {
   <div className="ebooCourseScreen">
    <div className="d-flex justify-content-between">
     <div className="d-flex w-100">
-     {/* sidebar  */}
      <div>
       <CourseSidebar courses={course} lang={param.lang} />
      </div>
-     {/* main  */}
      <div className="mx-2 w-100">
       {loading ? (
        <div className="pt-2">
@@ -50,9 +55,19 @@ const EbookCourseScreen = () => {
          className="detail_contents card card-body mb-1 ebooCourseScreen_img p-2"
          key={detail._id}
         >
-         <h5>{detail.title}</h5>
-         <div className="p-2 htmlParser" id="ebookStyle">
+         <div className="p-2" id="ebookStyle">
           {ReactHtmlParser(detail.contents)}
+          <ControlledEditor
+           value={detail.codeShow}
+           className="code-mirror-wrapper"
+           options={{
+            lineWrapping: true,
+            lint: true,
+            mode: 'xml',
+            theme: 'material',
+            // lineNumbers: true,
+           }}
+          />
          </div>
         </div>
        ))
