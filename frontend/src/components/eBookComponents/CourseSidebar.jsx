@@ -106,7 +106,7 @@ const CourseSidebar = ({ courses, lang }) => {
       {courses &&
        courses.map((course) => (
         <NavLink
-         to={`/ebook/${lang}/${course.title}`}
+         to={`/ebook/${lang}/${course._id}`}
          key={course._id}
          className="py-2 pl-3 nav-link bg-light"
          style={{ margin: '1px' }}

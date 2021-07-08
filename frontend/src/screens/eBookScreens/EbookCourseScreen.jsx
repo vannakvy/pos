@@ -8,12 +8,6 @@ import Loader from '../../components/Loader';
 import { getDetailByContentId } from '../../actions/eBookActions/eBookDetailActions';
 import CourseSidebar from '../../components/eBookComponents/CourseSidebar';
 import Editor from '@monaco-editor/react';
-import { Controlled as ControlledEditor } from 'react-codemirror2';
-import 'codemirror/lib/codemirror.css';
-import 'codemirror/theme/material.css';
-import 'codemirror/mode/xml/xml';
-import 'codemirror/mode/javascript/javascript';
-import 'codemirror/mode/css/css';
 
 const EbookCourseScreen = () => {
  const param = useParams();
@@ -34,6 +28,8 @@ const EbookCourseScreen = () => {
  useEffect(() => {
   dispatch(getDetailByContentId(param.id));
  }, [param.id]);
+
+ const gg = () => {};
 
  return (
   <div className="ebooCourseScreen">
@@ -57,17 +53,27 @@ const EbookCourseScreen = () => {
         >
          <div className="p-2" id="ebookStyle">
           {ReactHtmlParser(detail.contents)}
-          <ControlledEditor
+          <Editor
+           height="200px"
+           theme="vs-dark"
+           defaultLanguage="html"
            value={detail.codeShow}
-           className="code-mirror-wrapper"
            options={{
-            lineWrapping: true,
-            lint: true,
-            mode: 'xml',
-            theme: 'material',
-            // lineNumbers: true,
+            colorDecorators: true,
+            readOnly: true,
            }}
           />
+          <div className="mt-2">
+           <button
+            className="btn btn-info kh text-dark rounded"
+            onClick={() => {
+             const win = window.open('/elearning', '_blank');
+             win.focus();
+            }}
+           >
+            ចាប់ផ្ដើមអនុវត្ដ
+           </button>
+          </div>
          </div>
         </div>
        ))

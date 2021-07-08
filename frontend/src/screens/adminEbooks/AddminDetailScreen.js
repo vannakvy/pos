@@ -37,11 +37,6 @@ const AddminDetailScreen = () => {
   setContents('');
  };
 
- const handleCkEditorState = (event, editor) => {
-  const data = editor.getData();
-  setContents(data);
- };
-
  useEffect(() => {
   dispatch(getDetailByContentId(id));
  }, [dispatch, detailDelete, detailCreate, detailUpdate, id]);
@@ -113,11 +108,14 @@ const AddminDetailScreen = () => {
       className="round"
       style={{ backgroud: 'rgb(30, 30, 30)' }}
       theme="vs-dark"
-      height="150px"
+      height="200px"
       defaultLanguage="html"
       value={code.codeShow}
       options={{ readOnly: true }}
      />
+     <button className="btn kh btn-dark mt-2 rounded px-4">
+      ចាប់ផ្ដើមអនុវត្ដ
+     </button>
     </div>
    </div>
    <div
@@ -140,7 +138,7 @@ const AddminDetailScreen = () => {
           className="round"
           style={{ backgroud: 'rgb(30, 30, 30)' }}
           theme="vs-dark"
-          height="150px"
+          height="200px"
           defaultLanguage="html"
           value={detail.codeShow}
           options={{ readOnly: true }}
@@ -151,10 +149,15 @@ const AddminDetailScreen = () => {
         </div>
         <div className="event">
          <button
-          className="btn btn-sm btn-info m-2 shadow"
+          className="btn btn-sm btn-info m-2 shadow rounded"
           onClick={() => {
            setContents(detail.contents);
            setDetailId(detail._id);
+           setCode({
+            ...code,
+            codeShow: detail.codeShow,
+            codeLive: detail.codeLive,
+           });
            setSquery('update');
            setOpenEditor(true);
            window.scroll(0, 0);
@@ -163,7 +166,7 @@ const AddminDetailScreen = () => {
           Edit
          </button>
          <button
-          className="btn btn-sm btn-danger shadow"
+          className="btn btn-sm btn-danger shadow rounded"
           onClick={() => {
            if (window.confirm('Delete?')) {
             dispatch(deleteDetail(detail._id));
@@ -186,7 +189,7 @@ const AddminDetailScreen = () => {
      margin: '0 auto',
      transition: '0.2s',
      width: 1110,
-     bottom: `${openEditor ? '-1px' : '-45vh'}`,
+     bottom: `${openEditor ? '0px' : '-315px'}`,
     }}
    >
     <div className="btn-group" role="group" aria-label="Third group">
@@ -203,6 +206,8 @@ const AddminDetailScreen = () => {
      setContents={setContents}
      code={code}
      setCode={setCode}
+     setSquery={setSquery}
+     setOpenEditor={setOpenEditor}
     />
    </div>
   </div>

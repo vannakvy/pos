@@ -1,26 +1,26 @@
-import React, { useState } from 'react';
-import { makeStyles, withStyles, useTheme } from '@material-ui/core/styles';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { makeStyles } from '@material-ui/core/styles';
+import Editor from '@monaco-editor/react';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
-import SwipeableViews from 'react-swipeable-views';
 import Box from '@material-ui/core/Box';
-import Editor from '@monaco-editor/react';
+import Paper from '@material-ui/core/Paper';
 
 function TabPanel(props) {
  const { children, value, index, ...other } = props;
 
  return (
   <div
-   className="shadow"
    role="tabpanel"
    hidden={value !== index}
-   id={`full-width-tabpanel-${index}`}
-   aria-labelledby={`full-width-tab-${index}`}
+   id={`simple-tabpanel-${index}`}
+   aria-labelledby={`simple-tab-${index}`}
    {...other}
   >
    {value === index && (
-    <Box p={3} style={{ height: '40vh' }}>
+    <Box className="p-2" style={{ background: 'rgb(30, 30, 30)' }}>
      <Typography>{children}</Typography>
     </Box>
    )}
@@ -28,125 +28,100 @@ function TabPanel(props) {
  );
 }
 
-const StyledTabs = withStyles({
- indicator: {
-  display: 'flex',
-  justifyContent: 'center',
-  backgroundColor: 'transparent',
-  '& > span': {
-   maxWidth: 40,
-   width: '100%',
-   backgroundColor: '#635ee7',
-  },
- },
-})((props) => <Tabs {...props} TabIndicatorProps={{ children: <span /> }} />);
+TabPanel.propTypes = {
+ children: PropTypes.node,
+ index: PropTypes.any.isRequired,
+ value: PropTypes.any.isRequired,
+};
 
-const StyledTab = withStyles((theme) => ({
- root: {
-  textTransform: 'none',
-  color: '#fff',
-  fontWeight: theme.typography.fontWeightRegular,
-  fontSize: theme.typography.pxToRem(15),
-  marginRight: theme.spacing(1),
-  '&:focus': {
-   opacity: 1,
-  },
- },
-}))((props) => <Tab disableRipple {...props} />);
+function a11yProps(index) {
+ return {
+  id: `simple-tab-${index}`,
+  'aria-controls': `simple-tabpanel-${index}`,
+ };
+}
 
 const useStyles = makeStyles((theme) => ({
  root: {
   flexGrow: 1,
- },
- padding: {
-  padding: theme.spacing(3),
- },
- demo1: {
-  backgroundColor: theme.palette.background.paper,
- },
- demo2: {
-  backgroundColor: 'rgb(30,30,30)',
+  backgroundColor: 'rgb(30, 30, 30)',
  },
 }));
 
-export default function CustomizedTabs(props) {
- const { contents, setContents } = props;
+export default function SimpleTabs(props) {
  const classes = useStyles();
- const theme = useTheme();
  const [value, setValue] = React.useState(0);
- const [code, setCode] = useState('');
+ const { contents, setContents, code, setCode, setSquery, setOpenEditor } =
+  props;
 
  const handleChange = (event, newValue) => {
   setValue(newValue);
  };
 
- const handleChangeIndex = (index) => {
-  setValue(index);
- };
  return (
   <div className={classes.root}>
-   <div className={classes.demo2}>
-    <StyledTabs
-     className="kh"
+   <Paper square>
+    <Tabs
      value={value}
      onChange={handleChange}
-     aria-label="styled tabs example"
-     centered
+     aria-label="simple tabs example"
+     className="en"
     >
-     <StyledTab className="kh" label="ព័ត៌មានលំអិត" />
-     <StyledTab className="kh" label="កូដដែលបង្ហាញចេញ" />
-     <StyledTab className="kh" label="ប៊ូតុងសម្រាប់តែសកូដ" />
-    </StyledTabs>
-    <SwipeableViews
-     axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-     index={value}
-     onChangeIndex={handleChangeIndex}
+     <Tab label="Contents" {...a11yProps(0)} />
+     <Tab label="Code Show" {...a11yProps(1)} />
+     <Tab label="Code Live" {...a11yProps(2)} />
+    </Tabs>
+   </Paper>
+   <TabPanel value={value} index={0}>
+    <Editor
+     className="round"
+     theme="vs-dark"
+     height="250px"
+     defaultLanguage="html"
+     value={contents}
+     onChange={(e) => setContents(e)}
+    />
+   </TabPanel>
+   <TabPanel value={value} index={1}>
+    <Editor
+     className="round"
+     theme="vs-dark"
+     height="250px"
+     defaultLanguage="html"
+     value={code.codeShow}
+     onChange={(e) => setCode({ ...code, codeShow: e })}
+    />
+   </TabPanel>
+   <TabPanel value={value} index={2}>
+    <Editor
+     className="round"
+     theme="vs-dark"
+     height="250px"
+     defaultLanguage="html"
+     value={code.codeShow}
+     onChange={(e) => setCode({ ...code, codeShow: e })}
+    />
+   </TabPanel>
+   <div>
+    <button
+     className="btn btn-secondary shadow rounded m-1"
+     style={{ width: '130px' }}
     >
-     <TabPanel value={value} index={0} dir={theme.direction}>
-      <Editor
-       height="30vh"
-       theme="vs-dark"
-       defaultLanguage="html"
-       value={contents}
-       onChange={(e) => setContents(e)}
-      />
-     </TabPanel>
-     <TabPanel value={value} index={1} dir={theme.direction}>
-      <Editor
-       height="30vh"
-       theme="vs-dark"
-       defaultLanguage="html"
-       value={code}
-       onChange={(e) => setCode(e)}
-      />
-     </TabPanel>
-     <TabPanel value={value} index={2} dir={theme.direction}>
-      <Editor
-       height="30vh"
-       theme="vs-dark"
-       defaultLanguage="html"
-       value={code}
-       onChange={(e) => setCode(e)}
-      />
-     </TabPanel>
-    </SwipeableViews>
-    <div className="mx-2 pb-2">
-     <button type="button" className="btn btn-success px-4 rounded kh mr-2">
-      រក្សាទុក្ខ
-     </button>
-     <button type="button" className="btn btn-danger px-4 rounded kh mr-2">
-      លុប
-     </button>
-     <button
-      type="button"
-      className="btn btn-secondary px-4 rounded kh mr-2"
-      // onClick={() => {
-      //  set;
-      // }}
-     >
-      បោះបង់
-     </button>
-    </div>
+     save
+    </button>
+
+    <button
+     className="btn btn-dark shadow rounded m-1"
+     style={{ width: '130px' }}
+     onClick={() => {
+      setCode({ codeShow: '', codeLive: '' });
+      setContents('');
+      setSquery('');
+      setOpenEditor(false);
+     }}
+    >
+     cancel
+    </button>
    </div>
   </div>
  );
