@@ -39,7 +39,7 @@ const getDetails = (id, lang) => async (dispatch) => {
 
 const getDetailByContentId = (id) => async (dispatch) => {
  try {
-  dispatch({ type: GET_DETAIL_BY_CONTENT_ID_REQUEST });
+  // dispatch({ type: GET_DETAIL_BY_CONTENT_ID_REQUEST });
   const { data } = await axios.get(`/api/ebook/details/content/${id}`);
   dispatch({
    type: GET_DETAIL_BY_CONTENT_ID_SUCCESS,
@@ -50,11 +50,12 @@ const getDetailByContentId = (id) => async (dispatch) => {
  }
 };
 
-const addDetail = (title, contents, id) => async (dispatch) => {
+const addDetail = (contents, id, codeLive, codeShow) => async (dispatch) => {
  try {
   dispatch({ type: CREATE_DETAIL_REQUEST });
   const { data } = await axios.post(`/api/ebook/details`, {
-   title,
+   codeShow,
+   codeLive,
    contents,
    id,
   });
@@ -103,14 +104,15 @@ const getOneDetail = (id) => async (dispatch) => {
  }
 };
 
-const updateDetail = (title, contents, id) => async (dispatch) => {
+const updateDetail = (contents, id, codeLive, codeShow) => async (dispatch) => {
  try {
   dispatch({
    type: UPDATE_DETAIL_REQUEST,
   });
   const { data } = await axios.put(`/api/ebook/details/${id}`, {
-   title,
+   codeShow,
    contents,
+   codeLive,
   });
 
   dispatch({

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import './Sidebar.css';
-import Loader from '../Loader';
 import { IoBackspace } from 'react-icons/io5';
 import { AiOutlineCaretRight } from 'react-icons/ai';
 import { AiOutlineCaretLeft } from 'react-icons/ai';
@@ -34,9 +33,9 @@ const CourseSidebar = ({ courses, lang }) => {
      {courses &&
       courses.map((course) => (
        <NavLink
-        to={`/ebook/${lang}/${course.title}`}
+        to={`/ebook/${lang}/${course._id}`}
         key={course._id}
-        className="py-2 pl-3 adminHover nav-link bg-light"
+        className="py-2 pl-3 nav-link bg-light"
         style={{ margin: '1px' }}
         activeClassName="bg-dark text-light"
        >
@@ -107,9 +106,9 @@ const CourseSidebar = ({ courses, lang }) => {
       {courses &&
        courses.map((course) => (
         <NavLink
-         to={`/ebook/${lang}/${course.title}`}
+         to={`/ebook/${lang}/${course._id}`}
          key={course._id}
-         className="py-2 pl-3 adminHover nav-link bg-light"
+         className="py-2 pl-3 nav-link bg-light"
          style={{ margin: '1px' }}
          activeClassName="bg-dark text-light"
          onClick={() => setNavSide(false)}

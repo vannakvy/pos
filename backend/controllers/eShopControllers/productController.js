@@ -77,20 +77,31 @@ const createProduct = asyncHandler(async (req, res) => {
 // @route   PUT /api/products/:id
 // @access  Private/Admin
 const updateProduct = asyncHandler(async (req, res) => {
-  const { name, salePrice, description, image, category } = req.body;
-  const product = await Product.findById(req.params.id);
-  if (product) {
-    product.name = name;
-    product.salePrice = salePrice;
-    product.description = description;
-    product.image = image;
-    product.category = category;
-    const updatedProduct = await product.save();
-    res.json(updatedProduct);
-  } else {
-    res.status(404);
-    throw new Error("Product not found");
+  try {
+
+    const { name, salePrice, description, image, category } = req.body;
+    console.log(name)
+      const product = await Product.findById(req.params.id);
+      if (product) {
+        product.name = name;
+        product.salePrice = salePrice;
+        product.description = description;
+        product.image = image;
+        product.category = category;
+      
+        await product.save();
+        res.json({
+          success:true 
+        });
+      } else {
+        res.status(404);
+        throw new Error("Product not found");
+      }
+    
+  } catch (error) {
+    throw new Error("Product cannot updated");
   }
+ 
 });
 
 // @desc    Create new review

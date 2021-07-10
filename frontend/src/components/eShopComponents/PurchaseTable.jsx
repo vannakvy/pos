@@ -37,12 +37,12 @@ const PurchaseTable = ({
                 <tr key={purchase._id}>
                   <td>{order++}</td>
                   <td>{purchase.createdAt}</td>
-                  <td>{purchase.product.name}</td>
+                  <td>{purchase?.product?.name}</td>
                   <td>{purchase.qty}</td>
                   <td>{purchase.price}</td>
                   <td>{purchase.unit}</td>
                   <td>{purchase.shippingCost}</td>
-                  <td>{purchase.supplier.name}</td>
+                  <td>{purchase?.supplier?.name}</td>
                   <td>
                     <i
                       className="fas fa-edit ml-2 text-info"

@@ -14,7 +14,7 @@ const Stock = ({ history, match }) => {
   const { loading, error, products, page, pages } = useSelector(
     (state) => state.productList
   );
-  console.log(products);
+console.log(products)
   let order = 1;
   useEffect(() => {
     dispatch(listProducts("", pageNumber));
@@ -30,7 +30,7 @@ const Stock = ({ history, match }) => {
               <th>PURCHASE</th>
               <th> SALE PRICE</th>
               <th>STOCK</th>
-              <th>AMOUNT</th>
+             <th>AMOUNT</th>
               <th>DETAIL</th>
             </tr>
           </thead>
@@ -40,17 +40,17 @@ const Stock = ({ history, match }) => {
             ) : (
               <>
                 {products &&
-                  products.map((product) => (
+                  products?.map((product) => (
                     <tr key={product._id}>
                       <td>{order++}</td>
                       <td>{product.name}</td>
                       <td>purchase $</td>
-                      <td>{product.salePrice[0].price}</td>
-                      <td>{product.countInStock.balanceQty}</td>
-                      <td>{product.countInStock.balanceAmount}</td>
-
-                      <td className="fas fa-edit text-info">
-                        <Link to="/adminEshop/stockDetail/123">Home</Link>
+                      <td>{product?.salePrice}</td>
+                      <td>{product.endStock}</td>
+                      <td>{product.endStock * product.salePrice}</td>
+                    
+                      <td >
+                        <Link to="/adminEshop/stockDetail/123"><i className="fas fa-edit text-info"></i></Link>
                       </td>
                     </tr>
                   ))}

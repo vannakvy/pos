@@ -19,7 +19,7 @@ const Progress = () => {
  return (
   <div className={classes.root}>
    <LinearProgress
-    style={{ height: '5px' }}
+    style={{ height: '3px' }}
     color="secondary"
     variant="determinate"
     value={progress}

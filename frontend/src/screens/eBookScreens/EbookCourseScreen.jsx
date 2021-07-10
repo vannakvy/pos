@@ -7,6 +7,7 @@ import { getOneLanguage } from '../../actions/eBookActions/eBookCourseActions';
 import Loader from '../../components/Loader';
 import { getDetailByContentId } from '../../actions/eBookActions/eBookDetailActions';
 import CourseSidebar from '../../components/eBookComponents/CourseSidebar';
+import Editor from '@monaco-editor/react';
 
 const EbookCourseScreen = () => {
  const param = useParams();
@@ -28,15 +29,15 @@ const EbookCourseScreen = () => {
   dispatch(getDetailByContentId(param.id));
  }, [param.id]);
 
+ const gg = () => {};
+
  return (
   <div className="ebooCourseScreen">
    <div className="d-flex justify-content-between">
     <div className="d-flex w-100">
-     {/* sidebar  */}
      <div>
       <CourseSidebar courses={course} lang={param.lang} />
      </div>
-     {/* main  */}
      <div className="mx-2 w-100">
       {loading ? (
        <div className="pt-2">
@@ -50,9 +51,29 @@ const EbookCourseScreen = () => {
          className="detail_contents card card-body mb-1 ebooCourseScreen_img p-2"
          key={detail._id}
         >
-         <h5>{detail.title}</h5>
-         <div className="p-2 htmlParser" id="ebookStyle">
+         <div className="p-2" id="ebookStyle">
           {ReactHtmlParser(detail.contents)}
+          <Editor
+           height="200px"
+           theme="vs-dark"
+           defaultLanguage="html"
+           value={detail.codeShow}
+           options={{
+            colorDecorators: true,
+            readOnly: true,
+           }}
+          />
+          <div className="mt-2">
+           <button
+            className="btn btn-info kh text-dark rounded"
+            onClick={() => {
+             const win = window.open('/elearning', '_blank');
+             win.focus();
+            }}
+           >
+            ចាប់ផ្ដើមអនុវត្ដ
+           </button>
+          </div>
          </div>
         </div>
        ))

@@ -26,7 +26,7 @@ const AddProductScreen = ({ history, match }) => {
 
   const clearInput = () => {
     setName("");
-    setSalePrice("");
+    setSalePrice(0);
     setImage("");
     setCategory("");
     setDescription("");
@@ -239,7 +239,12 @@ const AddProductScreen = ({ history, match }) => {
                         ></i>
                         <i
                           className="fas fa-trash ml-3 text-danger"
-                          onClick={() => dispatch(deleteProduct(product._id))}
+                          onClick={() => {
+                           let yes = window.confirm("are you sure")
+                           if(yes){
+                           dispatch(deleteProduct(product._id))
+                           }
+                          }  }
                         ></i>
                       </td>
                     </tr>

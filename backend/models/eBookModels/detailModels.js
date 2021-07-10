@@ -2,8 +2,12 @@ import mongoose from 'mongoose';
 
 const detailSchem = mongoose.Schema(
  {
-  title: String,
+  codeShow: String,
   contents: String,
+  codeLive: {
+   type: mongoose.Schema.Types.ObjectId,
+   ref: 'LiveCode',
+  },
  },
  {
   timestamps: true,

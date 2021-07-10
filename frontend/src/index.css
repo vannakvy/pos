@@ -70,3 +70,7 @@ main {
  background-color: rgb(124, 124, 124);
  /* border-radius: 50%; */
 }
+
+.editor {
+ background: rgb(30, 30, 30);
+}

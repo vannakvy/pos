@@ -3,54 +3,51 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import ReactHtmlParser from 'react-html-parser';
 import './DetailScreen.css';
+import CodeEditor from '../../components/eBookComponents/CodeEditor';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
-import Loader from '../../components/Loader';
 import {
  getDetailByContentId,
  deleteDetail,
  addDetail,
  updateDetail,
 } from '../../actions/eBookActions/eBookDetailActions';
+import Editor from '@monaco-editor/react';
 
 const AddminDetailScreen = () => {
  const dispatch = useDispatch();
  const { id } = useParams();
- const [title, setTitle] = useState('');
  const [contents, setContents] = useState('');
- const [squery, setSquery] = useState('add');
+ const [squery, setSquery] = useState('');
  const [detailId, setDetailId] = useState('');
+ const [openEditor, setOpenEditor] = useState(false);
+ const [code, setCode] = useState({ codeShow: '', codeLive: '' });
 
- const { detailBycontents, loading } = useSelector(
-  (state) => state.detailByContentId
- );
+ const { detailBycontents } = useSelector((state) => state.detailByContentId);
  const detailDelete = useSelector((state) => state.detailDelete);
  const detailCreate = useSelector((state) => state.detailCreate);
  const detailUpdate = useSelector((state) => state.detailUpdate);
  const handleSubmit = () => {
   if (squery === 'add') {
-   dispatch(addDetail(title, contents, id));
+   dispatch(addDetail(contents, id, code.codeLive, code.codeShow));
   } else {
-   dispatch(updateDetail(title, contents, detailId));
+   dispatch(updateDetail(contents, detailId, code.codeLive, code.codeShow));
   }
 
-  setTitle('');
   setContents('');
- };
-
- const handleCkEditorState = (event, editor) => {
-  const data = editor.getData();
-  setContents(data);
  };
 
  useEffect(() => {
   dispatch(getDetailByContentId(id));
  }, [dispatch, detailDelete, detailCreate, detailUpdate, id]);
+
+ const openEditorHandler = () => {
+  setOpenEditor(!openEditor);
+ };
  return (
-  <div className="details mt-2 w-100">
-   <div className="row w-100">
-    <div className="col-md-6">
-     <div className="container">
+  <div className="details mt-2" style={{ maxWidth: '1110px' }}>
+   {/* <div className="col-md-6"> */}
+   {/* <div className="container">
       <div className="form-group">
        <label htmlFor="title">Title</label>
        <input
@@ -97,91 +94,121 @@ const AddminDetailScreen = () => {
         </>
        )}
       </div>
-     </div>
-    </div>
-    <div className="col-md-6 w-100">
-     <div className>
-      <h2>{detailBycontents && detailBycontents.title}</h2>
-     </div>
-
-     <div className="w-100 m-0 p-0">
-      {loading ? (
-       <Loader hg={60} wd={60} />
-      ) : (
-       detailBycontents &&
-       detailBycontents.details &&
-       detailBycontents.details.map((detail) => (
-        <div
-         className="shadow-lg p-1 mt-2 bg-light rounded w-100"
-         key={detail._id}
-        >
-         <h3>{detail.title}</h3>
-         <div className="imgAdmin w-100">
-          {ReactHtmlParser(detail.contents)}
-         </div>
-         <div className="event">
-          <button
-           className="btn-sm btn-info m-2"
-           onClick={() => {
-            setTitle(detail.title);
-            setContents(detail.contents);
-            setDetailId(detail._id);
-            setSquery('update');
-           }}
-          >
-           Edit
-          </button>
-          <button
-           className="btn-sm btn-danger"
-           onClick={() => {
-            dispatch(deleteDetail(detail._id));
-            setSquery('add');
-            setTitle('');
-            setContents('');
-           }}
-          >
-           Delete
-          </button>
-         </div>
-        </div>
-       ))
-      )}
-     </div>
+     </div>*/}
+   {/* </div> */}
+   <div
+    className={`w-100 shadow-lg p-1 mt-2 bg-light rounded ${
+     squery === 'update' || squery === 'add' ? 'd-block' : 'd-none'
+    }`}
+    style={{ marginBottom: '48vh' }}
+   >
+    <div className="imgAdmin w-100">
+     {ReactHtmlParser(contents)}
+     <Editor
+      className="round"
+      style={{ backgroud: 'rgb(30, 30, 30)' }}
+      theme="vs-dark"
+      height="200px"
+      defaultLanguage="html"
+      value={code.codeShow}
+      options={{ readOnly: true }}
+     />
+     <button className="btn kh btn-dark mt-2 rounded px-4">
+      ចាប់ផ្ដើមអនុវត្ដ
+     </button>
     </div>
    </div>
-   <div>
-    <div className="fixed-bottom shadow" style={{ marginLeft: '243px' }}>
-     <div
-      className="btn-toolbar border border-secondary bg-light"
-      role="toolbar"
-      aria-label="Toolbar with button groups"
-     >
-      <div className="btn-group mr-2" role="group" aria-label="First group">
-       <button type="button" className="btn btn-secondary ">
-        Button
-       </button>
-      </div>
-      <div className="btn-group mr-2" role="group" aria-label="Second group">
-       <button type="button" className="btn btn-secondary">
-        code
-       </button>
-      </div>
-      <div className="btn-group" role="group" aria-label="Third group">
-       <button type="button" className="btn btn-secondary">
-        Show
-       </button>
-      </div>
-     </div>
-     <div className="position-absolute ml-0">
-      <button>X</button>
-     </div>
-     <textarea
-      className="form-control"
-      aria-label="With textarea"
-      rows="10"
-      placeholder="Text here..."
-     ></textarea>
+   <div
+    className={`w-100 ${
+     squery === 'update' || squery === 'add' ? 'd-none' : 'd-block'
+    }`}
+    style={{ marginBottom: '48vh' }}
+   >
+    <div className="w-100 m-0 p-0">
+     {detailBycontents &&
+      detailBycontents.details &&
+      detailBycontents.details.map((detail) => (
+       <div
+        className="shadow-lg p-1 mt-2 bg-light rounded w-100"
+        key={detail._id}
+       >
+        <div className="imgAdmin w-100">
+         {ReactHtmlParser(detail.contents)}
+         <Editor
+          className="round"
+          style={{ backgroud: 'rgb(30, 30, 30)' }}
+          theme="vs-dark"
+          height="200px"
+          defaultLanguage="html"
+          value={detail.codeShow}
+          options={{ readOnly: true }}
+         />
+         <button className="btn kh btn-dark mt-2 rounded px-4">
+          ចាប់ផ្ដើមអនុវត្ដ
+         </button>
+        </div>
+        <div className="event">
+         <button
+          className="btn btn-sm btn-info m-2 shadow rounded"
+          onClick={() => {
+           setContents(detail.contents);
+           setDetailId(detail._id);
+           setCode({
+            ...code,
+            codeShow: detail.codeShow,
+            codeLive: detail.codeLive,
+           });
+           setSquery('update');
+           setOpenEditor(true);
+           window.scroll(0, 0);
+          }}
+         >
+          Edit
+         </button>
+         <button
+          className="btn btn-sm btn-danger shadow rounded"
+          onClick={() => {
+           if (window.confirm('Delete?')) {
+            dispatch(deleteDetail(detail._id));
+           }
+           setSquery('');
+           setContents('');
+          }}
+         >
+          Delete
+         </button>
+        </div>
+       </div>
+      ))}
     </div>
+   </div>
+
+   <div
+    className="position-fixed"
+    style={{
+     margin: '0 auto',
+     transition: '0.2s',
+     width: 1110,
+     bottom: `${openEditor ? '0px' : '-315px'}`,
+    }}
+   >
+    <div className="btn-group" role="group" aria-label="Third group">
+     <button
+      type="button"
+      className="btn btn-dark rounded-top"
+      onClick={openEditorHandler}
+     >
+      Show
+     </button>
+    </div>
+    <CodeEditor
+     contents={contents}
+     setContents={setContents}
+     code={code}
+     setCode={setCode}
+     setSquery={setSquery}
+     setOpenEditor={setOpenEditor}
+    />
    </div>
   </div>
  );

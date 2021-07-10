@@ -1,4 +1,5 @@
 import asyncHandler from 'express-async-handler';
+import LiveCode from '../../models/eBookModels/codeLive.js';
 import eBookContent from '../../models/eBookModels/contentModel.js';
 import eBookDetail from '../../models/eBookModels/detailModels.js';
 
@@ -7,7 +8,7 @@ import eBookDetail from '../../models/eBookModels/detailModels.js';
 //@access public
 
 const getDetail = asyncHandler(async (req, res) => {
- const details = await eBookDetail.find();
+ const details = await eBookDetail.find({}).populate('details.codeLive');
  if (details) {
   res.json(details);
  } else {
@@ -36,13 +37,24 @@ const getOneDetail = asyncHandler(async (req, res) => {
 //@access private
 
 const addDetail = asyncHandler(async (req, res) => {
- const { title, contents, id } = req.body;
+ const { contents, id, codeLive, codeShow } = req.body;
  const content = await eBookContent.findById(id);
  if (content) {
-  const detail = new eBookDetail({
-   title: title,
-   contents: contents,
-  });
+  const detail = new eBookDetail();
+
+  detail.contents = contents || '';
+  detail.codeShow = codeShow || '';
+
+  if (codeLive) {
+   const liveCode = new LiveCode({
+    content: codeLive || '',
+   });
+   const createLiveCode = await liveCode.save();
+   if (createLiveCode) {
+    detail.codeLive = createLiveCode._id;
+   }
+  }
+
   let createdDetail = await detail.save();
   let detailId = createdDetail._id;
   content.details.push(detailId);
@@ -61,6 +73,8 @@ const addDetail = asyncHandler(async (req, res) => {
 const deleteDetail = asyncHandler(async (req, res) => {
  const detail = await eBookDetail.findById(req.params.id);
  if (detail) {
+  const lCode = await LiveCode.findById(detail.codeLive);
+  await lCode.remove();
   await detail.remove();
   res.json({
    message: 'Detail deleted',
@@ -76,12 +90,16 @@ const deleteDetail = asyncHandler(async (req, res) => {
 //@access public
 
 const updateDetail = asyncHandler(async (req, res) => {
- const { title, contents } = req.body;
+ const { codeShow, codeLive, contents } = req.body;
 
  const detail = await eBookDetail.findById(req.params.id);
  if (detail) {
-  detail.title = title;
+  detail.codeShow = codeShow;
   detail.contents = contents;
+
+  const editCodeLive = await LiveCode.findById(detail.codeLive);
+  editCodeLive.content = codeLive;
+  await editCodeLive.save();
 
   const updatedDetail = await detail.save();
   res.json(updatedDetail);

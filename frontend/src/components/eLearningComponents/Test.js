@@ -17,7 +17,7 @@ export default class SlideChangeHooks extends Component {
    slidesToScroll: 1,
    autoplay: true,
    speed: 100,
-   autoplaySpeed: 5000,
+   autoplaySpeed: 10000,
    nextArrow: <GrFormNext />,
    prevArrow: <GrFormPrevious />,
    beforeChange: (current, next) => this.setState({ activeSlide: next }),
@@ -52,7 +52,7 @@ export default class SlideChangeHooks extends Component {
   };
   return (
    <div
-    className="px-0 overflow-hidden"
+    className="px-0 overflow-hidden my-0 py-0"
     style={{ maxWidth: 1400, margin: '0 auto' }}
    >
     <Slider {...settings}>
@@ -64,14 +64,14 @@ export default class SlideChangeHooks extends Component {
         position: 'relative',
         right: `${this.state.activeSlide === 0 ? '10px' : 0}`,
        }}
-       src="https://wallpaperaccess.com/full/2461288.jpg"
+       src="uploads\eLearningUploads\2-1.jpg"
       />
       <div
        className="position-absolute text-light d-none d-lg-block h-100"
        style={{
         zIndex: 10,
         top: '0',
-        right: `${this.state.activeSlide === 0 ? '10%' : '8%'}`,
+        right: `${this.state.activeSlide === 0 ? '6%' : '4%'}`,
         maxWidth: 400,
         transition: '500ms',
         animationTimingFunction: 'ease',
@@ -79,13 +79,15 @@ export default class SlideChangeHooks extends Component {
       >
        <div className="d-flex align-items-center h-100">
         <div>
-         <h3 className="mb-4 text-light">Information Technology</h3>
-         <p>
+         <h3 className="mb-4 text-warning kh">ផ្នែកបង្រៀនកម្មវិធីទូរស័ព្ទ</h3>
+         <p className="text-warning">
           Using props and state, we can put together a small Todo application.
           This example uses state to track the current list of items as well as
           the text that the user has entered.
          </p>
-         <button className="btn btn-light mt-2 mb-5 px-4">GET START</button>
+         <button className="btn btn-warning mt-2 mb-5 px-4 kh">
+          ចាប់ផ្ដើម
+         </button>
         </div>
        </div>
       </div>
@@ -98,14 +100,14 @@ export default class SlideChangeHooks extends Component {
         position: 'relative',
         right: `${this.state.activeSlide === 1 ? '10px' : 0}`,
        }}
-       src="https://a-static.besthdwallpaper.com/weathering-with-you-wallpaper-1920x600-28386_57.jpg"
+       src="uploads\eLearningUploads\web-design-page.jpg"
       />
       <div
        className="position-absolute text-light d-none d-lg-block h-100"
        style={{
         zIndex: 10,
         top: '0',
-        right: `${this.state.activeSlide === 1 ? '10%' : '8%'}`,
+        right: `${this.state.activeSlide === 1 ? '6%' : '4%'}`,
         maxWidth: 400,
         transition: '500ms',
         animationTimingFunction: 'ease',
@@ -113,13 +115,13 @@ export default class SlideChangeHooks extends Component {
       >
        <div className="d-flex align-items-center h-100">
         <div>
-         <h3 className="mb-4 text-light">Information Technology</h3>
-         <p>
+         <h3 className="mb-4 text-dark kh">ផ្នែកសរសេរវែបផ្សាយ</h3>
+         <p className="text-dark">
           Using props and state, we can put together a small Todo application.
           This example uses state to track the current list of items as well as
           the text that the user has entered.
          </p>
-         <button className="btn btn-light mt-2 mb-5 px-4">GET START</button>
+         <button className="btn btn-dark mt-2 mb-5 px-4 kh">ចាប់ផ្ដើម</button>
         </div>
        </div>
       </div>
@@ -132,14 +134,14 @@ export default class SlideChangeHooks extends Component {
         position: 'relative',
         right: `${this.state.activeSlide === 2 ? '10px' : 0}`,
        }}
-       src="https://wallpapercave.com/wp/wp6415208.jpg"
+       src="uploads\eLearningUploads\php-page.jpg"
       />
       <div
        className="position-absolute text-light d-none d-lg-block h-100"
        style={{
         zIndex: 10,
         top: '0',
-        right: `${this.state.activeSlide === 2 ? '10%' : '8%'}`,
+        right: `${this.state.activeSlide === 2 ? '6%' : '4%'}`,
         maxWidth: 400,
         transition: '500ms',
         animationTimingFunction: 'ease',
@@ -147,13 +149,13 @@ export default class SlideChangeHooks extends Component {
       >
        <div className="d-flex align-items-center h-100">
         <div>
-         <h3 className="mb-4 text-light">Information Technology</h3>
-         <p>
+         <h3 className="mb-4 text-dark kh">ផ្នែកគ្រប់គ្រងទិន្នន័យ</h3>
+         <p className="text-dark">
           Using props and state, we can put together a small Todo application.
           This example uses state to track the current list of items as well as
           the text that the user has entered.
          </p>
-         <button className="btn btn-light mt-2 mb-5 px-4">GET START</button>
+         <button className="btn btn-dark mt-2 mb-5 px-4 kh">ចាប់ផ្ដើម</button>
         </div>
        </div>
       </div>
@@ -166,14 +168,14 @@ export default class SlideChangeHooks extends Component {
         position: 'relative',
         right: `${this.state.activeSlide === 3 ? '10px' : 0}`,
        }}
-       src="https://a-static.besthdwallpaper.com/tree-sunset-hill-wallpaper-1920x600-53173_57.jpg"
+       src="uploads\eLearningUploads\machinelearning.jpg"
       />
       <div
        className="position-absolute text-light d-none d-lg-block h-100"
        style={{
         zIndex: 10,
         top: '0',
-        right: `${this.state.activeSlide === 3 ? '10%' : '8%'}`,
+        right: `${this.state.activeSlide === 3 ? '6%' : '4%'}`,
         maxWidth: 400,
         transition: '500ms',
         animationTimingFunction: 'ease',
@@ -181,13 +183,13 @@ export default class SlideChangeHooks extends Component {
       >
        <div className="d-flex align-items-center h-100">
         <div>
-         <h3 className="mb-4 text-light">Information Technology</h3>
-         <p>
+         <h3 className="mb-4 text-light kh">ផ្នែកប្រព័ន្ធបញ្ចា</h3>
+         <p className="" style={{ color: '#000' }}>
           Using props and state, we can put together a small Todo application.
           This example uses state to track the current list of items as well as
           the text that the user has entered.
          </p>
-         <button className="btn btn-light mt-2 mb-5 px-4">GET START</button>
+         <button className="btn btn-light mt-2 mb-5 px-4​ kh">ចាប់ផ្ដើម</button>
         </div>
        </div>
       </div>
