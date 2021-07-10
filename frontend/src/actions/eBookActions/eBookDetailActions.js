@@ -50,7 +50,7 @@ const getDetailByContentId = (id) => async (dispatch) => {
  }
 };
 
-const addDetail = (contents, id, codeLive, codeShow) => async (dispatch) => {
+const addDetail = (contents, id, codeLive, codeShow, h) => async (dispatch) => {
  try {
   dispatch({ type: CREATE_DETAIL_REQUEST });
   const { data } = await axios.post(`/api/ebook/details`, {
@@ -58,6 +58,7 @@ const addDetail = (contents, id, codeLive, codeShow) => async (dispatch) => {
    codeLive,
    contents,
    id,
+   h,
   });
   dispatch({
    type: CREATE_DETAIL_SUCCESS,
@@ -104,28 +105,30 @@ const getOneDetail = (id) => async (dispatch) => {
  }
 };
 
-const updateDetail = (contents, id, codeLive, codeShow) => async (dispatch) => {
- try {
-  dispatch({
-   type: UPDATE_DETAIL_REQUEST,
-  });
-  const { data } = await axios.put(`/api/ebook/details/${id}`, {
-   codeShow,
-   contents,
-   codeLive,
-  });
+const updateDetail =
+ (contents, id, codeLive, codeShow, h) => async (dispatch) => {
+  try {
+   dispatch({
+    type: UPDATE_DETAIL_REQUEST,
+   });
+   const { data } = await axios.put(`/api/ebook/details/${id}`, {
+    codeShow,
+    contents,
+    codeLive,
+    h,
+   });
 
-  dispatch({
-   type: UPDATE_DETAIL_SUCCESS,
-   payload: data,
-  });
- } catch (error) {
-  dispatch({
-   type: UPDATE_DETAIL_FAIL,
-   payload: error.message,
-  });
- }
-};
+   dispatch({
+    type: UPDATE_DETAIL_SUCCESS,
+    payload: data,
+   });
+  } catch (error) {
+   dispatch({
+    type: UPDATE_DETAIL_FAIL,
+    payload: error.message,
+   });
+  }
+ };
 
 export {
  getDetails,
