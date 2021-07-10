@@ -8,6 +8,12 @@ import Loader from '../../components/Loader';
 import { getDetailByContentId } from '../../actions/eBookActions/eBookDetailActions';
 import CourseSidebar from '../../components/eBookComponents/CourseSidebar';
 import Editor from '@monaco-editor/react';
+import { Controlled as ControlledEditor } from 'react-codemirror2';
+import 'codemirror/lib/codemirror.css';
+import 'codemirror/theme/material.css';
+import 'codemirror/mode/xml/xml';
+import 'codemirror/mode/javascript/javascript';
+import 'codemirror/mode/css/css';
 
 const EbookCourseScreen = () => {
  const param = useParams();
@@ -51,7 +57,7 @@ const EbookCourseScreen = () => {
          className="detail_contents card card-body mb-1 ebooCourseScreen_img p-2"
          key={detail._id}
         >
-         <div className="p-2" id="ebookStyle">
+         <div className="p-2">
           {ReactHtmlParser(detail.contents)}
           <Editor
            height="200px"
@@ -61,6 +67,17 @@ const EbookCourseScreen = () => {
            options={{
             colorDecorators: true,
             readOnly: true,
+           }}
+          />
+          <ControlledEditor
+           value={detail.codeShow}
+           className="code-mirror-wrapper"
+           options={{
+            lineWrapping: true,
+            lint: true,
+            mode: 'xml',
+            theme: 'material',
+            // lineNumbers: true,
            }}
           />
           <div className="mt-2">
@@ -80,7 +97,7 @@ const EbookCourseScreen = () => {
       )}
      </div>
     </div>
-    <div className="d-none d-xl-block" style={{ minWidth: 350, maxWidth: 350 }}>
+    <div className="d-none d-xl-block" style={{ minWidth: 349, maxWidth: 350 }}>
      <img
       className="img-fluid rounded-lg"
       src="https://i.pinimg.com/originals/7d/1a/3f/7d1a3f77eee9f34782c6f88e97a6c888.jpg"

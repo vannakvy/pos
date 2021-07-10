@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 const detailSchem = mongoose.Schema(
  {
   codeShow: String,
+  h: String,
   contents: String,
   codeLive: {
    type: mongoose.Schema.Types.ObjectId,

@@ -22,16 +22,18 @@ const AddminDetailScreen = () => {
  const [detailId, setDetailId] = useState('');
  const [openEditor, setOpenEditor] = useState(false);
  const [code, setCode] = useState({ codeShow: '', codeLive: '' });
+ const [h, setH] = useState('100px');
+ const [codeLiveText, setCodeLiveText] = useState('');
 
  const { detailBycontents } = useSelector((state) => state.detailByContentId);
  const detailDelete = useSelector((state) => state.detailDelete);
  const detailCreate = useSelector((state) => state.detailCreate);
  const detailUpdate = useSelector((state) => state.detailUpdate);
  const handleSubmit = () => {
-  if (squery === 'add') {
-   dispatch(addDetail(contents, id, code.codeLive, code.codeShow));
+  if (squery === 'add' || '') {
+   dispatch(addDetail(contents, id, codeLiveText, code.codeShow, h));
   } else {
-   dispatch(updateDetail(contents, detailId, code.codeLive, code.codeShow));
+   dispatch(updateDetail(contents, detailId, codeLiveText, code.codeShow, h));
   }
 
   setContents('');
@@ -46,6 +48,16 @@ const AddminDetailScreen = () => {
  };
  return (
   <div className="details mt-2" style={{ maxWidth: '1110px' }}>
+   <button
+    className="btn btn-success text-dark sticky-top"
+    style={{ top: 80 }}
+    onClick={() => {
+     setSquery('add');
+     setOpenEditor(true);
+    }}
+   >
+    Create
+   </button>
    {/* <div className="col-md-6"> */}
    {/* <div className="container">
       <div className="form-group">
@@ -158,6 +170,7 @@ const AddminDetailScreen = () => {
             codeShow: detail.codeShow,
             codeLive: detail.codeLive,
            });
+           setH(detail.h);
            setSquery('update');
            setOpenEditor(true);
            window.scroll(0, 0);
@@ -206,8 +219,14 @@ const AddminDetailScreen = () => {
      setContents={setContents}
      code={code}
      setCode={setCode}
+     squery={squery}
      setSquery={setSquery}
      setOpenEditor={setOpenEditor}
+     h={h}
+     setH={setH}
+     handleSubmit={handleSubmit}
+     codeLiveText={codeLiveText}
+     setCodeLiveText={setCodeLiveText}
     />
    </div>
   </div>

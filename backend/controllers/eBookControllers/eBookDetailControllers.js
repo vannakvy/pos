@@ -37,13 +37,14 @@ const getOneDetail = asyncHandler(async (req, res) => {
 //@access private
 
 const addDetail = asyncHandler(async (req, res) => {
- const { contents, id, codeLive, codeShow } = req.body;
+ const { contents, id, codeLive, codeShow, h } = req.body;
  const content = await eBookContent.findById(id);
  if (content) {
   const detail = new eBookDetail();
 
   detail.contents = contents || '';
   detail.codeShow = codeShow || '';
+  detail.h = h || '100px';
 
   if (codeLive) {
    const liveCode = new LiveCode({
@@ -90,17 +91,30 @@ const deleteDetail = asyncHandler(async (req, res) => {
 //@access public
 
 const updateDetail = asyncHandler(async (req, res) => {
- const { codeShow, codeLive, contents } = req.body;
+ const { codeShow, codeLive, contents, h } = req.body;
 
  const detail = await eBookDetail.findById(req.params.id);
  if (detail) {
   detail.codeShow = codeShow;
   detail.contents = contents;
+  detail.h = h || '100px';
 
   const editCodeLive = await LiveCode.findById(detail.codeLive);
-  editCodeLive.content = codeLive;
-  await editCodeLive.save();
 
+  if (editCodeLive) {
+   editCodeLive.content = codeLive;
+   await editCodeLive.save();
+  } else {
+   if (codeLive) {
+    const liveCode = new LiveCode({
+     content: codeLive || '',
+    });
+    const createLiveCode = await liveCode.save();
+    if (createLiveCode) {
+     detail.codeLive = createLiveCode._id;
+    }
+   }
+  }
   const updatedDetail = await detail.save();
   res.json(updatedDetail);
  } else {
@@ -121,6 +135,17 @@ const getDetailByContentId = asyncHandler(async (req, res) => {
  }
 });
 
+const getCodeLive = asyncHandler(async (req, res) => {
+ const codeLive = await LiveCode.findById(req.params.lid);
+
+ if (codeLive) {
+  res.json(codeLive);
+ } else {
+  res.status(400);
+  throw new Error('LiveCode Not Found');
+ }
+});
+
 export {
  getDetail,
  addDetail,
@@ -128,4 +153,5 @@ export {
  updateDetail,
  getOneDetail,
  getDetailByContentId,
+ getCodeLive,
 };

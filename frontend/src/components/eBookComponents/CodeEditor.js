@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Editor from '@monaco-editor/react';
@@ -7,6 +7,7 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper';
+import axios from 'axios';
 
 function TabPanel(props) {
  const { children, value, index, ...other } = props;
@@ -51,8 +52,36 @@ const useStyles = makeStyles((theme) => ({
 export default function SimpleTabs(props) {
  const classes = useStyles();
  const [value, setValue] = React.useState(0);
- const { contents, setContents, code, setCode, setSquery, setOpenEditor } =
-  props;
+ const {
+  contents,
+  setContents,
+  code,
+  setCode,
+  squery,
+  setSquery,
+  setOpenEditor,
+  h,
+  setH,
+  handleSubmit,
+  codeLiveText,
+  setCodeLiveText,
+ } = props;
+
+ useEffect(async () => {
+  const { data } = await axios.get(
+   `/api/ebook/details/codeLive/${code.codeLive}/get`
+  );
+  if (data) {
+   setCodeLiveText(data.content);
+  }
+ }, [code.codeLive]);
+
+ const cancelMode = () => {
+  setCode({ codeShow: '', codeLive: '' });
+  setContents('');
+  setSquery('');
+  setOpenEditor(false);
+ };
 
  const handleChange = (event, newValue) => {
   setValue(newValue);
@@ -83,6 +112,16 @@ export default function SimpleTabs(props) {
     />
    </TabPanel>
    <TabPanel value={value} index={1}>
+    <div className="text-center mb-2">
+     <span className="text-light">Height:</span>
+     <input
+      className="text-center"
+      value={h}
+      onChange={(e) => setH(e.target.value)}
+      type="text"
+      style={{ width: '90px' }}
+     />
+    </div>
     <Editor
      className="round"
      theme="vs-dark"
@@ -98,26 +137,40 @@ export default function SimpleTabs(props) {
      theme="vs-dark"
      height="250px"
      defaultLanguage="html"
-     value={code.codeShow}
-     onChange={(e) => setCode({ ...code, codeShow: e })}
+     value={codeLiveText}
+     onChange={(e) => setCodeLiveText(e)}
     />
    </TabPanel>
    <div>
-    <button
-     className="btn btn-secondary shadow rounded m-1"
-     style={{ width: '130px' }}
-    >
-     save
-    </button>
+    {squery !== 'update' ? (
+     <button
+      className="btn btn-success text-dark shadow rounded m-1"
+      style={{ width: '130px' }}
+      onClick={() => {
+       handleSubmit();
+       cancelMode();
+      }}
+     >
+      Create
+     </button>
+    ) : (
+     <button
+      className="btn btn-secondary shadow rounded m-1"
+      style={{ width: '130px' }}
+      onClick={() => {
+       handleSubmit();
+       cancelMode();
+      }}
+     >
+      save
+     </button>
+    )}
 
     <button
      className="btn btn-dark shadow rounded m-1"
      style={{ width: '130px' }}
      onClick={() => {
-      setCode({ codeShow: '', codeLive: '' });
-      setContents('');
-      setSquery('');
-      setOpenEditor(false);
+      cancelMode();
      }}
     >
      cancel
