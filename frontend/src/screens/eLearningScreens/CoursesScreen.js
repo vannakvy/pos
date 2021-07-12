@@ -10,6 +10,7 @@ import { useLocation } from 'react-router-dom';
 import queryString from 'query-string';
 import ConvertNum from '../../components/eLearningComponents/ConvertNum';
 import { IoMdArrowBack } from 'react-icons/io';
+import { LOADER_TOP_TRUE } from '../../constants/navbarConstants';
 
 const CoursesScreen = ({ match, history }) => {
  const dispatch = useDispatch();
@@ -30,8 +31,13 @@ const CoursesScreen = ({ match, history }) => {
  } = courseList;
 
  useEffect(() => {
-  window.scrollTo(0, 0);
-  dispatch(listCourses(courseType, pageNumber, keyword));
+  if (!courses.length || pageNumber) {
+   dispatch(listCourses(courseType, pageNumber, keyword));
+   dispatch({ type: LOADER_TOP_TRUE });
+  }
+  setTimeout(() => {
+   window.scrollTo(0, 0);
+  }, 500);
  }, [dispatch, courseType, pageNumber, keyword]);
 
  const changeCourseType = (e) => {
@@ -127,10 +133,15 @@ const CoursesScreen = ({ match, history }) => {
      <Message variant="danger">{errorList}</Message>
     ) : courses.length !== 0 ? (
      <>
-      <div className="d-flex flex-wrap justify-content-around">
+      <div className="row row-cols-xl-5 row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-2 w-100 mx-auto">
        {courses &&
         courses.map((course) => (
-         <CourseItem course={course} key={course._id} />
+         <div
+          key={course._id}
+          className="col px-2 d-flex justify-content-center"
+         >
+          <CourseItem course={course} />
+         </div>
         ))}
       </div>
       <div className="d-flex justify-content-around">

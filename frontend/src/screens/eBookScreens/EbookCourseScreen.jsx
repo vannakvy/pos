@@ -7,18 +7,22 @@ import { getOneLanguage } from '../../actions/eBookActions/eBookCourseActions';
 import Loader from '../../components/Loader';
 import { getDetailByContentId } from '../../actions/eBookActions/eBookDetailActions';
 import CourseSidebar from '../../components/eBookComponents/CourseSidebar';
-import Editor from '@monaco-editor/react';
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/material.css';
 import 'codemirror/mode/xml/xml';
 import 'codemirror/mode/javascript/javascript';
 import 'codemirror/mode/css/css';
 import { Controlled as ControlledEditor } from 'react-codemirror2';
+import { IoCopyOutline } from 'react-icons/io5';
+import { GoCheck } from 'react-icons/go';
+import copy from 'copy-to-clipboard';
+import Tooltip from '@material-ui/core/Tooltip';
 
 const EbookCourseScreen = () => {
  const param = useParams();
  const dispatch = useDispatch();
- const { course, error } = useSelector((state) => state.course);
+ const [copied, setCopied] = useState('Copy to Clipboard');
+ const { course } = useSelector((state) => state.course);
  const { detailBycontents, loading } = useSelector(
   (state) => state.detailByContentId
  );
@@ -33,6 +37,13 @@ const EbookCourseScreen = () => {
  useEffect(() => {
   dispatch(getDetailByContentId(param.id));
  }, [param.id]);
+
+ const copyHandle = () => {
+  setCopied('Copied');
+  setTimeout(() => {
+   setCopied('Copy to Clipboard');
+  }, 10000);
+ };
 
  return (
   <div className="ebooCourseScreen">
@@ -58,10 +69,11 @@ const EbookCourseScreen = () => {
           {ReactHtmlParser(detail.contents)}
           {detail.codeShow ? (
            <div
-            className="px-4 pt-2 rounded"
+            className="pl-4 pt-2 rounded position-relative"
             style={{
              background: 'rgb(38,50,56)',
              zIndex: 1,
+             paddingRight: '40px',
             }}
            >
             <ControlledEditor
@@ -75,6 +87,26 @@ const EbookCourseScreen = () => {
               // lineNumbers: true,
              }}
             />
+            <Tooltip title={copied}>
+             <div
+              className="rounded d-inline-block copyBtn position-absolute"
+              onClick={() => copy(detail.codeShow, { onCopy: copyHandle() })}
+              style={{
+               background: 'rgb(45,60,65)',
+               cursor: 'pointer',
+               border: '1px solid grey',
+               padding: '3px 4px',
+               top: 10,
+               right: 10,
+              }}
+             >
+              {copied === 'Copied' ? (
+               <GoCheck className="text-success" style={{ fontSize: 18 }} />
+              ) : (
+               <IoCopyOutline className="text-light" style={{ fontSize: 18 }} />
+              )}
+             </div>
+            </Tooltip>
            </div>
           ) : null}
 

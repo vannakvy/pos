@@ -8,6 +8,10 @@ import Message from '../../components/Message';
 import { IoMdArrowBack } from 'react-icons/io';
 import { useHistory } from 'react-router-dom';
 import Watch from '../../components/eLearningComponents/Watch';
+import {
+ LOADER_TOP_FALSE,
+ LOADER_TOP_TRUE,
+} from '../../constants/navbarConstants';
 
 const MyCoursesScreen = () => {
  const dispatch = useDispatch();
@@ -22,7 +26,10 @@ const MyCoursesScreen = () => {
 
  useEffect(() => {
   window.scrollTo(0, 0);
-  dispatch(getUserEnrollCourses(userLogin.userInfo._id));
+  if (!coursesEnroll) {
+   dispatch(getUserEnrollCourses(userLogin.userInfo._id));
+   dispatch({ type: LOADER_TOP_TRUE });
+  }
  }, [dispatch, userLogin]);
 
  return (
@@ -35,7 +42,9 @@ const MyCoursesScreen = () => {
      <div className="col-4">
       <button
        className=" btn btn-dark kh font-weight-bolder p-3 rounded shadow border-none"
-       onClick={() => history.push(`/elearning`)}
+       onClick={() => {
+        history.push(`/elearning`);
+       }}
       >
        <h6 className="m-0 text-light">
         <IoMdArrowBack style={{ fontSize: 18 }} />
@@ -62,10 +71,15 @@ const MyCoursesScreen = () => {
     ) : (
      <>
       {coursesEnroll && coursesEnroll.enrollCourses.length !== 0 ? (
-       <div className="d-flex flex-wrap justify-content-around">
+       <div className="row row-cols-xl-5 row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-2 w-100 mx-auto">
         {coursesEnroll &&
          coursesEnroll.enrollCourses.map((enroll) => (
-          <CourseItemOwn enroll={enroll} key={enroll._id} />
+          <div
+           key={enroll._id}
+           className="col px-2 d-flex justify-content-center"
+          >
+           <CourseItemOwn enroll={enroll} />
+          </div>
          ))}
        </div>
       ) : (
