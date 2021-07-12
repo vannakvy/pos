@@ -1,7 +1,10 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { navbarListReducers } from './reducers/navbarReducers.js';
+import {
+ loaderTopReducers,
+ navbarListReducers,
+} from './reducers/navbarReducers.js';
 import {
  userListReducer,
  userLoginReducer,
@@ -103,8 +106,10 @@ import {
  purchaseDetailsReducer,
 } from './reducers/eShopReducers/purchaseReducers';
 const reducer = combineReducers({
- // courses
+ // navbar
  navbarList: navbarListReducers,
+ loaderTop: loaderTopReducers,
+ // courses
  courseList: courseListReducer,
  courseDetail: courseDetailsReducer,
  courseDelete: courseDeleteReducer,
@@ -215,6 +220,7 @@ const initialState = {
  },
  userLogin: { userInfo: userInfoFromStorage },
  navbarList: { navbar: navbarFromStorage },
+ //  loaderTop: { loaderTop: false },
 };
 const middleware = [thunk];
 

@@ -19,6 +19,7 @@ import 'codemirror/mode/css/css';
 import { Controlled as ControlledEditor } from 'react-codemirror2';
 import { FiEdit3 } from 'react-icons/fi';
 import { AiOutlineDelete } from 'react-icons/ai';
+import { SiOneplus } from 'react-icons/si';
 
 const AddminDetailScreen = () => {
  const dispatch = useDispatch();
@@ -53,17 +54,19 @@ const AddminDetailScreen = () => {
   setOpenEditor(!openEditor);
  };
  return (
-  <div className="details mt-2" style={{ maxWidth: '1110px' }}>
-   <button
-    className="btn btn-success text-dark sticky-top"
-    style={{ top: 80 }}
+  <div className="details mt-2" style={{ maxWidth: '1200px' }}>
+   <p
+    className="kh px-2 py-1 rounded text-light bg-success d-inline-block sticky-top"
+    style={{ top: 80, cursor: 'pointer' }}
     onClick={() => {
      setSquery('add');
      setOpenEditor(true);
     }}
    >
-    Create
-   </button>
+    <SiOneplus className="mb-1" />
+    <span className="font-weight-bold"> បង្កើត</span>
+   </p>
+
    <div
     className={`w-100 shadow-lg p-1 mt-2 bg-light rounded ${
      squery === 'update' || squery === 'add' ? 'd-block' : 'd-none'
@@ -198,6 +201,7 @@ const AddminDetailScreen = () => {
     className="position-fixed"
     style={{
      margin: '0 auto',
+     zIndex: 10,
      transition: '0.2s',
      width: 1110,
      bottom: `${openEditor ? '0px' : '-315px'}`,
@@ -212,7 +216,7 @@ const AddminDetailScreen = () => {
       Show
      </button>
     </div>
-    <div style={{ zIndex: 100 }}>
+    <div>
      <CodeEditor
       contents={contents}
       setContents={setContents}

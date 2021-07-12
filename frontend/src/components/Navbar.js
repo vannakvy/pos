@@ -13,6 +13,7 @@ import NavEbook from './eBookComponents/NavEbook';
 import SettingsIcon from '@material-ui/icons/Settings';
 import NavCovid from './covideComponents/NavCovid';
 import Menu from './Menu';
+import LoaderTop from './LoaderTop';
 
 const Navbar = () => {
  const dispatch = useDispatch();
@@ -198,6 +199,7 @@ const Navbar = () => {
      </ul>
     </div>
    </nav>
+   <LoaderTop />
   </>
  );
 };

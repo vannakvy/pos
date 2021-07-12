@@ -19,3 +19,7 @@ a {
 .navSide {
  left: 0 !important;
 }
+
+.textLight {
+ color: white !important;
+}

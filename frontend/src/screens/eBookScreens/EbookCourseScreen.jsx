@@ -7,18 +7,24 @@ import { getOneLanguage } from '../../actions/eBookActions/eBookCourseActions';
 import Loader from '../../components/Loader';
 import { getDetailByContentId } from '../../actions/eBookActions/eBookDetailActions';
 import CourseSidebar from '../../components/eBookComponents/CourseSidebar';
-import Editor from '@monaco-editor/react';
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/material.css';
 import 'codemirror/mode/xml/xml';
 import 'codemirror/mode/javascript/javascript';
 import 'codemirror/mode/css/css';
 import { Controlled as ControlledEditor } from 'react-codemirror2';
+import { IoCopyOutline } from 'react-icons/io5';
+import { GoCheck } from 'react-icons/go';
+import copy from 'copy-to-clipboard';
+import Tooltip from '@material-ui/core/Tooltip';
+import TootipProfile from '../../components/eBookComponents/TootipProfile';
+import thanet from '../../img/img.jpg';
 
 const EbookCourseScreen = () => {
  const param = useParams();
  const dispatch = useDispatch();
- const { course, error } = useSelector((state) => state.course);
+ const [copied, setCopied] = useState('Copy to Clipboard');
+ const { course } = useSelector((state) => state.course);
  const { detailBycontents, loading } = useSelector(
   (state) => state.detailByContentId
  );
@@ -33,6 +39,13 @@ const EbookCourseScreen = () => {
  useEffect(() => {
   dispatch(getDetailByContentId(param.id));
  }, [param.id]);
+
+ const copyHandle = () => {
+  setCopied('Copied');
+  setTimeout(() => {
+   setCopied('Copy to Clipboard');
+  }, 10000);
+ };
 
  return (
   <div className="ebooCourseScreen">
@@ -58,10 +71,11 @@ const EbookCourseScreen = () => {
           {ReactHtmlParser(detail.contents)}
           {detail.codeShow ? (
            <div
-            className="px-4 pt-2 rounded"
+            className="pl-4 pt-2 rounded position-relative"
             style={{
              background: 'rgb(38,50,56)',
              zIndex: 1,
+             paddingRight: '40px',
             }}
            >
             <ControlledEditor
@@ -75,6 +89,26 @@ const EbookCourseScreen = () => {
               // lineNumbers: true,
              }}
             />
+            <Tooltip title={copied}>
+             <div
+              className="rounded d-inline-block copyBtn position-absolute"
+              onClick={() => copy(detail.codeShow, { onCopy: copyHandle() })}
+              style={{
+               background: 'rgb(45,60,65)',
+               cursor: 'pointer',
+               border: '1px solid grey',
+               padding: '3px 4px',
+               top: 10,
+               right: 10,
+              }}
+             >
+              {copied === 'Copied' ? (
+               <GoCheck className="text-success" style={{ fontSize: 18 }} />
+              ) : (
+               <IoCopyOutline className="text-light" style={{ fontSize: 18 }} />
+              )}
+             </div>
+            </Tooltip>
            </div>
           ) : null}
 
@@ -99,7 +133,7 @@ const EbookCourseScreen = () => {
     </div>
     <div
      className="d-none d-xl-block mr-2"
-     style={{ minWidth: 200, maxWidth: 200 }}
+     style={{ minWidth: 150, maxWidth: 150 }}
     >
      <img
       className="img-fluid rounded-lg"
@@ -107,12 +141,62 @@ const EbookCourseScreen = () => {
       alt=""
      />
      <div className="p-3">
-      <h5 className="text-light">Author : Vannak Vy</h5>
+      <h5 className="text-primary">គ្រូ : វី​ វណ្ណៈ</h5>
       <h6 className="my-2">Web Developer</h6>
-      <p className="">
-       Lorem ipsum dolor sit amet consectetur adipisicing elit. Id vel beatae ab
-       sed quibusdam ea quod aut temporibus dolorum molestiae?
-      </p>
+      <p className="">ហ្វាក់យូរប៉ិច</p>
+     </div>
+     <img
+      className="img-fluid rounded-lg"
+      src="https://i.pinimg.com/originals/7d/1a/3f/7d1a3f77eee9f34782c6f88e97a6c888.jpg"
+      alt=""
+     />
+     <div className="p-3">
+      <h5 className="text-primary">គ្រូ : ជ្រឹង​ ចំរើន</h5>
+      <h6 className="my-2">Web Developer</h6>
+      <p className="">ហ្វាក់យូរប៉ិច</p>
+     </div>
+    </div>
+    <div className="d-xl-none mr-2">
+     <div
+      className="rounded-circle my-2"
+      style={{ width: 40, height: 40, overflow: 'hidden' }}
+     >
+      <TootipProfile
+       img={thanet}
+       name={'វី​ វណ្ណៈ'}
+       position={'Web Developer'}
+      />
+     </div>
+
+     <div
+      className="rounded-circle my-2"
+      style={{ width: 40, height: 40, overflow: 'hidden' }}
+     >
+      <TootipProfile
+       img={thanet}
+       name={'លន ថាណេត'}
+       position={'Web Developer'}
+      />
+     </div>
+     <div
+      className="rounded-circle my-2"
+      style={{ width: 40, height: 40, overflow: 'hidden' }}
+     >
+      <TootipProfile
+       img={thanet}
+       name={'ជ្រឹង ចំរើន'}
+       position={'Web Developer'}
+      />
+     </div>
+     <div
+      className="rounded-circle my-2"
+      style={{ width: 40, height: 40, overflow: 'hidden' }}
+     >
+      <TootipProfile
+       img={thanet}
+       name={'ឌុន រស្មី'}
+       position={'Web Developer'}
+      />
      </div>
     </div>
    </div>

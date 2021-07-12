@@ -136,7 +136,7 @@ export default function SimpleTabs(props) {
     />
    </TabPanel>
    <div>
-    {squery !== 'update' ? (
+    {squery === 'add' ? (
      <button
       className="btn btn-success text-dark shadow rounded m-1"
       style={{ width: '130px' }}
@@ -147,7 +147,7 @@ export default function SimpleTabs(props) {
      >
       Create
      </button>
-    ) : (
+    ) : squery === 'update' ? (
      <button
       className="btn btn-secondary shadow rounded m-1"
       style={{ width: '130px' }}
@@ -158,7 +158,7 @@ export default function SimpleTabs(props) {
      >
       save
      </button>
-    )}
+    ) : null}
 
     <button
      className="btn btn-dark shadow rounded m-1"

@@ -25,8 +25,8 @@ const DashboardElearn = () => {
  return (
   <div style={{ minHeight: '90vh', maxWidth: 1400, margin: '0 auto' }}>
    <SlideChangeHooks />
-   <div className="" style={{ background: 'rgb(25,39,68)' }}>
-    <h5 className="text-center kh text-light" style={{ padding: '16px' }}>
+   <div className="" style={{ background: 'rgb(178,191,201)' }}>
+    <h5 className="text-dark kh" style={{ padding: '12px 20px' }}>
      ផ្នែកបង្រៀនជាវីឌីអូ
     </h5>
    </div>
@@ -38,7 +38,6 @@ const DashboardElearn = () => {
     <Message variant="danger">{errorList}</Message>
    ) : (
     <>
-     {/* <LandingElearn /> */}
      <div>
       <Slider courseList={coursesList} />
       <CoursesShow courseType={'WebDevelopment'} type={'ផ្នែកសរសេរវែបផ្សាយ'} />

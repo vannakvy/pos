@@ -7,6 +7,10 @@ import './HomeScreen.css';
 import axios from 'axios';
 import { GET_ONE_LANGUAGE_SUCCESS } from '../../constants/eBookConstants/eBookCourseConstants';
 import { useHistory } from 'react-router-dom';
+import {
+ LOADER_TOP_FALSE,
+ LOADER_TOP_TRUE,
+} from '../../constants/navbarConstants';
 
 const EbookHomeScreen = () => {
  const dispatch = useDispatch();
@@ -17,6 +21,7 @@ const EbookHomeScreen = () => {
  }, []);
 
  const gotoDetails = async (lang) => {
+  dispatch({ type: LOADER_TOP_TRUE });
   const { data } = await axios.get(`/api/ebook/courses/${lang}`);
   dispatch({
    type: GET_ONE_LANGUAGE_SUCCESS,
@@ -24,6 +29,7 @@ const EbookHomeScreen = () => {
   });
   if (data && data[0]) {
    history.push(`/ebook/${lang}/${data[0]._id || 1}`);
+   dispatch({ type: LOADER_TOP_FALSE });
   }
  };
 

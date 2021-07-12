@@ -7,6 +7,11 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Progress from './Progress';
 import CircularStatic from './CircleProgress';
+import { useDispatch } from 'react-redux';
+import {
+ LOADER_TOP_FALSE,
+ LOADER_TOP_TRUE,
+} from '../../constants/navbarConstants';
 
 const useStyles = makeStyles({
  root: {
@@ -19,15 +24,23 @@ const useStyles = makeStyles({
 
 const CourseItemOwn = (props) => {
  const { enroll } = props;
- console.log(enroll);
  const course = enroll.courseId;
  const classes = useStyles();
  const history = useHistory();
+ const dispatch = useDispatch();
+
+ const gotoMyCourse = () => {
+  dispatch({ type: LOADER_TOP_TRUE });
+
+  setTimeout(() => {
+   dispatch({ type: LOADER_TOP_FALSE });
+  }, 3000);
+ };
 
  return (
   <div
    className="shadow mb-3 courseItem bg-light"
-   style={{ padding: '1px', minWidth: '200px', maxWidth: '230px' }}
+   style={{ padding: '1px', minWidth: '230px', maxWidth: '250px' }}
   >
    <CardActionArea>
     <CardMedia
@@ -48,7 +61,11 @@ const CourseItemOwn = (props) => {
 
    <CardActions className="d-flex justify-content-between">
     <CircularStatic progressBar={enroll.progressBar} />
-    <button type="button" className="btn btn-sm btn-light kh">
+    <button
+     type="button"
+     className="btn btn-sm btn-light kh"
+     onClick={() => gotoMyCourse()}
+    >
      ចាប់ផ្ដើម
     </button>
    </CardActions>
