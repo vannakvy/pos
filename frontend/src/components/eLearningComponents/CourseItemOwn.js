@@ -33,6 +33,9 @@ const CourseItemOwn = (props) => {
   dispatch({ type: LOADER_TOP_TRUE });
 
   setTimeout(() => {
+   history.push(
+    `/elearning/enroll/${enroll._id}/courses/${enroll.courseId._id}`
+   );
    dispatch({ type: LOADER_TOP_FALSE });
   }, 3000);
  };
