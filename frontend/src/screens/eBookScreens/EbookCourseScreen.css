@@ -38,3 +38,12 @@
 #ebookStyle img {
  width: 100%;
 }
+
+.code-mirror-wrapper {
+ flex-grow: 1;
+ overflow: hidden;
+}
+
+.CodeMirror {
+ height: 100% !important;
+}

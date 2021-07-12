@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import './EbookCourseScreen.css';
@@ -8,17 +8,16 @@ import Loader from '../../components/Loader';
 import { getDetailByContentId } from '../../actions/eBookActions/eBookDetailActions';
 import CourseSidebar from '../../components/eBookComponents/CourseSidebar';
 import Editor from '@monaco-editor/react';
-import { Controlled as ControlledEditor } from 'react-codemirror2';
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/material.css';
 import 'codemirror/mode/xml/xml';
 import 'codemirror/mode/javascript/javascript';
 import 'codemirror/mode/css/css';
+import { Controlled as ControlledEditor } from 'react-codemirror2';
 
 const EbookCourseScreen = () => {
  const param = useParams();
  const dispatch = useDispatch();
- // const { details, loading, error } = useSelector((state) => state.details);
  const { course, error } = useSelector((state) => state.course);
  const { detailBycontents, loading } = useSelector(
   (state) => state.detailByContentId
@@ -34,8 +33,6 @@ const EbookCourseScreen = () => {
  useEffect(() => {
   dispatch(getDetailByContentId(param.id));
  }, [param.id]);
-
- const gg = () => {};
 
  return (
   <div className="ebooCourseScreen">
@@ -59,45 +56,51 @@ const EbookCourseScreen = () => {
         >
          <div className="p-2">
           {ReactHtmlParser(detail.contents)}
-          <Editor
-           height="200px"
-           theme="vs-dark"
-           defaultLanguage="html"
-           value={detail.codeShow}
-           options={{
-            colorDecorators: true,
-            readOnly: true,
-           }}
-          />
-          <ControlledEditor
-           value={detail.codeShow}
-           className="code-mirror-wrapper"
-           options={{
-            lineWrapping: true,
-            lint: true,
-            mode: 'xml',
-            theme: 'material',
-            // lineNumbers: true,
-           }}
-          />
-          <div className="mt-2">
-           <button
-            className="btn btn-info kh text-dark rounded"
-            onClick={() => {
-             const win = window.open('/elearning', '_blank');
-             win.focus();
+          {detail.codeShow ? (
+           <div
+            className="px-4 pt-2 rounded"
+            style={{
+             background: 'rgb(38,50,56)',
+             zIndex: 1,
             }}
            >
-            ចាប់ផ្ដើមអនុវត្ដ
-           </button>
-          </div>
+            <ControlledEditor
+             value={detail.codeShow}
+             className="code-mirror-wrapper"
+             options={{
+              lineWrapping: true,
+              lint: true,
+              mode: 'xml',
+              theme: 'material',
+              // lineNumbers: true,
+             }}
+            />
+           </div>
+          ) : null}
+
+          {detail.codeLive && detail.codeLive !== 'a' ? (
+           <div className="mt-2">
+            <button
+             className="btn btn-info kh text-dark rounded"
+             onClick={() => {
+              const win = window.open('/elearning', '_blank');
+              win.focus();
+             }}
+            >
+             ចាប់ផ្ដើមអនុវត្ដ
+            </button>
+           </div>
+          ) : null}
          </div>
         </div>
        ))
       )}
      </div>
     </div>
-    <div className="d-none d-xl-block" style={{ minWidth: 349, maxWidth: 350 }}>
+    <div
+     className="d-none d-xl-block mr-2"
+     style={{ minWidth: 200, maxWidth: 200 }}
+    >
      <img
       className="img-fluid rounded-lg"
       src="https://i.pinimg.com/originals/7d/1a/3f/7d1a3f77eee9f34782c6f88e97a6c888.jpg"

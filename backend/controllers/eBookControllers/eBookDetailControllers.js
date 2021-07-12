@@ -74,8 +74,12 @@ const addDetail = asyncHandler(async (req, res) => {
 const deleteDetail = asyncHandler(async (req, res) => {
  const detail = await eBookDetail.findById(req.params.id);
  if (detail) {
-  const lCode = await LiveCode.findById(detail.codeLive);
-  await lCode.remove();
+  if (detail.codeLive && detail.codeLive !== 'a') {
+   const lCode = await LiveCode.findById(detail.codeLive);
+   if (lCode) {
+    await lCode.remove();
+   }
+  }
   await detail.remove();
   res.json({
    message: 'Detail deleted',
@@ -99,11 +103,17 @@ const updateDetail = asyncHandler(async (req, res) => {
   detail.contents = contents;
   detail.h = h || '100px';
 
-  const editCodeLive = await LiveCode.findById(detail.codeLive);
-
-  if (editCodeLive) {
-   editCodeLive.content = codeLive;
-   await editCodeLive.save();
+  if (detail.codeLive && detail.codeLive !== 'a') {
+   const editCodeLive = await LiveCode.findById(detail.codeLive);
+   if (editCodeLive) {
+    if (codeLive) {
+     editCodeLive.content = codeLive;
+     await editCodeLive.save();
+    } else {
+     detail.codeLive = 'a';
+     await editCodeLive.remove();
+    }
+   }
   } else {
    if (codeLive) {
     const liveCode = new LiveCode({
@@ -113,8 +123,11 @@ const updateDetail = asyncHandler(async (req, res) => {
     if (createLiveCode) {
      detail.codeLive = createLiveCode._id;
     }
+   } else {
+    detail.codeLive = 'a';
    }
   }
+
   const updatedDetail = await detail.save();
   res.json(updatedDetail);
  } else {

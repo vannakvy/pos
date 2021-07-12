@@ -81,6 +81,7 @@ export default function SimpleTabs(props) {
   setContents('');
   setSquery('');
   setOpenEditor(false);
+  setCodeLiveText('');
  };
 
  const handleChange = (event, newValue) => {
@@ -106,27 +107,19 @@ export default function SimpleTabs(props) {
      className="round"
      theme="vs-dark"
      height="250px"
+     options={{ formatOnPaste: true }}
      defaultLanguage="html"
      value={contents}
      onChange={(e) => setContents(e)}
     />
    </TabPanel>
    <TabPanel value={value} index={1}>
-    <div className="text-center mb-2">
-     <span className="text-light">Height:</span>
-     <input
-      className="text-center"
-      value={h}
-      onChange={(e) => setH(e.target.value)}
-      type="text"
-      style={{ width: '90px' }}
-     />
-    </div>
     <Editor
      className="round"
      theme="vs-dark"
      height="250px"
      defaultLanguage="html"
+     options={{ formatOnPaste: true }}
      value={code.codeShow}
      onChange={(e) => setCode({ ...code, codeShow: e })}
     />
@@ -137,6 +130,7 @@ export default function SimpleTabs(props) {
      theme="vs-dark"
      height="250px"
      defaultLanguage="html"
+     options={{ formatOnPaste: true }}
      value={codeLiveText}
      onChange={(e) => setCodeLiveText(e)}
     />

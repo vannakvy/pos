@@ -5,10 +5,7 @@ const detailSchem = mongoose.Schema(
   codeShow: String,
   h: String,
   contents: String,
-  codeLive: {
-   type: mongoose.Schema.Types.ObjectId,
-   ref: 'LiveCode',
-  },
+  codeLive: String,
  },
  {
   timestamps: true,

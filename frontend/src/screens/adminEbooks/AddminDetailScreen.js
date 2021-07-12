@@ -4,8 +4,6 @@ import { useParams } from 'react-router-dom';
 import ReactHtmlParser from 'react-html-parser';
 import './DetailScreen.css';
 import CodeEditor from '../../components/eBookComponents/CodeEditor';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { CKEditor } from '@ckeditor/ckeditor5-react';
 import {
  getDetailByContentId,
  deleteDetail,
@@ -13,6 +11,14 @@ import {
  updateDetail,
 } from '../../actions/eBookActions/eBookDetailActions';
 import Editor from '@monaco-editor/react';
+import 'codemirror/lib/codemirror.css';
+import 'codemirror/theme/material.css';
+import 'codemirror/mode/xml/xml';
+import 'codemirror/mode/javascript/javascript';
+import 'codemirror/mode/css/css';
+import { Controlled as ControlledEditor } from 'react-codemirror2';
+import { FiEdit3 } from 'react-icons/fi';
+import { AiOutlineDelete } from 'react-icons/ai';
 
 const AddminDetailScreen = () => {
  const dispatch = useDispatch();
@@ -58,76 +64,48 @@ const AddminDetailScreen = () => {
    >
     Create
    </button>
-   {/* <div className="col-md-6"> */}
-   {/* <div className="container">
-      <div className="form-group">
-       <label htmlFor="title">Title</label>
-       <input
-        name="title"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        className="form-control border border-info"
-        type="text"
-       />
-      </div>
-      <div className="mb-3">
-       <label className="form-label">Content</label>
-       <CKEditor
-        editor={ClassicEditor}
-        onReady={(editor) => {}}
-        //ddd
-        data={contents}
-        config={{
-         ckfinder: {
-          uploadUrl: '/api/ebook/uploads',
-         },
-        }}
-        onChange={handleCkEditorState}
-       />
-       {squery === 'add' ? (
-        <button onClick={handleSubmit} className="btn btn-info mt-3 w-25">
-         Add
-        </button>
-       ) : (
-        <>
-         <button onClick={handleSubmit} className="btn btn-warning mt-3 w-25">
-          Update
-         </button>{' '}
-         <button
-          onClick={() => {
-           setTitle('');
-           setContents('');
-           setSquery('add');
-          }}
-          className="btn btn-danger mt-3 w-25"
-         >
-          Cancel
-         </button>{' '}
-        </>
-       )}
-      </div>
-     </div>*/}
-   {/* </div> */}
    <div
     className={`w-100 shadow-lg p-1 mt-2 bg-light rounded ${
      squery === 'update' || squery === 'add' ? 'd-block' : 'd-none'
     }`}
     style={{ marginBottom: '48vh' }}
    >
-    <div className="imgAdmin w-100">
+    <div className="w-100 p-2">
      {ReactHtmlParser(contents)}
-     <Editor
-      className="round"
-      style={{ backgroud: 'rgb(30, 30, 30)' }}
-      theme="vs-dark"
-      height="200px"
-      defaultLanguage="html"
-      value={code.codeShow}
-      options={{ readOnly: true }}
-     />
-     <button className="btn kh btn-dark mt-2 rounded px-4">
-      ចាប់ផ្ដើមអនុវត្ដ
-     </button>
+     {code.codeShow ? (
+      <div
+       className="px-4 pt-2 rounded"
+       style={{
+        background: 'rgb(38,50,56)',
+        zIndex: 1,
+       }}
+      >
+       <ControlledEditor
+        value={code.codeShow}
+        className="code-mirror-wrapper"
+        options={{
+         lineWrapping: true,
+         lint: true,
+         mode: 'xml',
+         theme: 'material',
+         //  lineNumbers: true,
+        }}
+       />
+      </div>
+     ) : null}
+     {code.codeLive && code.codeLive !== 'a' ? (
+      <div className="mt-2">
+       <button
+        className="btn btn-info kh text-dark rounded"
+        onClick={() => {
+         const win = window.open('/elearning', '_blank');
+         win.focus();
+        }}
+       >
+        ចាប់ផ្ដើមអនុវត្ដ
+       </button>
+      </div>
+     ) : null}
     </div>
    </div>
    <div
@@ -144,24 +122,47 @@ const AddminDetailScreen = () => {
         className="shadow-lg p-1 mt-2 bg-light rounded w-100"
         key={detail._id}
        >
-        <div className="imgAdmin w-100">
+        <div className="w-100 p-2">
          {ReactHtmlParser(detail.contents)}
-         <Editor
-          className="round"
-          style={{ backgroud: 'rgb(30, 30, 30)' }}
-          theme="vs-dark"
-          height="200px"
-          defaultLanguage="html"
-          value={detail.codeShow}
-          options={{ readOnly: true }}
-         />
-         <button className="btn kh btn-dark mt-2 rounded px-4">
-          ចាប់ផ្ដើមអនុវត្ដ
-         </button>
+         {detail.codeShow ? (
+          <div
+           className="px-4 pt-2 rounded"
+           style={{
+            background: 'rgb(38,50,56)',
+            zIndex: 1,
+           }}
+          >
+           <ControlledEditor
+            value={detail.codeShow}
+            className="code-mirror-wrapper"
+            options={{
+             lineWrapping: true,
+             lint: true,
+             mode: 'xml',
+             theme: 'material',
+             //  lineNumbers: true,
+            }}
+           />
+          </div>
+         ) : null}
+         {detail.codeLive && detail.codeLive !== 'a' ? (
+          <div className="mt-2">
+           <button
+            className="btn btn-info kh text-dark rounded"
+            onClick={() => {
+             const win = window.open('/elearning', '_blank');
+             win.focus();
+            }}
+           >
+            ចាប់ផ្ដើមអនុវត្ដ
+           </button>
+          </div>
+         ) : null}
         </div>
-        <div className="event">
-         <button
-          className="btn btn-sm btn-info m-2 shadow rounded"
+        <div className="event text-center">
+         <FiEdit3
+          className="m-2"
+          style={{ fontSize: '20px', cursor: 'pointer' }}
           onClick={() => {
            setContents(detail.contents);
            setDetailId(detail._id);
@@ -175,11 +176,10 @@ const AddminDetailScreen = () => {
            setOpenEditor(true);
            window.scroll(0, 0);
           }}
-         >
-          Edit
-         </button>
-         <button
-          className="btn btn-sm btn-danger shadow rounded"
+         />
+         <AiOutlineDelete
+          className="m-2"
+          style={{ fontSize: '20px', cursor: 'pointer' }}
           onClick={() => {
            if (window.confirm('Delete?')) {
             dispatch(deleteDetail(detail._id));
@@ -187,9 +187,7 @@ const AddminDetailScreen = () => {
            setSquery('');
            setContents('');
           }}
-         >
-          Delete
-         </button>
+         />
         </div>
        </div>
       ))}
@@ -214,20 +212,22 @@ const AddminDetailScreen = () => {
       Show
      </button>
     </div>
-    <CodeEditor
-     contents={contents}
-     setContents={setContents}
-     code={code}
-     setCode={setCode}
-     squery={squery}
-     setSquery={setSquery}
-     setOpenEditor={setOpenEditor}
-     h={h}
-     setH={setH}
-     handleSubmit={handleSubmit}
-     codeLiveText={codeLiveText}
-     setCodeLiveText={setCodeLiveText}
-    />
+    <div style={{ zIndex: 100 }}>
+     <CodeEditor
+      contents={contents}
+      setContents={setContents}
+      code={code}
+      setCode={setCode}
+      squery={squery}
+      setSquery={setSquery}
+      setOpenEditor={setOpenEditor}
+      h={h}
+      setH={setH}
+      handleSubmit={handleSubmit}
+      codeLiveText={codeLiveText}
+      setCodeLiveText={setCodeLiveText}
+     />
+    </div>
    </div>
   </div>
  );

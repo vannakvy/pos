@@ -9,7 +9,7 @@ const CourseSidebar = ({ courses, lang }) => {
  const [navSide, setNavSide] = useState(false);
  const history = useHistory();
  return (
-  <div className="sticky-top" style={{ top: '72px', zIndex: 1 }}>
+  <div className="sticky-top" style={{ top: '72px', zIndex: 100 }}>
    <div className="d-none d-lg-block" style={{ minWidth: 250, zIndex: 1 }}>
     <div className="ml-1">
      <div className="bg-light p-0 m-0 d-flex">
