@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import './EbookCourseScreen.css';
-import ReactHtmlParser from 'react-html-parser';
+import ReactHtmlParser from 'html-react-parser';
 import { getOneLanguage } from '../../actions/eBookActions/eBookCourseActions';
 import Loader from '../../components/Loader';
 import { getDetailByContentId } from '../../actions/eBookActions/eBookDetailActions';
