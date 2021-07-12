@@ -17,6 +17,8 @@ import { IoCopyOutline } from 'react-icons/io5';
 import { GoCheck } from 'react-icons/go';
 import copy from 'copy-to-clipboard';
 import Tooltip from '@material-ui/core/Tooltip';
+import TootipProfile from '../../components/eBookComponents/TootipProfile';
+import thanet from '../../img/img.jpg';
 
 const EbookCourseScreen = () => {
  const param = useParams();
@@ -131,7 +133,7 @@ const EbookCourseScreen = () => {
     </div>
     <div
      className="d-none d-xl-block mr-2"
-     style={{ minWidth: 200, maxWidth: 200 }}
+     style={{ minWidth: 150, maxWidth: 150 }}
     >
      <img
       className="img-fluid rounded-lg"
@@ -139,12 +141,62 @@ const EbookCourseScreen = () => {
       alt=""
      />
      <div className="p-3">
-      <h5 className="text-light">Author : Vannak Vy</h5>
+      <h5 className="text-primary">គ្រូ : វី​ វណ្ណៈ</h5>
       <h6 className="my-2">Web Developer</h6>
-      <p className="">
-       Lorem ipsum dolor sit amet consectetur adipisicing elit. Id vel beatae ab
-       sed quibusdam ea quod aut temporibus dolorum molestiae?
-      </p>
+      <p className="">ហ្វាក់យូរប៉ិច</p>
+     </div>
+     <img
+      className="img-fluid rounded-lg"
+      src="https://i.pinimg.com/originals/7d/1a/3f/7d1a3f77eee9f34782c6f88e97a6c888.jpg"
+      alt=""
+     />
+     <div className="p-3">
+      <h5 className="text-primary">គ្រូ : ជ្រឹង​ ចំរើន</h5>
+      <h6 className="my-2">Web Developer</h6>
+      <p className="">ហ្វាក់យូរប៉ិច</p>
+     </div>
+    </div>
+    <div className="d-xl-none mr-2">
+     <div
+      className="rounded-circle my-2"
+      style={{ width: 40, height: 40, overflow: 'hidden' }}
+     >
+      <TootipProfile
+       img={thanet}
+       name={'វី​ វណ្ណៈ'}
+       position={'Web Developer'}
+      />
+     </div>
+
+     <div
+      className="rounded-circle my-2"
+      style={{ width: 40, height: 40, overflow: 'hidden' }}
+     >
+      <TootipProfile
+       img={thanet}
+       name={'លន ថាណេត'}
+       position={'Web Developer'}
+      />
+     </div>
+     <div
+      className="rounded-circle my-2"
+      style={{ width: 40, height: 40, overflow: 'hidden' }}
+     >
+      <TootipProfile
+       img={thanet}
+       name={'ជ្រឹង ចំរើន'}
+       position={'Web Developer'}
+      />
+     </div>
+     <div
+      className="rounded-circle my-2"
+      style={{ width: 40, height: 40, overflow: 'hidden' }}
+     >
+      <TootipProfile
+       img={thanet}
+       name={'ឌុន រស្មី'}
+       position={'Web Developer'}
+      />
      </div>
     </div>
    </div>
