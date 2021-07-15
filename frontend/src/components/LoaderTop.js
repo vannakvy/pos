@@ -6,10 +6,10 @@ import { useSelector } from 'react-redux';
 const useStyles = makeStyles({
  root: {
   width: '100%',
-  height: '3px',
+  height: '2px',
   position: 'sticky',
   top: 72,
-  zIndex: 1000,
+  zIndex: 10,
  },
 });
 
@@ -44,7 +44,12 @@ export default function LoaderTop() {
  return (
   <div className={classes.root}>
    {open ? (
-    <LinearProgress color="secondary" variant="determinate" value={progress} />
+    <LinearProgress
+     style={{ height: '2px' }}
+     color="secondary"
+     variant="determinate"
+     value={progress}
+    />
    ) : null}
   </div>
  );

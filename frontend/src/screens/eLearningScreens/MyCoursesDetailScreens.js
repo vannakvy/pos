@@ -33,7 +33,6 @@ const MyCoursesDetailScreen = () => {
 
  useEffect(() => {
   window.scrollTo(0, 0);
-  dispatch({ type: GET_ENROLL_DETAIL_RESET });
   dispatch(getEnrollDetail(eid));
  }, [dispatch, eid]);
  return (

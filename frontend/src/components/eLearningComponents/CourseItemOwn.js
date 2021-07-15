@@ -45,7 +45,7 @@ const CourseItemOwn = (props) => {
    className="shadow mb-3 courseItem bg-light"
    style={{ padding: '1px', minWidth: '230px', maxWidth: '250px' }}
   >
-   <CardActionArea>
+   <CardActionArea onClick={() => gotoMyCourse()}>
     <CardMedia
      className={classes.media}
      component="img"

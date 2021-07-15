@@ -78,3 +78,7 @@ main {
 .bodyBG {
  background: rgb(235, 235, 235) !important;
 }
+
+.MuiLinearProgress-bar {
+ height: 10px !important;
+}
