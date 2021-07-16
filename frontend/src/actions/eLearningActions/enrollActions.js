@@ -62,7 +62,7 @@ export const getCourseEnroll = (id) => async (dispatch, getState) => {
 
 export const getUserEnrollCourses = (uid) => async (dispatch, getState) => {
  try {
-  dispatch({ type: LOADER_TOP_TRUE });
+  //   dispatch({ type: LOADER_TOP_TRUE });
   //   dispatch({ type: USER_ENROLL_COURSE_REQUEST });
   const {
    userLogin: { userInfo },
@@ -79,7 +79,7 @@ export const getUserEnrollCourses = (uid) => async (dispatch, getState) => {
    type: USER_ENROLL_COURSE_SUCCESS,
    payload: data,
   });
-  dispatch({ type: LOADER_TOP_FALSE });
+  //   dispatch({ type: LOADER_TOP_FALSE });
  } catch (error) {
   dispatch({ type: LOADER_TOP_FALSE });
   dispatch({

@@ -37,9 +37,7 @@ export default function LoaderTop() {
    };
   } else {
    setProgress(100);
-   setTimeout(() => {
-    setOpen(false);
-   }, 200);
+   setOpen(false);
   }
  }, [loadT]);
 

@@ -9,14 +9,19 @@ const NavElearning = () => {
  return (
   <>
    <li className="nav-item active">
-    <NavLink className="nav-link navbar_link text-info" to="/elearning/courses">
+    <NavLink
+     className="nav-link navbar_link"
+     activeClassName="text-info"
+     to="/elearning/courses"
+    >
      មុខវិទ្យា
     </NavLink>
    </li>
    {userLogin.userInfo === null ? null : (
     <li className="nav-item active">
      <NavLink
-      className="nav-link navbar_link text-info"
+      className="nav-link navbar_link"
+      activeClassName="text-info"
       to="/elearning/mycourses"
      >
       មុខវិទ្យារបស់ខ្ញុំ

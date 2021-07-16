@@ -8,6 +8,7 @@ import Message from '../../components/Message';
 import { IoMdArrowBack } from 'react-icons/io';
 import { useHistory } from 'react-router-dom';
 import Watch from '../../components/eLearningComponents/Watch';
+import { LOADER_TOP_TRUE } from '../../constants/navbarConstants';
 
 const MyCoursesScreen = () => {
  const dispatch = useDispatch();
@@ -24,6 +25,7 @@ const MyCoursesScreen = () => {
   window.scrollTo(0, 0);
   if (!coursesEnroll) {
    dispatch(getUserEnrollCourses(userLogin.userInfo._id));
+   dispatch({ type: LOADER_TOP_TRUE });
   }
  }, [dispatch, userLogin]);
 
