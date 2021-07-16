@@ -28,8 +28,8 @@ const CourseItem = (props) => {
  };
  return (
   <div
-   className="shadow mb-3 courseItem bg-light"
-   style={{ padding: '1px', minWidth: '230px', maxWidth: '250px' }}
+   className="shadow mb-3 courseItem bg-light rounded"
+   style={{ padding: '1px', minWidth: '230px', maxWidth: '240px' }}
   >
    <CardActionArea onClick={() => courseDetailLink(course._id)}>
     <CardMedia

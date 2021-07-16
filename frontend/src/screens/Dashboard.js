@@ -30,7 +30,7 @@ const Dashboard = ({ history }) => {
   <div className="overflow-hidden">
    <div
     className="mt-lg-0 mt-xl-5"
-    style={{ maxWidth: 1400, margin: '0 auto' }}
+    style={{ maxWidth: 1300, margin: '0 auto' }}
    >
     <LandingPage />
     <PageComElearn />

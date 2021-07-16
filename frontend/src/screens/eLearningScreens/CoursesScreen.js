@@ -10,7 +10,10 @@ import { useLocation } from 'react-router-dom';
 import queryString from 'query-string';
 import ConvertNum from '../../components/eLearningComponents/ConvertNum';
 import { IoMdArrowBack } from 'react-icons/io';
-import { LOADER_TOP_TRUE } from '../../constants/navbarConstants';
+import {
+ LOADER_TOP_FALSE,
+ LOADER_TOP_TRUE,
+} from '../../constants/navbarConstants';
 
 const CoursesScreen = ({ match, history }) => {
  const dispatch = useDispatch();
@@ -31,10 +34,7 @@ const CoursesScreen = ({ match, history }) => {
  } = courseList;
 
  useEffect(() => {
-  if (!courses.length || pageNumber) {
-   dispatch(listCourses(courseType, pageNumber, keyword));
-   dispatch({ type: LOADER_TOP_TRUE });
-  }
+  dispatch(listCourses(courseType, pageNumber, keyword));
   setTimeout(() => {
    window.scrollTo(0, 0);
   }, 500);
@@ -45,12 +45,7 @@ const CoursesScreen = ({ match, history }) => {
  };
 
  return (
-  <div
-   style={{
-    background: 'rgb(235, 235, 235)',
-    backgroundSize: '100%',
-   }}
-  >
+  <div>
    <div
     className=""
     style={{ minHeight: '90vh', maxWidth: 1300, margin: '0 auto' }}
@@ -156,9 +151,7 @@ const CoursesScreen = ({ match, history }) => {
     ) : (
      <div className="container">
       <h5 className="text-center mt-5 kh">
-       {keyword !== ''
-        ? `មិនមានមុខវិទ្យាឈ្មោះ "${keyword}" ឡើយ`
-        : 'មិនមានមុខវិទ្យាដើម្បីរៀនទេ'}
+       {keyword !== '' ? `មិនមានមុខវិទ្យាឈ្មោះ "${keyword}" ឡើយ` : null}
       </h5>
      </div>
     )}

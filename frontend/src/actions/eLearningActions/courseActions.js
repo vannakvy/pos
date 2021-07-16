@@ -16,6 +16,10 @@ import {
  COURSE_DETAILS_SUCCESS,
  COURSE_DETAILS_FAIL,
 } from '../../constants/eLearningConstants/courseConstants';
+import {
+ LOADER_TOP_FALSE,
+ LOADER_TOP_TRUE,
+} from '../../constants/navbarConstants';
 import { logout } from '../userActions/userActions';
 
 export const SearchCourses = (keyword) => async (dispatch) => {
@@ -42,6 +46,7 @@ export const listCourses =
  (courseType, pageNumber, keyword = '', pageSize = '') =>
  async (dispatch) => {
   try {
+   dispatch({ type: LOADER_TOP_TRUE });
    //  dispatch({ type: COURSE_LIST_REQUEST });
    const { data } = await axios.get(
     `/api/courses/courseType/${courseType}?pageNumber=${pageNumber}&keyword=${keyword}&pageSize=${pageSize}`
@@ -50,6 +55,7 @@ export const listCourses =
     type: COURSE_LIST_SUCCESS,
     payload: data,
    });
+   dispatch({ type: LOADER_TOP_FALSE });
   } catch (error) {
    dispatch({
     type: COURSE_LIST_FAIL,

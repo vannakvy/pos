@@ -26,6 +26,10 @@ import {
  USER_ENROLL_DELETE_REQUEST,
  USER_ENROLL_DELETE_SUCCESS,
 } from '../../constants/eLearningConstants/enrollConstants';
+import {
+ LOADER_TOP_FALSE,
+ LOADER_TOP_TRUE,
+} from '../../constants/navbarConstants';
 
 export const getCourseEnroll = (id) => async (dispatch, getState) => {
  try {
@@ -58,8 +62,8 @@ export const getCourseEnroll = (id) => async (dispatch, getState) => {
 
 export const getUserEnrollCourses = (uid) => async (dispatch, getState) => {
  try {
-  dispatch({ type: USER_ENROLL_COURSE_REQUEST });
-
+  dispatch({ type: LOADER_TOP_TRUE });
+  //   dispatch({ type: USER_ENROLL_COURSE_REQUEST });
   const {
    userLogin: { userInfo },
   } = getState();
@@ -75,7 +79,9 @@ export const getUserEnrollCourses = (uid) => async (dispatch, getState) => {
    type: USER_ENROLL_COURSE_SUCCESS,
    payload: data,
   });
+  dispatch({ type: LOADER_TOP_FALSE });
  } catch (error) {
+  dispatch({ type: LOADER_TOP_FALSE });
   dispatch({
    type: USER_ENROLL_COURSE_FAIL,
    payload:

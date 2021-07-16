@@ -8,7 +8,7 @@ const Slider = ({ courseList }) => {
   <>
    <div
     style={{
-     maxWidth: 1400,
+     maxWidth: 1300,
      paddingBottom: '30px',
      position: 'relative',
      margin: '0 auto',
@@ -73,7 +73,7 @@ const Slider = ({ courseList }) => {
     >
      {courseList &&
       courseList.map((course) => (
-       <div key={course._id} className="px-1">
+       <div key={course._id} className="px-1 d-flex justify-content-center">
         <CourseItem course={course} />
        </div>
       ))}

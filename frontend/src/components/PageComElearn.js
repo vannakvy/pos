@@ -3,6 +3,7 @@ import { BiRightArrowCircle } from 'react-icons/bi';
 import { useDispatch } from 'react-redux';
 import { navbarList } from '../actions/navbarActions';
 import VisibilitySensor from 'react-visibility-sensor';
+import elearnImg from '../img/online-video-course.png';
 
 const PageComElearn = () => {
  const dispatch = useDispatch();
@@ -26,7 +27,7 @@ const PageComElearn = () => {
         style={{
          width: '80%',
         }}
-        src="/uploads\img\online-video-course.png"
+        src={elearnImg}
         alt=""
        />
       </div>

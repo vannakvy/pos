@@ -40,7 +40,7 @@ const App = () => {
  const dispatch = useDispatch();
  return (
   <Router>
-   <div style={{ background: 'rgb(235,235,235)' }}>
+   <div style={{ background: 'rgb(245,245,245)' }}>
     <Navbar />
     <Switch>
      {/* admin */}

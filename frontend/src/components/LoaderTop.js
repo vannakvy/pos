@@ -7,9 +7,9 @@ const useStyles = makeStyles({
  root: {
   width: '100%',
   height: '2px',
-  position: 'sticky',
-  top: 72,
-  zIndex: 10,
+  position: 'fixed',
+  // top: 72,
+  zIndex: 10000,
  },
 });
 
@@ -19,10 +19,10 @@ export default function LoaderTop() {
  const [open, setOpen] = useState(false);
 
  const loaderTop = useSelector((state) => state.loaderTop);
- const { loaderTop: loading } = loaderTop;
+ const { loaderTop: loadT } = loaderTop;
 
  React.useEffect(() => {
-  if (loading) {
+  if (loadT) {
    setOpen(true);
    setProgress(0);
    const timer = setInterval(() => {
@@ -37,15 +37,17 @@ export default function LoaderTop() {
    };
   } else {
    setProgress(100);
-   setOpen(false);
+   setTimeout(() => {
+    setOpen(false);
+   }, 200);
   }
- }, [loading]);
+ }, [loadT]);
 
  return (
   <div className={classes.root}>
    {open ? (
     <LinearProgress
-     style={{ height: '2px' }}
+     style={{ height: '2px', background: 'transparent' }}
      color="secondary"
      variant="determinate"
      value={progress}

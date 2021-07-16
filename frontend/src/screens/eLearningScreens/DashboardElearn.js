@@ -23,34 +23,24 @@ const DashboardElearn = () => {
  }, [dispatch]);
 
  return (
-  <div style={{ minHeight: '90vh', maxWidth: 1400, margin: '0 auto' }}>
+  <div className="px-1">
    <SlideChangeHooks />
-   <div className="" style={{ background: 'rgb(178,191,201)' }}>
-    <h5 className="text-dark kh" style={{ padding: '12px 20px' }}>
-     ផ្នែកបង្រៀនជាវីឌីអូ
-    </h5>
-   </div>
-   {loadingList ? (
-    <div className="py-3">
-     <Loader wd={40} hg={40} />
-    </div>
-   ) : errorList ? (
-    <Message variant="danger">{errorList}</Message>
-   ) : (
-    <>
-     <div>
-      <Slider courseList={coursesList} />
-      <CoursesShow courseType={'WebDevelopment'} type={'ផ្នែកសរសេរវែបផ្សាយ'} />
-      <CoursesShow courseType={'Programming'} type={'ផ្នែកសរសេរកម្មវិធី'} />
-      <CoursesShow courseType={'EmbededSystem'} type={'ផ្នែកប្រព័ន្ធបញ្ចា'} />
-      <CoursesShow
-       courseType={'MobileDevelopment'}
-       type={'ផ្នែកសរសេរកម្មវិធីទូរស័ព្ទ'}
-      />
-      <CoursesShow courseType={'MachineLearning'} type={'ផ្នែករៀនពីមា៉ស៊ីន'} />
+   <div style={{ minHeight: '90vh', maxWidth: 1300, margin: '0 auto' }}>
+    <h5 className="text-dark mt-3 kh">ផ្នែកបង្រៀនជាវីឌីអូ</h5>
+    {loadingList ? (
+     <div className="py-3">
+      <Loader wd={40} hg={40} />
      </div>
-    </>
-   )}
+    ) : errorList ? (
+     <Message variant="danger">{errorList}</Message>
+    ) : (
+     <>
+      <div>
+       <Slider courseList={coursesList} />
+      </div>
+     </>
+    )}
+   </div>
   </div>
  );
 };

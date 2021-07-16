@@ -26,9 +26,10 @@ const Navbar = () => {
 
  return (
   <>
+   <LoaderTop />
    <nav
-    className="navbar navbar-expand-lg sticky-top bg-light"
-    // style={{ background: 'rgb(235,235,235)' }}
+    className="navbar navbar-expand-lg sticky-top"
+    style={{ background: 'rgb(245,245,245)' }}
    >
     <NavLink
      className="navbar-brand mb-1"
@@ -119,7 +120,6 @@ const Navbar = () => {
 
     <div className="collapse navbar-collapse" id="navbarColor02">
      <ul className="navbar-nav ml-auto">
-      <NavDash />
       {loading ? (
        <Loader wd={45} hg={45} />
       ) : error ? (
@@ -130,8 +130,12 @@ const Navbar = () => {
        <NavEshop />
       ) : navbar === 'Ebook' ? (
        <NavEbook />
-      ) : navbar === 'Admin' ? null : navbar === 'Covid19' ? null : (
-       ''
+      ) : navbar === 'Admin' ? (
+       <NavDash />
+      ) : navbar === 'Covid19' ? (
+       <NavDash />
+      ) : (
+       <NavDash />
       )}
 
       {loading ? (
@@ -199,7 +203,6 @@ const Navbar = () => {
      </ul>
     </div>
    </nav>
-   <LoaderTop />
   </>
  );
 };

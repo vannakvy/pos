@@ -1,6 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router';
 import VisibilitySensor from 'react-visibility-sensor';
+import learningImg from '../img/free-ebook.png';
 
 const LandingPage = () => {
  const history = useHistory();
@@ -54,7 +55,7 @@ const LandingPage = () => {
          width: '80%',
          //   height: "50%",
         }}
-        src="/uploads\img\how-design-thinking-transforming-learning-experience-free-ebook.png"
+        src={learningImg}
         alt=""
        />
       </div>
