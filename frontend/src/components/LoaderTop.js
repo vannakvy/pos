@@ -8,7 +8,7 @@ const useStyles = makeStyles({
   width: '100%',
   height: '2px',
   position: 'fixed',
-  // top: 72,
+  top: 0,
   zIndex: 10000,
  },
 });
@@ -27,17 +27,19 @@ export default function LoaderTop() {
    setProgress(0);
    const timer = setInterval(() => {
     setProgress((oldProgress) => {
-     const diff = Math.random() * 30;
-     return Math.min(oldProgress + diff, 95);
+     const diff = Math.random() * 20;
+     return Math.min(oldProgress + diff, 80);
     });
-   }, 100);
+   }, 10);
 
    return () => {
     clearInterval(timer);
    };
   } else {
    setProgress(100);
-   setOpen(false);
+   setTimeout(() => {
+    setOpen(false);
+   }, 300);
   }
  }, [loadT]);
 

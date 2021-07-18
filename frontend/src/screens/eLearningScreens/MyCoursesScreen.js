@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getUserEnrollCourses } from '../../actions/eLearningActions/enrollActions';
 import ConvertNum from '../../components/eLearningComponents/ConvertNum';
 import CourseItemOwn from '../../components/eLearningComponents/CourseItemOwn';
-import Loader from '../../components/Loader';
 import Message from '../../components/Message';
 import { IoMdArrowBack } from 'react-icons/io';
 import { useHistory } from 'react-router-dom';
@@ -25,7 +24,6 @@ const MyCoursesScreen = () => {
   window.scrollTo(0, 0);
   if (!coursesEnroll) {
    dispatch(getUserEnrollCourses(userLogin.userInfo._id));
-   dispatch({ type: LOADER_TOP_TRUE });
   }
  }, [dispatch, userLogin]);
 

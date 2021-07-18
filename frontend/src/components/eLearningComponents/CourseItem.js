@@ -12,9 +12,6 @@ const useStyles = makeStyles({
  root: {
   maxWidth: 345,
  },
- media: {
-  height: 120,
- },
 });
 
 const CourseItem = (props) => {
@@ -29,11 +26,12 @@ const CourseItem = (props) => {
  return (
   <div
    className="shadow mb-3 courseItem bg-light rounded"
-   style={{ padding: '1px', minWidth: '230px', maxWidth: '240px' }}
+   style={{ padding: '1px', minWidth: '180px', maxWidth: '240px' }}
   >
    <CardActionArea onClick={() => courseDetailLink(course._id)}>
     <CardMedia
-     className={classes.media}
+     className="rounded-top"
+     style={{ height: 130 }}
      component="img"
      alt=""
      image={course.imgUrl}

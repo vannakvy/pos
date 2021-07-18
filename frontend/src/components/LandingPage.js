@@ -1,10 +1,13 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import VisibilitySensor from 'react-visibility-sensor';
 import learningImg from '../img/free-ebook.png';
 
 const LandingPage = () => {
  const history = useHistory();
+ const userLogin = useSelector((state) => state.userLogin);
+ const { userInfo } = userLogin;
  return (
   <>
    <VisibilitySensor partialVisibility={true}>

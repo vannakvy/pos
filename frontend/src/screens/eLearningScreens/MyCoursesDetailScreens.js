@@ -2,9 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getEnrollDetail } from '../../actions/eLearningActions/enrollActions';
-import Loader from '../../components/Loader';
 import Load from '../../components/eLearningComponents/Watch';
-import { GET_ENROLL_DETAIL_RESET } from '../../constants/eLearningConstants/enrollConstants';
 import Message from '../../components/Message';
 import { Parallax } from 'react-parallax';
 import { Chart } from 'react-google-charts';
@@ -21,7 +19,7 @@ const insideStyles = {
 };
 
 const MyCoursesDetailScreen = () => {
- const { eid, id } = useParams();
+ const { eid } = useParams();
  const dispatch = useDispatch();
 
  const enrollDetailStore = useSelector((state) => state.getEnrollDetail);
@@ -33,7 +31,9 @@ const MyCoursesDetailScreen = () => {
 
  useEffect(() => {
   window.scrollTo(0, 0);
-  dispatch(getEnrollDetail(eid));
+  if (!enrollDetail || (enrollDetail && enrollDetail._id !== eid)) {
+   dispatch(getEnrollDetail(eid));
+  }
  }, [dispatch, eid]);
  return (
   <>
@@ -70,7 +70,7 @@ const MyCoursesDetailScreen = () => {
             <h5 className="kh">វីឌីអូសម្រាប់មុខវិទ្យានេះ</h5>
             <CourseContent
              sections={enrollDetail.courseId.section}
-             cid={id}
+             cid={enrollDetail.courseId._id}
              fromVideo={true}
             />
            </div>

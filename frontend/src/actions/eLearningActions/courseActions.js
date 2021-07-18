@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Redirect, useHistory } from 'react-router-dom';
 import {
  COURSE_LIST_REQUEST,
  COURSE_LIST_SUCCESS,
@@ -21,6 +22,20 @@ import {
  LOADER_TOP_TRUE,
 } from '../../constants/navbarConstants';
 import { logout } from '../userActions/userActions';
+
+export const loadCourses = () => async (dispatch) => {
+ const history = useHistory();
+ dispatch({ type: LOADER_TOP_TRUE });
+ const { data } = await axios.get(
+  `/api/courses/courseType/AllCourses?pageNumber=1&keyword=&pageSize=`
+ );
+ if (data) {
+  dispatch({ type: COURSE_LIST_SUCCESS, payload: data });
+  dispatch({ type: LOADER_TOP_FALSE });
+  // return <Redirect to="/elearning/courses" />;
+  // history.push('/elearning/courses');
+ }
+};
 
 export const SearchCourses = (keyword) => async (dispatch) => {
  try {
@@ -46,7 +61,7 @@ export const listCourses =
  (courseType, pageNumber, keyword = '', pageSize = '') =>
  async (dispatch) => {
   try {
-   dispatch({ type: LOADER_TOP_TRUE });
+   //  dispatch({ type: LOADER_TOP_TRUE });
    //  dispatch({ type: COURSE_LIST_REQUEST });
    const { data } = await axios.get(
     `/api/courses/courseType/${courseType}?pageNumber=${pageNumber}&keyword=${keyword}&pageSize=${pageSize}`
@@ -55,7 +70,7 @@ export const listCourses =
     type: COURSE_LIST_SUCCESS,
     payload: data,
    });
-   dispatch({ type: LOADER_TOP_FALSE });
+   //  dispatch({ type: LOADER_TOP_FALSE });
   } catch (error) {
    dispatch({
     type: COURSE_LIST_FAIL,

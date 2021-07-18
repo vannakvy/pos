@@ -62,7 +62,6 @@ export const getCourseEnroll = (id) => async (dispatch, getState) => {
 
 export const getUserEnrollCourses = (uid) => async (dispatch, getState) => {
  try {
-  //   dispatch({ type: LOADER_TOP_TRUE });
   //   dispatch({ type: USER_ENROLL_COURSE_REQUEST });
   const {
    userLogin: { userInfo },
@@ -255,7 +254,7 @@ export const addEnrollVideo = (eid, vid) => async (dispatch, getState) => {
 
 export const getEnrollDetail = (eid) => async (dispatch, getState) => {
  try {
-  dispatch({ type: GET_ENROLL_DETAIL_REQUEST });
+  //   dispatch({ type: GET_ENROLL_DETAIL_REQUEST });
   const {
    userLogin: { userInfo },
   } = getState();

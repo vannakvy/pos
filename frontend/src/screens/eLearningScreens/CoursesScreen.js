@@ -34,10 +34,12 @@ const CoursesScreen = ({ match, history }) => {
  } = courseList;
 
  useEffect(() => {
-  dispatch(listCourses(courseType, pageNumber, keyword));
+  if (!courses.length || pageNumber !== 1) {
+   dispatch(listCourses(courseType, pageNumber, keyword));
+  }
   setTimeout(() => {
    window.scrollTo(0, 0);
-  }, 500);
+  }, 200);
  }, [dispatch, courseType, pageNumber, keyword]);
 
  const changeCourseType = (e) => {
@@ -54,7 +56,7 @@ const CoursesScreen = ({ match, history }) => {
      <div className="col-4">
       <button
        className="btn btn-dark kh font-weight-bolder rounded shadow"
-       onClick={() => history.push(`/elearning`)}
+       onClick={() => window.history.back()}
       >
        <h6 className="m-0 text-light">
         <IoMdArrowBack style={{ fontSize: 18 }} />

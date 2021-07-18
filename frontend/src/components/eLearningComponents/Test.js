@@ -56,7 +56,7 @@ export default class SlideChangeHooks extends Component {
   };
   return (
    <div
-    className="overflow-hidden my-0 px-1 pt-1 bg-light"
+    className="overflow-hidden my-0 bg-light pb-0"
     style={{ maxWidth: 1300, margin: '0 auto' }}
    >
     <Slider {...settings}>
@@ -68,6 +68,7 @@ export default class SlideChangeHooks extends Component {
         position: 'relative',
         right: `${this.state.activeSlide === 0 ? '10px' : 0}`,
        }}
+       alt=""
        src={s4}
       />
       <div
@@ -83,16 +84,16 @@ export default class SlideChangeHooks extends Component {
       >
        <div className="d-flex align-items-center h-100">
         <div
-         className="px-5 pt-4 rounded"
-         style={{ background: 'rgba(52,58,64,0.8)' }}
+         className="px-5 pt-4 round shadow"
+         style={{ background: 'rgba(255,255,255,0.5)' }}
         >
-         <h3 className="mb-4 text-light kh">ផ្នែកបង្រៀនកម្មវិធីទូរស័ព្ទ</h3>
-         <p className="text-light kh">
+         <h3 className="mb-4 text-dark kh">ផ្នែកបង្រៀនកម្មវិធីទូរស័ព្ទ</h3>
+         <p className="text-dark kh">
           Using props and state, we can put together a small Todo application.
           This example uses state to track the current list of items as well as
           the text that the user has entered.
          </p>
-         <button className="btn btn-warning mt-2 mb-5 px-4 kh">
+         <button className="btn btn-light rounded mt-2 mb-5 px-4 kh">
           ចាប់ផ្ដើម
          </button>
         </div>
@@ -107,6 +108,7 @@ export default class SlideChangeHooks extends Component {
         position: 'relative',
         right: `${this.state.activeSlide === 1 ? '10px' : 0}`,
        }}
+       alt=""
        src={s3}
       />
       <div
@@ -144,6 +146,7 @@ export default class SlideChangeHooks extends Component {
         position: 'relative',
         right: `${this.state.activeSlide === 2 ? '10px' : 0}`,
        }}
+       alt=""
        src={s2}
       />
       <div
@@ -181,6 +184,7 @@ export default class SlideChangeHooks extends Component {
         position: 'relative',
         right: `${this.state.activeSlide === 3 ? '10px' : 0}`,
        }}
+       alt=""
        src={s1}
       />
       <div

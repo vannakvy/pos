@@ -23,7 +23,7 @@ const DashboardElearn = () => {
  }, [dispatch]);
 
  return (
-  <div className="px-1">
+  <div className="px-1 mt-1">
    <SlideChangeHooks />
    <div style={{ minHeight: '90vh', maxWidth: 1300, margin: '0 auto' }}>
     <h5 className="text-dark mt-3 kh">ផ្នែកបង្រៀនជាវីឌីអូ</h5>

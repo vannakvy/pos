@@ -49,9 +49,9 @@
   'Liberation Mono', 'Courier New', monospace;
 }
 
-/* #testColor{
-  color: rgba(10, 0, 97, 0.596);
-} */
+#testColor {
+ color: rgb(66, 72, 75);
+}
 
 /* width */
 ::-webkit-scrollbar {

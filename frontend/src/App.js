@@ -35,9 +35,24 @@ import { useDispatch } from 'react-redux';
 import MyCoursesScreen from './screens/eLearningScreens/MyCoursesScreen';
 import AppTeacher from './AppTeacher';
 import MyCoursesDetailScreen from './screens/eLearningScreens/MyCoursesDetailScreens';
+import { COURSE_LIST_SUCCESS } from './constants/eLearningConstants/courseConstants';
+import { LOADER_TOP_FALSE, LOADER_TOP_TRUE } from './constants/navbarConstants';
+import axios from 'axios';
 
 const App = () => {
  const dispatch = useDispatch();
+
+ const gotoCourses = async () => {
+  dispatch({ type: LOADER_TOP_TRUE });
+  const { data } = await axios.get(
+   `/api/courses/courseType/AllCourses?pageNumber=1&keyword=&pageSize=`
+  );
+  if (data) {
+   dispatch({ type: COURSE_LIST_SUCCESS, payload: data });
+   dispatch({ type: LOADER_TOP_FALSE });
+   //  history.push('/elearning/courses');
+  }
+ };
  return (
   <Router>
    <div style={{ background: 'rgb(245,245,245)' }}>
@@ -52,7 +67,7 @@ const App = () => {
      <Route path="/adminEshop" component={AppAdmin} />
      {/* frontend */}
      <Route
-      path="/elearning/enroll/:eid/courses/:id"
+      path="/elearning/mycourses/:eid"
       component={MyCoursesDetailScreen}
      />
      <Route
@@ -73,7 +88,11 @@ const App = () => {
       path="/elearning/courses/page/:pageNumber"
       component={CoursesScreen}
      />
-     <Route path="/elearning/courses" component={CoursesScreen} />
+     <Route
+      path="/elearning/courses"
+      component={CoursesScreen}
+      onEnter={gotoCourses}
+     />
      <Route path="/elearning/mycourses" component={MyCoursesScreen} />
      <Route path="/elearning" component={DashboardElearn} />
      {/* ebooks routes */}
