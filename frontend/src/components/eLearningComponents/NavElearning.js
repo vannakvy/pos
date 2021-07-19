@@ -20,7 +20,9 @@ const NavElearning = () => {
  const { coursesEnroll } = userEnrollCourses;
 
  useEffect(() => {
-  dispatch(getUserEnrollCourses(userInfo._id));
+  if (userInfo._id) {
+   dispatch(getUserEnrollCourses(userInfo._id));
+  }
  }, [userInfo]);
 
  const gotoCourses = async (e) => {
