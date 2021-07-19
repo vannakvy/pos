@@ -4,11 +4,14 @@ import { useDispatch } from 'react-redux';
 import { navbarList } from '../actions/navbarActions';
 import VisibilitySensor from 'react-visibility-sensor';
 import elearnImg from '../img/online-video-course.png';
+import { useHistory } from 'react-router-dom';
 
 const PageComElearn = () => {
  const dispatch = useDispatch();
+ const history = useHistory();
  const gotoElearn = () => {
   dispatch(navbarList('Elearning'));
+  history.push('/elearning');
  };
  return (
   <>

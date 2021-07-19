@@ -3,11 +3,14 @@ import { BiRightArrowCircle } from 'react-icons/bi';
 import { useDispatch } from 'react-redux';
 import { navbarList } from '../actions/navbarActions';
 import VisibilitySensor from 'react-visibility-sensor';
+import { useHistory } from 'react-router-dom';
 
 const PageComEshop = () => {
  const dispatch = useDispatch();
+ const history = useHistory();
  const gotoEshop = () => {
   dispatch(navbarList('Eshop'));
+  history.push('/eshop');
  };
  return (
   <>

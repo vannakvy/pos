@@ -16,7 +16,7 @@ const EbookHomeScreen = () => {
  const dispatch = useDispatch();
  const history = useHistory();
  useEffect(() => {
-  // window.scroll(0, 0);
+  window.scroll(0, 0);
   dispatch(getLanguages());
  }, []);
 

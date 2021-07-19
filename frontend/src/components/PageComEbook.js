@@ -3,11 +3,14 @@ import { BiRightArrowCircle } from 'react-icons/bi';
 import { useDispatch } from 'react-redux';
 import { navbarList } from '../actions/navbarActions';
 import VisibilitySensor from 'react-visibility-sensor';
+import { useHistory } from 'react-router-dom';
 
 const PageComEbook = () => {
  const dispatch = useDispatch();
+ const history = useHistory();
  const gotoEbook = () => {
   dispatch(navbarList('Ebook'));
+  history.push('/ebook');
  };
  return (
   <>
