@@ -9,8 +9,11 @@ const CourseSidebar = ({ courses, lang }) => {
  const [navSide, setNavSide] = useState(false);
  const history = useHistory();
  return (
-  <div className="sticky-top" style={{ top: '72px', zIndex: 100 }}>
-   <div className="d-none d-lg-block" style={{ minWidth: 250, zIndex: 1 }}>
+  <div
+   className="sticky-top pt-5"
+   style={{ top: 0, zIndex: 100, height: '100%' }}
+  >
+   <div className="d-none d-lg-block" style={{ width: 250, zIndex: 1 }}>
     <div className="ml-1">
      <div className="bg-light p-0 m-0 d-flex">
       <div className="py-2 pl-3 w-100 bg-dark text-light">{lang} Tutorial</div>
@@ -26,10 +29,7 @@ const CourseSidebar = ({ courses, lang }) => {
       </div>
      </div>
     </div>
-    <div
-     className="sidebar ml-1"
-     style={{ top: 76, height: '90vh', overflowY: 'auto' }}
-    >
+    <div className="sidebar ml-1" style={{ height: '100%', overflowY: 'auto' }}>
      {courses &&
       courses.map((course) => (
        <NavLink
@@ -42,6 +42,188 @@ const CourseSidebar = ({ courses, lang }) => {
         {course.title}
        </NavLink>
       ))}
+     <NavLink
+      to={`/ebook`}
+      className="py-2 pl-3 bg-light d-block"
+      style={{ margin: '1px' }}
+     >
+      gg
+     </NavLink>
+     <NavLink
+      to={`/ebook`}
+      className="py-2 pl-3 bg-light d-block"
+      style={{ margin: '1px' }}
+     >
+      gg
+     </NavLink>
+     <NavLink
+      to={`/ebook`}
+      className="py-2 pl-3 bg-light d-block"
+      style={{ margin: '1px' }}
+     >
+      gg
+     </NavLink>
+     <NavLink
+      to={`/ebook`}
+      className="py-2 pl-3 bg-light d-block"
+      style={{ margin: '1px' }}
+     >
+      gg
+     </NavLink>
+     <NavLink
+      to={`/ebook`}
+      className="py-2 pl-3 bg-light d-block"
+      style={{ margin: '1px' }}
+     >
+      gg
+     </NavLink>
+     <NavLink
+      to={`/ebook`}
+      className="py-2 pl-3 bg-light d-block"
+      style={{ margin: '1px' }}
+     >
+      gg
+     </NavLink>
+     <NavLink
+      to={`/ebook`}
+      className="py-2 pl-3 bg-light d-block"
+      style={{ margin: '1px' }}
+     >
+      gg
+     </NavLink>
+     <NavLink
+      to={`/ebook`}
+      className="py-2 pl-3 bg-light d-block"
+      style={{ margin: '1px' }}
+     >
+      gg
+     </NavLink>
+     <NavLink
+      to={`/ebook`}
+      className="py-2 pl-3 bg-light d-block"
+      style={{ margin: '1px' }}
+     >
+      gg
+     </NavLink>
+     <NavLink
+      to={`/ebook`}
+      className="py-2 pl-3 bg-light d-block"
+      style={{ margin: '1px' }}
+     >
+      gg
+     </NavLink>
+     <NavLink
+      to={`/ebook`}
+      className="py-2 pl-3 bg-light d-block"
+      style={{ margin: '1px' }}
+     >
+      gg
+     </NavLink>
+     <NavLink
+      to={`/ebook`}
+      className="py-2 pl-3 bg-light d-block"
+      style={{ margin: '1px' }}
+     >
+      gg
+     </NavLink>
+     <NavLink
+      to={`/ebook`}
+      className="py-2 pl-3 bg-light d-block"
+      style={{ margin: '1px' }}
+     >
+      gg
+     </NavLink>
+     <NavLink
+      to={`/ebook`}
+      className="py-2 pl-3 bg-light d-block"
+      style={{ margin: '1px' }}
+     >
+      gg
+     </NavLink>
+     <NavLink
+      to={`/ebook`}
+      className="py-2 pl-3 bg-light d-block"
+      style={{ margin: '1px' }}
+     >
+      gg
+     </NavLink>
+     <NavLink
+      to={`/ebook`}
+      className="py-2 pl-3 bg-light d-block"
+      style={{ margin: '1px' }}
+     >
+      gg
+     </NavLink>
+     <NavLink
+      to={`/ebook`}
+      className="py-2 pl-3 bg-light d-block"
+      style={{ margin: '1px' }}
+     >
+      gg
+     </NavLink>
+     <NavLink
+      to={`/ebook`}
+      className="py-2 pl-3 bg-light d-block"
+      style={{ margin: '1px' }}
+     >
+      gg
+     </NavLink>
+     <NavLink
+      to={`/ebook`}
+      className="py-2 pl-3 bg-light d-block"
+      style={{ margin: '1px' }}
+     >
+      gg
+     </NavLink>
+     <NavLink
+      to={`/ebook`}
+      className="py-2 pl-3 bg-light d-block"
+      style={{ margin: '1px' }}
+     >
+      gg
+     </NavLink>
+     <NavLink
+      to={`/ebook`}
+      className="py-2 pl-3 bg-light d-block"
+      style={{ margin: '1px' }}
+     >
+      gg
+     </NavLink>
+     <NavLink
+      to={`/ebook`}
+      className="py-2 pl-3 bg-light d-block"
+      style={{ margin: '1px' }}
+     >
+      gg
+     </NavLink>
+     <NavLink
+      to={`/ebook`}
+      className="py-2 pl-3 bg-light d-block"
+      style={{ margin: '1px' }}
+     >
+      gg
+     </NavLink>
+     <NavLink
+      to={`/ebook`}
+      className="py-2 pl-3 bg-light d-block"
+      style={{ margin: '1px' }}
+     >
+      gg
+     </NavLink>
+     <NavLink
+      to={`/ebook`}
+      className="py-2 pl-3 bg-light d-block"
+      style={{ margin: '1px' }}
+     >
+      gg
+     </NavLink>
+     <NavLink
+      to={`/ebook`}
+      className="py-2 pl-3 bg-light d-block"
+      style={{ margin: '1px' }}
+     >
+      gg
+     </NavLink>
     </div>
    </div>
    <div

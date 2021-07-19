@@ -34,7 +34,7 @@ const CoursesScreen = ({ match, history }) => {
  } = courseList;
 
  useEffect(() => {
-  if (!courses.length || pageNumber !== 1) {
+  if (!courses.length || pageNumber !== 1 || courseType) {
    dispatch(listCourses(courseType, pageNumber, keyword));
   }
   setTimeout(() => {

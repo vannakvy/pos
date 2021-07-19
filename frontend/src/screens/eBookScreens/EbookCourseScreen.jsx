@@ -48,13 +48,13 @@ const EbookCourseScreen = () => {
  };
 
  return (
-  <div className="ebooCourseScreen">
-   <div className="d-flex justify-content-between">
+  <div className="position-sticky" style={{ top: '72px', zIndex: 100 }}>
+   <div className="d-flex justify-content-between ">
     <div className="d-flex w-100">
      <div>
       <CourseSidebar courses={course} lang={param.lang} />
      </div>
-     <div className="mx-2 w-100">
+     <div className="mx-2 w-100" style={{ marginBottom: 500 }}>
       {loading ? (
        <div className="pt-2">
         <Loader hg={20} wd={20} />
