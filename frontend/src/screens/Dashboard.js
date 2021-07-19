@@ -23,6 +23,8 @@ const Dashboard = ({ history }) => {
    history.push(`/ebook`);
   } else if (navbar === 'Admin') {
    history.push(`/adminUsers`);
+  } else {
+   history.push(`/`);
   }
  }, [history, navbar]);
 
