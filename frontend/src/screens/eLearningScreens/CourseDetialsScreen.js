@@ -3,15 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getCourseById } from '../../actions/eLearningActions/courseActions';
 import Loader from '../../components/Loader';
 import Message from '../../components/Message';
-import RatingBar from '../../components/Rating';
 import CourseContent from '../../components/eLearningComponents/CourseContent';
 import CourseItemDetails from '../../components/eLearningComponents/CourseItemDetails';
 
 const CourseDetailsScreen = ({ match }) => {
- const [test, setTest] = useState(false);
- const [opii, setOpii] = useState(0);
  const { id } = match.params;
-
  const dispatch = useDispatch();
 
  const courseDetail = useSelector((state) => state.courseDetail);
@@ -19,25 +15,7 @@ const CourseDetailsScreen = ({ match }) => {
 
  useEffect(() => {
   window.scrollTo(0, 0);
-  let scrollY = 0;
-  let opi = 0;
-  window.onscroll = function () {
-   scrollY = window.pageYOffset;
-   opi = (scrollY - 100) / 150;
-   if (opi > 1) {
-    opi = 1;
-   } else if (opi <= 0) {
-    opi = 0;
-   }
-   setOpii(opi);
-
-   if (scrollY > 100) {
-    setTest(true);
-   } else {
-    setTest(false);
-   }
-  };
-  dispatch(getCourseById(id));
+  if (!course || id !== course._id) dispatch(getCourseById(id));
  }, [dispatch, id]);
  return (
   <div style={{ minHeight: '90vh' }}>

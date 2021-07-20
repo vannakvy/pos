@@ -64,7 +64,7 @@ const NavElearning = () => {
   <>
    <li className="nav-item active">
     <NavLink
-     className="nav-link navbar_link"
+     className="nav-link navbar_link kh"
      activeClassName="text-info"
      style={{ cursor: 'pointer' }}
      onClick={gotoCourses}
@@ -76,7 +76,7 @@ const NavElearning = () => {
    {userLogin.userInfo === null ? null : (
     <li className="nav-item active">
      <NavLink
-      className="nav-link navbar_link mx-2"
+      className="nav-link navbar_link mx-2 kh"
       activeClassName="text-info"
       onClick={gotoMyCourses}
       to="/elearning/mycourses"

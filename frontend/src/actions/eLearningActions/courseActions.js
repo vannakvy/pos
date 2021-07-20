@@ -17,25 +17,7 @@ import {
  COURSE_DETAILS_SUCCESS,
  COURSE_DETAILS_FAIL,
 } from '../../constants/eLearningConstants/courseConstants';
-import {
- LOADER_TOP_FALSE,
- LOADER_TOP_TRUE,
-} from '../../constants/navbarConstants';
 import { logout } from '../userActions/userActions';
-
-export const loadCourses = () => async (dispatch) => {
- const history = useHistory();
- dispatch({ type: LOADER_TOP_TRUE });
- const { data } = await axios.get(
-  `/api/courses/courseType/AllCourses?pageNumber=1&keyword=&pageSize=`
- );
- if (data) {
-  dispatch({ type: COURSE_LIST_SUCCESS, payload: data });
-  dispatch({ type: LOADER_TOP_FALSE });
-  // return <Redirect to="/elearning/courses" />;
-  // history.push('/elearning/courses');
- }
-};
 
 export const SearchCourses = (keyword) => async (dispatch) => {
  try {

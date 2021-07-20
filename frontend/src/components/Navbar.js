@@ -14,6 +14,8 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import NavCovid from './covideComponents/NavCovid';
 import Menu from './Menu';
 import LoaderTop from './LoaderTop';
+import { VscBell } from 'react-icons/vsc';
+import DropdownExampleDropdown from './Notification';
 
 const Navbar = () => {
  const dispatch = useDispatch();
@@ -137,6 +139,12 @@ const Navbar = () => {
       ) : (
        <NavDash />
       )}
+
+      <li className="nav-item">
+       <div className="mx-2">
+        <DropdownExampleDropdown />
+       </div>
+      </li>
 
       {loading ? (
        <Loader wd={45} hg={45} />

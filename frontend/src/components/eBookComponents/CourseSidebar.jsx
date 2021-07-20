@@ -4,15 +4,36 @@ import './Sidebar.css';
 import { IoBackspace } from 'react-icons/io5';
 import { AiOutlineCaretRight } from 'react-icons/ai';
 import { AiOutlineCaretLeft } from 'react-icons/ai';
+import { useDispatch } from 'react-redux';
+import {
+ LOADER_TOP_FALSE,
+ LOADER_TOP_TRUE,
+} from '../../constants/navbarConstants';
+import { GET_DETAIL_BY_CONTENT_ID_SUCCESS } from '../../constants/eBookConstants/eBookDetailContants';
+import axios from 'axios';
 
 const CourseSidebar = ({ courses, lang }) => {
  const [navSide, setNavSide] = useState(false);
  const history = useHistory();
+ const dispatch = useDispatch();
+
+ const gotoEbookContent = async (e, id) => {
+  e.preventDefault();
+  dispatch({ type: LOADER_TOP_TRUE });
+  const { data } = await axios.get(`/api/ebook/details/content/${id}`);
+  if (data) {
+   dispatch({
+    type: GET_DETAIL_BY_CONTENT_ID_SUCCESS,
+    payload: data,
+   });
+   dispatch({ type: LOADER_TOP_FALSE });
+
+   history.push(`/ebook/${lang}/${id}`);
+  }
+ };
+
  return (
-  <div
-   className="sticky-top pt-5"
-   style={{ top: 0, zIndex: 100, height: '100%' }}
-  >
+  <div className="sticky-top" style={{ zIndex: 100, top: '65px' }}>
    <div className="d-none d-lg-block" style={{ width: 250, zIndex: 1 }}>
     <div className="ml-1">
      <div className="bg-light p-0 m-0 d-flex">
@@ -29,7 +50,10 @@ const CourseSidebar = ({ courses, lang }) => {
       </div>
      </div>
     </div>
-    <div className="sidebar ml-1" style={{ height: '100%', overflowY: 'auto' }}>
+    <div
+     className="sidebar ml-1"
+     style={{ maxHeight: '90vh', overflowY: 'auto', paddingBottom: 200 }}
+    >
      {courses &&
       courses.map((course) => (
        <NavLink
@@ -38,202 +62,21 @@ const CourseSidebar = ({ courses, lang }) => {
         className="py-2 pl-3 bg-light d-block"
         style={{ margin: '1px' }}
         activeClassName="bg-dark text-light"
+        onClick={(e) => gotoEbookContent(e, course._id)}
        >
         {course.title}
        </NavLink>
       ))}
-     <NavLink
-      to={`/ebook`}
-      className="py-2 pl-3 bg-light d-block"
-      style={{ margin: '1px' }}
-     >
-      gg
-     </NavLink>
-     <NavLink
-      to={`/ebook`}
-      className="py-2 pl-3 bg-light d-block"
-      style={{ margin: '1px' }}
-     >
-      gg
-     </NavLink>
-     <NavLink
-      to={`/ebook`}
-      className="py-2 pl-3 bg-light d-block"
-      style={{ margin: '1px' }}
-     >
-      gg
-     </NavLink>
-     <NavLink
-      to={`/ebook`}
-      className="py-2 pl-3 bg-light d-block"
-      style={{ margin: '1px' }}
-     >
-      gg
-     </NavLink>
-     <NavLink
-      to={`/ebook`}
-      className="py-2 pl-3 bg-light d-block"
-      style={{ margin: '1px' }}
-     >
-      gg
-     </NavLink>
-     <NavLink
-      to={`/ebook`}
-      className="py-2 pl-3 bg-light d-block"
-      style={{ margin: '1px' }}
-     >
-      gg
-     </NavLink>
-     <NavLink
-      to={`/ebook`}
-      className="py-2 pl-3 bg-light d-block"
-      style={{ margin: '1px' }}
-     >
-      gg
-     </NavLink>
-     <NavLink
-      to={`/ebook`}
-      className="py-2 pl-3 bg-light d-block"
-      style={{ margin: '1px' }}
-     >
-      gg
-     </NavLink>
-     <NavLink
-      to={`/ebook`}
-      className="py-2 pl-3 bg-light d-block"
-      style={{ margin: '1px' }}
-     >
-      gg
-     </NavLink>
-     <NavLink
-      to={`/ebook`}
-      className="py-2 pl-3 bg-light d-block"
-      style={{ margin: '1px' }}
-     >
-      gg
-     </NavLink>
-     <NavLink
-      to={`/ebook`}
-      className="py-2 pl-3 bg-light d-block"
-      style={{ margin: '1px' }}
-     >
-      gg
-     </NavLink>
-     <NavLink
-      to={`/ebook`}
-      className="py-2 pl-3 bg-light d-block"
-      style={{ margin: '1px' }}
-     >
-      gg
-     </NavLink>
-     <NavLink
-      to={`/ebook`}
-      className="py-2 pl-3 bg-light d-block"
-      style={{ margin: '1px' }}
-     >
-      gg
-     </NavLink>
-     <NavLink
-      to={`/ebook`}
-      className="py-2 pl-3 bg-light d-block"
-      style={{ margin: '1px' }}
-     >
-      gg
-     </NavLink>
-     <NavLink
-      to={`/ebook`}
-      className="py-2 pl-3 bg-light d-block"
-      style={{ margin: '1px' }}
-     >
-      gg
-     </NavLink>
-     <NavLink
-      to={`/ebook`}
-      className="py-2 pl-3 bg-light d-block"
-      style={{ margin: '1px' }}
-     >
-      gg
-     </NavLink>
-     <NavLink
-      to={`/ebook`}
-      className="py-2 pl-3 bg-light d-block"
-      style={{ margin: '1px' }}
-     >
-      gg
-     </NavLink>
-     <NavLink
-      to={`/ebook`}
-      className="py-2 pl-3 bg-light d-block"
-      style={{ margin: '1px' }}
-     >
-      gg
-     </NavLink>
-     <NavLink
-      to={`/ebook`}
-      className="py-2 pl-3 bg-light d-block"
-      style={{ margin: '1px' }}
-     >
-      gg
-     </NavLink>
-     <NavLink
-      to={`/ebook`}
-      className="py-2 pl-3 bg-light d-block"
-      style={{ margin: '1px' }}
-     >
-      gg
-     </NavLink>
-     <NavLink
-      to={`/ebook`}
-      className="py-2 pl-3 bg-light d-block"
-      style={{ margin: '1px' }}
-     >
-      gg
-     </NavLink>
-     <NavLink
-      to={`/ebook`}
-      className="py-2 pl-3 bg-light d-block"
-      style={{ margin: '1px' }}
-     >
-      gg
-     </NavLink>
-     <NavLink
-      to={`/ebook`}
-      className="py-2 pl-3 bg-light d-block"
-      style={{ margin: '1px' }}
-     >
-      gg
-     </NavLink>
-     <NavLink
-      to={`/ebook`}
-      className="py-2 pl-3 bg-light d-block"
-      style={{ margin: '1px' }}
-     >
-      gg
-     </NavLink>
-     <NavLink
-      to={`/ebook`}
-      className="py-2 pl-3 bg-light d-block"
-      style={{ margin: '1px' }}
-     >
-      gg
-     </NavLink>
-     <NavLink
-      to={`/ebook`}
-      className="py-2 pl-3 bg-light d-block"
-      style={{ margin: '1px' }}
-     >
-      gg
-     </NavLink>
     </div>
    </div>
    <div
     className={`d-block d-lg-none position-fixed ${navSide ? 'navSide' : ''}`}
     style={{
      minWidth: 250,
-     zIndex: 1,
+     zIndex: 100,
      transition: '0.5s',
      left: -250,
-     top: '72px',
+     top: '65px',
     }}
    >
     {navSide ? (
@@ -242,7 +85,7 @@ const CourseSidebar = ({ courses, lang }) => {
       style={{
        zIndex: 10,
        top: '35%',
-       right: -38,
+       right: -32,
        fontSize: 20,
        padding: '6px 8px 8px 8px',
       }}
@@ -282,7 +125,7 @@ const CourseSidebar = ({ courses, lang }) => {
     </div>
     <div
      className="sidebar ml-1 bg-light"
-     style={{ top: 76, height: '90vh', overflowY: 'auto' }}
+     style={{ top: 76, height: '90vh', overflowY: 'auto', paddingBottom: 200 }}
     >
      <ul className="list-group list-group-flush" style={{ paddingBottom: 80 }}>
       {courses &&

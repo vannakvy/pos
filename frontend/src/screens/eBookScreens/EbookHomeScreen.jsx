@@ -11,6 +11,7 @@ import {
  LOADER_TOP_FALSE,
  LOADER_TOP_TRUE,
 } from '../../constants/navbarConstants';
+import { GET_DETAIL_BY_CONTENT_ID_SUCCESS } from '../../constants/eBookConstants/eBookDetailContants';
 
 const EbookHomeScreen = () => {
  const dispatch = useDispatch();
@@ -28,8 +29,15 @@ const EbookHomeScreen = () => {
    payload: data,
   });
   if (data && data[0]) {
-   history.push(`/ebook/${lang}/${data[0]._id || 1}`);
-   dispatch({ type: LOADER_TOP_FALSE });
+   const content = await axios.get(`/api/ebook/details/content/${data[0]._id}`);
+   if (content.data) {
+    dispatch({
+     type: GET_DETAIL_BY_CONTENT_ID_SUCCESS,
+     payload: content.data,
+    });
+    dispatch({ type: LOADER_TOP_FALSE });
+    history.push(`/ebook/${lang}/${data[0]._id || 1}`);
+   }
   }
  };
 

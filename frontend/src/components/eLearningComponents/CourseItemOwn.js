@@ -59,9 +59,9 @@ const CourseItemOwn = (props) => {
     />
 
     <CardContent>
-     <div style={{ height: '100px' }}>
-      <h5>{course.name}</h5>
-      <small className="text-info">{course.courseType}</small>
+     <div className="ubuntu" style={{ height: '100px' }}>
+      <h5 className="ubuntu">{course.name}</h5>
+      <small className="text-info ubuntu">{course.courseType}</small>
      </div>
     </CardContent>
    </CardActionArea>

@@ -37,7 +37,8 @@ const EbookCourseScreen = () => {
  }, [dispatch]);
 
  useEffect(() => {
-  dispatch(getDetailByContentId(param.id));
+  if (!detailBycontents || param.id !== detailBycontents._id)
+   dispatch(getDetailByContentId(param.id));
  }, [param.id]);
 
  const copyHandle = () => {
@@ -48,13 +49,13 @@ const EbookCourseScreen = () => {
  };
 
  return (
-  <div className="position-sticky" style={{ top: '72px', zIndex: 100 }}>
+  <div style={{ zIndex: 1 }}>
    <div className="d-flex justify-content-between ">
     <div className="d-flex w-100">
      <div>
       <CourseSidebar courses={course} lang={param.lang} />
      </div>
-     <div className="mx-2 w-100" style={{ marginBottom: 500 }}>
+     <div className="mx-2 w-100" style={{ minHeight: '100vh' }}>
       {loading ? (
        <div className="pt-2">
         <Loader hg={20} wd={20} />
