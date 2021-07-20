@@ -13,19 +13,19 @@ const Dashboard = ({ history }) => {
 
  useEffect(() => {
   window.scroll(0, 0);
-  // if (navbar === 'Dashboard') {
-  //  history.push(`/`);
-  // } else if (navbar === 'Elearning') {
-  //  history.push(`/elearning`);
-  // } else if (navbar === 'Eshop') {
-  //  history.push(`/eshop`);
-  // } else if (navbar === 'Ebook') {
-  //  history.push(`/ebook`);
-  // } else if (navbar === 'Admin') {
-  //  history.push(`/adminUsers`);
-  // } else {
-  //  history.push(`/`);
-  // }
+  if (navbar === 'Dashboard') {
+   history.push(`/`);
+  } else if (navbar === 'Elearning') {
+   history.push(`/elearning`);
+  } else if (navbar === 'Eshop') {
+   history.push(`/eshop`);
+  } else if (navbar === 'Ebook') {
+   history.push(`/ebook`);
+  } else if (navbar === 'Admin') {
+   history.push(`/adminUsers`);
+  } else {
+   history.push(`/`);
+  }
  }, [history, navbar]);
 
  return (

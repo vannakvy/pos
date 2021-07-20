@@ -20,7 +20,7 @@ const NavElearning = () => {
  const { coursesEnroll } = userEnrollCourses;
 
  useEffect(() => {
-  if (userInfo._id) {
+  if (userInfo && userInfo._id) {
    dispatch(getUserEnrollCourses(userInfo._id));
   }
  }, [userInfo]);
