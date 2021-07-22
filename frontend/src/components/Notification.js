@@ -16,33 +16,43 @@ const DropdownExampleDropdown = () => (
      className="rounded-circle"
      style={{ fontSize: 37, padding: 10, background: 'rgb(230,230,230)' }}
     />
-    <div
+    <small
      className="bg-danger text-light text-center position-absolute rounded-circle"
      style={{ width: 19, left: 20, top: -2 }}
     >
      <ConvertNum num={9} />
      &#8314;
-    </div>
+    </small>
    </>
   }
  >
   <Dropdown.Menu
-   className="mt-4"
+   className="mt-3 bg-light"
    direction="left"
    style={{
     width: '300px',
     maxHeight: '500px',
-    background: 'rgb(235,235,235)',
     overflowY: 'auto',
    }}
   >
-   <Dropdown.Item text="New" />
+   <p className="px-3 pt-3 kh">ព័ត៌មានផ្សេងៗ</p>
    <Dropdown.Item
     text={
-     <>
-      <h5 className="kh">ដដសថ</h5>
-      <p className="kh">កដថេ</p>
-     </>
+     <div className="d-flex">
+      <div
+       className="rounded-circle mt-1 me-2"
+       style={{ width: '40px', overflow: 'hidden' }}
+      >
+       <img
+        className="w-100"
+        src="https://www.eguardtech.com/wp-content/uploads/2018/08/Network-Profile.png"
+       />
+      </div>
+      <div>
+       <h5 className="kh">ដដសថ</h5>
+       <p className="kh">កដថេ</p>
+      </div>
+     </div>
     }
    />
    <Dropdown.Item text="Save as..." description="ctrl + s" />

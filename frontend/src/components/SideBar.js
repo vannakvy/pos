@@ -32,27 +32,24 @@ const SideBar = () => {
  }, []);
 
  return (
-  <>
+  <div style={{ minHeight: '100vh' }}>
    <div
-    data-toggle="collapse"
-    data-target="#mulDash"
     aria-expanded={false}
     aria-controls="mulDash"
     onClick={() => setActiveNav('dash')}
    >
     <SideBarRow
-     text={'Users Dashboard'}
-     goTo={'/adminUsers'}
+     activeNav={activeNav}
+     text={'Users'}
      icon={`fas fa-user`}
      id={'dash'}
-     activeNav={activeNav}
     />
    </div>
 
    <div
     id="mulDash"
     onClick={() => setActiveNav('dash')}
-    className={`collapse ${sidecom && sidecom === 'dash' ? 'show' : ''}`}
+    className={`collapse show`}
    >
     <SideBarRowComponents
      text={'Courses'}
@@ -74,8 +71,6 @@ const SideBar = () => {
    </div>
 
    <div
-    data-toggle="collapse"
-    data-target="#mulElearn"
     aria-expanded={false}
     aria-controls="mulElearn"
     onClick={() => setActiveNav('elearn')}
@@ -92,7 +87,7 @@ const SideBar = () => {
    <div
     id="mulElearn"
     onClick={() => setActiveNav('elearn')}
-    className={`collapse ${sidecom && sidecom === 'elearn' ? 'show' : ''}`}
+    className={`collapse show`}
    >
     <SideBarRowComponents
      text={'Courses'}
@@ -106,15 +101,13 @@ const SideBar = () => {
      mar={true}
     />
     <SideBarRowComponents
-     text={'Students'}
+     text={'Request Enroll'}
      goTo={'/adminElearn/students'}
      icon={'fas fa-user-graduate'}
     />
    </div>
    {/* for ebook link  */}
    <div
-    data-toggle="collapse"
-    data-target="#mulEbook"
     aria-expanded={false}
     aria-controls="mulEbook"
     onClick={() => setActiveNav('ebook')}
@@ -132,7 +125,7 @@ const SideBar = () => {
    <div
     id="mulEbook"
     onClick={() => setActiveNav('ebook')}
-    className={`collapse ${sidecom && sidecom === 'ebook' ? 'show' : ''}`}
+    className={`collapse show`}
    >
     <SideBarRowComponents
      text={'Courses'}
@@ -148,8 +141,6 @@ const SideBar = () => {
    </div>
 
    <div
-    data-toggle="collapse"
-    data-target="#mulEshop"
     aria-expanded={false}
     aria-controls="mulEshop"
     onClick={() => setActiveNav('eshop')}
@@ -167,7 +158,7 @@ const SideBar = () => {
    <div
     id="mulEshop"
     onClick={() => setActiveNav('eshop')}
-    className={`collapse ${sidecom && sidecom === 'eshop' ? 'show' : ''}`}
+    className={`collapse show`}
    >
     <SideBarRowComponents
      text={'Clients'}
@@ -218,7 +209,7 @@ const SideBar = () => {
      icon={'fas fa-user-graduate'}
     />
    </div>
-  </>
+  </div>
  );
 };
 

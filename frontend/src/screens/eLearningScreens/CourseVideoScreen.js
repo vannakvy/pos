@@ -84,7 +84,6 @@ const CourseVideoScreen = () => {
           className="col-lg-3  d-lg-block d-none overflow-auto"
           style={{ height: '810px' }}
          >
-          <h5>Course Content</h5>
           {loadingSection ? (
            <Loader wd={40} hg={40} />
           ) : errorSection ? (
@@ -99,7 +98,7 @@ const CourseVideoScreen = () => {
          </div>
          <div className="col-lg-9 col-md-12">
           {loadingPlay ? (
-           <div className="py-3">
+           <div style={{ padding: '100px 0' }}>
             <Loader wd={40} hg={40} />
            </div>
           ) : errorPlay ? (
@@ -111,6 +110,7 @@ const CourseVideoScreen = () => {
               className="react-player"
               width="100%"
               height="100%"
+              key={plays && plays.video.url}
               url={plays && plays.video.url}
               onEnded={() => onVideoEnded()}
               controls
@@ -121,7 +121,6 @@ const CourseVideoScreen = () => {
           )}
          </div>
          <div className="col-md-12 d-lg-none mt-2">
-          <h5>Course Content</h5>
           {loadingEnroll ? (
            <Loader wd={40} hg={40} />
           ) : errorEnroll ? (

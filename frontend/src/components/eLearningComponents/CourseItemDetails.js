@@ -14,6 +14,7 @@ import {
  getEnrollVideo,
 } from '../../actions/eLearningActions/enrollActions';
 import Loader from '../Loader';
+import { BiGitPullRequest } from 'react-icons/bi';
 
 const useStyles = makeStyles({
  media: {
@@ -69,19 +70,26 @@ const CourseItemDetails = (props) => {
        disabled
       >
        <span className="d-flex">
-        <Loader wd={23} hg={23} color={'text-dark'} mg={`0`} />
+        <Loader wd={20} hg={20} color={'text-dark'} mg={`0`} />
         <span className="ml-3 kh">កំពុងដំណើរការ...</span>
        </span>
       </button>
      ) : (
       <>
        {enroll === null || enroll === undefined ? (
-        <button
-         className="btn btn-block text-dark rounded bg-info shadow kh"
-         disabled
-        >
-         អ្នកមិនទាន់អាចចូលរៀនមុខវិទ្យានេះបាននៅឡើយ
-        </button>
+        <>
+         <button className="btn btn-block text-dark rounded bg-info shadow kh">
+          ស្នើរសុំរៀនមុខវិទ្យានេះ
+          <BiGitPullRequest style={{ fontSize: 16, marginTop: -4 }} />
+         </button>
+         <button
+          disabled
+          className="btn btn-block text-dark rounded bg-warning shadow kh"
+         >
+          កំពុងស្នើរសុំរៀន
+          <BiGitPullRequest style={{ fontSize: 16, marginTop: -4 }} />
+         </button>
+        </>
        ) : plays && plays.videoNotWatch === undefined ? (
         <button
          className="btn btn-block text-dark rounded bg-info shadow kh"

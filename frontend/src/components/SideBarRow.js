@@ -1,18 +1,16 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-const SideBarRow = ({ text, icon, goTo, mar, id, activeNav }) => {
+const SideBarRow = ({ text, icon, mar, id, activeNav }) => {
  return (
   <>
-   <NavLink
-    to={`${goTo}`}
+   <div
     style={{
      fontSize: '17px',
      padding: '6px 16px 8px 16px',
      marginBottom: '2px',
     }}
-    className="nav-link font-weight-bold activeVideo rounded adminHover"
-    activeClassName="grediant"
+    className="nav-link font-weight-bold rounded-top bg-dark text-light"
     id={`${id}`}
    >
     <i
@@ -28,7 +26,7 @@ const SideBarRow = ({ text, icon, goTo, mar, id, activeNav }) => {
     ) : (
      <span style={{ marginLeft: '20px' }}>{text ? text : 'Simple'}</span>
     )}
-   </NavLink>
+   </div>
   </>
  );
 };

@@ -55,7 +55,7 @@ const EbookCourseScreen = () => {
      <div>
       <CourseSidebar courses={course} lang={param.lang} />
      </div>
-     <div className="mx-2 w-100" style={{ minHeight: '100vh' }}>
+     <div className="mx-2 w-100 shadow" style={{ minHeight: '100vh' }}>
       {loading ? (
        <div className="pt-2">
         <Loader hg={20} wd={20} />
@@ -64,10 +64,7 @@ const EbookCourseScreen = () => {
        detailBycontents &&
        detailBycontents.details &&
        detailBycontents.details.map((detail) => (
-        <div
-         className="detail_contents card card-body mb-1 ebooCourseScreen_img p-2"
-         key={detail._id}
-        >
+        <div className="p-2" key={detail._id}>
          <div className="p-2">
           {ReactHtmlParser(detail.contents)}
           {detail.codeShow ? (

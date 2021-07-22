@@ -27,8 +27,8 @@ const CourseSidebar = ({ courses, lang }) => {
     payload: data,
    });
    dispatch({ type: LOADER_TOP_FALSE });
-
    history.push(`/ebook/${lang}/${id}`);
+   setNavSide(false);
   }
  };
 
@@ -136,7 +136,7 @@ const CourseSidebar = ({ courses, lang }) => {
          className="py-2 pl-3 bg-light "
          style={{ margin: '1px' }}
          activeClassName="bg-dark text-light"
-         onClick={() => setNavSide(false)}
+         onClick={(e) => gotoEbookContent(e, course._id)}
         >
          {course.title}
         </NavLink>

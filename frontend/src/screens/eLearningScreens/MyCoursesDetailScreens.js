@@ -13,7 +13,7 @@ const insideStyles = {
  background: 'white',
  padding: 20,
  position: 'absolute',
- top: '30%',
+ top: '50%',
  left: '50%',
  transform: 'translate(-50%,-50%)',
 };
@@ -46,7 +46,10 @@ const MyCoursesDetailScreen = () => {
      <>
       {enrollDetail && enrollDetail ? (
        <>
-        <div className="shadow">
+        <div
+         className="p-1 bg-light"
+         style={{ maxWidth: 1300, margin: '0 auto' }}
+        >
          <Parallax bgImage={enrollDetail.courseId.imgUrl} strength={500}>
           <div style={{ height: '40vh' }}>
            <div style={insideStyles} className="rounded shadow">

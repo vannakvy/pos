@@ -38,12 +38,12 @@ const AppAdmin = () => {
       minWidth: '250px',
       height: '94vh',
       position: 'sticky',
-      top: '69px',
+      top: '65px',
      }}
     >
      <SideBar />
     </div>
-    <div className="w-100 mx-1">
+    <div className="w-100 mx-1" style={{ minHeight: '100vh' }}>
      <Switch>
       {/* elearning */}
       <Route
