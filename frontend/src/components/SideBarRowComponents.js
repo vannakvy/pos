@@ -1,7 +1,14 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import ConvertNum from './eLearningComponents/ConvertNum';
 
-const SideBarRowComponents = ({ text, icon, goTo, mar, id }) => {
+const SideBarRowComponents = ({
+ text = 'Simple',
+ icon,
+ goTo,
+ mar = true,
+ num = null,
+}) => {
  return (
   <>
    <NavLink
@@ -10,18 +17,24 @@ const SideBarRowComponents = ({ text, icon, goTo, mar, id }) => {
      fontSize: '12px',
      padding: '6px 16px 8px 16px',
     }}
-    className="nav-link font-weight-bold adminHover"
+    className="nav-link font-weight-bold adminHover rounded-sm"
     activeClassName="grediant"
-    id={`${id}`}
    >
     <i
      className={`${icon} position-relative ml-4`}
-     style={{ fontSize: '13px', top: '3px' }}
+     style={{ fontSize: '13px', top: '3px', marginRight: '15px' }}
     ></i>
-    {mar ? (
-     <span style={{ marginLeft: '15px' }}>{text ? text : 'Simple'}</span>
+    {text}{' '}
+    {num === null ? (
+     ''
     ) : (
-     <span style={{ marginLeft: '15px' }}>{text ? text : 'Simple'}</span>
+     <>
+      (
+      <span className="text-danger">
+       <ConvertNum num={num} />
+      </span>
+      )
+     </>
     )}
    </NavLink>
   </>

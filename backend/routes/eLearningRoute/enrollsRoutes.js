@@ -8,6 +8,10 @@ import {
  addEnrollVideo,
  deleteEnrollCourses,
  getEnrollDetail,
+ requestEnroll,
+ getAllreqEnroll,
+ deleteReqEnroll,
+ getRequestEnrollByUser,
 } from '../../controllers/eLearningController/enrollControllers.js';
 
 router.route('/users/:uid').post(protect, admin, createEnrollCourses);
@@ -18,4 +22,14 @@ router
 router.route('/:id/section').get(protect, getEnrollSections);
 router.route('/:eid/videos').post(protect, addEnrollVideo);
 router.route('/:id/video/:vid').get(protect, getEnrollVideos);
+
+router
+ .route('/user/request')
+ .get(protect, admin, getAllreqEnroll)
+ .post(protect, requestEnroll);
+
+router.route('/user/req/:cid').get(protect, getRequestEnrollByUser);
+
+router.route('/user/request/:qid').delete(protect, deleteReqEnroll);
+
 export default router;

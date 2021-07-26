@@ -1,6 +1,7 @@
 import asyncHandler from 'express-async-handler';
 import Enroll from '../../models/eLearningModels/enrollModel.js';
 import Course from '../../models/eLearningModels/courseModel.js';
+import RequestEnroll from '../../models/eLearningModels/enrollRequestModel.js';
 
 //@desc    Fetch Enroll Details
 //@route   GET /api/elearning/enroll/:eid
@@ -252,6 +253,76 @@ const addEnrollVideo = asyncHandler(async (req, res) => {
  }
 });
 
+//@desc    Request enroll
+//@route   POST /api/eLearning/enrolls/user/request
+//@access  Public
+const requestEnroll = asyncHandler(async (req, res) => {
+ const { cid, descrip } = req.body;
+ const reqEnroll = new RequestEnroll({
+  user: req.user._id,
+  cid: cid,
+  descrip: descrip || '',
+ });
+ const requestEnroll = await reqEnroll.save();
+ if (requestEnroll) {
+  res.status(201).json(requestEnroll);
+ } else {
+  res.status(404);
+  throw new Error(`can't request enroll`);
+ }
+});
+
+//@desc    Request enroll
+//@route   GET /api/eLearning/enrolls/user/req
+//@access  Public
+const getRequestEnrollByUser = asyncHandler(async (req, res) => {
+ const { cid } = req.params;
+ const getRequestEnrollByUser = await RequestEnroll.findOne({
+  user: req.user._id,
+  cid: cid,
+ });
+
+ if (getRequestEnrollByUser) {
+  res.status(201).json(getRequestEnrollByUser);
+ } else {
+  res.status(404);
+  throw new Error(`no request enroll`);
+ }
+});
+
+//@desc     GET Request enroll
+//@route   GET /api/eLearning/enrolls/user/request
+//@access  Public
+const getAllreqEnroll = asyncHandler(async (req, res) => {
+ const allReqEnroll = await RequestEnroll.find({})
+  .populate('cid')
+  .populate('user');
+
+ if (allReqEnroll) {
+  res.status(200).json(allReqEnroll);
+ } else {
+  res.status(404);
+  throw new Error(`can't get request enroll`);
+ }
+});
+
+//@desc     DELETE Request enroll
+//@route   DELETE /api/eLearning/enrolls/user/request/qid
+//@access  Public
+const deleteReqEnroll = asyncHandler(async (req, res) => {
+ const deleteReqEnroll = await RequestEnroll.findById(req.params.qid)
+  .populate('user')
+  .populate('cid');
+
+ if (deleteReqEnroll) {
+  const deleteReq = await deleteReqEnroll.remove();
+  res.status(200).json(deleteReq);
+ } else {
+  res.status(404);
+  throw new Error(`can't get request enroll`);
+ }
+});
+
 export {
  getEnrollDetail,
  getUserEnrollCourses,
@@ -260,4 +331,8 @@ export {
  getEnrollVideos,
  addEnrollVideo,
  deleteEnrollCourses,
+ requestEnroll,
+ getAllreqEnroll,
+ deleteReqEnroll,
+ getRequestEnrollByUser,
 };

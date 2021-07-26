@@ -135,9 +135,9 @@ const AddminContentScreen = () => {
      </div>
     </form>
 
-    <table className="table-sm table-striped table-dark w-100 rounded">
+    <table className="table-sm table-striped w-100 rounded">
      <thead className="bg-light text-dark">
-      <tr>
+      <tr className="bg-dark text-light">
        <th scope="col">No#</th>
        <th scope="col">Content Title</th>
        <th scope="col">Section</th>

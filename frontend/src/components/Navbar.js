@@ -11,10 +11,8 @@ import NavElearning from './eLearningComponents/NavElearning';
 import NavEshop from './NavEshop';
 import NavEbook from './eBookComponents/NavEbook';
 import SettingsIcon from '@material-ui/icons/Settings';
-import NavCovid from './covideComponents/NavCovid';
 import Menu from './Menu';
 import LoaderTop from './LoaderTop';
-import { VscBell } from 'react-icons/vsc';
 import DropdownExampleDropdown from './Notification';
 
 const Navbar = () => {
@@ -155,7 +153,7 @@ const Navbar = () => {
         {userInfo && userInfo.isAdmin ? (
          <li className="nav-item">
           <NavLink
-           to="/adminUsers"
+           to="/adminUsers/students"
            className=""
            onClick={() => dispatch(navbarList('Admin'))}
           >

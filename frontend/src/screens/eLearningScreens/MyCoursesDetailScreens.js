@@ -46,23 +46,20 @@ const MyCoursesDetailScreen = () => {
      <>
       {enrollDetail && enrollDetail ? (
        <>
-        <div
-         className="p-1 bg-light"
-         style={{ maxWidth: 1300, margin: '0 auto' }}
-        >
+        <div className="pb-2 px-0 bg-light container-xl">
          <Parallax bgImage={enrollDetail.courseId.imgUrl} strength={500}>
-          <div style={{ height: '40vh' }}>
-           <div style={insideStyles} className="rounded shadow">
-            <h5 className="m-0">{enrollDetail.courseId.name}</h5>
-           </div>
-          </div>
+          <div style={{ height: '40vh' }}></div>
          </Parallax>
         </div>
 
-        <div className="container w-100">
+        <div className="container-xl w-100">
          <div className="row mt-2">
           <div className="col-md-8 p-1">
            <div className="_bg-light shadow rounded p-3">
+            <h4 className="ubuntu">
+             <span className="kh">ឈ្មោះមុខវិទ្យា:</span>{' '}
+             {enrollDetail.courseId.name}
+            </h4>
             <h5 className="kh">ព័ត៌មានផ្សេងៗ:</h5>
             <p>
              <span className="mr-5"></span>

@@ -35,10 +35,13 @@ import {
  addEnrollVideoReducer,
  courseEnrollReducer,
  createEnrollCoursesReducer,
+ createReqEnrollReducer,
  deleteEnrollCoursesReducer,
+ deleteReqEnrollReducer,
  getEnrollDetailReducer,
  getEnrollSectionReducer,
  getEnrollVideoPlayReducer,
+ reqEnrollReducer,
  userEnrollCoursesReducer,
 } from './reducers/eLearningReducers/enrollReducers';
 
@@ -131,6 +134,9 @@ const reducer = combineReducers({
  getEnrollVideoPlay: getEnrollVideoPlayReducer,
  addEnrollVideos: addEnrollVideoReducer,
  getEnrollDetail: getEnrollDetailReducer,
+ reqEnroll: reqEnrollReducer,
+ deleteReqEnroll: deleteReqEnrollReducer,
+ createReqEnroll: createReqEnrollReducer,
  //  for ebook reducer
  courses: getLanguagesReducer,
  languageCreate: languageCreateReducer,

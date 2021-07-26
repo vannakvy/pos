@@ -46,7 +46,7 @@ const EnrollModal = ({ courses, addUserEnrollCourses }) => {
   <div>
    <button
     type="button"
-    className="btn btn-primary rounded shadow"
+    className="btn btn-success rounded shadow"
     data-toggle="modal"
     data-target="#exampleModal"
    >

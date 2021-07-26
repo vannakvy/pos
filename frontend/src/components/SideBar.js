@@ -2,37 +2,59 @@ import React, { useEffect, useState } from 'react';
 import SideBarRow from './SideBarRow';
 import $ from 'jquery';
 import SideBarRowComponents from './SideBarRowComponents';
+import { useDispatch, useSelector } from 'react-redux';
+import axios from 'axios';
+import { GET_REQ_ENROLL_SUC } from '../constants/eLearningConstants/enrollConstants';
+import { listCourses } from '../actions/eLearningActions/courseActions';
 
 const SideBar = () => {
- const [sidecom, setSidecom] = useState('');
  const [activeNav, setActiveNav] = useState('');
- useEffect(() => {
+ const dispatch = useDispatch();
+
+ const courseList = useSelector((state) => state.courseList);
+ const { count } = courseList;
+ const reqEnroll = useSelector((state) => state.reqEnroll);
+ const { reqEnrolls } = reqEnroll;
+ const userLogin = useSelector((state) => state.userLogin);
+ const { userInfo } = userLogin;
+ const config = {
+  headers: {
+   Authorization: `Bearer ${userInfo.token}`,
+  },
+ };
+
+ useEffect(async () => {
+  const { data } = await axios.get(
+   `/api/eLearning/enrolls/user/request`,
+   config
+  );
+  dispatch(listCourses('AllCourses', 1));
+
+  if (data) {
+   dispatch({ type: GET_REQ_ENROLL_SUC, payload: data });
+  }
   if ($('#dash').hasClass('grediant') && !$('#mulDash').hasClass('show')) {
-   setSidecom('dash');
    setActiveNav('dash');
   } else if (
    $('#elearn').hasClass('grediant') &&
    !$('#mulElearn').hasClass('show')
   ) {
-   setSidecom('elearn');
    setActiveNav('elearn');
   } else if (
    $('#ebook').hasClass('grediant') &&
    !$('#mulEbook').hasClass('show')
   ) {
-   setSidecom('ebook');
    setActiveNav('ebook');
   } else if (
    $('#eshop').hasClass('grediant') &&
    !$('#mulEshop').hasClass('show')
   ) {
-   setSidecom('eshop');
    setActiveNav('eshop');
   }
  }, []);
 
  return (
-  <div style={{ minHeight: '100vh' }}>
+  <div style={{ maxHeight: '100vh', paddingBottom: '150px' }}>
    <div
     aria-expanded={false}
     aria-controls="mulDash"
@@ -51,17 +73,6 @@ const SideBar = () => {
     onClick={() => setActiveNav('dash')}
     className={`collapse show`}
    >
-    <SideBarRowComponents
-     text={'Courses'}
-     goTo={'/adminUsers/courses'}
-     icon={'fas fa-folder'}
-    />
-    <SideBarRowComponents
-     text={'Videos'}
-     goTo={'/adminUsers/videos'}
-     icon={'fas fa-film'}
-     mar={true}
-    />
     <SideBarRowComponents
      text={'Students'}
      goTo={'/adminUsers/students'}
@@ -93,17 +104,14 @@ const SideBar = () => {
      text={'Courses'}
      goTo={'/adminElearn/courses'}
      icon={'fas fa-folder'}
+     num={count && count}
     />
+
     <SideBarRowComponents
-     text={'Videos'}
-     goTo={'/adminElearn/videos'}
-     icon={'fas fa-film'}
-     mar={true}
-    />
-    <SideBarRowComponents
-     text={'Request Enroll'}
+     text={`Request Enroll`}
      goTo={'/adminElearn/students'}
      icon={'fas fa-user-graduate'}
+     num={reqEnrolls && reqEnrolls.length}
     />
    </div>
    {/* for ebook link  */}

@@ -16,11 +16,13 @@ import {
 } from '../../constants/eLearningConstants/enrollConstants';
 import { USER_DETAILS_RESET } from '../../constants/userConstants';
 import CourseItemAdmin from '../../components/eLearningComponents/CourseItemAdmin';
-import { Button } from '@material-ui/core';
+// import { Button } from '@material-ui/core';
 import EnrollModal from '../../components/eLearningComponents/EnrollModal';
 import ConvertNum from '../../components/eLearningComponents/ConvertNum';
+import { Button } from 'react-bootstrap';
 
 const UserDetails = () => {
+ let i = 1;
  const { uid } = useParams();
  const dispatch = useDispatch();
  const history = useHistory();
@@ -43,7 +45,7 @@ const UserDetails = () => {
  const { success: successCreateEnroll } = createEnrollCourses;
 
  useEffect(() => {
-  dispatch({ type: USER_DETAILS_RESET });
+  // dispatch({ type: USER_DETAILS_RESET });
   dispatch(getUserDetails(uid));
  }, [dispatch, uid]);
 
@@ -51,7 +53,6 @@ const UserDetails = () => {
  const { success: sucessDeleteEnrollCourse } = deleteEnrollCourses;
 
  useEffect(() => {
-  dispatch({ type: USER_ENROLL_COURSE_RESET });
   dispatch({ type: USER_ENROLL_CREATE_RESET });
   dispatch({ type: USER_ENROLL_DELETE_RESET });
   dispatch(getUserEnrollCourses(uid));
@@ -68,30 +69,44 @@ const UserDetails = () => {
  };
  return (
   <>
-   <Button
-    variant="contained"
-    color="secondary"
-    className="my-2"
-    onClick={back}
-   >
+   {/* <Button className="my-2 bg-grey" onClick={back}>
     back
-   </Button>
-   <div className="bg-light rounded p-3 shadow">
-    {loadingUserDetails ? (
-     <Loader wd={40} hg={40} />
-    ) : errorUserDetail ? (
-     <Message variant="danger">{errorUserDetail}</Message>
-    ) : (
-     <div className="text-center">
-      <h4>{user.name}</h4>
-      <small>{user.isAdmin ? 'Admin' : 'user'}</small>
-      <br />
-      <small>ID: {user._id}</small>
-      <br />
-      <small>email: {user.email}</small>
+   </Button> */}
+
+   {loadingUserDetails ? (
+    <Loader wd={40} hg={40} />
+   ) : errorUserDetail ? (
+    <Message variant="danger">{errorUserDetail}</Message>
+   ) : (
+    <div className="bg-dark">
+     <div className="container py-1">
+      <div className="row">
+       <div className="text-center text-light col-sm-6 py-5">
+        <h1 className="kh text-info" style={{ fontSize: '5rem' }}>
+         {user.name}
+        </h1>
+        <small className="kh">តួនាទីៈ {user.isAdmin ? 'Admin' : 'user'}</small>
+        <br />
+        <small>ID: {user._id}</small>
+        <br />
+        <small>email: {user.email}</small>
+       </div>
+       <div className="col-sm-6 text-center">
+        <span
+         className="text-danger pt-4 d-block"
+         style={{ fontSize: '7rem', minxHeight: '100px' }}
+        >
+         <ConvertNum
+          num={coursesEnroll && coursesEnroll.enrollCourses.length}
+         />
+        </span>
+        <p className="kh text-info">ចំនួនមុខវិទ្យា</p>
+       </div>
+      </div>
      </div>
-    )}
-   </div>
+    </div>
+   )}
+
    <div className="d-flex justify-content-between mt-3">
     <h5 className="mt-2 kh">
      មុខវិទ្យាដែលបានចូលរៀន(
@@ -111,23 +126,54 @@ const UserDetails = () => {
     <Message variant="danger">errorUserEnrollCourses</Message>
    ) : (
     <>
-     {coursesEnroll && coursesEnroll.enrollCourses.length !== 0 ? (
-      <>
-       <div className="row">
-        {coursesEnroll &&
-         coursesEnroll.enrollCourses.map((enroll) => (
-          <div key={enroll._id} className="col-md-6 col-lg-4 col-xl-4">
-           <CourseItemAdmin
-            enroll={enroll}
-            deleteEnrollHandler={deleteEnrollHandler}
-           />
-          </div>
-         ))}
-       </div>
-      </>
-     ) : (
-      <h6 className="mt-3 text-center">No any single course enrolled</h6>
-     )}
+     <table class="table table-sm table-striped table-hover">
+      <thead>
+       <tr className="bg-dark text-light kh">
+        <th scope="col">#</th>
+        <th scope="col">ឈ្មោះមុខវិទ្យា</th>
+        <th scope="col">ប្រភេទមុខវិទ្យា</th>
+        <th scope="col">ទិន្នន័យបានរៀន(%)</th>
+        <th scope="col" className="text-center">
+         ការកំណត់
+        </th>
+       </tr>
+      </thead>
+      <tbody>
+       {coursesEnroll && coursesEnroll.enrollCourses.length !== 0 ? (
+        <>
+         {coursesEnroll &&
+          coursesEnroll.enrollCourses.map((e) => (
+           <tr key={e._id}>
+            <td>{i++}</td>
+            <td>{e.courseId.name}</td>
+            <td>{e.courseId.courseType}</td>
+            <td>{e.progressBar}%</td>
+            <td className="pt-2 pb-0 text-center">
+             <Button
+              className="me-2"
+              onClick={() => deleteEnrollHandler(e._id)}
+              type="button"
+              variant="danger"
+              size="sm"
+             >
+              <i className="fas fa-trash text-light"></i>
+             </Button>
+             <Button type="button" variant="info" size="sm">
+              <i className="fas fa-external-link-alt"></i>
+             </Button>
+            </td>
+           </tr>
+          ))}
+        </>
+       ) : (
+        <tr className="kh">
+         <td colSpan="5" className="text-center">
+          គ្មានមុខវិទ្យាដើម្បីរៀនទេ
+         </td>
+        </tr>
+       )}
+      </tbody>
+     </table>
     </>
    )}
   </>

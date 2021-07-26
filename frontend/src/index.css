@@ -144,6 +144,10 @@ body {
 }
 
 @media only screen and (min-width: 992px) {
+ .modalDescrip {
+  margin-left: 31% !important;
+  margin-right: 31% !important;
+ }
  ._courseDetailHeader {
   height: 40vh;
  }
@@ -151,6 +155,10 @@ body {
 @media only screen and (max-width: 991px) {
  ._courseDetailHeader {
   min-height: 40vh;
+ }
+ .modalDescrip {
+  margin-left: 0;
+  margin-right: 0;
  }
 }
 

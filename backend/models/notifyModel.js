@@ -1,17 +1,5 @@
 import mongoose from 'mongoose';
 
-const notifyContentSchema = mongoose.Schema(
- {
-  name: String,
-  descrip: String,
-  img: String,
-  url: String,
- },
- {
-  timestamps: true,
- }
-);
-
 const notifySchema = mongoose.Schema(
  {
   user: {
@@ -19,7 +7,10 @@ const notifySchema = mongoose.Schema(
    required: true,
    ref: 'User',
   },
-  notify: [notifyContentSchema],
+  name: String,
+  descrip: String,
+  img: String,
+  url: String,
  },
  {
   timestamps: true,

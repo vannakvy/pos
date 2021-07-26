@@ -26,6 +26,7 @@ import userRoutes from './routes/userRoute/userRoutes.js';
 import connectDB from './config/db.js';
 import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 import textRoutes from './routes/testRoutes.js';
+import notifyRoute from './routes/notifyRoute.js';
 
 dotenv.config();
 connectDB();
@@ -37,6 +38,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 app.use(express.json());
+app.use('/api/notify', notifyRoute);
 app.use('/api/courses', courseRoutes);
 app.use('/api/search', searchRoutes);
 app.use('/api/users', userRoutes);

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -8,13 +8,18 @@ import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 import Progress from './Progress';
 import { useDispatch, useSelector } from 'react-redux';
-import { COUSRE_ENROLL_RESET } from '../../constants/eLearningConstants/enrollConstants';
+import {
+ COUSRE_ENROLL_RESET,
+ CREATE_REQ_ENROLL_SUCCESS,
+} from '../../constants/eLearningConstants/enrollConstants';
 import {
  getCourseEnroll,
  getEnrollVideo,
 } from '../../actions/eLearningActions/enrollActions';
 import Loader from '../Loader';
 import { BiGitPullRequest } from 'react-icons/bi';
+import DescripModal from './DescripModal';
+import axios from 'axios';
 
 const useStyles = makeStyles({
  media: {
@@ -27,21 +32,64 @@ const useStyles = makeStyles({
 const CourseItemDetails = (props) => {
  const { course } = props;
  const { id } = useParams();
+
+ const [haveReq, setHaveReq] = useState(false);
+ const [descrip, setDescrip] = useState('');
+
  const classes = useStyles();
  const history = useHistory();
  const dispatch = useDispatch();
 
+ const userLogin = useSelector((state) => state.userLogin);
+ const { userInfo } = userLogin;
  const enrollCourse = useSelector((state) => state.enroll);
  const { loading: loadingEnroll, enroll } = enrollCourse;
-
  const getEnrollVideoPlay = useSelector((state) => state.getEnrollVideoPlay);
  const { loading: loadingPlay, plays } = getEnrollVideoPlay;
+ const createReqEnroll = useSelector((state) => state.createReqEnroll);
+ const { success: createReqEnrollSuccess } = createReqEnroll;
 
  useEffect(() => {
   dispatch({ type: COUSRE_ENROLL_RESET });
   dispatch(getCourseEnroll(id));
-  dispatch(getEnrollVideo(id, 1));
  }, [dispatch, id]);
+
+ useEffect(async () => {
+  dispatch(getEnrollVideo(id, 1));
+  if (userInfo) {
+   const config = {
+    headers: {
+     Authorization: `Bearer ${userInfo.token}`,
+    },
+   };
+   const { data } = await axios.get(
+    `/api/eLearning/enrolls/user/req/${id}`,
+    config
+   );
+   if (data) {
+    setHaveReq(true);
+   }
+  }
+ }, [userInfo, id]);
+
+ const reqEnrollCreate = async () => {
+  if (userInfo) {
+   const config = {
+    headers: {
+     Authorization: `Bearer ${userInfo.token}`,
+    },
+   };
+   const { data } = await axios.post(
+    `/api/eLearning/enrolls/user/request`,
+    { cid: id, descrip },
+    config
+   );
+   if (data) {
+    setHaveReq(true);
+    dispatch({ type: CREATE_REQ_ENROLL_SUCCESS, payload: data });
+   }
+  }
+ };
 
  const courseDetailLink = (id) => {
   history.push(`/elearning/courses/${id}/videos/${plays.videoNotWatch._id}`);
@@ -78,21 +126,37 @@ const CourseItemDetails = (props) => {
       <>
        {enroll === null || enroll === undefined ? (
         <>
-         <button className="btn btn-block text-dark rounded bg-info shadow kh">
-          ស្នើរសុំរៀនមុខវិទ្យានេះ
-          <BiGitPullRequest style={{ fontSize: 16, marginTop: -4 }} />
-         </button>
-         <button
-          disabled
-          className="btn btn-block text-dark rounded bg-warning shadow kh"
-         >
-          កំពុងស្នើរសុំរៀន
-          <BiGitPullRequest style={{ fontSize: 16, marginTop: -4 }} />
-         </button>
+         {!userInfo ? (
+          <button
+           onClick={() =>
+            history.push(`/login?redirect=/elearning/courses/${id}`)
+           }
+           className="btn btn-block text-dark rounded bg-info shadow kh"
+          >
+           ចុះឈ្មោះដើម្បីស្នើរសុំរៀន
+          </button>
+         ) : (
+          <>
+           {!haveReq ? (
+            <DescripModal
+             setDescrip={setDescrip}
+             reqEnrollCreate={reqEnrollCreate}
+            />
+           ) : (
+            <button
+             disabled
+             className="btn btn-block text-dark rounded bg-warning shadow kh"
+            >
+             កំពុងស្នើរសុំរៀន
+             <BiGitPullRequest style={{ fontSize: 16, marginTop: -4 }} />
+            </button>
+           )}
+          </>
+         )}
         </>
        ) : plays && plays.videoNotWatch === undefined ? (
         <button
-         className="btn btn-block text-dark rounded bg-info shadow kh"
+         className="btn btn-block text-dark rounded bg-danger shadow kh"
          onClick={() => courseDetailLink(course._id)}
          disabled
         >

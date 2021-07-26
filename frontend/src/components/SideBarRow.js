@@ -8,9 +8,10 @@ const SideBarRow = ({ text, icon, mar, id, activeNav }) => {
     style={{
      fontSize: '17px',
      padding: '6px 16px 8px 16px',
-     marginBottom: '2px',
+     margin: '2px 0',
+     background: 'rgb(72,88,100)',
     }}
-    className="nav-link font-weight-bold rounded-top bg-dark text-light"
+    className="nav-link font-weight-bold rounded-top text-light"
     id={`${id}`}
    >
     <i
