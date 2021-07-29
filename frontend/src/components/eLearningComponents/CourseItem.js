@@ -38,8 +38,17 @@ const CourseItem = (props) => {
   >
    <CardActionArea onClick={() => gotoCourse(course._id)}>
     <CardMedia
-     className="rounded-top"
+     className="rounded-top  d-none d-sm-block"
      style={{ height: 130 }}
+     component="img"
+     alt=""
+     image={course.imgUrl}
+     title=""
+    />
+
+    <CardMedia
+     className="rounded-top d-block d-sm-none"
+     style={{ height: 100 }}
      component="img"
      alt=""
      image={course.imgUrl}

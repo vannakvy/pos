@@ -45,12 +45,12 @@ const CourseItemOwn = (props) => {
 
  return (
   <div
-   className="shadow mb-3 courseItem bg-light rounded"
+   className="mb-3 courseItem rounded"
    style={{ padding: '1px', minWidth: '180px', maxWidth: '240px' }}
   >
    <CardActionArea onClick={() => gotoMyCourse(enroll._id)}>
     <CardMedia
-     className="rounded-top"
+     className="rounded-top  d-none d-sm-block"
      style={{ height: 130 }}
      component="img"
      alt=""
@@ -58,10 +58,22 @@ const CourseItemOwn = (props) => {
      title=""
     />
 
+    <CardMedia
+     className="rounded-top d-block d-sm-none"
+     style={{ height: 100 }}
+     component="img"
+     alt=""
+     image={course.imgUrl}
+     title=""
+    />
+
     <CardContent>
-     <div className="ubuntu" style={{ height: '100px' }}>
+     <div className="ubuntu d-none d-sm-block" style={{ height: '100px' }}>
       <h5 className="ubuntu">{course.name}</h5>
       <small className="text-info ubuntu">{course.courseType}</small>
+     </div>
+     <div className="ubuntu d-block d-sm-none" style={{ height: '50px' }}>
+      <h5 className="ubuntu">{course.name}</h5>
      </div>
     </CardContent>
    </CardActionArea>

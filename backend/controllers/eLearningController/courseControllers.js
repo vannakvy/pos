@@ -63,13 +63,42 @@ const getCourses = asyncHandler(async (req, res) => {
   const courses = await Course.find({ ...keyword })
    .limit(pageSize)
    .skip(pageSize * (page - 1));
-  res.json({ courses, page, pages: Math.ceil(count / pageSize), count });
+  const coursesMap = courses.map((c) => {
+   return {
+    _id: c._id,
+    name: c.name,
+    courseType: c.courseType,
+    description: c.description,
+    imgUrl: c.imgUrl,
+   };
+  });
+  res.json({
+   courses: coursesMap,
+   page,
+   pages: Math.ceil(count / pageSize),
+   count,
+  });
  } else {
   const count = await Course.countDocuments({ ...courseType });
   const courses = await Course.find({ ...courseType })
    .limit(pageSize)
    .skip(pageSize * (page - 1));
-  res.json({ courses, page, pages: Math.ceil(count / pageSize), count });
+  const coursesMap = courses.map((c) => {
+   return {
+    _id: c._id,
+    name: c.name,
+    courseType: c.courseType,
+    description: c.description,
+    imgUrl: c.imgUrl,
+   };
+  });
+
+  res.json({
+   courses: coursesMap,
+   page,
+   pages: Math.ceil(count / pageSize),
+   count,
+  });
  }
 });
 

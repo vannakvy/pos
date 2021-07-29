@@ -73,7 +73,28 @@ const getUserEnrollCourses = asyncHandler(async (req, res) => {
    );
   });
 
-  res.json({ enrollCourses, noEnrollCourses });
+  const noEnrollFil = noEnrollCourses.map((e) => {
+   return {
+    _id: e._id,
+    name: e.name,
+    courseType: e.courseType,
+    imgUrl: e.imgUrl,
+   };
+  });
+
+  const enrollFil = enrollCourses.map((e) => {
+   return {
+    _id: e._id,
+    progressBar: e.progressBar,
+    courseId: {
+     name: e.courseId.name,
+     courseType: e.courseId.courseType,
+     imgUrl: e.courseId.imgUrl,
+    },
+   };
+  });
+
+  res.json({ enrollCourses: enrollFil, noEnrollCourses: noEnrollFil });
  }
 });
 
@@ -299,7 +320,22 @@ const getAllreqEnroll = asyncHandler(async (req, res) => {
   .populate('user');
 
  if (allReqEnroll) {
-  res.status(200).json(allReqEnroll);
+  const reqEnrollFil = allReqEnroll.map((e) => {
+   return {
+    _id: e._id,
+    user: {
+     _id: e.user._id,
+     name: e.user.name,
+    },
+    cid: {
+     _id: e.cid._id,
+     name: e.cid.name,
+    },
+    descrip: e.descrip,
+   };
+  });
+
+  res.status(200).json(reqEnrollFil);
  } else {
   res.status(404);
   throw new Error(`can't get request enroll`);
