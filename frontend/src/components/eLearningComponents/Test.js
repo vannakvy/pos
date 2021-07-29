@@ -56,7 +56,7 @@ export default class SlideChangeHooks extends Component {
   };
   return (
    <div
-    className="overflow-hidden my-0 bg-light pb-0"
+    className="overflow-hidden my-0 bg-light pb-0 shadow"
     style={{ maxWidth: 1300, margin: '0 auto' }}
    >
     <Slider {...settings}>

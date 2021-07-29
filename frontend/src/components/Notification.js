@@ -2,29 +2,23 @@ import React, { useEffect, useState } from 'react';
 import { Dropdown } from 'semantic-ui-react';
 import { HiBell } from 'react-icons/hi';
 import ConvertNum from './eLearningComponents/ConvertNum';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
+import Duration from './Duration';
+import ReactHtmlParser from 'html-react-parser';
+import { deleteNotifyByUser, getNotifyByUser } from '../actions/notifyActions';
 
 const DropdownExampleDropdown = () => {
  const history = useHistory();
- const [noti, setNoti] = useState([]);
+ const dispatch = useDispatch();
 
- const userLogin = useSelector((state) => state.userLogin);
- const { userInfo } = userLogin;
+ const { userInfo } = useSelector((state) => state.userLogin);
+ const { notifies } = useSelector((state) => state.NotifyByUser);
 
  useEffect(async () => {
   if (userInfo) {
-   const config = {
-    headers: {
-     Authorization: `Bearer ${userInfo.token}`,
-    },
-   };
-
-   const { data } = await axios.get(`/api/notify`, config);
-   if (data) {
-    setNoti(data);
-   }
+   dispatch(getNotifyByUser(userInfo._id));
   }
  }, [userInfo]);
 
@@ -37,48 +31,64 @@ const DropdownExampleDropdown = () => {
       className="rounded-circle"
       style={{ fontSize: 37, padding: 10, background: 'rgb(230,230,230)' }}
      />
-     <small
-      className="bg-danger text-light text-center position-absolute rounded-circle"
-      style={{ width: 19, left: 20, top: -2 }}
-     >
-      <ConvertNum num={noti && noti.length} />
-      {noti.length > 9 && <>&#8314;</>}
-     </small>
+     {notifies && notifies.length > 0 && (
+      <small
+       className="bg-danger text-light text-center position-absolute rounded-circle"
+       style={{ width: 19, left: 20, top: -2 }}
+      >
+       <ConvertNum num={notifies && notifies.length} />
+       {notifies && notifies.length > 9 && <>&#8314;</>}
+      </small>
+     )}
     </>
    }
   >
-   <Dropdown.Menu
-    className="mt-3 bg-light"
-    direction="left"
-    style={{
-     width: '300px',
-     maxHeight: '500px',
-     overflowY: 'auto',
-    }}
-   >
+   <Dropdown.Menu className="mt-3 bg-light" direction="left">
     <p className="px-3 pt-3 kh text-center">ព័ត៌មានផ្សេងៗ</p>
-    {noti &&
-     noti.map((n) => (
-      <Dropdown.Item
-       onClick={() => history.push(n.url)}
-       className="m-0 p-0"
-       key={n._id}
-       text={
-        <div className="d-flex">
-         <div className="me-3" style={{ width: '45px', overflow: 'hidden' }}>
-          <img className="w-100" src={n.img} />
+    <div
+     style={{
+      width: '320px',
+      maxHeight: '500px',
+      overflowY: 'auto',
+     }}
+    >
+     {notifies &&
+      notifies.map((n) => (
+       <Dropdown.Item
+        className="m-0 p-1 adminHover"
+        key={n.id}
+        text={
+         <div className="d-flex flex-wrap">
+          <div
+           onClick={() => history.push(n.url)}
+           className="ms-1 me-3 rounded "
+           style={{ width: '70px', overflow: 'hidden' }}
+          >
+           <img style={{ height: '60px' }} src={n.img} />
+          </div>
+          <div onClick={() => history.push(n.url)} style={{ width: 200 }}>
+           <h5 className="kh m-0 p-0 ubuntu">{n.name.slice(0, 20)}...</h5>
+           <p style={{ fontSize: 11 }} className="kh m-0 p-0">
+            {ReactHtmlParser(n.descrip)}
+           </p>
+           <small>
+            <Duration itemDate={n.createdAt} />
+           </small>
+          </div>
+          <div>
+           <i
+            onClick={() => dispatch(deleteNotifyByUser(n.id))}
+            className="fas fa-trash text-dark p-2 rounded-circle mt-3"
+            style={{ fontSize: 10, background: 'rgb(230,230,230)' }}
+           ></i>
+          </div>
          </div>
-         <div>
-          <h5 className="kh m-0 p-0">{n.name.slice(0, 20)}...</h5>
-          <p className="kh m-0 p-0">{n.descrip}</p>
-          <small>{n.createdAt}</small>
-         </div>
-        </div>
-       }
-      />
-     ))}
+        }
+       />
+      ))}
+    </div>
 
-    <Dropdown.Divider />
+    {/* <Dropdown.Divider /> */}
     <Dropdown.Item
      text={
       <p className="kh text-center" style={{ color: 'blue' }}>

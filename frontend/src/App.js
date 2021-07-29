@@ -55,7 +55,7 @@ const App = () => {
  };
  return (
   <Router>
-   <div style={{ background: 'rgb(245,245,245)' }}>
+   <div style={{ background: 'rgb(255,255,255)' }}>
     <Navbar />
     <Switch>
      {/* admin */}

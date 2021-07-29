@@ -25,11 +25,7 @@ const ConvertNum = ({ num }) => {
   return str;
  }
 
- return (
-  <>
-   <span className="kh">{toEnNumber(num && num)}</span>
-  </>
- );
+ return <span className="kh">{toEnNumber(num && num)}</span>;
 };
 
 export default ConvertNum;

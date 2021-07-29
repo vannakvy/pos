@@ -37,7 +37,7 @@ const CourseSidebar = ({ courses, lang }) => {
    <div className="d-none d-lg-block" style={{ width: 250, zIndex: 1 }}>
     <div className="ml-1">
      <div className="bg-light p-0 m-0 d-flex">
-      <div className="py-2 pl-3 w-100 bg-dark text-light">{lang} Tutorial</div>
+      <div className="py-2 pl-3 w-100 bg-info text-dark">{lang} Tutorial</div>
       <div
        className="py-1 text-center bg-light"
        style={{ width: 60, cursor: 'pointer' }}
@@ -59,9 +59,9 @@ const CourseSidebar = ({ courses, lang }) => {
        <NavLink
         to={`/ebook/${lang}/${course._id}`}
         key={course._id}
-        className="py-2 pl-3 bg-light d-block"
+        className="py-2 pl-3 d-block bg-secondary border"
         style={{ margin: '1px' }}
-        activeClassName="bg-dark text-light"
+        activeClassName="bg-info text-dark"
         onClick={(e) => gotoEbookContent(e, course._id)}
        >
         {course.title}
@@ -133,9 +133,9 @@ const CourseSidebar = ({ courses, lang }) => {
         <NavLink
          to={`/ebook/${lang}/${course._id}`}
          key={course._id}
-         className="py-2 pl-3 bg-light "
+         className="py-2 pl-3 bg-light"
          style={{ margin: '1px' }}
-         activeClassName="bg-dark text-light"
+         activeClassName="bg-info text-dark"
          onClick={(e) => gotoEbookContent(e, course._id)}
         >
          {course.title}

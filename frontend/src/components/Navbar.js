@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import './Navbar.css';
 import { navbarList } from '../actions/navbarActions';
-import { logout } from '../actions/userActions/userActions';
 import Loader from './Loader';
 import NavDash from './NavDash';
 import Message from './Message';
@@ -14,6 +13,7 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import Menu from './Menu';
 import LoaderTop from './LoaderTop';
 import DropdownExampleDropdown from './Notification';
+import learningImg from '../img/free-ebook.png';
 
 const Navbar = () => {
  const dispatch = useDispatch();
@@ -28,23 +28,30 @@ const Navbar = () => {
   <>
    <LoaderTop />
    <nav
-    className="navbar navbar-expand-lg sticky-top"
-    style={{ background: 'rgb(245,245,245)' }}
+    className="navbar navbar-expand-md sticky-top"
+    style={{ background: 'rgb(255,255,255)' }}
    >
     <NavLink
-     className="navbar-brand mb-1"
+     className="navbar-brand m-0 p-0"
      to="/"
      onClick={() => dispatch(navbarList('Dashboard'))}
     >
      <img
       className="ml-1 mr-2"
-      style={{ width: '30px' }}
-      src="https://globaleducationcoalition.unesco.org/uploads/115_Code.org_color_logo_pse1XB.tif?v=8bu8l53Q94dNSzYfuj6LewLvn417MDQFBFyqOhfXZPQ"
+      style={{ width: '80px' }}
+      src={learningImg}
       alt=""
      />
-     {/* <span className="d-none d-xl-inline-block">CODING CAMBODIA</span>
-     <span className="d-inline-block d-xl-none">C-CAMBO</span> */}
+
+     <span
+      id="logo"
+      className="d-none d-sm-inline-block d-lg-none"
+      style={{ fontSize: '17px', fontWeight: 1000 }}
+     >
+      C-CAMBO
+     </span>
      <svg
+      className="d-none d-lg-inline-block"
       id="logo"
       width="167"
       height="15"
@@ -138,12 +145,6 @@ const Navbar = () => {
        <NavDash />
       )}
 
-      <li className="nav-item">
-       <div className="mx-2">
-        <DropdownExampleDropdown />
-       </div>
-      </li>
-
       {loading ? (
        <Loader wd={45} hg={45} />
       ) : error ? (
@@ -182,13 +183,18 @@ const Navbar = () => {
 
       {userInfo ? (
        <>
+        <li className="nav-item">
+         <div className="mx-2">
+          <DropdownExampleDropdown />
+         </div>
+        </li>
         <Menu userInfo={userInfo} />
        </>
       ) : (
        <>
         <li className="nav-item">
          <NavLink
-          className="nav-link px-4 rounded navbar_link"
+          className="nav-link px-4 rounded navbar_link kh"
           to="/login"
           style={{
            background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
@@ -200,7 +206,7 @@ const Navbar = () => {
         </li>
 
         <li className="nav-item">
-         <NavLink to="/register" className="nav-link  navbar_link">
+         <NavLink to="/register" className="nav-link kh navbar_link">
           បង្កើតគណនី
          </NavLink>
         </li>

@@ -9,6 +9,7 @@ import {
  GET_REQ_ENROLL_SUC,
 } from '../../constants/eLearningConstants/enrollConstants';
 import { addUserEnrollCourses } from '../../actions/eLearningActions/enrollActions';
+import { createNotify } from '../../actions/notifyActions';
 
 const AdminStudents = () => {
  let i = 1;
@@ -49,21 +50,9 @@ const AdminStudents = () => {
   }
  };
 
- const createNotify = async (n) => {
-  const { data } = await axios.post(
-   `/api/notify`,
-   {
-    uid: n.user._id,
-    name: n.cid.name,
-    descrip: 'ស្នើរសុំរៀនបានជោគជ័យ',
-    img: n.cid.imgUrl,
-    url: `/elearning/courses/${n.cid._id}`,
-   },
-   config
-  );
-
-  if (data) {
-  }
+ const createNoti = async (n) => {
+  const descrip = `<span class="text-success">ស្នើរសុំរៀនបានជោគជ័យ</span>`;
+  dispatch(createNotify(n, descrip));
  };
 
  return (
@@ -93,7 +82,7 @@ const AdminStudents = () => {
            className="btn btn-sm btn-success me-2 my-0"
            onClick={() => {
             if (window.confirm('get user a course?')) {
-             createNotify(reqE);
+             createNoti(reqE);
              dispatch(addUserEnrollCourses(reqE.user._id, [reqE.cid._id]));
              deleteReqEnrollHandler(reqE._id);
             }

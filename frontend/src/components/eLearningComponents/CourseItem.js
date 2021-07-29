@@ -33,8 +33,8 @@ const CourseItem = (props) => {
  };
  return (
   <div
-   className="shadow mb-3 courseItem bg-light rounded"
-   style={{ padding: '1px', minWidth: '180px', maxWidth: '240px' }}
+   className="mb-3 courseItem rounded"
+   style={{ minWidth: '180px', maxWidth: '240px' }}
   >
    <CardActionArea onClick={() => gotoCourse(course._id)}>
     <CardMedia
@@ -47,23 +47,17 @@ const CourseItem = (props) => {
     />
     {/* <Progress /> */}
     <CardContent>
-     <div style={{ height: '100px' }}>
+     <div className="d-none d-sm-block" style={{ height: '140px' }}>
       <h5 className="ubuntu">{course.name}</h5>
       <small className="text-info ubuntu">{course.courseType}</small>
       <p className="ubuntu">{course.description.slice(0, 50) + '...'}</p>
      </div>
+     <div className="d-block d-sm-none" style={{ height: '80px' }}>
+      <h5 className="ubuntu">{course.name}</h5>
+      <small className="text-info ubuntu">{course.courseType}</small>
+     </div>
     </CardContent>
    </CardActionArea>
-
-   <CardActions className="d-flex justify-content-end">
-    <Button
-     color="secondary"
-     onClick={() => gotoCourse(course._id)}
-     className="invisible"
-    >
-     <i className="fas fa-play" style={{ fontSize: '130%' }}></i>
-    </Button>
-   </CardActions>
   </div>
  );
 };

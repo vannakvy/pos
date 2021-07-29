@@ -9,7 +9,7 @@ const Slider = ({ courseList }) => {
    <div
     style={{
      maxWidth: 1300,
-     paddingBottom: '30px',
+     paddingBottom: '0px',
      position: 'relative',
      margin: '0 auto',
     }}
@@ -19,7 +19,7 @@ const Slider = ({ courseList }) => {
      additionalTransfrom={0}
      arrows
      autoPlay
-     autoPlaySpeed={2000}
+     autoPlaySpeed={5000}
      centerMode={false}
      className="py-2"
      containerClass="container-with-dots"
@@ -66,9 +66,9 @@ const Slider = ({ courseList }) => {
        partialVisibilityGutter: 30,
       },
      }}
-     showDots={true}
+     //  showDots={true}
      sliderClass=""
-     slidesToSlide={1}
+     slidesToSlide={3}
      swipeable
     >
      {courseList &&

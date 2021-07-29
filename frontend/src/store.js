@@ -108,6 +108,7 @@ import {
  purchaseListReducer,
  purchaseDetailsReducer,
 } from './reducers/eShopReducers/purchaseReducers';
+import { NotifyByUserReducer } from './reducers/notifyReducers.js';
 const reducer = combineReducers({
  // navbar
  navbarList: navbarListReducers,
@@ -173,6 +174,9 @@ const reducer = combineReducers({
  orderListMy: orderListMyReducer,
  saleList: saleListReducer,
 
+ // notify
+ NotifyByUser: NotifyByUserReducer,
+ //  user
  userDetails: userDetailsReducer,
  userUpdateProfile: userUpdateProfileReducer,
  userList: userListReducer,

@@ -28,15 +28,17 @@ const CourseDetailsScreen = ({ match }) => {
    ) : (
     <>
      <div className="">
-      <div className=" py-3 shadow">
+      <div className="py-3 bg-dark">
        <div
         className="container _courseDetailHeader"
         style={{ minHeight: '40vh' }}
        >
-        <div className="row">
-         <div className="col-lg-8 d-none d-lg-block">
-          <h3>{course.name}</h3>
-          <p>{course.description}</p>
+        <div className="row h-100">
+         <div className="col-md-8 d-none d-lg-block mt-5 pt-3">
+          <h1 style={{ fontSize: '3rem' }} className="ubuntu text-info">
+           {course.name}
+          </h1>
+          <p className="text-info">{course.description}</p>
          </div>
          <div className="col-lg-4">
           <CourseItemDetails course={course} />

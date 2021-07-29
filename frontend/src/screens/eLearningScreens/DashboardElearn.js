@@ -6,6 +6,7 @@ import Slider from '../../components/eLearningComponents/Slider';
 import Loader from '../../components/Loader';
 import Message from '../../components/Message';
 import SlideChangeHooks from '../../components/eLearningComponents/Test';
+import Categories from '../../components/eLearningComponents/Categories';
 
 const DashboardElearn = () => {
  const dispatch = useDispatch();
@@ -23,10 +24,28 @@ const DashboardElearn = () => {
  }, [dispatch]);
 
  return (
-  <div className="px-1 mt-1">
+  <div className="px-1 pt-1 bg-light">
    <SlideChangeHooks />
-   <div style={{ minHeight: '90vh', maxWidth: 1300, margin: '0 auto' }}>
-    <h5 className="text-dark mt-3 kh">ផ្នែកបង្រៀនជាវីឌីអូ</h5>
+   <div
+    style={{
+     minHeight: '90vh',
+     maxWidth: 1300,
+     margin: '0 auto',
+     overflow: 'hidden',
+    }}
+   >
+    <br />
+    <br />
+    <br />
+    <h1 className="kh text-center text-sm-left" style={{ fontSize: '2rem' }}>
+     ជម្រើសដ៏ទូលំទូលាយនៃការសិក្សាជាវីដីអូអនឡាញ
+    </h1>
+    <h5 className="kh ms-1">
+     ជ្រើសរើសវគ្គសិក្សាវីដេអូតាមអ៊ិនធរណេតចំនួន ១៥៥,០០០
+     ជាមួយនឹងការបន្ថែមថ្មីដែលបានផ្សព្វផ្សាយជារៀងរាល់ខែ
+    </h5>
+    <br />
+    <br />
     {loadingList ? (
      <div className="py-3">
       <Loader wd={40} hg={40} />
@@ -40,6 +59,10 @@ const DashboardElearn = () => {
       </div>
      </>
     )}
+
+    <h2 className="kh text-center text-sm-left">មុខវិទ្យាតាមផ្នែក</h2>
+
+    <Categories />
    </div>
   </div>
  );

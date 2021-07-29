@@ -154,7 +154,7 @@ const EbookCourseScreen = () => {
       <p className="">ហ្វាក់យូរប៉ិច</p>
      </div>
     </div>
-    <div className="d-xl-none mr-2">
+    <div className="d-xl-none d-none d-md-block mr-2">
      <div
       className="rounded-circle my-2"
       style={{ width: 40, height: 40, overflow: 'hidden' }}
