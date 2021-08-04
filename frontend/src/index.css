@@ -10,13 +10,13 @@ main {
 
 body {
  margin: 0;
- font-family: 'Ubuntu', sans-serif;
  font-size: 0.875rem;
  font-weight: 400;
  line-height: 1.5;
  color: #000000;
  text-align: left;
  background-color: rgba(255, 255, 255, 0.932);
+ font-family: 'Ubuntu', sans-serif;
  /* background: #da4453; */
  /* background: -webkit-linear-gradient(to right, #89216b, #da4453); */
  /* background: linear-gradient(to right, #89216b, #da4453); */
@@ -209,6 +209,10 @@ body {
  color: rgb(255, 39, 140) !important;
 }
 
+.linkLogin {
+ color: rgb(255, 39, 140) !important;
+}
+
 .adminHover:hover {
  background: linear-gradient(45deg, #acd6f8 30%, #f3fdff 90%) !important;
  box-shadow: 0 3px 5px 2px rgba(153, 231, 255, 0.3);
@@ -279,4 +283,13 @@ div {
 
 .ui.secondary.pointing.menu .item {
  font-family: 'Battambang', cursive;
+}
+
+.activeNav {
+ border-top: 2px solid #007bff;
+ color: #007bff !important;
+}
+
+.activeNav svg {
+ color: #007bff !important;
 }

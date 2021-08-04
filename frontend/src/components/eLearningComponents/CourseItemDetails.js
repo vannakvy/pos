@@ -157,7 +157,6 @@ const CourseItemDetails = (props) => {
        ) : plays && plays.videoNotWatch === undefined ? (
         <button
          className="btn btn-block text-dark rounded bg-danger shadow kh"
-         onClick={() => courseDetailLink(course._id)}
          disabled
         >
          មុខវិទ្យានេះមិនទាន់មា​នវិឌីអូដើម្បីរៀននៅឡើយ

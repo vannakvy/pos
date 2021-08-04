@@ -25,10 +25,10 @@ const Navbar = () => {
  useEffect(() => {}, [userLogin]);
 
  return (
-  <>
+  <div className="d-none d-md-block sticky-top">
    <LoaderTop />
    <nav
-    className="navbar navbar-expand-md sticky-top"
+    className="navbar navbar-expand-md sticky-top p-2"
     style={{ background: 'rgb(255,255,255)' }}
    >
     <NavLink
@@ -164,20 +164,6 @@ const Navbar = () => {
           </NavLink>
          </li>
         ) : null}
-
-        {/* {userInfo && userInfo.isTeacher ? (
-         <li className="nav-item">
-          <NavLink
-           to="/teacherCourses"
-           className=""
-           onClick={() => dispatch(navbarList('Admin'))}
-          >
-           <button className="kh btn grediant rounded adminHover">
-            <h5 className="m-0">គ្រូ</h5>
-           </button>
-          </NavLink>
-         </li>
-        ) : null} */}
        </>
       )}
 
@@ -215,7 +201,7 @@ const Navbar = () => {
      </ul>
     </div>
    </nav>
-  </>
+  </div>
  );
 };
 

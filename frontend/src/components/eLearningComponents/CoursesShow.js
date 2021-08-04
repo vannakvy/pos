@@ -41,7 +41,12 @@ const CoursesShow = ({ courseType, header, text, url }) => {
     ) : (
      <>
       <Tab.Pane attached={false}>
-       <h3 className="kh mt-3 ms-2 text-info">{header}</h3>
+       <h3
+        className="text-center kh mt-3 ms-2 pb-1 pt-2 px-2 rounded d-inline-block"
+        style={{ background: 'rgb(204,226,255)' }}
+       >
+        {header}
+       </h3>
        <p className="kh mt-4 ms-2" style={{ maxWidth: '800px' }}>
         {text}
        </p>

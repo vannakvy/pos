@@ -10,10 +10,6 @@ import { useLocation } from 'react-router-dom';
 import queryString from 'query-string';
 import ConvertNum from '../../components/eLearningComponents/ConvertNum';
 import { IoMdArrowBack } from 'react-icons/io';
-import {
- LOADER_TOP_FALSE,
- LOADER_TOP_TRUE,
-} from '../../constants/navbarConstants';
 
 const CoursesScreen = ({ match, history }) => {
  const dispatch = useDispatch();

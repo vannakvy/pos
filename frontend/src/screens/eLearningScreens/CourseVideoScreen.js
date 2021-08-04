@@ -30,12 +30,11 @@ const CourseVideoScreen = () => {
   dispatch(getCourseEnroll(id));
  }, [dispatch, id]);
 
- const getEnrollSection = useSelector((state) => state.getEnrollSection);
  const {
   loading: loadingSection,
   error: errorSection,
   sections,
- } = getEnrollSection;
+ } = useSelector((state) => state.getEnrollSection);
 
  const addEnrollVideos = useSelector((state) => state.addEnrollVideos);
  const { success: successAddEnrollVideo } = addEnrollVideos;

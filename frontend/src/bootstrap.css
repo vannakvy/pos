@@ -47,6 +47,9 @@
   'Segoe UI Emoji', 'Segoe UI Symbol';
  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
   'Liberation Mono', 'Courier New', monospace;
+ --bs-font-sans-serif: system-ui, -apple-system, 'Segoe UI', Roboto,
+  'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif,
+  'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
 html {
@@ -72,7 +75,7 @@ section {
 
 body {
  margin: 0;
- font-family: 'Ubuntu', sans-serif;
+ font-family: var(--bs-font-sans-serif);
  font-size: 0.875rem;
  font-weight: 400;
  line-height: 1.5;
@@ -10515,7 +10518,7 @@ h3,
 h4,
 h5,
 h6 {
- text-transform: uppercase;
+ /* text-transform: uppercase; */
  letter-spacing: 1px;
 }
 

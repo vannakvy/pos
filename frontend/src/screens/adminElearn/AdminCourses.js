@@ -350,7 +350,6 @@ const AdminCourses = ({ match }) => {
         <th scope="col">Name</th>
         <th scope="col">Course Type</th>
         <th scope="col">Description</th>
-        <th scope="col">Admin</th>
         <th scope="col">Actions</th>
        </tr>
       </thead>
@@ -362,27 +361,28 @@ const AdminCourses = ({ match }) => {
           <td>{course.name}</td>
           <td>{course.courseType}</td>
           <td>{course.description.slice(0, 30)}...</td>
-          <td>{course.user}</td>
-          <td className="text-center py-2 px-0" style={{ fontSize: '17px' }}>
-           <Button onClick={() => courseDetail(course._id)}>
-            <BiDetail className="text-info" style={{ fontSize: '130%' }} />
-           </Button>
-           <Button
-            color="primary"
+          <td
+           className="text-center py-2 px-0"
+           style={{ fontSize: '17px', width: 160 }}
+          >
+           <button
+            className="btn-sm btn bg-info text-light"
+            onClick={() => courseDetail(course._id)}
+           >
+            <BiDetail style={{ fontSize: '130%' }} />
+           </button>
+           <button
+            className="btn-sm btn bg-warning text-light mx-1"
             onClick={() => editCourseHandler(course)}
-            data-toggle="collapse"
-            data-target="#multiCollapseExample2"
-            aria-expanded={false}
-            aria-controls="multiCollapseExample2"
            >
             <i className="fas fa-pen-alt" style={{ fontSize: '130%' }}></i>
-           </Button>
-           <Button
-            color="secondary"
+           </button>
+           <button
+            className="btn-sm btn bg-danger text-light"
             onClick={() => deleteCourseHandler(course._id)}
            >
             <i className="fas fa-trash" style={{ fontSize: '130%' }}></i>
-           </Button>
+           </button>
           </td>
          </tr>
         ))}

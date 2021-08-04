@@ -1,11 +1,8 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
 import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
 import { useDispatch } from 'react-redux';
 import {
  LOADER_TOP_FALSE,
@@ -33,8 +30,15 @@ const CourseItem = (props) => {
  };
  return (
   <div
-   className="mb-3 courseItem rounded"
-   style={{ minWidth: '180px', maxWidth: '240px' }}
+   className="mb-3 courseItem shadow"
+   style={{
+    minWidth: '150px',
+    maxWidth: '225px',
+    background: '#fff',
+    overflow: 'hidden',
+    border: '2px solid rgb(33,161,243)',
+    borderRadius: 15,
+   }}
   >
    <CardActionArea onClick={() => gotoCourse(course._id)}>
     <CardMedia
@@ -54,15 +58,14 @@ const CourseItem = (props) => {
      image={course.imgUrl}
      title=""
     />
-    {/* <Progress /> */}
     <CardContent>
      <div className="d-none d-sm-block" style={{ height: '140px' }}>
       <h5 className="ubuntu">{course.name}</h5>
       <small className="text-info ubuntu">{course.courseType}</small>
       <p className="ubuntu">{course.description.slice(0, 50) + '...'}</p>
      </div>
-     <div className="d-block d-sm-none" style={{ height: '80px' }}>
-      <h5 className="ubuntu">{course.name}</h5>
+     <div className="d-block d-sm-none" style={{ height: '100px' }}>
+      <h5>{course.name}</h5>
       <small className="text-info ubuntu">{course.courseType}</small>
      </div>
     </CardContent>

@@ -45,8 +45,15 @@ const CourseItemOwn = (props) => {
 
  return (
   <div
-   className="mb-3 courseItem rounded"
-   style={{ padding: '1px', minWidth: '180px', maxWidth: '240px' }}
+   className="mb-3 courseItem"
+   style={{
+    minWidth: '150px',
+    maxWidth: '225px',
+    background: '#fff',
+    overflow: 'hidden',
+    border: '2px solid rgb(33,161,243)',
+    borderRadius: 15,
+   }}
   >
    <CardActionArea onClick={() => gotoMyCourse(enroll._id)}>
     <CardMedia
@@ -68,12 +75,12 @@ const CourseItemOwn = (props) => {
     />
 
     <CardContent>
-     <div className="ubuntu d-none d-sm-block" style={{ height: '100px' }}>
+     <div className="ubuntu d-none d-sm-block" style={{ height: '80px' }}>
       <h5 className="ubuntu">{course.name}</h5>
       <small className="text-info ubuntu">{course.courseType}</small>
      </div>
      <div className="ubuntu d-block d-sm-none" style={{ height: '50px' }}>
-      <h5 className="ubuntu">{course.name}</h5>
+      <h5>{course.name}</h5>
      </div>
     </CardContent>
    </CardActionArea>

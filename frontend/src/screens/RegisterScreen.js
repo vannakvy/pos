@@ -5,7 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
 import FormContainer from '../components/FormContainer';
-import { register } from '../actions/userActions/userActions';
+import { register, registerByGoogle } from '../actions/userActions/userActions';
+import googleLogo from '../img/google-logo.png';
 
 const RegisterScreen = ({ location, history }) => {
  const [name, setName] = useState('');
@@ -40,15 +41,21 @@ const RegisterScreen = ({ location, history }) => {
 
  return (
   <FormContainer>
-   <h1 className="kh">បញ្ចូលព័ត៌មានផ្ទាល់ខ្លួន</h1>
+   <h1 className="kh text-center mb-5">បញ្ចូលព័ត៌មានផ្ទាល់ខ្លួន</h1>
    {message && <Message variant="danger">{message}</Message>}
-   {error && <Message variant="danger">{error}</Message>}
+   {error && (
+    <Message variant="danger">
+     <p className="kh fw-bold text-center">{error}</p>
+    </Message>
+   )}
    {loading && <Loader wd={40} hg={40} />}
    <Form onSubmit={submitHandler}>
     <Form.Group controlId="name">
-     <Form.Label>Name</Form.Label>
+     <Form.Label className="kh fw-bold">
+      ឈ្មោះ (<span className="ubuntu">Name</span>)
+     </Form.Label>
      <Form.Control
-      className="bg-light rounded shadow"
+      className="rounded shadow-sm"
       type="name"
       placeholder="Enter name"
       value={name}
@@ -57,9 +64,11 @@ const RegisterScreen = ({ location, history }) => {
     </Form.Group>
 
     <Form.Group controlId="email">
-     <Form.Label>Email Address</Form.Label>
+     <Form.Label className="kh fw-bold">
+      អុីម៉ែល (<span className="ubuntu">Email</span>)
+     </Form.Label>
      <Form.Control
-      className="bg-light rounded shadow"
+      className="rounded shadow-sm"
       type="email"
       placeholder="Enter email"
       value={email}
@@ -68,9 +77,11 @@ const RegisterScreen = ({ location, history }) => {
     </Form.Group>
 
     <Form.Group controlId="password">
-     <Form.Label>Password</Form.Label>
+     <Form.Label className="kh fw-bold">
+      លេខសម្ងាត់ (<span className="ubuntu">Password</span>)
+     </Form.Label>
      <Form.Control
-      className="bg-light rounded shadow"
+      className="rounded shadow-sm"
       type="password"
       placeholder="Enter password"
       value={password}
@@ -79,9 +90,11 @@ const RegisterScreen = ({ location, history }) => {
     </Form.Group>
 
     <Form.Group controlId="confirmPassword">
-     <Form.Label>Confirm Password</Form.Label>
+     <Form.Label className="kh fw-bold">
+      ផ្ទៀងផ្ទាត់លេខសម្ងាត់ (<span className="ubuntu">Confirm Password</span>)
+     </Form.Label>
      <Form.Control
-      className="bg-light rounded shadow"
+      className="rounded shadow-sm"
       type="password"
       placeholder="Confirm password"
       value={confirmPassword}
@@ -89,15 +102,37 @@ const RegisterScreen = ({ location, history }) => {
      ></Form.Control>
     </Form.Group>
 
-    <Button type="submit" className="grediant rounded text-dark px-5">
-     Register
-    </Button>
+    <div className="text-center py-2">
+     <Button type="submit" className="grediant rounded text-dark px-4 kh fs-6">
+      បង្កើតគណនី
+     </Button>
+    </div>
    </Form>
 
+   <p className="kh fw-bold text-center mt-1">ឬក៏</p>
+   <hr />
+   <div>
+    <div
+     className="bg-light shadow ml-auto mr-auto rounded adminHover d-flex"
+     style={{ maxWidth: '400px', padding: '6px 15px' }}
+     onClick={() => dispatch(registerByGoogle())}
+    >
+     <img style={{ width: '35px' }} src={googleLogo} alt="" />
+     <h5 className="text-center kh w-100 mt-2">
+      បង្កើតគណនីតាមគណនី <span className="ubuntu">GOOGLE</span>
+     </h5>
+    </div>
+   </div>
+
    <Row className="py-3">
-    <Col>
-     Have an Account?{' '}
-     <Link to={redirect ? `/login?redirect=${redirect}` : '/login'}>Login</Link>
+    <Col className="kh fw-bold">
+     ចុះឈ្មោះម្ដងហើយ?{' '}
+     <Link
+      className="linkLogin"
+      to={redirect ? `/login?redirect=${redirect}` : '/login'}
+     >
+      ចូលគណនី
+     </Link>
     </Col>
    </Row>
   </FormContainer>

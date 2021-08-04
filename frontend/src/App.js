@@ -38,6 +38,7 @@ import MyCoursesDetailScreen from './screens/eLearningScreens/MyCoursesDetailScr
 import { COURSE_LIST_SUCCESS } from './constants/eLearningConstants/courseConstants';
 import { LOADER_TOP_FALSE, LOADER_TOP_TRUE } from './constants/navbarConstants';
 import axios from 'axios';
+import NavbarBottom from './components/NavbarBottom';
 
 const App = () => {
  const dispatch = useDispatch();
@@ -55,7 +56,7 @@ const App = () => {
  };
  return (
   <Router>
-   <div style={{ background: 'rgb(255,255,255)' }}>
+   <div style={{ background: 'rgb(240,240,240)' }}>
     <Navbar />
     <Switch>
      {/* admin */}
@@ -137,6 +138,8 @@ const App = () => {
       alt=""
      />
     </NavLink>
+
+    <NavbarBottom />
    </div>
   </Router>
  );

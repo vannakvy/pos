@@ -17,12 +17,13 @@ const authUser = asyncHandler(async (req, res) => {
    name: user.name,
    email: user.email,
    isAdmin: user.isAdmin,
+   profile: user.profile || '',
    isTeacher: user.isTeacher,
    token: generateToken(user._id),
   });
  } else {
   res.status(401);
-  throw new Error('Invalid email or password');
+  throw new Error('អ៊ីម៉ែលឬលេខសម្ងាត់របស់អ្នក​មិនត្រឹមត្រូវ');
  }
 });
 
@@ -48,18 +49,21 @@ const searchUser = asyncHandler(async (req, res) => {
 //@access Public
 
 const registerUser = asyncHandler(async (req, res) => {
- const { name, email, password } = req.body;
+ const { name, email, password, profile } = req.body;
 
  const userExists = await User.findOne({ email });
  if (userExists) {
   res.status(400);
-  throw new Error('User already exists');
+  throw new Error(
+   'អ៊ីម៉ែលរបស់អ្នកធ្លាប់បានចុះឈ្មោះសម្រាប់ការប្រើប្រាស់រួចមកហើយ'
+  );
  }
 
  const user = await User.create({
   name,
   email,
   password,
+  profile: profile || '',
  });
 
  if (user) {
@@ -68,6 +72,7 @@ const registerUser = asyncHandler(async (req, res) => {
    name: user.name,
    email: user.email,
    isAdmin: user.isAdmin,
+   profile: user.profile || '',
    isTeacher: user.isTeacher,
    token: generateToken(user._id),
   });
@@ -90,6 +95,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
    name: user.name,
    email: user.email,
    isAdmin: user.isAdmin,
+   profile: user.profile || '',
   });
  } else {
   res.status(404);

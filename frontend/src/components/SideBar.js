@@ -17,40 +17,41 @@ const SideBar = () => {
  const { reqEnrolls } = reqEnroll;
  const userLogin = useSelector((state) => state.userLogin);
  const { userInfo } = userLogin;
- const config = {
-  headers: {
-   Authorization: `Bearer ${userInfo.token}`,
-  },
- };
 
  useEffect(async () => {
-  const { data } = await axios.get(
-   `/api/eLearning/enrolls/user/request`,
-   config
-  );
+  if (userInfo !== null) {
+   const config = {
+    headers: {
+     Authorization: `Bearer ${userInfo.token}`,
+    },
+   };
+   const { data } = await axios.get(
+    `/api/eLearning/enrolls/user/request`,
+    config
+   );
+   if (data) {
+    dispatch({ type: GET_REQ_ENROLL_SUC, payload: data });
+   }
+   if ($('#dash').hasClass('grediant') && !$('#mulDash').hasClass('show')) {
+    setActiveNav('dash');
+   } else if (
+    $('#elearn').hasClass('grediant') &&
+    !$('#mulElearn').hasClass('show')
+   ) {
+    setActiveNav('elearn');
+   } else if (
+    $('#ebook').hasClass('grediant') &&
+    !$('#mulEbook').hasClass('show')
+   ) {
+    setActiveNav('ebook');
+   } else if (
+    $('#eshop').hasClass('grediant') &&
+    !$('#mulEshop').hasClass('show')
+   ) {
+    setActiveNav('eshop');
+   }
+  }
   dispatch(listCourses('AllCourses', 1));
-
-  if (data) {
-   dispatch({ type: GET_REQ_ENROLL_SUC, payload: data });
-  }
-  if ($('#dash').hasClass('grediant') && !$('#mulDash').hasClass('show')) {
-   setActiveNav('dash');
-  } else if (
-   $('#elearn').hasClass('grediant') &&
-   !$('#mulElearn').hasClass('show')
-  ) {
-   setActiveNav('elearn');
-  } else if (
-   $('#ebook').hasClass('grediant') &&
-   !$('#mulEbook').hasClass('show')
-  ) {
-   setActiveNav('ebook');
-  } else if (
-   $('#eshop').hasClass('grediant') &&
-   !$('#mulEshop').hasClass('show')
-  ) {
-   setActiveNav('eshop');
-  }
  }, []);
 
  return (

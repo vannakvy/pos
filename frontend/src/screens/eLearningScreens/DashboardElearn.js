@@ -24,7 +24,7 @@ const DashboardElearn = () => {
  }, [dispatch]);
 
  return (
-  <div className="px-1 pt-1 bg-light">
+  <div className="px-1 pt-1">
    <SlideChangeHooks />
    <div
     style={{

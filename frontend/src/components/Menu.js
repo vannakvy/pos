@@ -44,15 +44,18 @@ export default function FadeMenu(props) {
 
  return (
   <div>
-   <p
-    className="nav-link navbar_link text-dark m-0 t_grediantHover"
-    style={{ cursor: 'pointer' }}
+   <div
+    className="rounded-circle border border-info border-5"
     aria-controls="fade-menu"
     aria-haspopup="true"
     onClick={handleClick}
+    style={{ overflow: 'hidden', width: 35, height: 35, cursor: 'pointer' }}
    >
-    {userInfo.name}
-   </p>
+    <img
+     style={{ width: 35, height: 35, cursor: 'pointer' }}
+     src={userInfo.profile}
+    />
+   </div>
 
    <Menu
     style={{ marginTop: 60 }}

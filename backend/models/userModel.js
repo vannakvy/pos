@@ -21,6 +21,7 @@ const userSchema = mongoose.Schema(
    required: true,
    default: false,
   },
+  profile: String,
   isTeacher: {
    type: Boolean,
    default: false,

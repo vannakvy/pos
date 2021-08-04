@@ -20,7 +20,7 @@ const PageComElearn = () => {
    >
     <div className="col-lg-6 col-sm-12 text-center">
      <img
-      className="my-5"
+      className="my-3"
       style={{
        width: '100%',
       }}

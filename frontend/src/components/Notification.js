@@ -61,10 +61,13 @@ const DropdownExampleDropdown = () => {
          <div className="d-flex flex-wrap">
           <div
            onClick={() => history.push(n.url)}
-           className="ms-1 me-3 rounded "
-           style={{ width: '70px', overflow: 'hidden' }}
+           className="ms-1 me-3 rounded-circle "
+           style={{ width: '60px', overflow: 'hidden' }}
           >
-           <img style={{ height: '60px' }} src={n.img} />
+           <img
+            style={{ height: '60px', width: '60px', objectFit: 'cover' }}
+            src={n.img}
+           />
           </div>
           <div onClick={() => history.push(n.url)} style={{ width: 200 }}>
            <h5 className="kh m-0 p-0 ubuntu">{n.name.slice(0, 20)}...</h5>

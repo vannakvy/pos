@@ -1,13 +1,19 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import { getEnrollDetail } from '../../actions/eLearningActions/enrollActions';
+import { useHistory, useParams } from 'react-router-dom';
+import {
+ getEnrollDetail,
+ getEnrollSections,
+ getEnrollVideo,
+} from '../../actions/eLearningActions/enrollActions';
 import Load from '../../components/eLearningComponents/Watch';
 import Message from '../../components/Message';
 import { Parallax } from 'react-parallax';
-import { Chart } from 'react-google-charts';
 import CourseContent from '../../components/eLearningComponents/CourseContent';
 import LoaderFullScreen from '../../components/eLearningComponents/LoaderFullScreen';
+import MyCoursesItem from '../../components/eLearningComponents/MyCoursesItem';
+import ResponsiveDrawer from '../../components/eLearningComponents/MyCourseCom';
+import Loader from '../../components/Loader';
 
 const insideStyles = {
  background: 'white',
@@ -21,13 +27,21 @@ const insideStyles = {
 const MyCoursesDetailScreen = () => {
  const { eid } = useParams();
  const dispatch = useDispatch();
+ const history = useHistory();
 
- const enrollDetailStore = useSelector((state) => state.getEnrollDetail);
  const {
   loading: loadingEnrollDetail,
   error: errorEnrollDetail,
   enrollDetail,
- } = enrollDetailStore;
+ } = useSelector((state) => state.getEnrollDetail);
+ const { loading: loadingPlay, plays } = useSelector(
+  (state) => state.getEnrollVideoPlay
+ );
+ const {
+  loading: loadingSection,
+  error: errorSection,
+  sections,
+ } = useSelector((state) => state.getEnrollSection);
 
  useEffect(() => {
   window.scrollTo(0, 0);
@@ -35,18 +49,163 @@ const MyCoursesDetailScreen = () => {
    dispatch(getEnrollDetail(eid));
   }
  }, [dispatch, eid]);
+
+ useEffect(() => {
+  if (enrollDetail) {
+   dispatch(
+    getEnrollSections(
+     enrollDetail && enrollDetail.courseId && enrollDetail.courseId._id
+    )
+   );
+   dispatch(
+    getEnrollVideo(
+     enrollDetail && enrollDetail.courseId && enrollDetail.courseId._id,
+     1
+    )
+   );
+  }
+ }, [dispatch, enrollDetail]);
+
+ const courseDetailLink = (id) => {
+  history.push(
+   `/elearning/courses/${id}/videos/${plays && plays.videoNotWatch._id}`
+  );
+ };
+
+ console.log(plays);
+
  return (
   <>
-   <div className="">
-    {loadingEnrollDetail ? (
-     <LoaderFullScreen />
-    ) : errorEnrollDetail ? (
+   <div>
+    {errorEnrollDetail ? (
      <Message variant="danger">{errorEnrollDetail}</Message>
     ) : (
      <>
       {enrollDetail && enrollDetail ? (
        <>
-        <div className="pb-2 px-0 bg-light container-xl">
+        <div
+         className="position-absolute w-100"
+         style={{
+          top: 0,
+          height: '100vh',
+          paddingTop: '68px',
+         }}
+        >
+         <div className="d-flex h-100" style={{ background: 'rgb(27,25,33)' }}>
+          <div
+           className="h-100 shadow d-none d-lg-block mx-3 pt-3 "
+           style={{
+            minWidth: '270px',
+            maxWidth: '270px',
+           }}
+          >
+           <MyCoursesItem enroll={enrollDetail} />
+          </div>
+
+          <div
+           className="w-100 mt-0 mt-lg-3"
+           style={{ overflowY: 'auto', overflowX: 'hidden' }}
+          >
+           <div className="position-relative">
+            <div
+             className="position-relative"
+             style={{
+              height: '400px !important',
+             }}
+            >
+             <img
+              className="w-100"
+              style={{ height: 350, objectFit: 'cover' }}
+              src={enrollDetail.courseId.imgUrl}
+              alt=""
+             />
+             <div
+              style={{
+               top: 0,
+               background: 'rgba(0,0,0, 0.8)',
+              }}
+              className="w-100 h-100 position-absolute px-3 pb-5 d-flex align-items-center"
+             >
+              <div>
+               <h1
+                className="text-light ubuntu mb-4"
+                style={{ fontSize: '2.9rem', maxWidth: '450px' }}
+               >
+                {enrollDetail.courseId.name}
+               </h1>
+               <p className="ubuntu text-info">
+                {enrollDetail.courseId.courseType}
+               </p>
+               {plays && plays.videoNotWatch && plays.videoNotWatch._id ? (
+                <button
+                 onClick={() => courseDetailLink(enrollDetail.courseId._id)}
+                 className={`btn rounded text-dark kh btn-info`}
+                >
+                 ចូលទៅកាន់កន្លែងរៀនជាវីដីអូ
+                </button>
+               ) : (
+                <button
+                 onClick={() => courseDetailLink(enrollDetail.courseId._id)}
+                 className={`btn rounded text-dark kh btn-danger`}
+                 disabled
+                >
+                 មុខវិទ្យានេះមិនទាន់មា​នវិឌីអូដើម្បីរៀននៅឡើយ
+                </button>
+               )}
+              </div>
+             </div>
+            </div>
+            <div className="mt-4 text-light p-1">
+             <div className="row row-cols-2 row-cols-md-4">
+              <div className="col">
+               <h5 className="ubuntu text-center text-md-left">
+                <span className="text-info fs-5 fw-bold">100K+</span>{' '}
+                <span className="text-light fs-6">likes </span>
+               </h5>
+              </div>
+              <div className="col">
+               <h5 className="ubuntu text-center text-md-center">
+                <span className="text-info fs-5 fw-bold">40+</span>{' '}
+                <span className="text-light fs-6">videos </span>
+               </h5>
+              </div>
+              <div className="col">
+               <h5 className="ubuntu text-center text-md-center">
+                <span className="text-info fs-5 fw-bold">100K+</span>{' '}
+                <span className="text-light fs-6">likes </span>
+               </h5>
+              </div>
+              <div className="col">
+               <h5 className="ubuntu text-center text-md-end">
+                <span className="text-info fs-5 fw-bold">100K+</span>{' '}
+                <span className="text-light fs-6">likes </span>
+               </h5>
+              </div>
+             </div>
+             <div className="row row-cols-1 row-cols-md-2 mt-3 px-1 px-md-2">
+              <div className="col">dsf</div>
+              <div className="col">
+               <h5 className="kh text-light">វីឌីអូសម្រាប់មុខវិទ្យានេះ</h5>
+               {loadingSection ? (
+                <Loader wd={40} hg={40} />
+               ) : errorSection ? (
+                <Message variant="danger">{errorSection}</Message>
+               ) : (
+                <CourseContent
+                 sections={sections && sections}
+                 cid={enrollDetail && enrollDetail.courseId._id}
+                 fromVideo={true}
+                />
+               )}
+              </div>
+             </div>
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+
+        {/* <div className="pb-2 px-0 bg-light container-xl">
          <Parallax bgImage={enrollDetail.courseId.imgUrl} strength={500}>
           <div style={{ height: '40vh' }}></div>
          </Parallax>
@@ -101,7 +260,7 @@ const MyCoursesDetailScreen = () => {
            </div>
           </div>
          </div>
-        </div>
+        </div> */}
        </>
       ) : null}
      </>

@@ -24,10 +24,10 @@ function CircularProgressWithLabel(props) {
    >
     <Typography
      className="ubuntu"
+     style={{ fontSize: 10 }}
      variant="caption"
-     component="div"
-     color="textSecondary"
-    >{`${Math.round(props.value)}%`}</Typography>
+     component="p"
+    >{`${Math.round(props.value)}`}</Typography>
    </Box>
   </Box>
  );

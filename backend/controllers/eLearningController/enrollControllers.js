@@ -330,6 +330,7 @@ const getAllreqEnroll = asyncHandler(async (req, res) => {
     cid: {
      _id: e.cid._id,
      name: e.cid.name,
+     imgUrl: e.cid.imgUrl,
     },
     descrip: e.descrip,
    };

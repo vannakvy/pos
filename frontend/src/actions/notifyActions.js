@@ -3,9 +3,10 @@ import {
  USER_NOTI_LIST_REQ,
  USER_NOTI_LIST_SUC,
 } from '../constants/notifyConstants';
-import db from '../firebase';
+import { db } from '../firebase';
 
 export const createNotify = (n, descrip) => async (dispatch, getState) => {
+ console.log(n);
  try {
   const {
    userLogin: { userInfo },
