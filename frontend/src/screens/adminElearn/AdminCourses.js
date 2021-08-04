@@ -372,6 +372,10 @@ const AdminCourses = ({ match }) => {
             <BiDetail style={{ fontSize: '130%' }} />
            </button>
            <button
+            data-toggle="collapse"
+            data-target="#multiCollapseExample2"
+            aria-expanded={true}
+            aria-controls="multiCollapseExample2"
             className="btn-sm btn bg-warning text-light mx-1"
             onClick={() => editCourseHandler(course)}
            >
