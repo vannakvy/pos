@@ -109,7 +109,10 @@ import {
  purchaseDetailsReducer,
 } from './reducers/eShopReducers/purchaseReducers';
 import { NotifyByUserReducer } from './reducers/notifyReducers.js';
+import { commentsReducers } from './reducers/comment.js';
 const reducer = combineReducers({
+ //  course comments
+ comments: commentsReducers,
  // navbar
  navbarList: navbarListReducers,
  loaderTop: loaderTopReducers,

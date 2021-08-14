@@ -28,7 +28,7 @@ const CourseContent = ({ sections, cid, fromVideo = false }) => {
 
        <div
         id={`collapse${section._id}`}
-        className={`collapse ${i === 1 ? 'show' : null} ${
+        className={`collapse ${i === 1 || i === 2 || i === 3 ? 'show' : null} ${
          fromVideo ? 'show' : null
         }`}
         aria-labelledby={`heading${section._id}`}

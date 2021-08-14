@@ -17,7 +17,7 @@ const authUser = asyncHandler(async (req, res) => {
    name: user.name,
    email: user.email,
    isAdmin: user.isAdmin,
-   profile: user.profile || '',
+   profile: user.profile || '/img/profile.png',
    isTeacher: user.isTeacher,
    token: generateToken(user._id),
   });
@@ -72,7 +72,7 @@ const registerUser = asyncHandler(async (req, res) => {
    name: user.name,
    email: user.email,
    isAdmin: user.isAdmin,
-   profile: user.profile || '',
+   profile: user.profile || '/img/profile.png',
    isTeacher: user.isTeacher,
    token: generateToken(user._id),
   });

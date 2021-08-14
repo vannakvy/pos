@@ -45,20 +45,20 @@ export default function FadeMenu(props) {
  return (
   <div>
    <div
-    className="rounded-circle border border-info border-5"
+    className="rounded-circle"
     aria-controls="fade-menu"
     aria-haspopup="true"
     onClick={handleClick}
     style={{ overflow: 'hidden', width: 35, height: 35, cursor: 'pointer' }}
    >
     <img
-     style={{ width: 35, height: 35, cursor: 'pointer' }}
+     style={{ width: 35, height: 35, cursor: 'pointer', objectFit: 'cover' }}
      src={userInfo.profile}
     />
    </div>
 
    <Menu
-    style={{ marginTop: 60 }}
+    style={{ marginTop: 50, width: 300 }}
     id="fade-menu"
     anchorEl={anchorEl}
     keepMounted
@@ -66,7 +66,15 @@ export default function FadeMenu(props) {
     onClose={handleClose}
     TransitionComponent={Fade}
    >
-    <h4 className="kh text-center my-3">{userInfo.name}</h4>
+    <div className="d-flex justify-content-center mt-2">
+     <img
+      src={userInfo.profile}
+      className="rounded-circle"
+      style={{ width: 60, height: 60, objectFit: 'cover' }}
+      alt=""
+     />
+    </div>
+    <h5 className="kh text-center my-2">{userInfo.name}</h5>
     <hr className="mx-3 my-1" />
     <MenuItem onClick={userOrder}>
      <MdShoppingCart className="mr-2 text-warning" />

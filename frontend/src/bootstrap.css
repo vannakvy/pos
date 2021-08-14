@@ -10432,7 +10432,7 @@ a.text-dark:focus {
 
 .navbar {
  font-size: 0.765625rem;
- text-transform: uppercase;
+ /* text-transform: uppercase; */
  font-weight: 600;
 }
 

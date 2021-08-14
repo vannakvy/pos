@@ -5,6 +5,7 @@ import Loader from '../../components/Loader';
 import Message from '../../components/Message';
 import CourseContent from '../../components/eLearningComponents/CourseContent';
 import CourseItemDetails from '../../components/eLearningComponents/CourseItemDetails';
+import Comment from '../../components/eLearningComponents/comment';
 
 const CourseDetailsScreen = ({ match }) => {
  const { id } = match.params;
@@ -52,6 +53,8 @@ const CourseDetailsScreen = ({ match }) => {
       <div className="col-lg-8">
        <h5>Course Content</h5>
        <CourseContent sections={course.section} cid={course._id} />
+       <h5 className="kh mt-4">មតិផ្សេងៗ</h5>
+       <Comment cid={id} />
       </div>
      </div>
     </>

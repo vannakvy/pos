@@ -70,11 +70,11 @@ const DropdownExampleDropdown = () => {
            />
           </div>
           <div onClick={() => history.push(n.url)} style={{ width: 200 }}>
-           <h5 className="kh m-0 p-0 ubuntu">{n.name.slice(0, 20)}...</h5>
+           <h5 className="m-0 p-0 ubuntu">{n.name.slice(0, 20)}...</h5>
            <p style={{ fontSize: 11 }} className="kh m-0 p-0">
             {ReactHtmlParser(n.descrip)}
            </p>
-           <small>
+           <small style={{ color: 'blue' }}>
             <Duration itemDate={n.createdAt} />
            </small>
           </div>

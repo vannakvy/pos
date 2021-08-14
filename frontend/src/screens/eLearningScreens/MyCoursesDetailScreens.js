@@ -14,6 +14,7 @@ import LoaderFullScreen from '../../components/eLearningComponents/LoaderFullScr
 import MyCoursesItem from '../../components/eLearningComponents/MyCoursesItem';
 import ResponsiveDrawer from '../../components/eLearningComponents/MyCourseCom';
 import Loader from '../../components/Loader';
+import Comment from '../../components/eLearningComponents/comment';
 
 const insideStyles = {
  background: 'white',
@@ -183,7 +184,11 @@ const MyCoursesDetailScreen = () => {
               </div>
              </div>
              <div className="row row-cols-1 row-cols-md-2 mt-3 px-1 px-md-2">
-              <div className="col">dsf</div>
+              <div className="col">
+               <div className="text-dark rounded">
+                <Comment cid={enrollDetail && enrollDetail.courseId._id} />
+               </div>
+              </div>
               <div className="col">
                <h5 className="kh text-light">វីឌីអូសម្រាប់មុខវិទ្យានេះ</h5>
                {loadingSection ? (
