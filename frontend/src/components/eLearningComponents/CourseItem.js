@@ -30,13 +30,13 @@ const CourseItem = (props) => {
  };
  return (
   <div
-   className="mb-3 courseItem shadow"
+   className="mb-3 courseItem"
    style={{
     minWidth: '150px',
     maxWidth: '225px',
     background: '#fff',
     overflow: 'hidden',
-    border: '2px solid rgb(33,161,243)',
+    // border: '2px solid rgb(33,161,243)',
     borderRadius: 15,
    }}
   >

@@ -25,9 +25,7 @@ const Comment = ({ cid }) => {
   <div className="w-100">
    <div className="row d-flex justify-content-center">
     <div className="col-md-12">
-     <div className="headings d-flex justify-content-between align-items-center mb-3"></div>
-
-     <div className="p-3">
+     <div className="">
       {userInfo && userInfo._id && (
        <form onSubmit={submitComment}>
         <div className="d-flex flex-row p-3 bg-light round mb-2">

@@ -392,3 +392,8 @@ body {
 .ui.labeled.button > .button {
  font-family: 'Battambang', cursive;
 }
+
+.courseType:hover {
+ background: rgb(206, 206, 206) !important;
+ cursor: pointer;
+}
