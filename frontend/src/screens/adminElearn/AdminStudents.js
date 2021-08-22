@@ -10,6 +10,7 @@ import {
 } from '../../constants/eLearningConstants/enrollConstants';
 import { addUserEnrollCourses } from '../../actions/eLearningActions/enrollActions';
 import { createNotify } from '../../actions/notifyActions';
+import { BsClipboardData } from 'react-icons/bs';
 
 const AdminStudents = () => {
  let i = 1;
@@ -57,7 +58,7 @@ const AdminStudents = () => {
 
  return (
   <div>
-   <h4 className="kh text-center mb-4">សិស្សដែលបានស្នើរសុំរៀនមុខវិទ្យា</h4>
+   <h4 className="kh text-center my-2">សិស្សដែលបានស្នើរសុំរៀនមុខវិទ្យា</h4>
    <div className="px-2">
     <table className="table table-sm table-striped w-100 kh table-hover bg-light shadow">
      <thead>
@@ -72,7 +73,7 @@ const AdminStudents = () => {
      <tbody>
       {reqEnrolls &&
        reqEnrolls.map((reqE) => (
-        <tr>
+        <tr className="bg-light">
          <th scope="row">{i++}</th>
          <td>{reqE.user.name}</td>
          <td>{reqE.cid.name}</td>
@@ -104,6 +105,16 @@ const AdminStudents = () => {
          </td>
         </tr>
        ))}
+      {reqEnrolls && reqEnrolls.length === 0 && (
+       <tr>
+        <td colspan="5" className="bg-light py-5 text-center">
+         <BsClipboardData style={{ fontSize: '50px' }} />
+         <br />
+         <br />
+         <span className=" fw-bold">មិនមានទិន្នន័យ</span>
+        </td>
+       </tr>
+      )}
      </tbody>
     </table>
    </div>

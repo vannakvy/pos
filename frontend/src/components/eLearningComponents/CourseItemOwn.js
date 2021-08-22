@@ -45,14 +45,14 @@ const CourseItemOwn = (props) => {
 
  return (
   <div
-   className="mb-3 courseItem"
+   className="mb-3 courseItem round shadow-sm"
    style={{
     minWidth: '150px',
     maxWidth: '225px',
     background: '#fff',
     overflow: 'hidden',
     // border: '2px solid rgb(33,161,243)',
-    borderRadius: 15,
+    // borderRadius: 15,
    }}
   >
    <CardActionArea onClick={() => gotoMyCourse(enroll._id)}>

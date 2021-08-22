@@ -56,10 +56,8 @@ const Sections = () => {
  const { success: successDelete } = sectionDelete;
 
  const sectionUpdate = useSelector((state) => state.sectionUpdate);
- const {
-  error: errorSectionUpdate,
-  success: successSectionUpdate,
- } = sectionUpdate;
+ const { error: errorSectionUpdate, success: successSectionUpdate } =
+  sectionUpdate;
 
  const videoCreate = useSelector((state) => state.videoCreate);
  const { error: errorVideoCreate, success: successVideoCreate } = videoCreate;
@@ -204,21 +202,6 @@ const Sections = () => {
    <div className="row">
     <div className="col-md-7">
      <div className="bg-light rounded">
-      {errorSectionUpdate ? (
-       <Message variant="danger">{errorSectionUpdate}</Message>
-      ) : null}
-      {errorCreate ? <Message variant="danger">{errorCreate}</Message> : null}
-
-      {errorVideoCreate ? (
-       <Message variant="danger">{errorVideoCreate}</Message>
-      ) : null}
-      {errorVideoDelete ? (
-       <Message variant="danger">{errorVideoDelete}</Message>
-      ) : null}
-      {errorVideoUpdate ? (
-       <Message variant="danger">{errorVideoUpdate}</Message>
-      ) : null}
-
       <div className="border w-100 rounded">
        <div className="d-flex justify-content-between">
         <h4 className="mt-2 pl-3">SECTIONS</h4>
@@ -335,6 +318,20 @@ const Sections = () => {
      </div>
     </div>
     <div className="col-md-5">
+     {errorSectionUpdate && (
+      <Message variant="danger">{errorSectionUpdate}</Message>
+     )}
+     {errorCreate && <Message variant="danger">{errorCreate}</Message>}
+
+     {errorVideoCreate && (
+      <Message variant="danger">{errorVideoCreate}</Message>
+     )}
+     {errorVideoDelete && (
+      <Message variant="danger">{errorVideoDelete}</Message>
+     )}
+     {errorVideoUpdate && (
+      <Message variant="danger">{errorVideoUpdate}</Message>
+     )}
      <h6 className="mt-3">Do something here...</h6>
      {item === 'section' ? (
       <>

@@ -10,14 +10,21 @@ import Comment from '../../components/eLearningComponents/comment';
 const CourseDetailsScreen = ({ match }) => {
  const { id } = match.params;
  const dispatch = useDispatch();
+ const [scrollY, setScrollY] = useState(0);
 
  const courseDetail = useSelector((state) => state.courseDetail);
  const { loading, error, course } = courseDetail;
 
  useEffect(() => {
   window.scrollTo(0, 0);
+  function updatePosition() {
+   setScrollY(window.pageYOffset);
+  }
+  window.addEventListener('scroll', updatePosition);
+  updatePosition();
   if (!course || id !== course._id) dispatch(getCourseById(id));
  }, [dispatch, id]);
+
  return (
   <div style={{ minHeight: '90vh' }}>
    {loading ? (
@@ -50,11 +57,24 @@ const CourseDetailsScreen = ({ match }) => {
      </div>
 
      <div className="container py-2">
-      <div className="col-lg-8">
-       <h5>Course Content</h5>
-       <CourseContent sections={course.section} cid={course._id} />
-       <h5 className="kh mt-4">មតិផ្សេងៗ</h5>
-       <Comment cid={id} />
+      <div className="row">
+       <div className="col-lg-8">
+        <h5>Course Content</h5>
+        <CourseContent sections={course.section} cid={course._id} />
+        <h5 className="kh mt-4">មតិផ្សេងៗ</h5>
+        <Comment cid={id} />
+       </div>
+       <div className="col-lg-4">
+        <div
+         style={{
+          position: 'sticky',
+          top: '70px',
+          display: scrollY > 400 ? 'block' : 'none',
+         }}
+        >
+         <CourseItemDetails course={course} />
+        </div>
+       </div>
       </div>
      </div>
     </>

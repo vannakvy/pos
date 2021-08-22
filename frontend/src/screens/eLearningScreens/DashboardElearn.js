@@ -58,32 +58,36 @@ const DashboardElearn = () => {
     <br />
     <br />
     <br />
-    <h1 className="kh text-center text-sm-left" style={{ fontSize: '2rem' }}>
+    <h2 className="kh text-center text-sm-left">
      ជម្រើសដ៏ទូលំទូលាយនៃការសិក្សាជាវីដីអូអនឡាញ
-    </h1>
+    </h2>
     <h5 className="kh ms-1">
      ជ្រើសរើសវគ្គសិក្សាវីដេអូតាមអ៊ិនធរណេតចំនួន ១៥៥,០០០
      ជាមួយនឹងការបន្ថែមថ្មីដែលបានផ្សព្វផ្សាយជារៀងរាល់ខែ
     </h5>
     <br />
     <br />
-    <h4 className="kh text-center text-sm-left fw-bold">
-     ជម្រើសដ៏ល្អសម្រាប់អ្នក
-    </h4>
-    {loadingList ? (
-     <div className="py-3">
-      <Loader wd={40} hg={40} />
-     </div>
-    ) : errorList ? (
-     <Message variant="danger">{errorList}</Message>
-    ) : (
-     <>
-      <div className="mb-5">
+
+    <div className="bg-light round">
+     <h4 className="kh text-center fw-bold bg-info p-2 rounded-top">
+      ជម្រើសដ៏ល្អសម្រាប់អ្នក
+     </h4>
+     {loadingList ? (
+      <div className="py-3">
+       <Loader wd={40} hg={40} />
+      </div>
+     ) : errorList ? (
+      <Message variant="danger">{errorList}</Message>
+     ) : (
+      <div className="py-2">
        <Slider courseList={coursesList} />
       </div>
-     </>
-    )}
-    <h3 className="kh text-center text-sm-left">ផ្នែកធំៗទាំងអស់</h3>
+     )}
+    </div>
+
+    <h4 className="kh text-center mt-5 bg-info p-2 rounded-top">
+     ផ្នែកធំៗទាំងអស់នៃមុខវិទ្យា
+    </h4>
     <div className="row row-cols-xl-5 row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1 mb-5">
      <div className="col px-1">
       <div
@@ -135,7 +139,9 @@ const DashboardElearn = () => {
      </div>
     </div>
 
-    <h3 className="kh text-center text-sm-left">មុខវិទ្យាតាមផ្នែក</h3>
+    <h4 className="kh text-center bg-info p-2 rounded-top">
+     មុខវិទ្យាតាមផ្នែក
+    </h4>
     <Categories />
    </div>
   </div>
