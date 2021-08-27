@@ -25,13 +25,14 @@ const ShippingScreen = ({ history }) => {
   return (
     <FormContainer>
       <CheckoutSteps step1 step2 />
-      <h1>Shipping</h1>
+      <div className="card card-body">
+      <h2 className="eshop_font">អាសយដ្ធានការដឹកជញ្ចួន</h2>
       <Form onSubmit={submitHandler}>
         <Form.Group controlId='address'>
-          <Form.Label>Address</Form.Label>
-          <Form.Control
+          <Form.Label>អាសយដ្ធាន</Form.Label>
+          <Form.Control className="outlines"
             type='text'
-            placeholder='Enter address'
+            placeholder='បញ្ចូលអាសយដ្ធាន'
             value={address}
             required
             onChange={(e) => setAddress(e.target.value)}
@@ -39,10 +40,10 @@ const ShippingScreen = ({ history }) => {
         </Form.Group>
 
         <Form.Group controlId='city'>
-          <Form.Label>City</Form.Label>
-          <Form.Control
+          <Form.Label>ខេត្ត​ / ក្រុង</Form.Label>
+          <Form.Control className="outlines"
             type='text'
-            placeholder='Enter city'
+            placeholder='បញ្ចូលខេត្ត / ក្រុង'
             value={city}
             required
             onChange={(e) => setCity(e.target.value)}
@@ -50,10 +51,10 @@ const ShippingScreen = ({ history }) => {
         </Form.Group>
 
         <Form.Group controlId='postalCode'>
-          <Form.Label>Postal Code</Form.Label>
-          <Form.Control
+          <Form.Label>លេខប្រៃសណី</Form.Label>
+          <Form.Control className="outlines"
             type='text'
-            placeholder='Enter postal code'
+            placeholder='បញ្ចូលលេខប្រៃសណី'
             value={postalCode}
             required
             onChange={(e) => setPostalCode(e.target.value)}
@@ -61,10 +62,10 @@ const ShippingScreen = ({ history }) => {
         </Form.Group>
 
         <Form.Group controlId='country'>
-          <Form.Label>Country</Form.Label>
-          <Form.Control
+          <Form.Label>ប្រទេស</Form.Label>
+          <Form.Control className="outlines"
             type='text'
-            placeholder='Enter country'
+            placeholder='បញ្ចូលប្រទេស'
             value={country}
             required
             onChange={(e) => setCountry(e.target.value)}
@@ -72,9 +73,10 @@ const ShippingScreen = ({ history }) => {
         </Form.Group>
 
         <Button type='submit' variant='primary'>
-          Continue
+          បន្ត
         </Button>
       </Form>
+      </div>
     </FormContainer>
   )
 }

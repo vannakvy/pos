@@ -15,6 +15,7 @@ import {
   addToCart,
   removeFromCart,
 } from "../../actions/eShopActions/cartActions";
+import { FaCartPlus } from "react-icons/fa";
 
 const CartScreen = ({ match, location, history }) => {
   const productId = match.params.id;
@@ -43,10 +44,10 @@ const CartScreen = ({ match, location, history }) => {
   return (
     <Row>
       <Col md={8}>
-        <h1>Shopping Cart</h1>
+        <h3 className="eshop_font m-2"> <FaCartPlus color="blue" /><span className="p-2"></span>កន្ទ្រក</h3>
         {cartItems.length === 0 ? (
           <Message>
-            Your cart is empty <Link to="/eshop">Go Back</Link>
+            កន្ទ្រកអ្នកទទេ <Link to="/eshop" className="btn btn-light">ចូលទៅទំព័រទំនិញ់</Link>
           </Message>
         ) : (
           <ListGroup variant="flush">
@@ -94,14 +95,14 @@ const CartScreen = ({ match, location, history }) => {
           </ListGroup>
         )}
       </Col>
-      <Col md={4}>
+      <Col md={4} className="mt-2">
         <Card>
           <ListGroup variant="flush">
             <ListGroup.Item>
-              <h2>
-                Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)})
-                items
-              </h2>
+              <h4 className="eshop_font">
+                សរុប ({cartItems.reduce((acc, item) => acc + item.qty, 0)})
+                
+              </h4>
               $
               {cartItems
                 .reduce((acc, item) => acc + item.qty * item.salePrice, 0)
@@ -114,7 +115,7 @@ const CartScreen = ({ match, location, history }) => {
                 disabled={cartItems.length === 0}
                 onClick={checkoutHandler}
               >
-                Proceed To Checkout
+                គិតលុយ
               </Button>
             </ListGroup.Item>
           </ListGroup>

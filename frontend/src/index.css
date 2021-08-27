@@ -285,6 +285,16 @@ div {
  font-family: 'Battambang', cursive;
  font-weight: 700;
 }
+/* eshop  */
+.eshop_font {
+    font-family: 'Battambang', cursive;
+    font-weight: 700;
+   }
+
+.outlines{
+    border: 2px solid rgb(204, 19, 189);
+    border-radius: 3px;
+}
 
 .ui.secondary.pointing.menu .active.item {
  font-family: 'Battambang', cursive;

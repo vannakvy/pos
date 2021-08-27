@@ -72,8 +72,8 @@ const ProductScreen = ({ history, match }) => {
 
   return (
     <>
-      <Link className="btn btn-light my-3" to="/">
-        Go Back
+      <Link className="btn btn-light m-1​ " to="/">
+        ថយក្រោយ
       </Link>
       {loading ? (
         <Loader />
@@ -97,9 +97,9 @@ const ProductScreen = ({ history, match }) => {
                     text={`${product.numReviews} reviews`}
                   />
                 </ListGroup.Item>
-                <ListGroup.Item>Price: ${product.price}</ListGroup.Item>
+                <ListGroup.Item>តម្លៃ: ${product.price}</ListGroup.Item>
                 <ListGroup.Item>
-                  Description: {product.description}
+                  អំពីផលិតផល: {product.description}
                 </ListGroup.Item>
               </ListGroup>
             </Col>
@@ -108,7 +108,7 @@ const ProductScreen = ({ history, match }) => {
                 <ListGroup variant="flush">
                   <ListGroup.Item>
                     <Row>
-                      <Col>Price:</Col>
+                      <Col>តម្លៃ:</Col>
                       <Col>
                         <strong>${product.price}</strong>
                       </Col>
@@ -117,9 +117,9 @@ const ProductScreen = ({ history, match }) => {
 
                   <ListGroup.Item>
                     <Row>
-                      <Col>Status:</Col>
+                      <Col>ស្ថានភាព:</Col>
                       <Col>
-                        {product.endStock > 0 ? "In Stock" : "Out Of Stock"}
+                        {product.endStock > 0 ? "មានក្នុងស្ទុក" : "អស់ពីស្ទុក"}
                       </Col>
                     </Row>
                   </ListGroup.Item>
@@ -127,9 +127,9 @@ const ProductScreen = ({ history, match }) => {
                   {product.endStock > 0 && (
                     <ListGroup.Item>
                       <Row>
-                        <Col>Qty</Col>
+                        <Col>ចំនួន</Col>
                         <Col>
-                          <Form.Control
+                          <Form.Control className="outlines"
                             as="select"
                             value={qty}
                             onChange={(e) => setQty(e.target.value)}
@@ -152,7 +152,7 @@ const ProductScreen = ({ history, match }) => {
                       type="button"
                       disabled={product.endStock === 0}
                     >
-                      Add To Cart
+                      ដាក់កន្ទ្រក
                     </Button>
                   </ListGroup.Item>
                 </ListGroup>
@@ -161,7 +161,7 @@ const ProductScreen = ({ history, match }) => {
           </Row>
           <Row>
             <Col md={6}>
-              <h2>Reviews</h2>
+              <h3 className="eshop_font ml-2">វាយតំលៃផលិតផលនេះ</h3>
               {product.reviews.length === 0 && <Message>No Reviews</Message>}
               <ListGroup variant="flush">
                 {product.reviews.map((review) => (
@@ -173,7 +173,7 @@ const ProductScreen = ({ history, match }) => {
                   </ListGroup.Item>
                 ))}
                 <ListGroup.Item>
-                  <h2>Write a Customer Review</h2>
+                  <h4 className="eshop_font">វាយតំលៃខាងក្រោម</h4>
                   {errorProductReview && (
                     <Message variant="danger">{errorProductReview}</Message>
                   )}

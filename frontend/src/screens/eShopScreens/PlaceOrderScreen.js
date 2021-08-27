@@ -58,9 +58,9 @@ const PlaceOrderScreen = ({ history }) => {
         <Col md={8}>
           <ListGroup variant="flush">
             <ListGroup.Item>
-              <h2>​​អាស័យដ្ធាន</h2>
+              <h3 className="eshop_font">​​អាស័យដ្ធាន</h3>
               <p>
-                <strong>Address:</strong>
+                <strong>​​អាស័យដ្ធាន :</strong>
                 {cart.shippingAddress.address}, {cart.shippingAddress.city}{" "}
                 {cart.shippingAddress.postalCode},{" "}
                 {cart.shippingAddress.country}
@@ -68,13 +68,13 @@ const PlaceOrderScreen = ({ history }) => {
             </ListGroup.Item>
 
             <ListGroup.Item>
-              <h2>បង់ប្រាក់តាម</h2>
-              <strong>Method: </strong>
+              <h3 className="eshop_font">បង់ប្រាក់តាម</h3>
+              <strong>តាមរយះ : </strong>
               {cart.paymentMethod}
             </ListGroup.Item>
 
             <ListGroup.Item>
-              <h2>Order Items</h2>
+              <h3 className="eshop_font">ផលិតផលបានកម្មង់</h3>
               {cart.cartItems.length === 0 ? (
                 <Message>Your cart is empty</Message>
               ) : (
@@ -111,7 +111,7 @@ const PlaceOrderScreen = ({ history }) => {
           <Card>
             <ListGroup variant="flush">
               <ListGroup.Item>
-                <h2> សរុបមុខទំនិញ់និងទិញ់</h2>
+                <h3 className="eshop_font"> សរុបមុខទំនិញ់និងទិញ់</h3>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
