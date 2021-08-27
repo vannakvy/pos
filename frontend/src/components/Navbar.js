@@ -14,6 +14,7 @@ import Menu from './Menu';
 import LoaderTop from './LoaderTop';
 import DropdownExampleDropdown from './Notification';
 import learningImg from '../img/free-ebook.png';
+import { FaHome } from 'react-icons/fa';
 
 const Navbar = () => {
  const dispatch = useDispatch();
@@ -25,7 +26,7 @@ const Navbar = () => {
  useEffect(() => {}, [userLogin]);
 
  return (
-  <div className="d-none d-md-block sticky-top">
+  <div className="sticky-top">
    <LoaderTop />
    <nav
     className="navbar navbar-expand-md sticky-top p-2"
@@ -127,6 +128,21 @@ const Navbar = () => {
 
     <div className="collapse navbar-collapse" id="navbarColor02">
      <ul className="navbar-nav ml-auto">
+      {navbar !== 'Dashboard' && (
+       <li className="nav-item">
+        <NavLink
+         to="/"
+         className=""
+         onClick={() => dispatch(navbarList('Dashboard'))}
+        >
+         <FaHome
+          className="t_grediantHover me-3"
+          style={{ fontSize: 25, marginTop: 5 }}
+         />
+        </NavLink>
+       </li>
+      )}
+
       {loading ? (
        <Loader wd={45} hg={45} />
       ) : error ? (

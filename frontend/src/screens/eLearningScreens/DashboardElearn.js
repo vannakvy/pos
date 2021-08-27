@@ -85,6 +85,10 @@ const DashboardElearn = () => {
      )}
     </div>
 
+    <h4 className="kh text-center bg-info p-2 rounded-top">
+     មុខវិទ្យាតាមផ្នែក
+    </h4>
+    <Categories />
     <h4 className="kh text-center mt-5 bg-info p-2 rounded-top">
      ផ្នែកធំៗទាំងអស់នៃមុខវិទ្យា
     </h4>
@@ -138,11 +142,6 @@ const DashboardElearn = () => {
       </div>
      </div>
     </div>
-
-    <h4 className="kh text-center bg-info p-2 rounded-top">
-     មុខវិទ្យាតាមផ្នែក
-    </h4>
-    <Categories />
    </div>
   </div>
  );
