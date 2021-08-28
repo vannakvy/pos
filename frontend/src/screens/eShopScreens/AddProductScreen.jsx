@@ -88,32 +88,33 @@ const AddProductScreen = ({ history, match }) => {
   useEffect(() => {
     dispatch(listProducts("", pageNumber));
   }, [createdProduct, pageNumber, history, successDelete, productUpdate]);
+  console.log(products)
 
   return (
     <div className="addProductScreen">
-      <div className="bg-warning p-3">
+      <div className=" card card-body m-2 p-3">
         <Form onSubmit={handleSubmitHandler}>
           <Form.Group as={Row}>
             <Form.Label column sm={1}>
-              Name
+              ឈ្មោះ
             </Form.Label>
             <Col sm={3}>
-              <Form.Control
+              <Form.Control className="outlines"
                 size="sm"
                 type="text"
-                placeholder="Item Name"
+                placeholder="ឈ្មោះទំនិញ់"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
             </Col>
             <Form.Label column sm={1}>
-              Price
+              តម្លៃ
             </Form.Label>
             <Col sm={3}>
-              <Form.Control
+              <Form.Control className="outlines"
                 size="sm"
                 type="number"
-                placeholder="Price"
+                placeholder="តម្លែ"
                 value={salePrice}
                 onChange={(e) => setSalePrice(e.target.value)}
               />
@@ -123,7 +124,7 @@ const AddProductScreen = ({ history, match }) => {
               <Form.File
                 id="custom-file"
                 size="sm"
-                label={image !== "" ? "Uploaded" : "File"}
+                label={image !== "" ? "បានបញ្ចូលរូបរួច" : "បញ្ចូលរូប"}
                 onChange={uploadFileHandler}
                 custom
               />
@@ -131,25 +132,26 @@ const AddProductScreen = ({ history, match }) => {
           </Form.Group>
           <Form.Group as={Row}>
             <Form.Label column sm={1}>
-              Des.
+              អំពីទំនិញ់
             </Form.Label>
             <Col sm={3}>
-              <Form.Control
+              <Form.Control className="outlines"
                 size="sm"
                 type="text"
-                placeholder="Description"
+                placeholder="អំពីទំទំនិញ់"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
               />
             </Col>
             <Form.Label column sm={1}>
-              Cate.
+              ប្រភេទ
             </Form.Label>
             <Col sm={3}>
-              <Form.Control
+              <Form.Control className="outlines"
                 as="select"
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
+                placeholder="ប្រភេទ"
                 size="sm"
                 custom
               >
@@ -157,7 +159,7 @@ const AddProductScreen = ({ history, match }) => {
                 <option>Motors</option>
                 <option>Sensor</option>
                 <option>Computers</option>
-                <option>Others</option>
+                <option>RC Cars</option>
               </Form.Control>
             </Col>
             <Col sm={1}></Col>
@@ -170,7 +172,7 @@ const AddProductScreen = ({ history, match }) => {
                     variant="info"
                     className="rounded"
                   >
-                    Update Product
+                    កែប្រែទំនិញ់
                   </Button>
                   <Button
                     type="button"
@@ -179,7 +181,7 @@ const AddProductScreen = ({ history, match }) => {
                     className="rounded ml-1"
                     onClick={() => setUpdate(false)}
                   >
-                    Cancel Update
+                    លុបការកែប្រែ
                   </Button>
                 </>
               ) : (
@@ -189,7 +191,7 @@ const AddProductScreen = ({ history, match }) => {
                   variant="info"
                   className="rounded"
                 >
-                  Add product
+                  បញ្ចូលទំនិញ់
                 </Button>
               )}
             </Col>
@@ -200,12 +202,12 @@ const AddProductScreen = ({ history, match }) => {
         <Table striped bordered hover responsive className="table-sm">
           <thead>
             <tr className="bg-info text-light">
-              <th>NO #</th>
-              <th>ITEM NAME</th>
-              <th>SALE PRICE</th>
-              <th>END STOCK</th>
+             
+              <th>រូបភាព</th>
+              <th>ឈ្មោះទំនិញ់</th>
+              <th>តម្លៃ</th>
+              <th>សរុបក្នុងស្ទុក</th>
               <th>END STOCK AMOUNT</th>
-              <th>DESCRIPTION</th>
               <th>ACTIONS</th>
             </tr>
           </thead>
@@ -217,12 +219,12 @@ const AddProductScreen = ({ history, match }) => {
                 {products &&
                   products.map((product) => (
                     <tr key={product._id}>
-                      <td>{product._id}</td>
+                     
+                      <td><img width="50" height="40" src={product.image} /></td>
                       <td>{product.name}</td>
                       <td>{product.salePrice}</td>
                       <td>{product.endStock}</td>
                       <td>{product.endStockAmount}</td>
-                      <td>{product.description}</td>
                       <td>
                         <i
                           className="fas fa-edit text-info"

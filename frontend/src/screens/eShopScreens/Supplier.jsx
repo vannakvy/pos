@@ -51,43 +51,43 @@ const Supplier = ({ history }) => {
   };
   return (
     <>
-      <div className="card bg-warning p-2">
-        <h3 className="p-2">Suppliers</h3>
+      <div className="card card-body m-2 p-2">
+        <h3 className="p-2">បញ្ចូលអ្នកផ្គត់ផ្គង់</h3>
         <Form>
           <Form.Group as={Row}>
             <Form.Label column sm={1}>
-              Name
+              ឈ្មោះ
             </Form.Label>
             <Col sm={3}>
-              <Form.Control
-                size="sm"
+              <Form.Control className="outlines"
+              size="sm"
                 type="text"
-                placeholder="Item Name"
+                placeholder="ឈ្មោះ"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
             </Col>
 
             <Form.Label column sm={1}>
-              Email
+              អុីម៉ែល
             </Form.Label>
             <Col sm={3}>
-              <Form.Control
+              <Form.Control className="outlines"
                 size="sm"
                 type="email"
-                placeholder="Email"
+                placeholder=" អុីម៉ែល"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </Col>
             <Form.Label column sm={1}>
-              Tel
+              ទូរស័ព្ធ
             </Form.Label>
             <Col sm={3}>
-              <Form.Control
+              <Form.Control className="outlines"
                 size="sm"
                 type="number"
-                placeholder="Phone Number"
+                placeholder="ទូរស័ព្ធ"
                 value={tel}
                 onChange={(e) => setTel(e.target.value)}
               />
@@ -96,13 +96,13 @@ const Supplier = ({ history }) => {
 
           <Form.Group as={Row}>
             <Form.Label column sm={1}>
-              Address
+              អាសយដ្ធាន
             </Form.Label>
             <Col sm={3}>
-              <Form.Control
+              <Form.Control className="outlines"
                 size="sm"
                 type="text"
-                placeholder="Address"
+                placeholder="អាសយដ្ធាន"
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
               />
@@ -114,10 +114,10 @@ const Supplier = ({ history }) => {
                   type="submit"
                   size="sm"
                   variant="info"
-                  className="rounded"
+                  className="rounded mr-1"
                   onClick={handleSubmit}
                 >
-                  Update
+                  កែប្រែទំនិញ់
                 </Button>
                 <Button
                   type="button"
@@ -126,7 +126,7 @@ const Supplier = ({ history }) => {
                   className="rounded"
                   onClick={() => clearInput()}
                 >
-                  Cancel Update
+                  លុបការកែប្រែ
                 </Button>
               </Col>
             ) : (
@@ -138,7 +138,7 @@ const Supplier = ({ history }) => {
                   className="rounded"
                   onClick={handleSubmit}
                 >
-                  Add Supplier
+                  បញ្ចូល
                 </Button>
               </Col>
             )}
@@ -149,12 +149,12 @@ const Supplier = ({ history }) => {
       <div className="card mt-2">
         <Table striped bordered hover responsive className="table-sm">
           <thead>
-            <tr>
-              <th>NO#</th>
-              <th>SUPP NAME</th>
-              <th>SUPP CONTACT</th>
-              <th>SUPP EMAIL</th>
-              <th>ADDRESS</th>
+            <tr className="bg-info text-light">
+              <th>លេខរៀង#</th>
+              <th>ឈ្មោះ</th>
+              <th>ទំនាក់ទំនង</th>
+              <th>អុីម៉ែល</th>
+              <th>អាសយដ្ធាន</th>
               <th>ACTIONS </th>
             </tr>
           </thead>

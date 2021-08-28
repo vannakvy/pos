@@ -32,6 +32,7 @@ const PlaceOrderScreen = ({ history }) => {
 
   useEffect(() => {
     if (success) {
+      localStorage.removeItem("cartItems");
       history.push(`/eshop/order/${order._id}`);
     }
     // eslint-disable-next-line
@@ -147,7 +148,7 @@ const PlaceOrderScreen = ({ history }) => {
                   disabled={cart.cartItems === 0}
                   onClick={placeOrderHandler}
                 >
-                  Place Order
+                  កម្មងទិញ់
                 </Button>
               </ListGroup.Item>
             </ListGroup>

@@ -130,28 +130,28 @@ const OrderScreen = ({ match, history }) => {
     <Message variant="danger">{error}</Message>
   ) : (
     <>
-      <h4>Order {order._id}</h4>
+      <h4 className="eshop_font">លេខការកម្មង់  {order._id}</h4>
       <Row>
         <Col md={8}>
           <ListGroup variant="flush">
             <ListGroup.Item>
-              <h2>Shipping</h2>
+              <h4 className="eshop_font">អាសយដ្ធាន</h4>
               <p>
-                <strong>Name: </strong> {order.user.name}
+                <strong>ឈ្មោះ: </strong> {order.user.name}
               </p>
               <p>
-                <strong>Email: </strong>{" "}
+                <strong>អុីម៉ែល​ : </strong>{" "}
                 <a href={`mailto:${order.user.email}`}>{order.user.email}</a>
               </p>
               <p>
-                <strong>Address:</strong>
+                <strong>ទីលំនៅ :</strong>
                 {order.shippingAddress.address}, {order.shippingAddress.city}{" "}
                 {order.shippingAddress.postalCode},{" "}
                 {order.shippingAddress.country}
               </p>
               {order.isDelivered ? (
                 <Message variant="success">
-                  Delivered on {order.deliveredAt}
+                  មកដល់ថ្ងៃទី  {order.deliveredAt}
                 </Message>
               ) : (
                 <Message variant="danger">Not Delivered</Message>
@@ -159,22 +159,22 @@ const OrderScreen = ({ match, history }) => {
             </ListGroup.Item>
 
             <ListGroup.Item>
-              <h2>Payment Method</h2>
+              <h4 className="eshop_font">ចាយតារយះ</h4>
               <p>
-                <strong>Method: </strong>
+                <strong>តាម : </strong>
                 {order.paymentMethod}
               </p>
               {order.isPaid ? (
-                <Message variant="success">Paid on {order.paidAt}</Message>
+                <Message variant="success">ចាយថ្ងៃទី {order.paidAt}</Message>
               ) : (
-                <Message variant="danger">Not Paid</Message>
+                <Message variant="danger">មិនទាន់ចាយ</Message>
               )}
             </ListGroup.Item>
             <ListGroup.Item>
-              <h2>Order Items</h2>
+              <h4 className="eshop_font">ផលិតផលបានកម្មង់</h4>
 
               {order?.orderItems.length === 0 ? (
-                <Message>Order is empty</Message>
+                <Message>អត់ទាន់មាន</Message>
               ) : (
                 <ListGroup variant="flush">
                   {order?.orderItems?.map((item, index) => (
@@ -194,7 +194,7 @@ const OrderScreen = ({ match, history }) => {
                           </Link>
                         </Col>
                         <Col md={4}>
-                          {item.qty} x ${item.price} = ${item.qty * item.price}
+                          {item.qty} x ${item.salePrice} = ${item.qty * item.price}
                         </Col>
                       </Row>
                     </ListGroup.Item>
@@ -208,29 +208,29 @@ const OrderScreen = ({ match, history }) => {
           <Card>
             <ListGroup variant="flush">
               <ListGroup.Item>
-                <h2>Order Summary</h2>
+                <h4 className="eshop_font">សង្ខែបការបញ្ចាទិញ់</h4>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
-                  <Col>Items</Col>
-                  <Col>${order.itemsPrice}</Col>
+                  <Col>ទំនិញ់</Col>
+                  <Col>${order.totalPrice}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
-                  <Col>Shipping</Col>
+                  <Col>ការដឹកជញ្ជួន</Col>
                   <Col>${order.shippingPrice}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
-                  <Col>Tax</Col>
+                  <Col>ពន្ធ</Col>
                   <Col>${order.taxPrice}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
-                  <Col>Total</Col>
+                  <Col>សរុប</Col>
                   <Col>${order.totalPrice}</Col>
                 </Row>
               </ListGroup.Item>
@@ -303,7 +303,7 @@ const OrderScreen = ({ match, history }) => {
                         className="btn btn-block"
                         onClick={deliverHandler}
                       >
-                        Mark As Delivered
+                        បញ្ចាក់ថាបានមកដល់
                       </Button>
                     </ListGroup.Item>
                   </>

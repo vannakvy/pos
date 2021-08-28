@@ -16,14 +16,14 @@ const PurchaseTable = ({
     <Table striped bordered hover responsive className="table-sm mt-2">
       <thead>
         <tr className="bg-info text-light">
-          <th>NO #</th>
-          <th>DATE</th>
-          <th>PRODUCT</th>
-          <th>QTY</th>
-          <th>PRICE</th>
-          <th>UNIT</th>
-          <th>SHIPPING</th>
-          <th>SUPPLIER</th>
+          <th>លេខរៀង #</th>
+          <th>ថ្ងៃទី</th>
+          <th>ផលិតផល</th>
+          <th>ចំនួន</th>
+          <th>តម្លែ</th>
+          <th>ប្រភេទ</th>
+          <th>ការដឺក</th>
+          <th>អ្នកផ្គតផ្គង់</th>
           <th>ACTIONS</th>
         </tr>
       </thead>

@@ -116,11 +116,12 @@ const PurchaseProductScreen = ({ match }) => {
 
   return (
     <div className="">
-      <div className="purchaseProductScreen p-2 bg-warning">
+      <div className=" p-2 card card-body m-2">
+        <h3 className="eshop_font">ការបញ្ចាទិញ់</h3>
         <Form onSubmit={handleSubmit}>
           <Form.Group as={Row}>
             <Form.Label column sm={1}>
-              Date
+              ថ្ងៃទី
             </Form.Label>
             <Col sm={3}>
               <Form.Control
@@ -131,7 +132,7 @@ const PurchaseProductScreen = ({ match }) => {
               />
             </Col>
             <Form.Label column sm={1}>
-              Product
+              រើសទំនិញ់
             </Form.Label>
             <Col sm={3}>
               <Select
@@ -143,7 +144,7 @@ const PurchaseProductScreen = ({ match }) => {
               />
             </Col>
             <Form.Label column sm={1}>
-              Stock
+              មានក្នុងស្ទុក
             </Form.Label>
             <Col sm={3}>
               <Form.Control
@@ -158,7 +159,7 @@ const PurchaseProductScreen = ({ match }) => {
 
           <Form.Group as={Row}>
             <Form.Label column sm={1}>
-              Carrying
+              ថ្លៃដឹកជញ្ជួន
             </Form.Label>
             <Col sm={3}>
               <Form.Control
@@ -172,7 +173,7 @@ const PurchaseProductScreen = ({ match }) => {
               />
             </Col>
             <Form.Label column sm={1}>
-              Suppliers
+              រើសអ្នកផ្គត់ផ្គង់
             </Form.Label>
             <Col sm={3}>
               <Select
@@ -184,7 +185,7 @@ const PurchaseProductScreen = ({ match }) => {
               />
             </Col>
             <Form.Label column sm={1}>
-              StockPrice
+              តម្លៃក្នុងស្ទុក
             </Form.Label>
             <Col sm={3}>
               <Form.Control
@@ -199,7 +200,7 @@ const PurchaseProductScreen = ({ match }) => {
 
           <Form.Group as={Row}>
             <Form.Label column sm={1}>
-              Quantity
+              ចំនួន
             </Form.Label>
             <Col sm={3}>
               <Form.Control
@@ -211,7 +212,7 @@ const PurchaseProductScreen = ({ match }) => {
               />
             </Col>
             <Form.Label column sm={1}>
-              Price
+              តម្លែ
             </Form.Label>
             <Col sm={3}>
               <Form.Control
@@ -223,7 +224,7 @@ const PurchaseProductScreen = ({ match }) => {
               />
             </Col>
             <Form.Label column sm={1}>
-              Unit
+              ប្រភេទ
             </Form.Label>
             <Col sm={3}>
               <Select
@@ -245,7 +246,7 @@ const PurchaseProductScreen = ({ match }) => {
                 variant="info"
                 className="rounded"
               >
-                Save to Stock
+                បញ្ចូល
               </Button>
             </Col>
           </Form.Group>
@@ -271,7 +272,7 @@ const PurchaseProductScreen = ({ match }) => {
             <Modal.Title>Attention !</Modal.Title>
           </Modal.Header>
           <Modal.Body className="bg-warning">
-            Are You Sure you want to delete the purchase?
+            តើអ្នកទិតជាចង់លុបមែនទេ?
           </Modal.Body>
           <Modal.Footer>
             <Button
@@ -282,7 +283,7 @@ const PurchaseProductScreen = ({ match }) => {
                 setPurchaseId("");
               }}
             >
-              No
+              ទេ
             </Button>
             <Button
               variant="info"
@@ -292,7 +293,7 @@ const PurchaseProductScreen = ({ match }) => {
                 dispatch(deletePurchase(purchaseId));
               }}
             >
-              Yes
+              លុប
             </Button>
           </Modal.Footer>
         </Modal>
