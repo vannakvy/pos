@@ -19,9 +19,7 @@ const CourseVideoScreen = () => {
  const history = useHistory();
 
  const redirect = `/elearning/courses/${id}/videos/${vid}`;
-
  const userLogin = useSelector((state) => state.userLogin);
-
  const enrollCourse = useSelector((state) => state.enroll);
  const { loading: loadingEnroll, error: errorEnroll, enroll } = enrollCourse;
 
@@ -61,7 +59,7 @@ const CourseVideoScreen = () => {
 
  return (
   <>
-   <div className="container-fluid mt-2" style={{ minHeight: '90vh' }}>
+   <div className="container-fluid" style={{ minHeight: '90vh' }}>
     {userLogin.userInfo === null || userLogin === {} ? (
      <Redirect to={`/login?redirect=${redirect}`} />
     ) : loadingEnroll ? (
@@ -95,7 +93,7 @@ const CourseVideoScreen = () => {
            />
           )}
          </div>
-         <div className="col-lg-9 col-md-12">
+         <div className="col-lg-9 col-md-12 w-100 px-0">
           {loadingPlay ? (
            <div style={{ padding: '100px 0' }}>
             <Loader wd={40} hg={40} />
@@ -103,7 +101,7 @@ const CourseVideoScreen = () => {
           ) : errorPlay ? (
            <Message variant="danger">{errorPlay}</Message>
           ) : (
-           <div className="py-2 bg-light rounded shadow">
+           <div className="shadow">
             <div className="player-wrapper">
              <ReactPlayer
               className="react-player"
