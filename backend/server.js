@@ -98,16 +98,23 @@ app.use(
  express.static(path.join(__dirname, '/uploads/eShopUploads'))
 );
 
-app.use(
- '/.well-known/pki-validation',
- express.static(
-  path.join(__dirname, '/frontend/build/.well-known/pki-validation')
- )
-);
 app.use('/img', express.static(path.join(__dirname, '/frontend/src/img')));
 
 if (process.env.NODE_ENV === 'production') {
  app.use(express.static(path.join(__dirname, '/frontend/build')));
+
+ app.get('/.well-known', (req, res) =>
+  res.sendFile(
+   path.resolve(
+    __dirname,
+    'frontend',
+    'build',
+    '.well-known',
+    'pki-validation',
+    '2FDEF3E227CAB2BA5ACFD8350250C0BF.txt'
+   )
+  )
+ );
 
  app.get('*', (req, res) =>
   res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
