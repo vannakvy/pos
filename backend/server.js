@@ -99,7 +99,7 @@ app.use(
 );
 
 app.use(
- '/.well-known',
+ '/.well-known/pki-validation',
  express.static(
   path.join(__dirname, '/frontend/build/.well-known/pki-validation')
  )
