@@ -100,7 +100,9 @@ app.use(
 
 app.use(
  '/.well-known',
- express.static(path.join(__dirname, '/frontend/build/.well-known'))
+ express.static(
+  path.join(__dirname, '/frontend/build/.well-known/pki-validation')
+ )
 );
 app.use('/img', express.static(path.join(__dirname, '/frontend/src/img')));
 
