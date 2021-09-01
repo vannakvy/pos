@@ -8,6 +8,10 @@ main {
 
 /* ------------------------------------------------------------------------------------------ */
 
+html {
+ font-family: 'Battambang', 'Ubuntu', sans-serif;
+}
+
 body {
  margin: 0;
  font-size: 0.875rem;
@@ -287,13 +291,13 @@ div {
 }
 /* eshop  */
 .eshop_font {
-    font-family: 'Battambang', cursive;
-    font-weight: 700;
-   }
+ font-family: 'Battambang', cursive;
+ font-weight: 700;
+}
 
-.outlines{
-    border: 1px solid rgb(19, 152, 204);
-    border-radius: 3px;
+.outlines {
+ border: 1px solid rgb(19, 152, 204);
+ border-radius: 3px;
 }
 
 .ui.secondary.pointing.menu .active.item {
@@ -414,4 +418,25 @@ body {
 
 .nav-link .fa-spin {
  color: rgb(0, 132, 255) !important;
+}
+
+.nav_link {
+ cursor: pointer;
+ background: rgb(32, 32, 32);
+ display: block;
+ padding: 10px;
+ font-weight: bold;
+ color: rgb(133, 190, 255) !important;
+}
+
+.nav_link:hover {
+ cursor: pointer;
+ background: rgb(206, 206, 206) !important;
+ display: block;
+ color: #000 !important;
+}
+
+.activeNav_link {
+ background: rgb(236, 236, 236) !important;
+ color: #000 !important;
 }

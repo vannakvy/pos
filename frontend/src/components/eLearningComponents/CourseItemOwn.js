@@ -67,7 +67,7 @@ const CourseItemOwn = (props) => {
 
     <CardMedia
      className="rounded-top d-block d-sm-none"
-     style={{ height: 100 }}
+     style={{ height: 115 }}
      component="img"
      alt=""
      image={course.imgUrl}
@@ -75,12 +75,13 @@ const CourseItemOwn = (props) => {
     />
 
     <CardContent>
-     <div className="ubuntu d-none d-sm-block" style={{ height: '80px' }}>
-      <h5 className="ubuntu">{course.name}</h5>
-      <small className="text-info ubuntu">{course.courseType}</small>
+     <div className="kh d-none d-sm-block" style={{ height: '80px' }}>
+      <h5 className="kh">{course.name}</h5>
+      <small className="text-info kh">{course.courseType}</small>
      </div>
-     <div className="ubuntu d-block d-sm-none" style={{ height: '50px' }}>
-      <h5>{course.name}</h5>
+     <div className="kh d-block d-sm-none" style={{ height: '65px' }}>
+      <h5 className="kh">{course.name}</h5>
+      <small className="text-info kh">{course.courseType}</small>
      </div>
     </CardContent>
    </CardActionArea>

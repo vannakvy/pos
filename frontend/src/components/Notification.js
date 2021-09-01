@@ -12,6 +12,7 @@ import { deleteNotifyByUser, getNotifyByUser } from '../actions/notifyActions';
 const DropdownExampleDropdown = () => {
  const history = useHistory();
  const dispatch = useDispatch();
+ const [numNoti, setNumNoti] = useState(0);
 
  const { userInfo } = useSelector((state) => state.userLogin);
  const { notifies } = useSelector((state) => state.NotifyByUser);
@@ -22,8 +23,15 @@ const DropdownExampleDropdown = () => {
   }
  }, [userInfo]);
 
+ useEffect(() => {
+  if (notifies) {
+   setNumNoti(notifies.length);
+  }
+ }, [notifies]);
+
  return (
   <Dropdown
+   onClick={() => setNumNoti(0)}
    icon={null}
    text={
     <>
@@ -31,13 +39,13 @@ const DropdownExampleDropdown = () => {
       className="rounded-circle"
       style={{ fontSize: 37, padding: 10, background: 'rgb(230,230,230)' }}
      />
-     {notifies && notifies.length > 0 && (
+     {numNoti > 0 && (
       <small
        className="bg-danger text-light text-center position-absolute rounded-circle"
        style={{ width: 19, left: 20, top: -2 }}
       >
-       <ConvertNum num={notifies && notifies.length} />
-       {notifies && notifies.length > 9 && <>&#8314;</>}
+       <ConvertNum num={numNoti} />
+       {numNoti > 9 && <>&#8314;</>}
       </small>
      )}
     </>

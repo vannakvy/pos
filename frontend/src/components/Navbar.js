@@ -15,6 +15,8 @@ import LoaderTop from './LoaderTop';
 import DropdownExampleDropdown from './Notification';
 import learningImg from '../img/free-ebook.png';
 import { FaHome } from 'react-icons/fa';
+import NavbarRes from './NavbarRes';
+import NavPhone from './NavPhone';
 
 const Navbar = () => {
  const dispatch = useDispatch();
@@ -29,7 +31,7 @@ const Navbar = () => {
   <div className="sticky-top">
    <LoaderTop />
    <nav
-    className="navbar navbar-expand-md sticky-top p-2"
+    className="navbar navbar-expand-md sticky-top p-2 shadow-sm"
     style={{ background: 'rgb(255,255,255)' }}
    >
     <NavLink
@@ -112,19 +114,7 @@ const Navbar = () => {
       />
      </svg>
     </NavLink>
-    <button
-     className="navbar-toggler"
-     type="button"
-     data-toggle="collapse"
-     data-target="#navbarColor02"
-     aria-controls="navbarColor02"
-     aria-expanded="false"
-     aria-label="Toggle navigation"
-    >
-     <span className="navbar-toggler-icon">
-      <i className="fas fa-bars" style={{ fontSize: '25px' }}></i>
-     </span>
-    </button>
+    <NavPhone />
 
     <div className="collapse navbar-collapse" id="navbarColor02">
      <ul className="navbar-nav ml-auto">

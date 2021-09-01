@@ -15,6 +15,7 @@ import MyCoursesItem from '../../components/eLearningComponents/MyCoursesItem';
 import ResponsiveDrawer from '../../components/eLearningComponents/MyCourseCom';
 import Loader from '../../components/Loader';
 import Comment from '../../components/eLearningComponents/comment';
+import Footer from '../../components/Footer';
 
 const insideStyles = {
  background: 'white',
@@ -90,6 +91,7 @@ const MyCoursesDetailScreen = () => {
           top: 0,
           height: '100vh',
           paddingTop: '68px',
+          zIndex: 10,
          }}
         >
          <div className="d-flex h-100" style={{ background: 'rgb(27,25,33)' }}>
@@ -192,12 +194,6 @@ const MyCoursesDetailScreen = () => {
                  {enrollDetail.courseId.description}
                 </p>
                </div>
-               <h5 className="kh text-light mt-3">ផ្ដល់មតិផ្សេងៗ</h5>
-               <div className="text-dark rounded">
-                <Comment cid={enrollDetail && enrollDetail.courseId._id} />
-               </div>
-              </div>
-              <div className="col">
                <h5 className="kh text-light">វីឌីអូសម្រាប់មុខវិទ្យានេះ</h5>
                {loadingSection ? (
                 <Loader wd={40} hg={40} />
@@ -211,9 +207,17 @@ const MyCoursesDetailScreen = () => {
                 />
                )}
               </div>
+
+              <div className="col">
+               <h5 className="kh text-light mt-3">ផ្ដល់មតិផ្សេងៗ</h5>
+               <div className="text-dark rounded">
+                <Comment cid={enrollDetail && enrollDetail.courseId._id} />
+               </div>
+              </div>
              </div>
             </div>
            </div>
+           <Footer />
           </div>
          </div>
         </div>

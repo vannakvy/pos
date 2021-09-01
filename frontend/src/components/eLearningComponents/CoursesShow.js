@@ -4,7 +4,7 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import CourseItem from './CourseItem';
 import { useHistory } from 'react-router-dom';
-import { Tab } from 'semantic-ui-react';
+import { Loader, Tab } from 'semantic-ui-react';
 
 const CoursesShow = ({ courseType, header, text, url }) => {
  const history = useHistory();
@@ -33,11 +33,13 @@ const CoursesShow = ({ courseType, header, text, url }) => {
     }}
    >
     {loading ? (
-     <Tab.Pane
-      style={{ minHeight: '550px' }}
-      loading
-      attached={false}
-     ></Tab.Pane>
+     <div className="rounded" style={{ minHeight: '500px' }}>
+      <div className="p-5 mt-5">
+       <Loader active inline="centered" className="fw-bold">
+        កំពុងដំណើរការ...
+       </Loader>
+      </div>
+     </div>
     ) : (
      <>
       <Tab.Pane attached={false}>

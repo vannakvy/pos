@@ -117,7 +117,6 @@ const App = () => {
      <Route path="/register" component={RegisterScreen} />
      <Route path="/" exact component={Dashboard} />
     </Switch>
-    {/* <Footer /> */}
 
     <NavLink
      className="navbar_link rounded text-light p-2"
@@ -139,8 +138,9 @@ const App = () => {
      />
     </NavLink>
 
-    <NavbarBottom />
+    {/* <NavbarBottom /> */}
    </div>
+   <Footer />
   </Router>
  );
 };
