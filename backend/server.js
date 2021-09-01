@@ -104,16 +104,7 @@ if (process.env.NODE_ENV === 'production') {
  app.use(express.static(path.join(__dirname, '/frontend/build')));
 
  app.get('/.well-known', (req, res) =>
-  res.sendFile(
-   path.resolve(
-    __dirname,
-    'frontend',
-    'build',
-    '.well-known',
-    'pki-validation',
-    '2FDEF3E227CAB2BA5ACFD8350250C0BF.txt'
-   )
-  )
+  res.sendFile(path.resolve(__dirname, 'frontend', 'build'))
  );
 
  app.get('*', (req, res) =>
