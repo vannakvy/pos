@@ -101,7 +101,7 @@ const CourseVideoScreen = () => {
           ) : errorPlay ? (
            <Message variant="danger">{errorPlay}</Message>
           ) : (
-           <div className="shadow">
+           <div className="shadow mt-md-1 mt-0">
             <div className="player-wrapper">
              <ReactPlayer
               className="react-player"
