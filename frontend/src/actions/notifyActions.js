@@ -17,6 +17,7 @@ export const createNotify = (n, descrip) => async (dispatch, getState) => {
    name: n.cid.name,
    descrip: descrip,
    img: n.cid.imgUrl,
+   noWatch: true,
    url: `/elearning/courses/${n.cid._id}`,
    createdAt: new Date().getTime(),
    createdBy: userInfo._id,
@@ -52,4 +53,12 @@ export const deleteNotifyByUser = (id) => async (dispatch) => {
  } catch (error) {
   alert(error.message);
  }
+};
+
+export const watchNoti = (id) => async (dispatch) => {
+ try {
+  await db.collection('notification').doc(id).update({
+   noWatch: false,
+  });
+ } catch (error) {}
 };

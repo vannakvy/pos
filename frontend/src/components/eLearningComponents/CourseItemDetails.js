@@ -109,7 +109,7 @@ const CourseItemDetails = (props) => {
    <Progress />
    <CardContent>
     <div style={{ minHeight: '160px' }}>
-     <h5>{course.name}</h5>
+     <h5 className="kh">{course.name}</h5>
      <small className="text-info">{course.courseType}</small>
 
      {loadingEnroll || loadingPlay ? (

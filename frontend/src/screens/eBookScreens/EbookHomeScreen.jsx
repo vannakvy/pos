@@ -155,19 +155,16 @@ const EbookHomeScreen = () => {
     <h3 className="text-center kh my-3">ភាសាកុំព្យូទ័រ</h3>
     <div className="row">
      <div className="col-md-6">
-      <div className="round bg-light p-4 shadow-sm adminHover text-center mb-4">
-       <p
-        className="ubuntu text-center font-weight-bold"
-        style={{ fontSize: 50 }}
-       >
+      <div className="round bg-light p-4 shadow-sm text-center mb-4">
+       <p className="kh text-center fw-bold text-info" style={{ fontSize: 50 }}>
         HTML
        </p>
-       <p className="text-center font-weight-bold">
+       <p className="text-center fw-bold">
         The language for building web pages
        </p>
        <button
-        className="btn btn-dark kh shadow-sm rounded-pill mb-4"
-        style={{ width: 250 }}
+        className="btn btn-info kh shadow-sm rounded mb-4"
+        style={{ width: 150 }}
         onClick={() => gotoDetails('HTML')}
        >
         ចាប់ផ្តើមរៀន
@@ -175,19 +172,14 @@ const EbookHomeScreen = () => {
       </div>
      </div>
      <div className="col-md-6">
-      <div className="round bg-light p-4 shadow-sm adminHover text-center mb-4">
-       <p
-        className="ubuntu text-center font-weight-bold"
-        style={{ fontSize: 50 }}
-       >
+      <div className="round bg-light p-4 shadow-sm text-center mb-4">
+       <p className="kh text-center fw-bold text-info" style={{ fontSize: 50 }}>
         CSS
        </p>
-       <p className="text-center font-weight-bold">
-        The language for styling web pages
-       </p>
+       <p className="text-center fw-bold">The language for styling web pages</p>
        <button
-        className="btn btn-dark kh shadow-sm rounded-pill mb-4"
-        style={{ width: 250 }}
+        className="btn btn-info kh shadow-sm rounded mb-4"
+        style={{ width: 150 }}
         onClick={() => gotoDetails('CSS')}
        >
         ចាប់ផ្តើមរៀន
@@ -195,19 +187,16 @@ const EbookHomeScreen = () => {
       </div>
      </div>
      <div className="col-md-6">
-      <div className="round bg-light p-4 shadow-sm adminHover text-center mb-4">
-       <p
-        className="ubuntu text-center font-weight-bold"
-        style={{ fontSize: 50 }}
-       >
+      <div className="round bg-light p-4 shadow-sm text-center mb-4">
+       <p className="kh text-center fw-bold text-info" style={{ fontSize: 50 }}>
         JavaScript
        </p>
-       <p className="text-center font-weight-bold">
+       <p className="text-center fw-bold">
         The language for programming web pages
        </p>
        <button
-        className="btn btn-dark kh shadow-sm rounded-pill mb-4"
-        style={{ width: 250 }}
+        className="btn btn-info kh shadow-sm rounded mb-4"
+        style={{ width: 150 }}
         onClick={() => gotoDetails('JavaScript')}
        >
         ចាប់ផ្តើមរៀន
@@ -215,57 +204,44 @@ const EbookHomeScreen = () => {
       </div>
      </div>
      <div className="col-md-6">
-      <div className="round bg-light p-4 shadow-sm adminHover text-center mb-4">
-       <p
-        className="ubuntu text-center font-weight-bold"
-        style={{ fontSize: 50 }}
-       >
+      <div className="round bg-light p-4 shadow-sm text-center mb-4">
+       <p className="kh text-center fw-bold text-info" style={{ fontSize: 50 }}>
         PYTHON
        </p>
-       <p className="text-center font-weight-bold">
-        A popular programming language
-       </p>
+       <p className="text-center fw-bold">A popular programming language</p>
        <button
-        className="btn btn-dark kh shadow-sm rounded-pill mb-4"
-        style={{ width: 250 }}
+        className="btn btn-info kh shadow-sm rounded mb-4"
+        style={{ width: 150 }}
        >
         ចាប់ផ្តើមរៀន
        </button>
       </div>
      </div>
      <div className="col-md-6">
-      <div className="round bg-light p-4 shadow-sm adminHover text-center mb-4">
-       <p
-        className="ubuntu text-center font-weight-bold"
-        style={{ fontSize: 50 }}
-       >
+      <div className="round bg-light p-4 shadow-sm text-center mb-4">
+       <p className="kh text-center fw-bold text-info" style={{ fontSize: 50 }}>
         SQL
        </p>
-       <p className="text-center font-weight-bold">
-        A language for accessing databases
-       </p>
+       <p className="text-center fw-bold">A language for accessing databases</p>
        <button
-        className="btn btn-dark kh shadow-sm rounded-pill mb-4"
-        style={{ width: 250 }}
+        className="btn btn-info kh shadow-sm rounded mb-4"
+        style={{ width: 200 }}
+        onClick={() => gotoDetails('HTML')}
        >
         ចាប់ផ្តើមរៀន
        </button>
       </div>
      </div>
      <div className="col-md-6">
-      <div className="round bg-light p-4 shadow-sm adminHover text-center mb-4">
-       <p
-        className="ubuntu text-center font-weight-bold"
-        style={{ fontSize: 50 }}
-       >
+      <div className="round bg-light p-4 shadow-sm text-center mb-4">
+       <p className="kh text-center fw-bold text-info" style={{ fontSize: 50 }}>
         PHP
        </p>
-       <p className="text-center font-weight-bold">
-        A web server programming language
-       </p>
+       <p className="text-center fw-bold">A web server programming language</p>
        <button
-        className="btn btn-dark kh shadow-sm rounded-pill mb-4"
-        style={{ width: 250 }}
+        className="btn btn-info kh shadow-sm rounded mb-4"
+        style={{ width: 200 }}
+        onClick={() => gotoDetails('HTML')}
        >
         ចាប់ផ្តើមរៀន
        </button>

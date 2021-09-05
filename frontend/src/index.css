@@ -432,11 +432,16 @@ body {
 .nav_link:hover {
  cursor: pointer;
  background: rgb(206, 206, 206) !important;
- display: block;
  color: #000 !important;
 }
 
 .activeNav_link {
  background: rgb(236, 236, 236) !important;
+ color: #000 !important;
+}
+
+.navHover:hover {
+ cursor: pointer;
+ background: rgb(235, 235, 235) !important;
  color: #000 !important;
 }
