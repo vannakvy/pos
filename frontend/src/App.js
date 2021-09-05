@@ -15,6 +15,7 @@ import DashboardElearn from "./screens/eLearningScreens/DashboardElearn";
 import CoursesScreen from "./screens/eLearningScreens/CoursesScreen";
 import CourseDetailsScreen from "./screens/eLearningScreens/CourseDetialsScreen";
 import CourseVideoScreen from "./screens/eLearningScreens/CourseVideoScreen";
+import MessengerCustomerChat from "react-messenger-customer-chat";
 
 import EbookHomeScreen from "./screens/eBookScreens/EbookHomeScreen";
 import EbookCourseScreen from "./screens/eBookScreens/EbookCourseScreen";
@@ -142,7 +143,12 @@ const App = () => {
         {/* <NavbarBottom /> */}
       </div>
       {/* <Footer /> */}
+
       <NewFooter />
+      <MessengerCustomerChat
+        pageId="2779357535722724"
+        appId="569705490844811"
+      />
     </Router>
   );
 };
