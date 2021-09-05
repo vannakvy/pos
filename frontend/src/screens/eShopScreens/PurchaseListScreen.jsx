@@ -36,7 +36,7 @@ const PurchaseListScreen = ({ match }) => {
   useEffect(() => {
     dispatch(listPurchases("", pageNumber));
   }, [history, pageNumber, dispatch, purchaseDelete, purchaseDetail]);
-console.log(purchases,"ddd")
+
   return (
     <div className="stock">
       <div className="card">
