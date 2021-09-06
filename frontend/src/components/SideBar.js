@@ -213,11 +213,11 @@ const SideBar = () => {
           icon={"fas fa-user-graduate"}
           mar={true}
         />
-        <SideBarRowComponents
+        {/* <SideBarRowComponents
           text={"Reports"}
           goTo={"/adminEshop/reports"}
           icon={"fas fa-user-graduate"}
-        />
+        /> */}
       </div>
     </div>
   );

@@ -83,8 +83,8 @@ const AppAdmin = () => {
             />
             <Route path="/adminEshop/productLists" component={Stock} />
 
-            <Route path="/adminEshop/dashboard" component={Team} />
-            {/* <Route path="/adminEshop/purchaselists" component={PurchaseListScreen} /> */}
+            {/* <Route path="/adminEshop/dashboard" component={Team} /> */}
+            <Route path="/adminEshop/purchaselists" component={PurchaseListScreen} />
 
             <Route
               path="/adminEshop/addProduct/:pageNumber"
