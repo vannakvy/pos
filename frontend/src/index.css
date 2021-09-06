@@ -301,8 +301,9 @@ div {
 }
 
 .ui.secondary.pointing.menu .active.item {
- font-family: 'Battambang', cursive;
+ font-family: 'Battambang', 'Ubuntu', sans-serif;
  font-weight: 900 !important;
+ color: #007bff !important;
 }
 
 .activeNav {
@@ -404,7 +405,7 @@ body {
 }
 
 .ui.labeled.button > .button {
- font-family: 'Battambang', cursive;
+ font-family: 'Battambang', 'Ubuntu', sans-serif;
 }
 
 .courseType:hover {
@@ -444,4 +445,9 @@ body {
  cursor: pointer;
  background: rgb(235, 235, 235) !important;
  color: #000 !important;
+}
+
+.segment {
+ background: rgb(240, 240, 240) !important;
+ border: none !important;
 }
