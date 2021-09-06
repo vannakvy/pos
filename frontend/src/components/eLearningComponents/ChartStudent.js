@@ -7,7 +7,7 @@ export default class App extends Component {
   const options = {
    animationEnabled: true,
    title: {
-    text: 'USERS DASHBOARD',
+    text: 'Users',
    },
    data: [
     {
@@ -19,14 +19,14 @@ export default class App extends Component {
      indexLabelFontSize: 16,
      indexLabel: '{label} - {y}',
      dataPoints: [
-      { y: this.props.students, label: 'Students' },
-      { y: this.props.customers, label: 'Customers' },
+      { y: this.props.students, label: 'Administrator' },
+      { y: this.props.customers, label: 'General Users' },
      ],
     },
    ],
   };
   return (
-   <div>
+   <div className="kh round">
     <CanvasJSChart options={options} />
    </div>
   );

@@ -52,9 +52,7 @@ const EbookCourseScreen = () => {
   <div style={{ zIndex: 1 }}>
    <div className="d-flex justify-content-between ">
     <div className="d-flex w-100">
-     <div>
-      <CourseSidebar courses={course} lang={param.lang} />
-     </div>
+     <CourseSidebar courses={course} lang={param.lang} />
      <div className="w-100" style={{ minHeight: '100vh' }}>
       {loading ? (
        <div className="pt-2">

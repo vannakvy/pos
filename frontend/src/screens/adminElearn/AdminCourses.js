@@ -36,7 +36,7 @@ const AdminCourses = ({ match }) => {
  });
 
  const pageNumber = match.params.pageNumber || 1;
- let no = pageNumber === 1 ? 1 : (pageNumber - 1) * 13 + 1;
+ let no = pageNumber === 1 ? 1 : (pageNumber - 1) * 12 + 1;
  const location = useLocation();
  const query = queryString.parse(location.search);
  const courseType = query.courseType || 'AllCourses';
@@ -156,7 +156,7 @@ const AdminCourses = ({ match }) => {
   dispatch({ type: COURSE_UPDATE_RESET });
   dispatch({ type: COURSE_CREATE_RESET });
   dispatch({ type: COURSE_DELETE_RESET });
-  dispatch(listCourses(courseType, pageNumber, keyword, 13));
+  dispatch(listCourses(courseType, pageNumber, keyword, 12));
  }, [
   dispatch,
   successCreate,

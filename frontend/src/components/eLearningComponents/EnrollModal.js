@@ -43,7 +43,7 @@ const EnrollModal = ({ courses, addUserEnrollCourses }) => {
  };
 
  return (
-  <div>
+  <div className="mb-1">
    <button
     type="button"
     className="btn btn-success rounded shadow"
@@ -60,10 +60,10 @@ const EnrollModal = ({ courses, addUserEnrollCourses }) => {
     aria-labelledby="exampleModalLabel"
     aria-hidden="true"
    >
-    <div className="modal-dialog modal-xl">
+    <div className="modal-dialog modal-xl kh">
      <div className="modal-content round">
-      <div className="modal-header">
-       <h5 className="modal-title" id="exampleModalLabel">
+      <div className="modal-header bg-info" style={{ overflow: 'hidden' }}>
+       <h5 className="modal-title kh" id="exampleModalLabel">
         Enroll Table(
         <span className="text-danger">{enrolling.length}</span>)
        </h5>
@@ -76,8 +76,11 @@ const EnrollModal = ({ courses, addUserEnrollCourses }) => {
         <span aria-hidden="true">&times;</span>
        </button>
       </div>
-      <div className="container-fluid">
-       <h6 className="mt-3">
+      <div
+       className="container-fluid"
+       style={{ background: 'rgb(178,191,201)' }}
+      >
+       <h6 className="mt-3 text-info">
         All Courses not Enroll yet(
         <span className="text-danger">{courses && courses.length}</span>)
        </h6>
@@ -87,35 +90,36 @@ const EnrollModal = ({ courses, addUserEnrollCourses }) => {
           <div key={course._id} className="col-lg-4 col-md-6">
            <Card
             onClick={() => addEnrollList(course._id)}
-            className="mx-md-1 mx-lg-0 mx-xl-2 shadow rounded my-2 courseItem d-flex w-100"
-            style={{ maxHeight: 180 }}
+            className="mx-md-1 mx-lg-0 mx-xl-2 shadow-sm my-2 d-flex w-100"
+            style={{ maxHeight: 77 }}
            >
             <CardActionArea className="position-relative">
-             <div className="w-100 h-100 d-flex justify-content-between position-absolute">
-              <div className="p-2">
-               <h5>{course.name}</h5>
-               <small className="t_grediant">{course.courseType}</small>
+             <div className="w-100 h-100">
+              <div className="p-1 d-flex">
+               <img
+                style={{ width: 100, height: 70, objectFit: 'cover' }}
+                src={course.imgUrl}
+                alt=""
+               />
+               <div className="ms-1">
+                <h5 className="kh mb-0 pb-0">{course.name}</h5>
+                <small className="t_grediant">{course.courseType}</small>
+               </div>
               </div>
               {enrolling &&
                enrolling.map((enr) => (
                 <React.Fragment key={enr}>
                  {course._id === enr ? (
                   <div
-                   className="d-flex align-items-center bg-dark justify-content-center btn"
-                   style={{ maxWidth: 150 }}
+                   className="bg-success btn position-absolute"
+                   style={{ width: 50, height: '100%', top: 0, right: 0 }}
                   >
-                   <BsFolderPlus className="text-light" />
+                   <BsFolderPlus className="text-light mt-4" />
                   </div>
                  ) : null}
                 </React.Fragment>
                ))}
              </div>
-             <img
-              className="w-100"
-              style={{ opacity: 1 }}
-              src={course.imgUrl}
-              alt=""
-             />
             </CardActionArea>
            </Card>
           </div>
