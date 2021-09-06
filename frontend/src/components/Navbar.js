@@ -160,7 +160,7 @@ const Navbar = () => {
         {userInfo && userInfo.isAdmin ? (
          <li className="nav-item">
           <NavLink
-           to="/adminUsers/students"
+           to="/adminUsers/users"
            className=""
            onClick={() => dispatch(navbarList('Admin'))}
           >

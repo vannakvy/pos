@@ -53,6 +53,7 @@ const UserDetails = () => {
  const { success: sucessDeleteEnrollCourse } = deleteEnrollCourses;
 
  useEffect(() => {
+  window.scroll(0, 0);
   dispatch({ type: USER_ENROLL_CREATE_RESET });
   dispatch({ type: USER_ENROLL_DELETE_RESET });
   dispatch(getUserEnrollCourses(uid));
@@ -100,7 +101,7 @@ const UserDetails = () => {
           num={coursesEnroll && coursesEnroll.enrollCourses.length}
          />
         </span>
-        <p className="kh text-info">ចំនួនមុខវិទ្យា</p>
+        <p className="kh text-info fw-bold">ចំនួនមុខវិទ្យា</p>
        </div>
       </div>
      </div>
