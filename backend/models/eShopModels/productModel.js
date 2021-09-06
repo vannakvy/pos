@@ -60,6 +60,11 @@ const productSchema = mongoose.Schema(
       required: true,
       default: 0,
     },
+    originPrice:{
+      type: Number,
+      required: true,
+      default: 0,
+    }
   },
   {
     timestamps: true,

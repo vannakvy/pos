@@ -1,5 +1,6 @@
 import React from "react";
 import "./newFooter.css";
+import learningImg from '../img/free-ebook.png';
 const NewFooter = () => {
   return (
     <>
@@ -42,7 +43,7 @@ const NewFooter = () => {
                 <div class="footer-widget">
                   <div class="footer-logo">
                     <a href="#">
-                      <img src="images/logo.png" class="img-fluid" />
+                      <img src={learningImg} class="img-fluid" width="300" height="200"/>
                     </a>
                   </div>
                   <div class="footer-text">
@@ -67,7 +68,7 @@ const NewFooter = () => {
               <div class="col-lg-4">
                 <div class="footer-widget">
                   <div class="footer-widget-heading">
-                    <h3 style={{}}>Useful Links</h3>
+                    <h3>Useful Links</h3>
                   </div>
                   <ul>
                     <li>

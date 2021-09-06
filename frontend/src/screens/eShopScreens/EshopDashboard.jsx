@@ -3,28 +3,31 @@ import BoxDashboard from "../../components/eShopComponents/BoxDashboard";
 import BarChart from "../../components/eShopComponents/BarChart";
 import { Table } from "react-bootstrap";
 const EshopDashboard = () => {
+
+
+  
   return (
     <div className="eshopDashboard">
-      <div className="container">
-        <div className="row p-2 justify-content-around">
+      <div className="container-fluid">
+        <div className="row p-1 justify-content-around">
           <BoxDashboard
             icon="fas fa-briefcase one"
-            title="PURHCASE"
+            title="ការទិញ់ចូលសរុប"
             data="4000"
           />
           <BoxDashboard
             icon="fas fa-shopping-cart two"
-            title="SALE"
+            title="ការលក់ចេញ់សរុប"
             data="4000"
           />
           <BoxDashboard
             icon="fas fa-chart-bar three"
-            title="PROFIT"
+            title="ចំណូល"
             data="4000"
           />
           <BoxDashboard
             icon="fas fa-briefcase four"
-            title="STOCK"
+            title="ស្ទុកសរុប"
             data="4000"
           />
         </div>

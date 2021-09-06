@@ -5,11 +5,13 @@ import {
     deletePurchase,
     createPurchase,
     updatePurchase,
-    getPurchaseDetail
+    getPurchaseDetail,
+    getTotalPurchase
 } from '../../controllers/eShopControllers/purchaseControllers.js'
 import { protect, admin } from '../../middleware/authMiddleware.js'
 
 router.route('/').get(getPurchases).post(protect, admin, createPurchase)
+router.route('/total').get(getTotalPurchase)
 router
     .route('/:id')
     .delete(protect, admin, deletePurchase)

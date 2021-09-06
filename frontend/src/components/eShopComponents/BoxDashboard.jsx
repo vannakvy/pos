@@ -10,8 +10,8 @@ const BoxDashboard = ({ icon, title, data }) => {
             <i className={`icon-dashboard ${icon}`}></i>
           </div>
           <div className="col-7">
-            <h5 className="text-info">{title}</h5>
-            <h5 className=" text-success">{data} $</h5>
+            <p className="text-info eshop-font" style={{fontSize:18}}>{title}</p>
+            <h3 className=" text-success">{data} $</h3>
           </div>
         </div>
       </div>
