@@ -76,7 +76,7 @@ const PurchaseProductScreen = ({ match }) => {
   const { loading, error, purchases, page, pages } = useSelector(
     (state) => state.purchaseList
   );
-  console.log(purchases);
+
   const purchaseDelete = useSelector((state) => state.purchaseDelete);
   // const purchaseLists = useSelector((state) => state.purchaseList);
   // console.log(purchaseLists);

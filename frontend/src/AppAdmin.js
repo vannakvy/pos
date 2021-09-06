@@ -72,10 +72,7 @@ const AppAdmin = () => {
       <Route path="/adminEshop/productLists/:pageNumber" component={Stock} />
       <Route path="/adminEshop/productLists" component={Stock} />
 
-      <Route
-       path="/adminEshop/purchaselists/:pageNumber"
-       component={PurchaseProductScreen}
-      />
+    
       {/* <Route path="/adminEshop/purchaselists" component={PurchaseListScreen} /> */}
 
       <Route
@@ -87,11 +84,16 @@ const AppAdmin = () => {
       <Route path="/adminEshop/userlist" component={UserListScreen} />
       <Route path="/adminEshop/user/:id/edit" component={UserEditScreen} />
       <Route path="/adminEshop/inventory" component={Supplier} />
+
       <Route
        path="/adminEshop/puchases/:pageNumber"
        component={PurchaseProductScreen}
       />
       <Route path="/adminEshop/puchases" component={PurchaseProductScreen} />
+      <Route
+       path="/adminEshop/dashboard/:pageNumber"
+       component={PurchaseProductScreen}
+      />
 
       <Route path="/adminEshop/sales" component={SaleByPassScreen} />
       <Route path="/adminEshop/addProducts" component={AddProductScreen} />

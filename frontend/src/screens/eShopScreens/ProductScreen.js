@@ -181,7 +181,7 @@ const ProductScreen = ({ history, match }) => {
                     <Form onSubmit={submitHandler}>
                       <Form.Group controlId="rating">
                         <Form.Label>Rating</Form.Label>
-                        <Form.Control
+                        <Form.Control className="outlines"
                           as="select"
                           value={rating}
                           onChange={(e) => setRating(e.target.value)}
@@ -196,7 +196,7 @@ const ProductScreen = ({ history, match }) => {
                       </Form.Group>
                       <Form.Group controlId="comment">
                         <Form.Label>Comment</Form.Label>
-                        <Form.Control
+                        <Form.Control className="outlines"
                           as="textarea"
                           row="3"
                           value={comment}

@@ -169,6 +169,11 @@ const SideBar = () => {
     onClick={() => setActiveNav('eshop')}
     className={`collapse show`}
    >
+          <SideBarRowComponents
+     text={'Dashboard'}
+     goTo={'/adminEshop/dashboard'}
+     icon={'fas fa-user-graduate'}
+    />
     <SideBarRowComponents
      text={'Clients'}
      goTo={'/adminEshop/userlist'}
@@ -191,16 +196,16 @@ const SideBar = () => {
      goTo={'/adminEshop/puchases'}
      icon={'fas fa-user-graduate'}
     />
-    <SideBarRowComponents
+    {/* <SideBarRowComponents
      text={'Puchase Lists'}
      goTo={'/adminEshop/purchaselists'}
      icon={'fas fa-user-graduate'}
-    />
-    <SideBarRowComponents
+    /> */}
+    {/* <SideBarRowComponents
      text={'Saled Bypass'}
      goTo={'/adminEshop/sales'}
      icon={'fas fa-user-graduate'}
-    />
+    /> */}
     <SideBarRowComponents
      text={'Add Products'}
      goTo={'/adminEshop/addProducts'}
@@ -212,11 +217,11 @@ const SideBar = () => {
      icon={'fas fa-user-graduate'}
      mar={true}
     />
-    <SideBarRowComponents
+    {/* <SideBarRowComponents
      text={'Reports'}
      goTo={'/adminEshop/reports'}
      icon={'fas fa-user-graduate'}
-    />
+    /> */}
    </div>
   </div>
  );

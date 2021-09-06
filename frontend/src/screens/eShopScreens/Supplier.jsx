@@ -170,8 +170,7 @@ const Supplier = ({ history }) => {
                   <td>{supplier.address}</td>
                   <td>
                     {" "}
-                    <i
-                      className="fas fa-edit text-info"
+                    <i className="fas fa-edit text-info"
                       onClick={() => {
                         setName(supplier.name);
                         setEmail(supplier.email);
