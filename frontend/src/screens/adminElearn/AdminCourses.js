@@ -21,6 +21,7 @@ import { BsSearch } from 'react-icons/bs';
 import queryString from 'query-string';
 import Paginate from '../../components/eLearningComponents/Paginate';
 import { BiDetail } from 'react-icons/bi';
+import ConvertNum from '../../components/eLearningComponents/ConvertNum';
 
 const AdminCourses = ({ match }) => {
  const [courseId, setCourseId] = useState('');
@@ -35,7 +36,7 @@ const AdminCourses = ({ match }) => {
  });
 
  const pageNumber = match.params.pageNumber || 1;
- let no = pageNumber === 1 ? 1 : (pageNumber - 1) * 20 + 1;
+ let no = pageNumber === 1 ? 1 : (pageNumber - 1) * 13 + 1;
  const location = useLocation();
  const query = queryString.parse(location.search);
  const courseType = query.courseType || 'AllCourses';
@@ -155,7 +156,7 @@ const AdminCourses = ({ match }) => {
   dispatch({ type: COURSE_UPDATE_RESET });
   dispatch({ type: COURSE_CREATE_RESET });
   dispatch({ type: COURSE_DELETE_RESET });
-  dispatch(listCourses(courseType, pageNumber, keyword, 20));
+  dispatch(listCourses(courseType, pageNumber, keyword, 13));
  }, [
   dispatch,
   successCreate,
@@ -183,16 +184,18 @@ const AdminCourses = ({ match }) => {
      aria-controls="multiCollapseExample2"
      onClick={resetCourse}
     >
-     <h6 className="grediant btn my-1 py-2 rounded-lg text-dark adminHover">
-      CREATE COURSE<i className="fas fa-plus"></i>
-     </h6>
+     <h5 className="grediant kh btn my-1 py-2 rounded-lg text-dark adminHover">
+      ប​ង្កើតមុខវិទ្យា<i className="fas fa-plus"></i>
+     </h5>
     </div>
    </div>
    {errorCreate && <Message variant="danger">{errorCreate}</Message>}
    {errorUpdate && <Message variant="danger">{errorUpdate}</Message>}
 
    <div className="collapse" id="multiCollapseExample2">
-    <h5 className="pb-2">CREATE COURSE</h5>
+    <h3 className="pb-2 kh text-info">
+     {courseId ? 'កែប្រែមុខវីទ្យា' : 'បង្កើតមុខវិទ្យា'}
+    </h3>
     <form className="form-group" onSubmit={handdleSubmit}>
      <Row>
       <Col md={6}>
@@ -217,8 +220,36 @@ const AdminCourses = ({ match }) => {
         <option value="Mobile Development">Mobile Development</option>
         <option value="Machine Learning">Machine Learning</option>
        </select>
-       <h6>Image:</h6>
-       <Form.Group controlId="image">
+       <h6>ព័ត៌មានផ្សេងៗ:</h6>
+       <textarea
+        className="form-control mb-3 bg-light rounded"
+        rows="11"
+        name="description"
+        onChange={onChangeHandler}
+        value={newCourse.description}
+       ></textarea>
+      </Col>
+      <Col md={6}>
+       <h6>រូបភាព:</h6>
+
+       {image === '/uploads/elearningUploads/imageDefualt.jpg' ? (
+        <div
+         className="bg-info mx-auto rounded d-flex justify-content-center align-items-center"
+         style={{ height: 280, maxWidth: 500 }}
+        >
+         <h2 className="kh">រូបភាព</h2>
+        </div>
+       ) : (
+        <div className="text-center">
+         <img
+          className="rounded shadow"
+          style={{ maxWidth: 500 }}
+          src={image}
+          alt={image}
+         />
+        </div>
+       )}
+       <Form.Group controlId="image" className="mt-2">
         <Form.Control
          className="bg-light rounded"
          type="text"
@@ -228,7 +259,7 @@ const AdminCourses = ({ match }) => {
          onChange={(e) => setImage(e.target.value)}
         ></Form.Control>
         <Form.File
-         className="bg-light"
+         className="bg-light rounded shadow-sm"
          id="image-file"
          label="Choose File"
          custom
@@ -237,53 +268,45 @@ const AdminCourses = ({ match }) => {
         {uploading && <Loader />}
        </Form.Group>
       </Col>
-      <Col md={6}>
-       <h6>Description:</h6>
-       <textarea
-        className="form-control mb-3 bg-light rounded"
-        rows="11"
-        name="description"
-        onChange={onChangeHandler}
-        value={newCourse.description}
-       ></textarea>
-      </Col>
      </Row>
-     {courseId === '' ? (
+     <div className="text-center mt-2 bg-info p-3">
+      {courseId === '' ? (
+       <button
+        className="btn px-5 btn-success rounded adminHover text-dark mr-3"
+        data-toggle="collapse"
+        data-target="#multiCollapseExample2"
+        aria-expanded={true}
+        aria-controls="multiCollapseExample2"
+        onClick={createCourseHandler}
+        type="submit"
+       >
+        Create
+       </button>
+      ) : (
+       <button
+        className="btn px-5 btn-warning rounded adminHover text-dark mr-3"
+        data-toggle="collapse"
+        data-target="#multiCollapseExample2"
+        aria-expanded={true}
+        aria-controls="multiCollapseExample2"
+        onClick={updateCourseHandler}
+        type="submit"
+       >
+        Update
+       </button>
+      )}
       <button
-       className="btn px-5 grediant rounded adminHover text-dark mr-3"
+       className="btn px-5 btn-secondary text-dark rounded adminHover"
        data-toggle="collapse"
        data-target="#multiCollapseExample2"
        aria-expanded={true}
        aria-controls="multiCollapseExample2"
-       onClick={createCourseHandler}
-       type="submit"
+       onClick={resetCourse}
+       type="btn"
       >
-       Create
+       Cancel
       </button>
-     ) : (
-      <button
-       className="btn px-5 grediant rounded adminHover text-dark mr-3"
-       data-toggle="collapse"
-       data-target="#multiCollapseExample2"
-       aria-expanded={true}
-       aria-controls="multiCollapseExample2"
-       onClick={updateCourseHandler}
-       type="submit"
-      >
-       Update
-      </button>
-     )}
-     <button
-      className="btn px-5 grediant text-dark rounded adminHover"
-      data-toggle="collapse"
-      data-target="#multiCollapseExample2"
-      aria-expanded={true}
-      aria-controls="multiCollapseExample2"
-      onClick={resetCourse}
-      type="btn"
-     >
-      Cancel
-     </button>
+     </div>
     </form>
    </div>
 
@@ -344,9 +367,12 @@ const AdminCourses = ({ match }) => {
    ) : (
     <>
      <table className="table table-sm bg-light">
-      <thead className="thead-dark text-center">
+      <thead className="thead-dark">
        <tr>
-        <th scope="col">No</th>
+        <th scope="col">ល.រ</th>
+        <th scope="col" style={{ maxWidth: 100 }}>
+         រូបភាព
+        </th>
         <th scope="col">Name</th>
         <th scope="col">Course Type</th>
         <th scope="col">Description</th>
@@ -357,8 +383,18 @@ const AdminCourses = ({ match }) => {
        {coursesList &&
         coursesList.map((course) => (
          <tr key={course._id} className="adminHover">
-          <td className="text-center">{no++}</td>
-          <td>{course.name}</td>
+          <td className="text-center fw-bold">
+           <ConvertNum num={no++} />
+          </td>
+          <td className="fw-bold text-dark p-1" style={{ maxWidth: 100 }}>
+           <img
+            style={{ width: 80, height: 45, objectFit: 'cover' }}
+            src={course.imgUrl}
+            alt={course.name}
+           />
+          </td>
+          <td className="fw-bold text-dark fs-6 kh">{course.name}</td>
+
           <td>{course.courseType}</td>
           <td>{course.description.slice(0, 30)}...</td>
           <td

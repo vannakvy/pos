@@ -44,7 +44,7 @@ export const listCourses =
  async (dispatch) => {
   try {
    //  dispatch({ type: LOADER_TOP_TRUE });
-   //  dispatch({ type: COURSE_LIST_REQUEST });
+   dispatch({ type: COURSE_LIST_REQUEST });
    const { data } = await axios.get(
     `/api/courses/courseType/${courseType}?pageNumber=${pageNumber}&keyword=${keyword}&pageSize=${pageSize}`
    );

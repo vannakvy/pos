@@ -125,7 +125,7 @@ const CoursesScreen = ({ match, history }) => {
     ) : errorList ? (
      <Message variant="danger">{errorList}</Message>
     ) : courses.length !== 0 ? (
-     <>
+     <div>
       <div className="row row-cols-xl-5 row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-2 w-100 mx-auto">
        {courses &&
         courses.map((course) => (
@@ -145,7 +145,7 @@ const CoursesScreen = ({ match, history }) => {
         courseType={courseType}
        />
       </div>
-     </>
+     </div>
     ) : (
      <div className="container">
       <h5 className="text-center mt-5 kh">

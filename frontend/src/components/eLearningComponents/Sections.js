@@ -229,9 +229,9 @@ const Sections = () => {
          {sections &&
           sections.map((section) => (
            <div key={section._id}>
-            <h6
-             className="grediant d-flex justify-content-between"
-             style={{ padding: '13px 15px', marginBottom: '1px' }}
+            <h5
+             className="grediant kh d-flex justify-content-between"
+             style={{ padding: '10px 15px', marginBottom: '1px' }}
             >
              <span style={{ paddingTop: '2px' }}>{section.name}</span>
              <span>
@@ -269,7 +269,7 @@ const Sections = () => {
                <i className="fas fa-plus-circle"></i>
               </IconButton>
              </span>
-            </h6>
+            </h5>
             {section.videos.map((video) => (
              <div
               className="d-flex justify-content-between border-bottom pl-3 adminHover pt-2"
@@ -280,7 +280,7 @@ const Sections = () => {
              >
               <div style={{ marginTop: '2px' }}>
                <i className="fas fa-play-circle mr-4 ml-3"></i>
-               {video.name}
+               <h5 className="d-inline-block kh">{video.name}</h5>
               </div>
               <div
                className="invisible"
@@ -337,15 +337,12 @@ const Sections = () => {
       <>
        <div className="form-group">
         <input
-         className="kh form-control"
+         className="kh form-control mb-2 shadow rounded"
          type="text"
          placeholder="ឈ្មោះសិកសិន..."
          value={section}
          onChange={(e) => setSection(e.target.value)}
         />
-        <small id="emailHelp" className="form-text text-muted">
-         We'll never share your email with anyone else.
-        </small>
        </div>
 
        {action === 'create' ? (
@@ -378,38 +375,31 @@ const Sections = () => {
       <>
        <div className="form-group">
         <input
-         className="kh form-control bg-dark text-light"
+         className="kh form-control mb-2 shadow rounded bg-dark text-light"
          type="text"
          placeholder="ID សិកសិន..."
          value={sectionId}
          onChange={onChangeVideoHandler}
          readOnly
         />
-        <small id="emailHelp" className="form-text text-muted">
-         We'll never share your email with anyone else.
-        </small>
+
         <input
-         className="kh form-control"
+         className="kh form-control mb-2 shadow rounded"
          type="text"
          name="name"
          placeholder="ឈ្មោះវីឌីអូ..."
          value={video.name}
          onChange={onChangeVideoHandler}
         />
-        <small id="emailHelp" className="form-text text-muted">
-         We'll never share your email with anyone else.
-        </small>
+
         <input
-         className="kh form-control"
+         className="kh form-control mb-2 shadow rounded"
          type="text"
          placeholder="លិញសិកសិន..."
          name="url"
          value={video.url}
          onChange={onChangeVideoHandler}
         />
-        <small id="emailHelp" className="form-text text-muted">
-         We'll never share your email with anyone else.
-        </small>
        </div>
        <div style={{ marginLeft: '40%' }}>
         <MyDropzone video={video} setVideo={setVideo} setUpload={setUpload} />

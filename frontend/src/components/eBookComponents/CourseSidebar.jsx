@@ -11,6 +11,7 @@ import {
 } from '../../constants/navbarConstants';
 import { GET_DETAIL_BY_CONTENT_ID_SUCCESS } from '../../constants/eBookConstants/eBookDetailContants';
 import axios from 'axios';
+import { AiOutlineRollback } from 'react-icons/ai';
 
 const CourseSidebar = ({ courses, lang }) => {
  const [navSide, setNavSide] = useState(false);
@@ -37,13 +38,15 @@ const CourseSidebar = ({ courses, lang }) => {
    <div className="d-none d-lg-block" style={{ width: 250, zIndex: 1 }}>
     <div className="ml-1">
      <div className="bg-light p-0 m-0 d-flex">
-      <div className="py-2 pl-3 w-100 bg-info text-dark">{lang} Tutorial</div>
+      <div className="py-2 pl-3 w-100 bg-info text-light fw-bold">
+       {lang} Tutorial
+      </div>
       <div
        className="py-1 text-center bg-light"
        style={{ width: 60, cursor: 'pointer' }}
        onClick={() => history.push('/ebook')}
       >
-       <IoBackspace
+       <AiOutlineRollback
         className="t_grediantHover"
         style={{ fontSize: 28, color: 'red' }}
        />
@@ -59,7 +62,7 @@ const CourseSidebar = ({ courses, lang }) => {
        <NavLink
         to={`/ebook/${lang}/${course._id}`}
         key={course._id}
-        className="py-2 pl-3 d-block bg-secondary border"
+        className="fw-bold py-2 pl-3 d-block bg-secondary border"
         style={{ margin: '1px' }}
         activeClassName="bg-info text-dark"
         onClick={(e) => gotoEbookContent(e, course._id)}
@@ -110,13 +113,15 @@ const CourseSidebar = ({ courses, lang }) => {
     )}
     <div className="ml-1">
      <div className="bg-light p-0 m-0 d-flex">
-      <div className="py-2 pl-3 w-100 bg-dark text-light">{lang} Tutorial</div>
+      <div className="py-2 pl-3 w-100 bg-info text-light fw-bold">
+       {lang} Tutorial
+      </div>
       <div
        className="py-1 text-center bg-light"
        style={{ width: 60, cursor: 'pointer' }}
        onClick={() => history.push('/ebook')}
       >
-       <IoBackspace
+       <AiOutlineRollback
         className="t_grediantHover"
         style={{ fontSize: 28, color: 'red' }}
        />
@@ -124,8 +129,14 @@ const CourseSidebar = ({ courses, lang }) => {
      </div>
     </div>
     <div
-     className="sidebar ml-1 bg-light"
-     style={{ top: 76, height: '90vh', overflowY: 'auto', paddingBottom: 200 }}
+     className="sidebar ml-1"
+     style={{
+      top: 76,
+      height: '90vh',
+      overflowY: 'auto',
+      paddingBottom: 200,
+      background: 'rgb(240,240,240)',
+     }}
     >
      <ul className="list-group list-group-flush" style={{ paddingBottom: 80 }}>
       {courses &&
@@ -133,8 +144,11 @@ const CourseSidebar = ({ courses, lang }) => {
         <NavLink
          to={`/ebook/${lang}/${course._id}`}
          key={course._id}
-         className="py-2 pl-3 bg-light"
-         style={{ margin: '1px' }}
+         className="py-2 pl-3 bg-secondary border fw-bold"
+         style={{
+          margin: '1px',
+          background: '#fff',
+         }}
          activeClassName="bg-info text-dark"
          onClick={(e) => gotoEbookContent(e, course._id)}
         >

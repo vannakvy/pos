@@ -108,7 +108,7 @@ const CommentCom = ({ comment, userInfo }) => {
            <input
             type="text"
             name="replyCom"
-            className="form-control me-1 rounded kh"
+            className="form-control me-1 round kh"
             placeholder="ឆ្លើយតបមតិ..."
             style={{ background: 'rgb(224,224,224)' }}
             required

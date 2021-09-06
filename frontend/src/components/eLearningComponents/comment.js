@@ -37,7 +37,7 @@ const Comment = ({ cid }) => {
          <input
           type="text"
           name="comment"
-          className="form-control me-1 rounded kh"
+          className="form-control me-1 round kh"
           placeholder="ផ្ដល់មតិ..."
           style={{ background: 'rgb(224,224,224)' }}
           required

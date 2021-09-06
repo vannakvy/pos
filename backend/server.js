@@ -97,7 +97,13 @@ app.use(
  '/uploads/eShopUploads',
  express.static(path.join(__dirname, '/uploads/eShopUploads'))
 );
+
 app.use('/img', express.static(path.join(__dirname, '/frontend/src/img')));
+
+app.use(
+ '/.well-known',
+ express.static(path.join(__dirname, '/frontend/build/.well-known'))
+);
 
 if (process.env.NODE_ENV === 'production') {
  app.use(express.static(path.join(__dirname, '/frontend/build')));
