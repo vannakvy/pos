@@ -34,14 +34,14 @@ const UserListScreen = ({ history }) => {
 
   return (
     <div className="card p-2">
-      <h1>Users</h1>
+      <h3 className="eshop_font">ឈ្មោះអតិថិជន</h3>
       {loading ? (
         <Loader />
       ) : error ? (
         <Message variant='danger'>{error}</Message>
       ) : (
         <Table striped bordered hover responsive className='table-sm'>
-          <thead>
+          <thead className="bg-info text-light">
             <tr>
               <th>ID</th>
               <th>NAME</th>

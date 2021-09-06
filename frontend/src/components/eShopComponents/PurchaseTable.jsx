@@ -48,9 +48,8 @@ const PurchaseTable = ({
                       className="fas fa-edit ml-2 text-info"
                       // onClick={() => handleEdit(purchase)}
                     ></i>
-                    <i
-                      className="fas fa-trash ml-2 text-danger"
-                      onClick={() => {
+                    <i className="fas fa-trash ml-2 text-danger"
+                      onClick={() => { 
                         setPurchaseId(purchase._id);
                         setShow(true);
                       }}

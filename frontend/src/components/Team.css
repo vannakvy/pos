@@ -22,5 +22,5 @@
 .social-link:focus {
   background: #ddd;
   text-decoration: none;
-  color: #555;
+  color: #ff5e14 !important;
 }

@@ -11,8 +11,8 @@ const NewFooter = () => {
                 <div class="single-cta">
                   <i class="fas fa-map-marker-alt"></i>
                   <div class="cta-text">
-                    <h4>Find us</h4>
-                    <span>South Delhi, New Delhi-110019</span>
+                    <p className="eshop-font text-light" style={{fontSize:18}} >ស្វែងរក​ ពួកយើង</p>
+                    <span>ភូមិថ្នល់ បណ្តាយ ឃុំព្រះដាក់ ស្រុកបណ្តាយស្រី ខេត្តសៀមរាប</span>
                   </div>
                 </div>
               </div>
@@ -20,8 +20,8 @@ const NewFooter = () => {
                 <div class="single-cta">
                   <i class="fas fa-phone"></i>
                   <div class="cta-text">
-                    <h4>Call us</h4>
-                    <span>99999-55555</span>
+                  <p className="eshop-font text-light" style={{fontSize:18}} >ទាក់ទងតាមទូរស័ព្ធ</p>
+                    <span>(+855)081 33 61 31</span>
                   </div>
                 </div>
               </div>
@@ -29,8 +29,8 @@ const NewFooter = () => {
                 <div class="single-cta">
                   <i class="fas fa-envelope-open"></i>
                   <div class="cta-text">
-                    <h4>Mail us</h4>
-                    <span>mail@info.com</span>
+                     <p className="eshop-font text-light" style={{fontSize:18}} >ទាក់ទងតាមម៉ែល</p>
+                    <span>vannakvy2020@gmail.com</span>
                   </div>
                 </div>
               </div>
@@ -47,9 +47,7 @@ const NewFooter = () => {
                   </div>
                   <div class="footer-text">
                     <p>
-                      Lorem ipsum dolor sit amet, consec tetur adipisicing elit,
-                      sed do eiusmod tempor incididuntut consec tetur
-                      adipisicing elit,Lorem ipsum dolor sit amet.
+                    យើងនិងប្តេជ្ញាបង្កើតមេរៀន ដែលមានគុណភាពអោយកាន់តែច្រើន ដើម្បីផ្តល់ជួនចំណេះដឹងដល់ប្រជាពលរដ្ឌខ្មែរ ​៕
                     </p>
                   </div>
                   <div class="footer-social-icon">
@@ -69,39 +67,22 @@ const NewFooter = () => {
               <div class="col-lg-4">
                 <div class="footer-widget">
                   <div class="footer-widget-heading">
-                    <h3>Useful Links</h3>
+                    <h3 style={{}}>Useful Links</h3>
                   </div>
                   <ul>
                     <li>
-                      <a href="#">Home</a>
+                      <a href="#">ទំព័រដើម</a>
                     </li>
                     <li>
-                      <a href="#">about</a>
+                      <a href="#">ការរៀនជាការអាន</a>
                     </li>
                     <li>
-                      <a href="#">services</a>
+                      <a href="#">ការរៀនជាវីដេអូ</a>
                     </li>
                     <li>
-                      <a href="#">portfolio</a>
+                      <a href="#">ទិញ់អីវ៉ាន់</a>
                     </li>
-                    <li>
-                      <a href="#">Contact</a>
-                    </li>
-                    <li>
-                      <a href="#">About us</a>
-                    </li>
-                    <li>
-                      <a href="#">Our Services</a>
-                    </li>
-                    <li>
-                      <a href="#">Expert Team</a>
-                    </li>
-                    <li>
-                      <a href="#">Contact us</a>
-                    </li>
-                    <li>
-                      <a href="#">Latest News</a>
-                    </li>
+                 
                   </ul>
                 </div>
               </div>
@@ -112,13 +93,12 @@ const NewFooter = () => {
                   </div>
                   <div class="footer-text">
                     <p>
-                      Don’t miss to subscribe to our new feeds, kindly fill the
-                      form below.
+                      ដាក់អុីម៉ែលរបស់អ្នកខាងក្រោម ដើម្បីទទួលបានពត៍មានថ្មីពីខាងគេហទំព័រយើង
                     </p>
                   </div>
                   <div class="subscribe-form">
                     <form action="#">
-                      <input type="text" placeholder="Email Address" />
+                      <input type="text" placeholder="អុីម៉ែល" />
                       <button>
                         <i class="fab fa-telegram-plane"></i>
                       </button>
@@ -136,27 +116,24 @@ const NewFooter = () => {
                 <div class="copyright-text">
                   <p>
                     Copyright © 2021, All Right Reserved{" "}
-                    <a href="#">Code4education</a>
+                    <a href="#">codingcambodia</a>
                   </p>
                 </div>
               </div>
               <div class="col-xl-6 col-lg-6 text-right d-none d-lg-block">
                 <div class="footer-menu">
                   <ul>
-                    <li>
-                      <a href="#">Home</a>
+                  <li>
+                      <a href="#">ទំព័រដើម</a>
                     </li>
                     <li>
-                      <a href="#">Terms</a>
+                      <a href="#">ការរៀនជាការអាន</a>
                     </li>
                     <li>
-                      <a href="#">Privacy</a>
+                      <a href="#">ការរៀនជាវីដេអូ</a>
                     </li>
                     <li>
-                      <a href="#">Policy</a>
-                    </li>
-                    <li>
-                      <a href="#">Contact</a>
+                      <a href="#">ទិញ់អីវ៉ាន់</a>
                     </li>
                   </ul>
                 </div>

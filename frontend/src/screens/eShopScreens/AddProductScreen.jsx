@@ -219,6 +219,7 @@ const AddProductScreen = ({ history, match }) => {
                 {products &&
                   products.map((product) => (
                     <tr key={product._id}>
+                      
                      
                       <td><img width="50" height="40" src={product.image} /></td>
                       <td>{product.name}</td>
