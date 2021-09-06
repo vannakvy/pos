@@ -27,6 +27,7 @@ import connectDB from './config/db.js';
 import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 import textRoutes from './routes/testRoutes.js';
 import notifyRoute from './routes/notifyRoute.js';
+import subscripRoutes from './routes/subscripRoutes.js';
 
 dotenv.config();
 connectDB();
@@ -44,7 +45,8 @@ app.use('/api/search', searchRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/eLearning/enrolls', enrollsRoutes);
 app.use('/api/eLearning/uploads', uploadRoutes);
-
+// subscription
+app.use('/api/subscrip', subscripRoutes);
 // for eBook Routes
 app.use('/api/ebook/courses', eBookCourseRoutes);
 app.use('/api/ebook/contents', eBookContentRoutes);
