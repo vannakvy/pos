@@ -24,8 +24,8 @@ import axios from 'axios';
 const useStyles = makeStyles({
  media: {
   height: 200,
-  borderTopLeftRadius: '3px',
-  borderTopRightRadius: '3px',
+  borderTopLeftRadius: 25,
+  borderTopRightRadius: 25,
  },
 });
 
@@ -96,8 +96,8 @@ const CourseItemDetails = (props) => {
  };
  return (
   <Card
-   className="mx-md-1 mx-lg-0 mx-xl-2 pb-2 shadow rounded-lg my-3"
-   style={{ padding: '2px' }}
+   className="mx-md-1 mx-lg-0 mx-xl-2 pb-2 shadow my-3"
+   style={{ padding: '2px', borderRadius: 25 }}
   >
    <CardMedia
     className={classes.media}
@@ -114,7 +114,7 @@ const CourseItemDetails = (props) => {
 
      {loadingEnroll || loadingPlay ? (
       <button
-       className="btn btn-block text-dark rounded bg-info shadow"
+       className="btn btn-block text-dark rounded-pill bg-info shadow"
        disabled
       >
        <span className="d-flex">
@@ -131,7 +131,7 @@ const CourseItemDetails = (props) => {
            onClick={() =>
             history.push(`/login?redirect=/elearning/courses/${id}`)
            }
-           className="btn btn-block text-dark rounded bg-info shadow kh"
+           className="btn btn-block text-dark rounded-pill bg-info shadow kh"
           >
            ចុះឈ្មោះដើម្បីស្នើរសុំរៀន
           </button>
@@ -145,7 +145,7 @@ const CourseItemDetails = (props) => {
            ) : (
             <button
              disabled
-             className="btn btn-block text-dark rounded bg-warning shadow kh"
+             className="btn btn-block text-dark rounded-pill bg-warning shadow kh"
             >
              កំពុងស្នើរសុំរៀន
              <BiGitPullRequest style={{ fontSize: 16, marginTop: -4 }} />
@@ -156,14 +156,14 @@ const CourseItemDetails = (props) => {
         </>
        ) : plays && plays.videoNotWatch === undefined ? (
         <button
-         className="btn btn-block text-dark rounded bg-danger shadow kh"
+         className="btn btn-block text-dark rounded-pill bg-danger shadow kh"
          disabled
         >
          មុខវិទ្យានេះមិនទាន់មា​នវិឌីអូដើម្បីរៀននៅឡើយ
         </button>
        ) : (
         <button
-         className="btn btn-block text-dark rounded bg-info shadow kh"
+         className="btn btn-block text-dark rounded-pill bg-info shadow kh"
          onClick={() => courseDetailLink(course._id)}
         >
          ចូលទៅកាន់មុខវិទ្យានេះ

@@ -133,12 +133,15 @@ const DashboardElearn = ({ match, history }) => {
      </form>
     </div>
 
-    <div className="round">
+    <div className="round shadow-sm">
      <h4 className="kh text-center fw-bold bg-info p-2 rounded-top">
       {keyword ? 'ស្វែងរក-' + keyword : 'ជម្រើសដ៏ល្អសម្រាប់អ្នក'}
      </h4>
     </div>
-    <div className="py-2 bg-light rounded-bottom">
+    <div
+     className="py-2 rounded-bottom"
+     style={{ background: 'rgb(240,240,240)' }}
+    >
      {keyword ? (
       <>
        {loading ? (
