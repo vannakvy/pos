@@ -42,6 +42,7 @@ import axios from 'axios';
 import NavbarBottom from './components/NavbarBottom';
 
 import NewFooter from './components/newFooter';
+import EbookLiveCode from './screens/eBookScreens/EbookLiveCode';
 
 const App = () => {
  const dispatch = useDispatch();
@@ -100,7 +101,8 @@ const App = () => {
      <Route path="/elearning/mycourses" component={MyCoursesScreen} />
      <Route path="/elearning" component={DashboardElearn} />
      {/* ebooks routes */}
-     <Route path="/ebook/:lang/:id" component={EbookCourseScreen} />
+     <Route path="/ebook/:lang/:id" component={EbookCourseScreen} exact />
+     <Route path="/ebook/:lang/:id/:code" component={EbookLiveCode} />
      <Route path="/ebook" component={EbookHomeScreen} />
      {/* eshop routes  */}
      <Route path="/eshop/order/:id" component={OrderScreen} />

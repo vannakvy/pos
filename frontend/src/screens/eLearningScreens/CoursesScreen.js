@@ -50,15 +50,12 @@ const CoursesScreen = ({ match, history }) => {
    >
     <div className="row pt-3 px-2 w-100">
      <div className="col-4">
-      <button
-       className="btn btn-dark kh font-weight-bolder rounded shadow"
-       onClick={() => window.history.back()}
-      >
-       <h6 className="m-0 text-light">
+      <p className="my-2 kh fw-bold" onClick={() => window.history.back()}>
+       <h6 className="m-0 text-dark">
         <IoMdArrowBack style={{ fontSize: 18 }} />
         <span className="ml-1">ត្រឡប់ក្រោយ</span>
        </h6>
-      </button>
+      </p>
      </div>
      <h4 className="col-4 text-center kh mt-1">មុខវិទ្យា</h4>
     </div>

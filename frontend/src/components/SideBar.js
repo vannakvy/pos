@@ -63,7 +63,7 @@ const SideBar = () => {
    >
     <SideBarRow
      activeNav={activeNav}
-     text={'Users'}
+     text={'អ្នកប្រើប្រាស់'}
      icon={`fas fa-user`}
      id={'dash'}
     />
@@ -112,7 +112,7 @@ const SideBar = () => {
     onClick={() => setActiveNav('elearn')}
    >
     <SideBarRow
-     text={'E-Learning'}
+     text={'ផ្នែករៀនជាវីដីអូ'}
      goTo={'/adminElearn'}
      icon={'fas fa-play-circle'}
      id={'elearn'}
@@ -126,14 +126,14 @@ const SideBar = () => {
     className={`collapse show`}
    >
     <SideBarRowComponents
-     text={'Courses'}
+     text={'មុខវិទ្យាទាំងអស់'}
      goTo={'/adminElearn/courses'}
      icon={'fas fa-folder'}
      num={count && count}
     />
 
     <SideBarRowComponents
-     text={`Request Enroll`}
+     text={`សិស្សបានស្នើសុំរៀន`}
      goTo={'/adminElearn/students'}
      icon={'fas fa-user-graduate'}
      num={reqEnrolls && reqEnrolls.length}
@@ -146,7 +146,7 @@ const SideBar = () => {
     onClick={() => setActiveNav('ebook')}
    >
     <SideBarRow
-     text={'E-Book'}
+     text={'ផ្នែករៀនជាការអាន'}
      goTo={'/adminEbook'}
      icon={'fas fa-book'}
      mar={true}
@@ -161,12 +161,12 @@ const SideBar = () => {
     className={`collapse show`}
    >
     <SideBarRowComponents
-     text={'Courses'}
+     text={'មុខវិទ្យាទាំងអស់'}
      goTo={'/adminEbook/courses'}
      icon={'fas fa-folder'}
     />
     <SideBarRowComponents
-     text={'Contents'}
+     text={'មុខវិទ្យាជាផ្នែកៗ'}
      goTo={'/adminEbook/contents'}
      icon={'fas fa-film'}
      mar={true}
@@ -179,7 +179,7 @@ const SideBar = () => {
     onClick={() => setActiveNav('eshop')}
    >
     <SideBarRow
-     text={'E-Shop'}
+     text={'ការទិញទំនិញ'}
      goTo={'/adminEshop'}
      icon={'fas fa-shopping-bag'}
      mar={true}
@@ -194,29 +194,29 @@ const SideBar = () => {
     className={`collapse show`}
    >
     <SideBarRowComponents
-     text={'Dashboard'}
+     text={'ទំព័រដើម'}
      goTo={'/adminEshop/dashboard'}
      icon={'fas fa-user-graduate'}
     />
     <SideBarRowComponents
-     text={'Clients'}
+     text={'អតិថិជន'}
      goTo={'/adminEshop/userlist'}
      icon={'fas fa-folder'}
     />
     <SideBarRowComponents
-     text={'Stocks'}
+     text={'ស្ដុកទំនិញ'}
      goTo={'/adminEshop/productLists'}
      icon={'fas fa-film'}
      mar={true}
     />
     <SideBarRowComponents
-     text={'Client Order'}
+     text={'អតិថិជនដែលបានកាម៉ង់'}
      goTo={'/adminEshop/orderlist'}
      icon={'fas fa-user-graduate'}
     />
 
     <SideBarRowComponents
-     text={'Puchase Products'}
+     text={'ការបញ្ចាទិញ'}
      goTo={'/adminEshop/puchases'}
      icon={'fas fa-user-graduate'}
     />
@@ -226,25 +226,25 @@ const SideBar = () => {
           goTo={"/adminEshop/sales"}
           icon={"fas fa-user-graduate"}
         /> */}
-        <SideBarRowComponents
-          text={"Add Products"}
-          goTo={"/adminEshop/addProducts"}
-          icon={"fas fa-user-graduate"}
-        />
-        <SideBarRowComponents
-          text={"Add Suppliers"}
-          goTo={"/adminEshop/inventory"}
-          icon={"fas fa-user-graduate"}
-          mar={true}
-        />
-        {/* <SideBarRowComponents
+    <SideBarRowComponents
+     text={'បញ្ចូលនិងកែប្រែទំនិញ'}
+     goTo={'/adminEshop/addProducts'}
+     icon={'fas fa-user-graduate'}
+    />
+    <SideBarRowComponents
+     text={'បញ្ចូលអ្នកផ្គត់ផ្គង់'}
+     goTo={'/adminEshop/inventory'}
+     icon={'fas fa-user-graduate'}
+     mar={true}
+    />
+    {/* <SideBarRowComponents
           text={"Reports"}
           goTo={"/adminEshop/reports"}
           icon={"fas fa-user-graduate"}
         /> */}
-      </div>
-    </div>
-  );
+   </div>
+  </div>
+ );
 };
 
 export default SideBar;

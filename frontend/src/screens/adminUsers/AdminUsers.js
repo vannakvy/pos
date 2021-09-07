@@ -54,18 +54,18 @@ const AdminUsers = () => {
       className="adminHover shadow"
       style={{
        padding: '20px 30px',
-       height: '180px',
+       height: '150px',
        borderRadius: '20px',
        background: 'pink',
       }}
      >
-      <h3 className="m-0 kh">
+      <h4 className="m-0 kh">
        <i className="fas fa-users mr-2"></i>អ្នកប្រើប្រាស់ទាំងអស់
-      </h3>
+      </h4>
       <h4 className="text-right kh mb-0 pb-0 mt-1">នាក់</h4>
       <h1
        className="text-right fw-bold"
-       style={{ fontSize: '70px', color: 'rgb(235,235,235)' }}
+       style={{ fontSize: '50px', color: 'rgb(235,235,235)' }}
       >
        <CountUp end={4000} duration={3} redraw={false}>
         {({ countUpRef, start }) => (
@@ -80,15 +80,15 @@ const AdminUsers = () => {
     <div className="col-lg-4 py-1">
      <div
       className="bg-info adminHover shadow"
-      style={{ padding: '20px 30px', height: '180px', borderRadius: '20px' }}
+      style={{ padding: '20px 30px', height: '150px', borderRadius: '20px' }}
      >
-      <h3 className="m-0 kh">
+      <h4 className="m-0 kh">
        <i className="fas fa-user-graduate mr-2"></i>អែតមីន
-      </h3>
+      </h4>
       <h4 className="text-right kh mb-0 pb-0 mt-1">នាក់</h4>
       <h1
        className="text-right fw-bold text-light"
-       style={{ fontSize: '70px', color: 'rgb(235,235,235)' }}
+       style={{ fontSize: '50px', color: 'rgb(235,235,235)' }}
       >
        <CountUp end={4000} duration={3} redraw={false}>
         {({ countUpRef, start }) => (
@@ -103,15 +103,15 @@ const AdminUsers = () => {
     <div className="col-lg-4 py-1">
      <div
       className="bg-info adminHover shadow"
-      style={{ padding: '20px 30px', height: '180px', borderRadius: '20px' }}
+      style={{ padding: '20px 30px', height: '150px', borderRadius: '20px' }}
      >
-      <h3 className="m-0 kh">
+      <h4 className="m-0 kh">
        <i className="fas fa-user-graduate mr-2"></i>អ្នកប្រើប្រាស់ធម្មតា
-      </h3>
+      </h4>
       <h4 className="text-right kh mb-0 pb-0 mt-1">នាក់</h4>
       <h1
        className="text-right fw-bold text-light"
-       style={{ fontSize: '70px' }}
+       style={{ fontSize: '50px' }}
       >
        <CountUp end={4000} duration={3} redraw={false}>
         {({ countUpRef, start }) => (

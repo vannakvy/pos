@@ -83,15 +83,15 @@ export default class SlideChangeHooks extends Component {
          style={{ maxWidth: 450 }}
         >
          <div className="px-5 pt-4 rounded shadow-sm bg-light">
-          <h2 className="mb-4 text-dark kh">បង្រៀនកម្មវិធីកុំព្យូទ័រ</h2>
-          <p className="text-dark kh fw-bold">
+          <h2 className="mb-4 text-dark kh">បង្រៀនសរសេរកម្មវិធីកុំព្យូទ័រ</h2>
+          <p className="text-dark kh fw-bold" style={{ lineHeight: 1.8 }}>
            <span className="me-5"></span>
-           លក់គោយន្ត ទុកធ្វើទុនទៅរកសុីជាមួយថ្លៃ ដូចចាក់ពីខ្នង ធ្លុះដល់បេះដូង,
-           ដូចចាក់ពីខ្នង ធ្លុះដល់បេះដូង, មកពីអូនមិនល្អ ឬរូបអូនក្រឬបងសាវ៉ា
-           អង្វរម៉ែឲ្យគាត់លក់គោយន្ត, លក់គោយន់, លក់គោយន្ត, លក់គោយន្ត, លក់គោយន់,
-           លក់គោយន្ត, លក់គោយន្
+           នៅក្នុងផ្នែកនេះដែរយើងបង្រៀនសរសេរកូដក្នុងការបង្កើតកម្មវិធីកុំព្យូទ័រតាំងពីថ្នាក់ដំបូង
+           រហូតដល់ស្ទាត់ជំនាញ។​
+           ហើយការរៀនមានផ្នែកមួយៗដ់ើម្បីឲ្យសិស្សានុសិស្សងាយយល់
+           និងអាចឆាប់ចេះបង្កើតកម្មវិធីដោយខ្លួនឯងបាន។
           </p>
-          <button className="btn btn-info rounded mt-2 mb-5 px-4 kh text-dark">
+          <button className="btn btn-info rounded mt-2 mb-4 px-4 kh text-dark">
            ចាប់ផ្ដើម
           </button>
          </div>
@@ -120,14 +120,14 @@ export default class SlideChangeHooks extends Component {
         >
          <div className="px-5 pt-4 rounded shadow-sm bg-light">
           <h2 className="mb-4 text-dark kh">បង្រៀនកម្មវិធីទូរស័ព្ទ</h2>
-          <p className="text-dark kh fw-bold">
+          <p className="text-dark kh fw-bold" style={{ lineHeight: 1.8 }}>
            <span className="me-5"></span>
-           លក់គោយន្ត ទុកធ្វើទុនទៅរកសុីជាមួយថ្លៃ ដូចចាក់ពីខ្នង ធ្លុះដល់បេះដូង,
-           ដូចចាក់ពីខ្នង ធ្លុះដល់បេះដូង, មកពីអូនមិនល្អ ឬរូបអូនក្រឬបងសាវ៉ា
-           អង្វរម៉ែឲ្យគាត់លក់គោយន្ត, លក់គោយន់, លក់គោយន្ត, លក់គោយន្ត, លក់គោយន់,
-           លក់គោយន្ត, លក់គោយន្
+           នៅក្នុងផ្នែកនេះដែរយើងបង្រៀនសរសេរកូដក្នុងការបង្កើតកម្មវិធីនៅលើទូរស័ព្ទតាំងពីថ្នាក់ដំបូង
+           រហូតដល់ស្ទាត់ជំនាញ។​
+           ហើយការរៀនមានផ្នែកមួយៗដ់ើម្បីឲ្យសិស្សានុសិស្សងាយយល់
+           និងអាចឆាប់ចេះបង្កើតកម្មវិធីដោយខ្លួនឯងបាន។
           </p>
-          <button className="btn btn-info rounded mt-2 mb-5 px-4 kh text-dark">
+          <button className="btn btn-info rounded mt-2 mb-4 px-4 kh text-dark">
            ចាប់ផ្ដើម
           </button>
          </div>
@@ -156,14 +156,14 @@ export default class SlideChangeHooks extends Component {
         >
          <div className="px-5 pt-4 rounded shadow-sm bg-light">
           <h2 className="mb-4 text-dark kh">បង្រៀនពីការសរសេរវែបសាយ</h2>
-          <p className="text-dark kh fw-bold">
+          <p className="text-dark kh fw-bold" style={{ lineHeight: 1.8 }}>
            <span className="me-5"></span>
-           លក់គោយន្ត ទុកធ្វើទុនទៅរកសុីជាមួយថ្លៃ ដូចចាក់ពីខ្នង ធ្លុះដល់បេះដូង,
-           ដូចចាក់ពីខ្នង ធ្លុះដល់បេះដូង, មកពីអូនមិនល្អ ឬរូបអូនក្រឬបងសាវ៉ា
-           អង្វរម៉ែឲ្យគាត់លក់គោយន្ត, លក់គោយន់, លក់គោយន្ត, លក់គោយន្ត, លក់គោយន់,
-           លក់គោយន្ត, លក់គោយន្
+           នៅក្នុងផ្នែកនេះដែរយើងបង្រៀនសរសេរកូដក្នុងការបង្កើតគេហៈទំព័រតាំងពីថ្នាក់ដំបូង
+           រហូតដល់ស្ទាត់ជំនាញ។​
+           ហើយការរៀនមានផ្នែកមួយៗដ់ើម្បីឲ្យសិស្សានុសិស្សងាយយល់
+           និងអាចឆាប់ចេះបង្កើតកម្មវិធីដោយខ្លួនឯងបាន។
           </p>
-          <button className="btn btn-info rounded mt-2 mb-5 px-4 kh text-dark">
+          <button className="btn btn-info rounded mt-2 mb-4 px-4 kh text-dark">
            ចាប់ផ្ដើម
           </button>
          </div>
@@ -192,14 +192,14 @@ export default class SlideChangeHooks extends Component {
         >
          <div className="px-5 pt-4 rounded shadow-sm bg-light">
           <h2 className="mb-4 text-dark kh">បង្រៀនពីរការបង្កើតប្រព័ន្ធបញ្ជា</h2>
-          <p className="text-dark kh fw-bold">
+          <p className="text-dark kh fw-bold" style={{ lineHeight: 1.8 }}>
            <span className="me-5"></span>
-           លក់គោយន្ត ទុកធ្វើទុនទៅរកសុីជាមួយថ្លៃ ដូចចាក់ពីខ្នង ធ្លុះដល់បេះដូង,
-           ដូចចាក់ពីខ្នង ធ្លុះដល់បេះដូង, មកពីអូនមិនល្អ ឬរូបអូនក្រឬបងសាវ៉ា
-           អង្វរម៉ែឲ្យគាត់លក់គោយន្ត, លក់គោយន់, លក់គោយន្ត, លក់គោយន្ត, លក់គោយន់,
-           លក់គោយន្ត, លក់គោយន្
+           នៅក្នុងផ្នែកនេះដែរយើងបង្រៀនសរសេរកូដក្នុងការបង្កើតប្រព័ន្ធបញ្ជា​(Board)
+           តាំងពីថ្នាក់ដំបូង រហូតដល់ស្ទាត់ជំនាញ។​
+           ហើយការរៀនមានផ្នែកមួយៗដ់ើម្បីឲ្យសិស្សានុសិស្សងាយយល់
+           និងអាចឆាប់ចេះបង្កើតកម្មវិធីដោយខ្លួនឯងបាន។
           </p>
-          <button className="btn btn-info rounded mt-2 mb-5 px-4 kh text-dark">
+          <button className="btn btn-info rounded mt-2 mb-4 px-4 kh text-dark">
            ចាប់ផ្ដើម
           </button>
          </div>

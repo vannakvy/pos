@@ -113,7 +113,10 @@ const EbookCourseScreen = () => {
             <button
              className="btn btn-info kh text-dark rounded"
              onClick={() => {
-              const win = window.open('/elearning', '_blank');
+              const win = window.open(
+               `/ebook/${param.lang}/${param.id}/${detail.codeLive}`,
+               '_blank'
+              );
               win.focus();
              }}
             >

@@ -395,7 +395,7 @@ const Sections = () => {
         <input
          className="kh form-control mb-2 shadow rounded"
          type="text"
-         placeholder="លិញសិកសិន..."
+         placeholder="លិញវីឌីអូ..."
          name="url"
          value={video.url}
          onChange={onChangeVideoHandler}

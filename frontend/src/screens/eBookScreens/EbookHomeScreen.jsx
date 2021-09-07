@@ -55,7 +55,7 @@ const EbookHomeScreen = () => {
          <h2 className="mb-3 kh text-light text-center mt-3 mt-md-0">
           សូមស្វាគមន៍មកកាន់ <span className="ubuntu">FREE CODING CAMBODIA</span>
          </h2>
-         <p className="text text-light">
+         <p className="text-light fs-5">
           🐇 មើល​ឃើញ​អ្វីដែល​​ថ្មីដោយ​គ្រាន់​តែ​ក្រឡេក​បន្តិច
           និង​ជ្រើសរើស​អ្វី​ដែល​អ្នក​ចង់​អាន និង​ឆ្លើយតប។ មើល​ឯកសារ​ភ្ជាប់
           ស្នើ​សុំ​ការឆ្លើយតប​ទៅ​នឹង​ព្រឹត្តិការណ៍ ផ្អាក​សារ
@@ -83,10 +83,10 @@ const EbookHomeScreen = () => {
       <div className="row align-items-center">
        <div className="col-md-7">
         <div className="content px-3">
-         <h2 className="mb-3 text-center">
+         <h2 className="mb-3 text-center kh">
           <FaBook className="mr-2 text-info" /> SCRATCH PROGRMMING
          </h2>
-         <p className="mt-2 text">
+         <p className="mt-2 fs-5">
           🐇 មើល​ឃើញ​អ្វីដែល​​ថ្មីដោយ​គ្រាន់​តែ​ក្រឡេក​បន្តិច
           និង​ជ្រើសរើស​អ្វី​ដែល​អ្នក​ចង់​អាន និង​ឆ្លើយតប។ មើល​ឯកសារ​ភ្ជាប់
           ស្នើ​សុំ​ការឆ្លើយតប​ទៅ​នឹង​ព្រឹត្តិការណ៍ ផ្អាក​សារ
@@ -119,10 +119,10 @@ const EbookHomeScreen = () => {
       <div className="row align-items-center">
        <div className="col-md-7">
         <div className="content px-3">
-         <h2 className="mb-3 text-center text-light">
+         <h2 className="mb-3 text-center text-light kh">
           <FaBook className="mr-2 text-info" /> EMBEDDED SYSTEM
          </h2>
-         <p className="mt-2 text text-light">
+         <p className="mt-2 fs-5 text-light">
           🐇 មើល​ឃើញ​អ្វីដែល​​ថ្មីដោយ​គ្រាន់​តែ​ក្រឡេក​បន្តិច
           និង​ជ្រើសរើស​អ្វី​ដែល​អ្នក​ចង់​អាន និង​ឆ្លើយតប។
           និង​ធ្វើ​បាន​ច្រើន​ទៀត​ដោយ​មិន​ចាំបាច់​បើក​អ៊ីមែល​ណា​នោះ​ទេ។

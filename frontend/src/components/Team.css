@@ -6,21 +6,24 @@
 } */
 
 .social-link {
-  width: 30px;
-  height: 30px;
-  border: 1px solid #ddd;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #666;
-  border-radius: 50%;
-  transition: all 0.3s;
-  font-size: 0.9rem;
+ width: 30px;
+ height: 30px;
+ border: 1px solid #ddd;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ color: #666;
+ border-radius: 50%;
+ transition: all 0.3s;
+ font-size: 0.9rem;
 }
 
 .social-link:hover,
 .social-link:focus {
-  background: #ddd;
-  text-decoration: none;
-  color: #ff5e14 !important;
+ background: #ddd;
+ text-decoration: none;
+ color: #486eec !important;
+}
+.teamHover:hover {
+ box-shadow: 5px 5px 8px rgba(142, 122, 148, 0.747) !important;
 }
