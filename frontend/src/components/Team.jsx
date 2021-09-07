@@ -1,6 +1,8 @@
 import React from 'react';
 import './Team.css';
 import thanet from '../img/thanet.jpg';
+import Jrnn21 from '../img/jrnn21.jpg';
+import dysovanrotha from '../img/dysovanrotha.jpg';
 const Team = () => {
  return (
   <>
@@ -24,7 +26,7 @@ const Team = () => {
        <img
         src="https://d19m59y37dris4.cloudfront.net/university/1-1-1/img/teacher-4.jpg"
         alt=""
-        width="100"
+        width="130"
         class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm"
        />
        <p class="mb-0 eshop-font fw-bold" style={{ fontSize: 15 }}>
@@ -60,10 +62,10 @@ const Team = () => {
      <div class="col-xl-3 col-sm-6 mb-5">
       <div class="bg-white round shadow-sm py-5 px-4 teamHover">
        <img
-        src="https://d19m59y37dris4.cloudfront.net/university/1-1-1/img/teacher-4.jpg"
+        src={Jrnn21}
         alt=""
-        width="100"
         class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm"
+        style={{ width: '130px', height: '130px', objectFit: 'cover' }}
        />
        <p class="mb-0 eshop-font fw-bold" style={{ fontSize: 15 }}>
         ជ្រឹង ចំរើន
@@ -72,7 +74,11 @@ const Team = () => {
        <p class="small text-uppercase text-muted">Software Developer</p>
        <ul class="social mb-0 list-inline mt-3">
         <li class="list-inline-item">
-         <a href="#" target="blank" class="social-link">
+         <a
+          href="https://www.facebook.com/chamroeun.smartboy.5"
+          target="blank"
+          class="social-link"
+         >
           <i class="fa fa-facebook-f"></i>
          </a>
         </li>
@@ -82,14 +88,19 @@ const Team = () => {
          </a>
         </li>
         <li class="list-inline-item">
-         <a href="#" class="social-link">
+         <a
+          href="https://www.instagram.com/_jroeun_/"
+          target="blank"
+          class="social-link"
+         >
           <i class="fa fa-instagram"></i>
          </a>
         </li>
         <li class="list-inline-item">
-         <a href="#" class="social-link">
-          <i class="fa fa-linkedin"></i>
-         </a>
+         <p href="#" class="social-link">
+          {/* <i class="fa fa-linkedin"></i> */}
+          <i class="fab fa-telegram-plane"></i>
+         </p>
         </li>
        </ul>
       </div>
@@ -100,7 +111,7 @@ const Team = () => {
        <img
         src="https://d19m59y37dris4.cloudfront.net/university/1-1-1/img/teacher-2.jpg"
         alt=""
-        width="100"
+        width="130"
         class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm"
        />
        <p class="mb-0 eshop-font fw-bold" style={{ fontSize: 15 }}>
@@ -136,10 +147,10 @@ const Team = () => {
      <div class="col-xl-3 col-sm-6 mb-5">
       <div class="bg-white round shadow-sm py-5 px-4 teamHover">
        <img
-        src="https://d19m59y37dris4.cloudfront.net/university/1-1-1/img/teacher-1.jpg"
+        src={dysovanrotha}
         alt=""
-        width="100"
         class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm"
+        style={{ width: '130px', height: '130px', objectFit: 'cover' }}
        />
        <p class="mb-0 eshop-font fw-bold" style={{ fontSize: 15 }}>
         ឌី សុវណ្ណរដ្ធា
@@ -177,7 +188,7 @@ const Team = () => {
         src={thanet}
         alt=""
         class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm"
-        style={{ width: '100px', height: '100px', objectFit: 'cover' }}
+        style={{ width: '130px', height: '130px', objectFit: 'cover' }}
        />
        <p class="mb-0 eshop-font fw-bold" style={{ fontSize: 15 }}>
         លន ថាណេត
