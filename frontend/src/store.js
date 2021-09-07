@@ -108,8 +108,11 @@ import {
  purchaseListReducer,
  purchaseDetailsReducer,
 } from './reducers/eShopReducers/purchaseReducers';
+import {dataEshopDashboard} from './reducers/eShopReducers/dashboardReducer'
 import { NotifyByUserReducer } from './reducers/notifyReducers.js';
 import { commentsReducers } from './reducers/comment.js';
+
+
 const reducer = combineReducers({
  //  course comments
  comments: commentsReducers,
@@ -168,6 +171,7 @@ const reducer = combineReducers({
  productDetails: productDetailsReducer,
  productReviewCreate: productReviewCreateReducer,
  cart: cartReducer,
+ eshopDashboard:dataEshopDashboard,
 
  orderList: orderListReducer,
  orderCreate: orderCreateReducer,

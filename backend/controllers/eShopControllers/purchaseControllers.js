@@ -142,25 +142,25 @@ const getTotalPurchase = asyncHandler(async(req,res)=>{
   // const orders = await Order.aggregate([
 
   // ]);
-  let a = await Order.aggregate([
+  let graph_sale = await Order.aggregate([
     { $group: { _id: { $dateToString: { format: "%Y-%m-%d", date: "$createdAt"} }, count: { $sum: "$totalPrice" } } },
-    { $sort: { _id: -1} },
+    { $sort: { _id: 1} },
     {$limit:10}
   ])
 
   //graph for purchase 
-  let b = await Purchase.aggregate([
+  let graph_purchase = await Purchase.aggregate([
     { $group: { _id: { $dateToString: { format: "%Y-%m-%d", date: "$createdAt"} }, count: { $sum: "$price" } } },
-    { $sort: { _id: -1} },
+    { $sort: { _id: 1} },
     {$limit:10}
   ])
-console.log(b)
+
 
 //popular product 
 
-const pop = await Order.aggregate([
+const popular = await Order.aggregate([
   {$unwind: "$orderItems" },
-  {$group: { _id: "$orderItems.product", total: { $sum: 1 } }},
+  {$group: { _id: "$orderItems.name", total: { $sum: 1 }}},
   // {$group:{_id:"orderItems.product",count:{$sum:1}}}
   {$sort:{total:-1}},
   { $limit : 12 }
@@ -195,12 +195,17 @@ return acc + index.total
 // total Revenue 
 const rev = result1 - result ;
  
-
-
- res.json(result)
+let data = {
+  graph_purchase,
+  graph_sale,
+  stock:stockRes,
+  totalSale:result1,
+  total:result,
+  rev,
+  popular
+}
+ res.json(data)
 });
-
-
 
 export {
   updatePurchase,
