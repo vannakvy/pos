@@ -12,8 +12,9 @@ const RegisterScreen = ({ location, history }) => {
  const [name, setName] = useState('');
  const [email, setEmail] = useState('');
  const [password, setPassword] = useState('');
- const [confirmPassword, setConfirmPassword] = useState('');
+//  const [confirmPassword, setConfirmPassword] = useState('');
  const [message, setMessage] = useState(null);
+ const [confirmPassword, setConfirmPassword] = useState('');
 
  const dispatch = useDispatch();
 
@@ -32,22 +33,42 @@ const RegisterScreen = ({ location, history }) => {
 
  const submitHandler = (e) => {
   e.preventDefault();
-  if (password !== confirmPassword) {
+  setMessage();
+    if (name == '') {
+    setMessage('Please Enter Name');
+   }
+   else if (email == '') {
+    setMessage('Please Enter Email');
+   } 
+   else if (password == '') {
+    setMessage('Please Enter Password');
+   } 
+  else if (password !== confirmPassword) {
    setMessage('Passwords do not match');
   } else {
    dispatch(register(name, email, password));
   }
  };
 
+
+
  return (
   <FormContainer>
    <h1 className="kh text-center mb-5">បញ្ចូលព័ត៌មានផ្ទាល់ខ្លួន</h1>
-   {message && <Message variant="danger">{message}</Message>}
-   {error && (
-    <Message variant="danger">
-     <p className="kh fw-bold text-center">{error}</p>
-    </Message>
-   )}
+    {(() => {
+        if (message) {
+          return (
+            <Message variant="danger">{message}</Message>
+          )
+        } 
+        else {
+          return (
+            <Message variant="danger">
+            <p className="kh fw-bold text-center">{error}</p>
+           </Message>
+          )
+        }
+      })()}
    {loading && <Loader wd={40} hg={40} />}
    <Form onSubmit={submitHandler}>
     <Form.Group controlId="name">
@@ -101,6 +122,7 @@ const RegisterScreen = ({ location, history }) => {
       onChange={(e) => setConfirmPassword(e.target.value)}
      ></Form.Control>
     </Form.Group>
+    <div>{confirmPassword}</div>
 
     <div className="text-center py-2">
      <Button type="submit" className="grediant rounded text-dark px-4 kh fs-6">
