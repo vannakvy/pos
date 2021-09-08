@@ -64,12 +64,12 @@ const CourseDetailsScreen = ({ match }) => {
         <h5 className="kh mt-4">មតិផ្សេងៗ</h5>
         <Comment cid={id} />
        </div>
-       <div className="col-lg-4">
+       <div className="col-lg-4 d-none d-lg-block">
         <div
          style={{
           position: 'sticky',
           top: '70px',
-          display: scrollY > 400 ? 'block' : 'none',
+          display: scrollY > 650 ? 'block' : 'none',
          }}
         >
          <CourseItemDetails course={course} />

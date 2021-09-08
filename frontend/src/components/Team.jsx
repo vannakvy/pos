@@ -9,9 +9,9 @@ const Team = () => {
    <div className="container py-5">
     <div className="row text-center text-white">
      <div className="col-lg-8 mx-auto">
-      <p className=" eshop-font text-secondary" style={{ fontSize: 20 }}>
+      <h2 className="kh eshop-font text-secondary" style={{ fontSize: 25 }}>
        ក្រុមការងារ
-      </p>
+      </h2>
       <p className="text-success mb-0 eshop-font">
        ខាងក្រោមជាក្រុមការងារដែលបានធ្វើការចាប់ផ្ដើមបង្កើតគេហទំព័រនេះ៕
       </p>

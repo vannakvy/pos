@@ -49,13 +49,13 @@ const AdminUsers = () => {
     <App users={10000} students={4000} customers={6000} />
    </div> */}
    <div className="row mt-2">
-    <div className="col-lg-4 py-1">
+    <div className="col-xl-4 col-lg-12 py-1">
      <div
       className="adminHover shadow"
       style={{
        padding: '20px 30px',
        height: '150px',
-       borderRadius: '20px',
+       borderRadius: '10px',
        background: 'pink',
       }}
      >
@@ -77,10 +77,10 @@ const AdminUsers = () => {
       </h1>
      </div>
     </div>
-    <div className="col-lg-4 py-1">
+    <div className="col-xl-4 col-lg-6 py-1">
      <div
       className="bg-info adminHover shadow"
-      style={{ padding: '20px 30px', height: '150px', borderRadius: '20px' }}
+      style={{ padding: '20px 30px', height: '150px', borderRadius: '10px' }}
      >
       <h4 className="m-0 kh">
        <i className="fas fa-user-graduate mr-2"></i>អែតមីន
@@ -100,10 +100,10 @@ const AdminUsers = () => {
       </h1>
      </div>
     </div>
-    <div className="col-lg-4 py-1">
+    <div className="col-xl-4 col-lg-6 py-1">
      <div
       className="bg-info adminHover shadow"
-      style={{ padding: '20px 30px', height: '150px', borderRadius: '20px' }}
+      style={{ padding: '20px 30px', height: '150px', borderRadius: '10px' }}
      >
       <h4 className="m-0 kh">
        <i className="fas fa-user-graduate mr-2"></i>អ្នកប្រើប្រាស់ធម្មតា

@@ -98,8 +98,8 @@ const DashboardElearn = ({ match, history }) => {
        className="form-control"
        style={{
         background: '#fff',
-        borderTopLeftRadius: 10,
-        borderBottomLeftRadius: 10,
+        borderTopLeftRadius: 5,
+        borderBottomLeftRadius: 5,
        }}
        placeholder="ស្វែងរកទីនេះ..."
        onChange={changeSearch}
@@ -116,7 +116,7 @@ const DashboardElearn = ({ match, history }) => {
            }
          : null
        }
-       style={{ borderTopRightRadius: 10, borderBottomRightRadius: 10 }}
+       style={{ borderTopRightRadius: 5, borderBottomRightRadius: 5 }}
       >
        {keyword ? (
         <>

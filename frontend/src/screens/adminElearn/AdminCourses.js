@@ -20,7 +20,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 import { BsSearch } from 'react-icons/bs';
 import queryString from 'query-string';
 import Paginate from '../../components/eLearningComponents/Paginate';
-import { BiDetail } from 'react-icons/bi';
+import { FaExternalLinkAlt } from 'react-icons/fa';
 import ConvertNum from '../../components/eLearningComponents/ConvertNum';
 
 const AdminCourses = ({ match }) => {
@@ -232,23 +232,15 @@ const AdminCourses = ({ match }) => {
       <Col md={6}>
        <h6>រូបភាព:</h6>
 
-       {image === '/uploads/elearningUploads/imageDefualt.jpg' ? (
-        <div
-         className="bg-info mx-auto rounded d-flex justify-content-center align-items-center"
-         style={{ height: 280, maxWidth: 500 }}
-        >
-         <h2 className="kh">រូបភាព</h2>
-        </div>
-       ) : (
-        <div className="text-center">
-         <img
-          className="rounded shadow"
-          style={{ maxWidth: 500 }}
-          src={image}
-          alt={image}
-         />
-        </div>
-       )}
+       <div className="text-center">
+        <img
+         className="rounded shadow"
+         style={{ maxWidth: 500 }}
+         src={image}
+         alt={image}
+        />
+       </div>
+
        <Form.Group controlId="image" className="mt-2">
         <Form.Control
          className="bg-light rounded"
@@ -402,26 +394,26 @@ const AdminCourses = ({ match }) => {
            style={{ fontSize: '17px', width: 160 }}
           >
            <button
-            className="btn-sm btn bg-info text-light"
+            className="btn-sm btn bg-info text-dark"
             onClick={() => courseDetail(course._id)}
            >
-            <BiDetail style={{ fontSize: '130%' }} />
+            <FaExternalLinkAlt style={{ fontSize: '110%' }} />
            </button>
            <button
             data-toggle="collapse"
             data-target="#multiCollapseExample2"
             aria-expanded={true}
             aria-controls="multiCollapseExample2"
-            className="btn-sm btn bg-warning text-light mx-1"
+            className="btn-sm btn bg-warning text-dark mx-1"
             onClick={() => editCourseHandler(course)}
            >
-            <i className="fas fa-pen-alt" style={{ fontSize: '130%' }}></i>
+            <i className="fas fa-pen-alt" style={{ fontSize: '110%' }}></i>
            </button>
            <button
             className="btn-sm btn bg-danger text-light"
             onClick={() => deleteCourseHandler(course._id)}
            >
-            <i className="fas fa-trash" style={{ fontSize: '130%' }}></i>
+            <i className="fas fa-trash" style={{ fontSize: '110%' }}></i>
            </button>
           </td>
          </tr>

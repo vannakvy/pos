@@ -37,7 +37,7 @@ const AppAdmin = () => {
     <div
      className="overflow-auto p-2 border-right border-bottom d-none d-lg-block bg-light"
      style={{
-      minWidth: '250px',
+      minWidth: '260px',
       height: '94vh',
       position: 'sticky',
       top: '60px',
@@ -74,8 +74,8 @@ const AppAdmin = () => {
       <Route path="/adminEshop/productLists/:pageNumber" component={Stock} />
       <Route path="/adminEshop/productLists" component={Stock} />
 
-            {/* <Route path="/adminEshop/dashboard" component={Team} /> */}
-            <Route path="/adminEshop/purchaselists" component={PurchaseListScreen} />
+      {/* <Route path="/adminEshop/dashboard" component={Team} /> */}
+      <Route path="/adminEshop/purchaselists" component={PurchaseListScreen} />
 
       <Route
        path="/adminEshop/addProduct/:pageNumber"

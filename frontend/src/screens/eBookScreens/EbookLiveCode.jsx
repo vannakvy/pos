@@ -49,8 +49,13 @@ const EbookLiveCode = ({ match, history }) => {
      <MdScreenRotation size="20" style={{ marginTop: -3 }} />
     </button>
     <button
-     className="btn btn-success rounded"
-     onClick={() => setHtmlDoc(codeLiveText)}
+     className="btn btn-success rounded shadow-sm"
+     onClick={() => {
+      setHtmlDoc('');
+      setTimeout(() => {
+       setHtmlDoc(codeLiveText);
+      }, 10);
+     }}
     >
      ដំណើរការ <VscRunAll size="20" />
     </button>

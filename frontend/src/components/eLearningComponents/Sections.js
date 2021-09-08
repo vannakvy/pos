@@ -204,7 +204,7 @@ const Sections = () => {
      <div className="bg-light rounded">
       <div className="border w-100 rounded">
        <div className="d-flex justify-content-between">
-        <h4 className="mt-2 pl-3">SECTIONS</h4>
+        <h4 className="mt-2 pl-3">ជំពូកមេរៀន</h4>
         <IconButton
          aria-label="create"
          color="primary"
@@ -231,7 +231,7 @@ const Sections = () => {
            <div key={section._id}>
             <h5
              className="grediant kh d-flex justify-content-between"
-             style={{ padding: '10px 15px', marginBottom: '1px' }}
+             style={{ padding: '10px 15px', marginBottom: '1px', fontSize: 12 }}
             >
              <span style={{ paddingTop: '2px' }}>{section.name}</span>
              <span>
@@ -279,8 +279,13 @@ const Sections = () => {
               onMouseLeave={mouseLeave}
              >
               <div style={{ marginTop: '2px' }}>
-               <i className="fas fa-play-circle mr-4 ml-3"></i>
-               <h5 className="d-inline-block kh">{video.name}</h5>
+               <i
+                className="fas fa-film mr-4 ml-3 text-info"
+                style={{ fontSize: 12 }}
+               ></i>
+               <h6 className="d-inline-block kh" style={{ fontSize: 12 }}>
+                {video.name}
+               </h6>
               </div>
               <div
                className="invisible"
@@ -339,7 +344,7 @@ const Sections = () => {
         <input
          className="kh form-control mb-2 shadow rounded"
          type="text"
-         placeholder="ឈ្មោះសិកសិន..."
+         placeholder="ឈ្មោះជំពូក..."
          value={section}
          onChange={(e) => setSection(e.target.value)}
         />
