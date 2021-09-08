@@ -9,10 +9,8 @@ import { listCourses } from '../actions/eLearningActions/courseActions';
 
 const SideBar = () => {
  const [activeNav, setActiveNav] = useState('');
+ const [count, setCount] = useState(0);
  const dispatch = useDispatch();
-
- const courseList = useSelector((state) => state.courseList);
- const { count } = courseList;
  const reqEnroll = useSelector((state) => state.reqEnroll);
  const { reqEnrolls } = reqEnroll;
  const userLogin = useSelector((state) => state.userLogin);
@@ -25,13 +23,29 @@ const SideBar = () => {
      Authorization: `Bearer ${userInfo.token}`,
     },
    };
-   const { data } = await axios.get(
-    `/api/eLearning/enrolls/user/request`,
-    config
-   );
-   if (data) {
-    dispatch({ type: GET_REQ_ENROLL_SUC, payload: data });
+
+   async function fetchReqEnroll() {
+    const { data } = await axios.get(
+     `/api/eLearning/enrolls/user/request`,
+     config
+    );
+    if (data) {
+     dispatch({ type: GET_REQ_ENROLL_SUC, payload: data });
+    }
    }
+   fetchReqEnroll();
+
+   async function fetchCourses() {
+    const { data } = await axios.get(
+     `/api/courses/courseType/AllCourses?pageNumber=1&keyword=&pageSize=`
+    );
+    if (data) {
+     setCount(data.count);
+    }
+   }
+
+   fetchCourses();
+
    if ($('#dash').hasClass('grediant') && !$('#mulDash').hasClass('show')) {
     setActiveNav('dash');
    } else if (
@@ -51,7 +65,6 @@ const SideBar = () => {
     setActiveNav('eshop');
    }
   }
-  dispatch(listCourses('AllCourses', 1));
  }, []);
 
  return (

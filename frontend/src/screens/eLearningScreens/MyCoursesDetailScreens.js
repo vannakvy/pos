@@ -187,13 +187,6 @@ const MyCoursesDetailScreen = () => {
              </div>
              <div className="row row-cols-1 row-cols-md-2 mt-3 px-1 px-md-2">
               <div className="col">
-               <h5 className="kh text-light">​​ព័ត៌មានផ្សេងៗ</h5>
-               <div className="bg-light p-3 round text-dark kh">
-                <p>
-                 <span className="ms-5"></span>
-                 {enrollDetail.courseId.description}
-                </p>
-               </div>
                <h5 className="kh text-light">វីឌីអូសម្រាប់មុខវិទ្យានេះ</h5>
                {loadingSection ? (
                 <Loader wd={40} hg={40} />

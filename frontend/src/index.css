@@ -107,7 +107,7 @@ body {
 
 /* width */
 ::-webkit-scrollbar {
- width: 5px;
+ width: 10px;
 }
 
 /* Track */
@@ -118,14 +118,14 @@ body {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
- background: rgb(92, 92, 92);
+ background: rgb(17, 100, 255);
 
  /* border-radius: 10px; */
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
- background: #000000;
+ background: #0099ff;
 }
 
 .landingPage {
@@ -197,6 +197,19 @@ body {
 .kh {
  /* font-family: myriad-pro, Lucida Grande, Arial, 'Kantumruy', 'Siemreap',
   sans-serif; */
+ font-family: 'Battambang', 'Ubuntu', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span,
+p,
+small,
+a {
  font-family: 'Battambang', 'Ubuntu', sans-serif;
 }
 

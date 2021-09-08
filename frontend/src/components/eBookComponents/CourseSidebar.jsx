@@ -38,13 +38,13 @@ const CourseSidebar = ({ courses, lang }) => {
    <div className="d-none d-lg-block" style={{ width: 250, zIndex: 1 }}>
     <div className="ml-1">
      <div className="bg-light p-0 m-0 d-flex">
-      <div className="py-2 pl-3 w-100 bg-info text-light fw-bold">
+      <div className="py-2 pl-3 w-100 bg-light text-dark fw-bold">
        {lang} Tutorial
       </div>
       <div
-       className="py-1 text-center bg-light"
+       className="py-1 text-center bg-warning"
        style={{ width: 60, cursor: 'pointer' }}
-       onClick={() => history.push('/ebook')}
+       onClick={() => history.push('/ebook/languages')}
       >
        <AiOutlineRollback
         className="t_grediantHover"
@@ -113,13 +113,13 @@ const CourseSidebar = ({ courses, lang }) => {
     )}
     <div className="ml-1">
      <div className="bg-light p-0 m-0 d-flex">
-      <div className="py-2 pl-3 w-100 bg-info text-light fw-bold">
+      <div className="py-2 pl-3 w-100 bg-light text-dark fw-bold">
        {lang} Tutorial
       </div>
       <div
-       className="py-1 text-center bg-light"
+       className="py-1 text-center bg-warning"
        style={{ width: 60, cursor: 'pointer' }}
-       onClick={() => history.push('/ebook')}
+       onClick={() => history.push('/ebook/languages')}
       >
        <AiOutlineRollback
         className="t_grediantHover"
