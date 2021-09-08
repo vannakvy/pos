@@ -26,7 +26,7 @@ function ModalExampleDimmer(props) {
    <button
     onClick={() => dispatch({ type: 'OPEN_MODAL', dimmer: 'blurring' })}
     type="button"
-    className="btn btn-block text-dark rounded bg-success shadow kh"
+    className="btn btn-block text-dark rounded-pill bg-success shadow kh"
    >
     ស្នើរសុំរៀនមុខវិទ្យានេះ
     <BiGitPullRequest style={{ fontSize: 16, marginTop: -4 }} />

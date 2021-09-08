@@ -20,6 +20,7 @@ import Loader from '../Loader';
 import { BiGitPullRequest } from 'react-icons/bi';
 import DescripModal from './DescripModal';
 import axios from 'axios';
+import ReactHtmlParser from 'html-react-parser';
 
 const useStyles = makeStyles({
  media: {
@@ -109,8 +110,12 @@ const CourseItemDetails = (props) => {
    <Progress />
    <CardContent>
     <div style={{ minHeight: '160px' }}>
-     <h5 className="kh">{course.name}</h5>
-     <small className="text-info">{course.courseType}</small>
+     <h5 className="kh mb-2 text-center" style={{ fontSize: 16 }}>
+      {course.name}
+     </h5>
+     <p className="text-info fw-bold text-center" style={{ fontSize: 12 }}>
+      {course.courseType}
+     </p>
 
      {loadingEnroll || loadingPlay ? (
       <button
@@ -172,35 +177,10 @@ const CourseItemDetails = (props) => {
       </>
      )}
 
-     <h6 className="mt-2">This Course Include:</h6>
-     <p className="my-1">
-      <i style={{ width: '40px' }} className="fas fa-tv text-center"></i>22
-      hours on-demand video
-     </p>
-     <p className="my-1">
-      <i style={{ width: '40px' }} className="far fa-file text-center"></i>7
-      articles
-     </p>
-     <p className="my-1">
-      <i style={{ width: '40px' }} className="far fa-folder text-center"></i>
-      46 downloadable resources
-     </p>
-     <p className="my-1">
-      <i style={{ width: '40px' }} className="fas fa-code text-center"></i>24
-      coding exercises
-     </p>
-     <p className="my-1">
-      <i style={{ width: '40px' }} className="far fa-file text-center"></i>
-      Full lifetime access
-     </p>
-     <p className="my-1">
-      <i style={{ width: '40px' }} className="far fa-file text-center"></i>
-      Access on mobile and TV
-     </p>
-     <p className="my-1">
-      <i style={{ width: '40px' }} className="far fa-file text-center"></i>
-      Certificate of completion
-     </p>
+     <h5 className="mt-2 mb-3 text-center text-info">គោលបំណង</h5>
+     {ReactHtmlParser(
+      course.objective || '<h6 class="text-center">មិនទាន់មាន</h6>'
+     )}
      <hr />
      <div className="text-center mt-4">
       <i

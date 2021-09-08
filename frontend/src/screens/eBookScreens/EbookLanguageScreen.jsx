@@ -11,7 +11,10 @@ const EbookLanguageScreen = () => {
    <h3 className="mt-2 text-center">ភាសាកុំព្យូទ័រទាំងអស់</h3>
    <div className="container">
     <h5>ផ្នែកខាងមុខ UI</h5>
-    <div className="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1 border py-3">
+    <div
+     className="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1 border py-3"
+     style={{ background: 'rgb(240,240,240' }}
+    >
      <div className="col">
       <LanguageCom
        lang={'HTML'}
@@ -48,7 +51,10 @@ const EbookLanguageScreen = () => {
      </div>
     </div>
     <h5 className="mt-5">ភាសាកុំព្យូទ័រ</h5>
-    <div className="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1 border py-3">
+    <div
+     className="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1 border py-3"
+     style={{ background: 'rgb(240,240,240' }}
+    >
      <div className="col">
       <LanguageCom lang={'Node js'} img={nodejs} color={'dark'} />
      </div>
@@ -67,7 +73,10 @@ const EbookLanguageScreen = () => {
      </div>
     </div>
     <h5 className="mt-5">ទិន្នន័យ Database</h5>
-    <div className="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1 border py-3">
+    <div
+     className="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1 border py-3"
+     style={{ background: 'rgb(240,240,240' }}
+    >
      <div className="col">
       <LanguageCom lang={'SQL'} icon={'fas fa-database'} color={'dark'} />
      </div>

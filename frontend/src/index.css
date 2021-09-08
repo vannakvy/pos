@@ -126,6 +126,7 @@ body {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
  background: #0099ff;
+ cursor: pointer;
 }
 
 .landingPage {
@@ -463,4 +464,10 @@ body {
 .segment {
  background: rgb(240, 240, 240) !important;
  border: none !important;
+}
+
+.obj {
+ display: inline-block;
+ text-align: center;
+ width: 50px !important;
 }

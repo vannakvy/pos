@@ -164,7 +164,7 @@ const createCourse = asyncHandler(async (req, res) => {
   name: name,
   imgUrl: image,
   description: description,
-  objective: [],
+  objective: '',
   section: [],
  });
  const createCourse = await course.save();
@@ -179,12 +179,26 @@ const addObjective = asyncHandler(async (req, res) => {
  const course = await Course.findById(req.params.id);
 
  if (course) {
-  course.objective.push({ name: objective });
+  course.objective = objective || '';
   const courseWithObjective = await course.save();
-  res.json(courseWithObjective);
+  res.json(courseWithObjective.objective);
  } else {
   res.status(404);
   throw new Error(`Can not add Objective!`);
+ }
+});
+
+//@desc get Objective
+//@route get /api/courses/:id/objective
+//@access Private Admin
+const getObjective = asyncHandler(async (req, res) => {
+ const course = await Course.findById(req.params.id);
+
+ if (course) {
+  res.json(course.objective);
+ } else {
+  res.status(404);
+  throw new Error(`Can not get Objective!`);
  }
 });
 
@@ -376,6 +390,7 @@ export {
  updateCourseById,
  createCourse,
  addObjective,
+ getObjective,
  getSection,
  addSection,
  deleteSectionById,

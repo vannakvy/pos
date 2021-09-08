@@ -1,6 +1,7 @@
 import express from 'express';
 import {
  addObjective,
+ getObjective,
  createCourse,
  deleteCourseById,
  getCourseById,
@@ -28,7 +29,10 @@ router
  .put(protect, admin, updateCourseById)
  .delete(protect, admin, deleteCourseById);
 
-router.route('/:id/objective').put(protect, admin, addObjective);
+router
+ .route('/:id/objective')
+ .get(getObjective)
+ .put(protect, admin, addObjective);
 router.route('/:id/section').get(getSection).put(protect, admin, addSection);
 router
  .route('/:id/section/:sid')

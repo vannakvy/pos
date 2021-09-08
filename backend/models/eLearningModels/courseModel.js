@@ -26,15 +26,6 @@ const sectionSchema = mongoose.Schema(
  }
 );
 
-const objectiveSchema = mongoose.Schema(
- {
-  name: { type: String, required: true },
- },
- {
-  timestamps: true,
- }
-);
-
 const courseSchema = mongoose.Schema(
  {
   user: {
@@ -46,7 +37,7 @@ const courseSchema = mongoose.Schema(
   name: { type: String, required: true },
   imgUrl: { type: String, required: true },
   description: { type: String, required: true },
-  objective: [objectiveSchema],
+  objective: String,
   section: [sectionSchema],
  },
  {

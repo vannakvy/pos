@@ -200,7 +200,7 @@ const Sections = () => {
  return (
   <>
    <div className="row">
-    <div className="col-md-7">
+    <div className="col-md-6">
      <div className="bg-light rounded">
       <div className="border w-100 rounded">
        <div className="d-flex justify-content-between">
@@ -322,7 +322,7 @@ const Sections = () => {
       </div>
      </div>
     </div>
-    <div className="col-md-5">
+    <div className="col-md-6">
      {errorSectionUpdate && (
       <Message variant="danger">{errorSectionUpdate}</Message>
      )}
