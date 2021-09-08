@@ -22,6 +22,16 @@ const userSchema = mongoose.Schema(
    default: false,
   },
   profile: String,
+  quizs :[{
+      quiz:{type:mongoose.Schema.Types.ObjectId,ref:"Quiz"},
+      title:String,
+      courseTitle:String,
+      score:{
+        type:Number,
+        default:0
+    }
+  },
+],
   isTeacher: {
    type: Boolean,
    default: false,

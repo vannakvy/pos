@@ -47,6 +47,9 @@ app.use('/api/eLearning/enrolls', enrollsRoutes);
 app.use('/api/eLearning/uploads', uploadRoutes);
 // subscription
 app.use('/api/subscrip', subscripRoutes);
+// for the quiz 
+app.use('/api/quiz', subscripRoutes);
+
 // for eBook Routes
 app.use('/api/ebook/courses', eBookCourseRoutes);
 app.use('/api/ebook/contents', eBookContentRoutes);
