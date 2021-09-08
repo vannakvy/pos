@@ -1,9 +1,35 @@
 import React from "react";
 import "./newFooter.css";
 import learningImg from '../img/free-ebook.png';
+import Message from './Message'
+import axios from 'axios'
 const NewFooter = () => {
+const [email, setEmail] = React.useState("")
+const [message, setMessage] = React.useState("")
+  const addEmail = async()=>{
+    try {
+      if(email!==""){
+        const { data } = await axios.post(`/api/subscrip`, {email}, {});
+        if(data){
+          setEmail("");
+          setMessage("Subscribe បានជោគជ័យ")
+        } 
+      }
+    
+    
+    } catch (error) {
+      alert(error.message)
+      setMessage("Subscribe មិនបានជោគជ័យ")
+    }
+   
+    
+  }
+
+
+
   return (
     <>
+{message && <Message>{message}</Message>}
       <footer class="footer-section">
         <div class="container">
           <div class="footer-cta py-5">
@@ -98,9 +124,9 @@ const NewFooter = () => {
                     </p>
                   </div>
                   <div class="subscribe-form">
-                    <form action="#">
-                      <input type="text" placeholder="អុីម៉ែល" />
-                      <button>
+                    <form >
+                      <input type="email" value={email} placeholder="អុីម៉ែល" onChange={(e)=>setEmail(e.target.value)} />
+                      <button type="button" onClick={() =>addEmail()}>
                         <i class="fab fa-telegram-plane"></i>
                       </button>
                     </form>
