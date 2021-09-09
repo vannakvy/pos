@@ -35,20 +35,28 @@ const RegisterScreen = ({ location, history }) => {
   e.preventDefault();
   setMessage();
     if (name == '') {
-    setMessage('Please Enter Name');
-   }
+    setMessage('សូមវាយបញ្ចូលឈ្មោះ');
+    setfocus("name");
+    }
    else if (email == '') {
-    setMessage('Please Enter Email');
+    setMessage('សូមវាយបញ្ចូលអ៊ីមែល');
+    setfocus("email");
    } 
    else if (password == '') {
-    setMessage('Please Enter Password');
+    setMessage('សូមវាយបញ្ចូលពាក្យសម្ងាត់');
+    setfocus("password")
    } 
   else if (password !== confirmPassword) {
-   setMessage('Passwords do not match');
+   setMessage('សូមវាយបញ្ចូលពាក្យសម្ងាត់ម្ដងទៀត');
+   setfocus("confirm")
   } else {
    dispatch(register(name, email, password));
   }
  };
+
+ const setfocus = (e) =>{
+  document.getElementById(e).focus();
+ }
 
 
 
@@ -58,14 +66,19 @@ const RegisterScreen = ({ location, history }) => {
     {(() => {
         if (message) {
           return (
-            <Message variant="danger">{message}</Message>
+            <Message variant="danger"> <p className="kh fw-bold text-center">{message}</p></Message>
           )
         } 
-        else {
+        else if(error){
           return (
             <Message variant="danger">
             <p className="kh fw-bold text-center">{error}</p>
            </Message>
+          )
+        }
+        else {
+          return (
+          <p></p>
           )
         }
       })()}
@@ -78,6 +91,7 @@ const RegisterScreen = ({ location, history }) => {
      <Form.Control
       className="rounded shadow-sm"
       type="name"
+      id="name"
       placeholder="Enter name"
       value={name}
       onChange={(e) => setName(e.target.value)}
@@ -91,6 +105,7 @@ const RegisterScreen = ({ location, history }) => {
      <Form.Control
       className="rounded shadow-sm"
       type="email"
+      id="email"
       placeholder="Enter email"
       value={email}
       onChange={(e) => setEmail(e.target.value)}
@@ -104,6 +119,7 @@ const RegisterScreen = ({ location, history }) => {
      <Form.Control
       className="rounded shadow-sm"
       type="password"
+      id="password"
       placeholder="Enter password"
       value={password}
       onChange={(e) => setPassword(e.target.value)}
@@ -117,12 +133,12 @@ const RegisterScreen = ({ location, history }) => {
      <Form.Control
       className="rounded shadow-sm"
       type="password"
+      id="confirm"
       placeholder="Confirm password"
       value={confirmPassword}
       onChange={(e) => setConfirmPassword(e.target.value)}
      ></Form.Control>
     </Form.Group>
-    <div>{confirmPassword}</div>
 
     <div className="text-center py-2">
      <Button type="submit" className="grediant rounded text-dark px-4 kh fs-6">
