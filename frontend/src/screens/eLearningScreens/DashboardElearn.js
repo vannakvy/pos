@@ -76,7 +76,6 @@ const DashboardElearn = ({ match, history }) => {
    >
     <br />
     <br />
-    <br />
     <h3 className="kh text-center text-sm-left">
      ជម្រើសដ៏ទូលំទូលាយនៃការសិក្សាជាវីដីអូអនឡាញ
     </h3>
@@ -197,7 +196,7 @@ const DashboardElearn = ({ match, history }) => {
        onClick={() => gotoCourseType('WebDevelopment')}
        className="bg-light py-3 px-4 kh fw-bold text-center mb-1 mx-0 shadow-sm courseType rounded"
       >
-       ផ្នែកសរសេរវែបផ្សាយ
+       ផ្នែកសរសេរគេហទំព័រ
       </div>
      </div>
      <div className="col px-1">

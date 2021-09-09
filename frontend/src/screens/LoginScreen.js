@@ -12,7 +12,7 @@ import LoaderBackdrop from '../components/LoaderBackdrop';
 const LoginScreen = ({ location, history }) => {
  const [email, setEmail] = useState('');
  const [password, setPassword] = useState('');
-
+ const [message, setMessage] = useState(null);
  const dispatch = useDispatch();
 
  const userLogin = useSelector((state) => state.userLogin);
@@ -31,18 +31,45 @@ const LoginScreen = ({ location, history }) => {
 
  const submitHandler = (e) => {
   e.preventDefault();
-  dispatch(login(email, password));
+  setMessage();
+  if (email == '') {
+    setMessage('សូមវាយបញ្ចូលអុីម៉ែល');
+    setfocus("email");
+    }
+   else if (password == '') {
+    setMessage('សូមវាយបញ្ចូលពាក្យសម្ងាត់');
+    setfocus("password");
+   } 
+   else{
+    dispatch(login(email, password));
+   }
  };
+ const setfocus = (e) =>{
+    document.getElementById(e).focus();
+   }
 
  return (
   <FormContainer>
    <h1 className="kh text-center mb-5">បញ្ចូលគណនី</h1>
-   {error && (
-    <Message variant="danger">
-     {' '}
-     <p className="kh fw-bold text-center">{error}</p>
-    </Message>
-   )}
+   {(() => {
+        if (message) {
+          return (
+            <Message variant="danger"> <p className="kh fw-bold text-center">{message}</p></Message>
+          )
+        } 
+        else if(error){
+          return (
+            <Message variant="danger">
+            <p className="kh fw-bold text-center">{error}</p>
+           </Message>
+          )
+        }
+        else {
+          return (
+          <p></p>
+          )
+        }
+      })()}
    <LoaderBackdrop loader={loading && loading} />
    <Form onSubmit={submitHandler}>
     <Form.Group controlId="email">
@@ -52,6 +79,7 @@ const LoginScreen = ({ location, history }) => {
      <Form.Control
       className="rounded shadow-sm"
       type="email"
+      id="email"
       placeholder="Enter email"
       value={email}
       onChange={(e) => setEmail(e.target.value)}
@@ -60,11 +88,12 @@ const LoginScreen = ({ location, history }) => {
 
     <Form.Group controlId="password">
      <Form.Label className="kh fw-bold">
-      លេខសម្ងាត់ (<span className="ubuntu">Password</span>)
+      ពាក្យសម្ងាត់ (<span className="ubuntu">Password</span>)
      </Form.Label>
      <Form.Control
       className="rounded shadow-sm"
       type="password"
+      id="password"
       placeholder="Enter password"
       value={password}
       onChange={(e) => setPassword(e.target.value)}
@@ -78,7 +107,6 @@ const LoginScreen = ({ location, history }) => {
     </div>
    </Form>
    <p className="kh fw-bold text-center mt-1">ឬក៏</p>
-   <hr />
    <div>
     <div
      className="bg-light shadow ml-auto mr-auto rounded adminHover d-flex"
@@ -93,7 +121,7 @@ const LoginScreen = ({ location, history }) => {
    </div>
    <Row className="py-3">
     <Col className="kh fw-bold">
-     សម្រាប់អ្នកថ្មី?{' '}
+     មិនទាន់មានគណនី?{' '}
      <Link
       className="linkLogin"
       to={redirect ? `/register?redirect=${redirect}` : '/register'}

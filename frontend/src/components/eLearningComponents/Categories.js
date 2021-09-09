@@ -4,7 +4,7 @@ import CoursesShow from './CoursesShow';
 
 const panes = [
  {
-  menuItem: 'ផ្នែកសរសេរវែបផ្សាយ',
+  menuItem: 'ផ្នែកសរសេរគេហទំព័រ',
   render: () => (
    <CoursesShow
     courseType="WebDevelopment"

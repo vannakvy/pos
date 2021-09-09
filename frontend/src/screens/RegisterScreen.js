@@ -39,15 +39,19 @@ const RegisterScreen = ({ location, history }) => {
     setfocus("name");
     }
    else if (email == '') {
-    setMessage('សូមវាយបញ្ចូលអ៊ីមែល');
+    setMessage('សូមវាយបញ្ចូលអុីម៉ែល');
     setfocus("email");
    } 
    else if (password == '') {
     setMessage('សូមវាយបញ្ចូលពាក្យសម្ងាត់');
     setfocus("password")
+   }
+   else if (confirmPassword == '') {
+    setMessage('សូមវាយបញ្ចូលពាក្យសម្ងាត់ម្ដងទៀត');
+    setfocus("confirm")
    } 
   else if (password !== confirmPassword) {
-   setMessage('សូមវាយបញ្ចូលពាក្យសម្ងាត់ម្ដងទៀត');
+   setMessage('សូមពិនិត្យពាក្យសម្ងាត់ម្ដងទៀត');
    setfocus("confirm")
   } else {
    dispatch(register(name, email, password));
@@ -114,7 +118,7 @@ const RegisterScreen = ({ location, history }) => {
 
     <Form.Group controlId="password">
      <Form.Label className="kh fw-bold">
-      លេខសម្ងាត់ (<span className="ubuntu">Password</span>)
+      ពាក្យសម្ងាត់ (<span className="ubuntu">Password</span>)
      </Form.Label>
      <Form.Control
       className="rounded shadow-sm"
@@ -128,7 +132,7 @@ const RegisterScreen = ({ location, history }) => {
 
     <Form.Group controlId="confirmPassword">
      <Form.Label className="kh fw-bold">
-      ផ្ទៀងផ្ទាត់លេខសម្ងាត់ (<span className="ubuntu">Confirm Password</span>)
+      ផ្ទៀងផ្ទាត់ពាក្យសម្ងាត់ (<span className="ubuntu">Confirm Password</span>)
      </Form.Label>
      <Form.Control
       className="rounded shadow-sm"
@@ -148,7 +152,6 @@ const RegisterScreen = ({ location, history }) => {
    </Form>
 
    <p className="kh fw-bold text-center mt-1">ឬក៏</p>
-   <hr />
    <div>
     <div
      className="bg-light shadow ml-auto mr-auto rounded adminHover d-flex"
@@ -164,7 +167,7 @@ const RegisterScreen = ({ location, history }) => {
 
    <Row className="py-3">
     <Col className="kh fw-bold">
-     ចុះឈ្មោះម្ដងហើយ?{' '}
+     មានគណនីរួចហើយ?{' '}
      <Link
       className="linkLogin"
       to={redirect ? `/login?redirect=${redirect}` : '/login'}
