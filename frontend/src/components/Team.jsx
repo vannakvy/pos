@@ -3,6 +3,7 @@ import './Team.css';
 import thanet from '../img/thanet.jpg';
 import Jrnn21 from '../img/jrnn21.jpg';
 import dysovanrotha from '../img/dysovanrotha.jpg';
+import MY_PHOTO1 from '../img/MY_PHOTO1.JPG';
 const Team = () => {
  return (
   <>
@@ -24,7 +25,7 @@ const Team = () => {
      <div class="col-xl-3 col-sm-6 mb-5">
       <div class="bg-white round shadow-sm py-5 px-4 teamHover">
        <img
-        src="https://d19m59y37dris4.cloudfront.net/university/1-1-1/img/teacher-4.jpg"
+        src={MY_PHOTO1}
         alt=""
         width="130"
         class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm"
@@ -36,7 +37,7 @@ const Team = () => {
        <p class="small text-uppercase text-muted">Software Developer</p>
        <ul class="social mb-0 list-inline mt-3">
         <li class="list-inline-item">
-         <a href="#" class="social-link">
+         <a href="https://www.facebook.com/vannak.vy.3" class="social-link">
           <i class="fa fa-facebook-f"></i>
          </a>
         </li>

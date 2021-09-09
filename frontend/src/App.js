@@ -44,6 +44,8 @@ import NavbarBottom from './components/NavbarBottom';
 import NewFooter from './components/newFooter';
 import EbookLiveCode from './screens/eBookScreens/EbookLiveCode';
 import EbookLanguageScreen from './screens/eBookScreens/EbookLanguageScreen';
+import { Quiz } from './screens/eBookScreens/Quiz';
+import QuizDetail from './screens/eBookScreens/QuizDetail';
 
 const App = () => {
  const dispatch = useDispatch();
@@ -102,6 +104,8 @@ const App = () => {
      <Route path="/elearning/mycourses" component={MyCoursesScreen} />
      <Route path="/elearning" component={DashboardElearn} />
      {/* ebooks routes */}
+     <Route path="/ebook/quiz" component={Quiz} exact />
+     <Route path="/ebook/quiz/:id" component={QuizDetail} exact />
      <Route path="/ebook/languages" component={EbookLanguageScreen} exact />
      <Route path="/ebook/:lang/:id" component={EbookCourseScreen} exact />
      <Route path="/ebook/:lang/:id/:code" component={EbookLiveCode} />

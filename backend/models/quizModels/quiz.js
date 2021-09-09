@@ -7,13 +7,14 @@ const quizeSchema = mongoose.Schema({
         ref:"Course"
     },
     courseTitle:String,
+    courseImage:String,
     duration:Number,
     questions:[
         {
             question:String,
-            options:[{
+            answers:[{
                     option:String,
-                    answer:Boolean,
+                    correct:Boolean,
                 }],}
     ]
 },{
