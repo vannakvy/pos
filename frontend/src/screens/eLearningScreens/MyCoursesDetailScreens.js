@@ -190,9 +190,9 @@ const MyCoursesDetailScreen = () => {
                 <h4 className="text-center text-info">អំពីមុខវិទ្យា</h4>
                 <div className="text-dark mt-3 row row-cols-xl-2 row-cols-lg-1">
                  {ReactHtmlParser(
-                  (enrollDetail && enrollDetail.courseId.include) || (
-                   <h6>មិនមាន</h6>
-                  )
+                  (enrollDetail &&
+                   enrollDetail.courseId &&
+                   enrollDetail.courseId.include) || <h6>មិនមាន</h6>
                  )}
                 </div>
                </div>
