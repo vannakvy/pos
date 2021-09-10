@@ -80,7 +80,7 @@ const CoursesScreen = ({ match, history }) => {
         ផ្នែកសរសេរវែបផ្សាយ
        </option>
        <option className="font-weight-bold" value="Programming">
-        ផ្នែកសរសេរកម្មវិធី
+        ផ្នែកសរសេរកម្មវិធីកុំព្យូទ័រ
        </option>
        <option className="font-weight-bold" value="EmbededSystem">
         ផ្នែកប្រព័ន្ធបញ្ចារ
