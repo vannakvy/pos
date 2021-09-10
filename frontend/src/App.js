@@ -102,6 +102,10 @@ const App = () => {
       onEnter={gotoCourses}
      />
      <Route path="/elearning/mycourses" component={MyCoursesScreen} />
+     <Route
+      path="/elearning/search/page/:pageNumber"
+      component={DashboardElearn}
+     />
      <Route path="/elearning" component={DashboardElearn} />
      {/* ebooks routes */}
      <Route path="/ebook/quiz" component={Quiz} exact />

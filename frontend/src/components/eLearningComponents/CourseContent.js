@@ -9,7 +9,7 @@ const CourseContent = ({ sections, cid, fromVideo = false }) => {
 
  return (
   <>
-   <div className="rounded bg-light overflow-hidden shadow" id="Example">
+   <div className="rounded bg-light overflow-hidden shadow-sm" id="Example">
     {sections &&
      sections.map((section) => (
       <div key={section._id}>
@@ -49,7 +49,7 @@ const CourseContent = ({ sections, cid, fromVideo = false }) => {
             key={video._id}
             to={`/elearning/courses/${cid}/videos/${video._id}`}
            >
-            <h6 className="py-3 m-0">
+            <h5 className="py-3 m-0" style={{ fontSize: 13 }}>
              {fromVideo ? (
               <>
                {video.watched ? (
@@ -64,7 +64,7 @@ const CourseContent = ({ sections, cid, fromVideo = false }) => {
               style={{ fontSize: 12 }}
              ></i>
              {video.name}
-            </h6>
+            </h5>
            </NavLink>
           ))}
         </div>

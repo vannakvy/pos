@@ -17,8 +17,6 @@ import { IoCopyOutline } from 'react-icons/io5';
 import { GoCheck } from 'react-icons/go';
 import copy from 'copy-to-clipboard';
 import Tooltip from '@material-ui/core/Tooltip';
-import TootipProfile from '../../components/eBookComponents/TootipProfile';
-import thanet from '../../img/img.jpg';
 
 const EbookCourseScreen = () => {
  const param = useParams();
@@ -37,6 +35,7 @@ const EbookCourseScreen = () => {
  }, [dispatch]);
 
  useEffect(() => {
+  window.scroll(0, 0);
   if (!detailBycontents || param.id !== detailBycontents._id)
    dispatch(getDetailByContentId(param.id));
  }, [param.id]);
@@ -52,7 +51,9 @@ const EbookCourseScreen = () => {
   <div style={{ zIndex: 1 }}>
    <div className="d-flex justify-content-between ">
     <div className="d-flex w-100">
-     <CourseSidebar courses={course} lang={param.lang} />
+     <div style={{ position: 'relative' }}>
+      <CourseSidebar courses={course} lang={param.lang} />
+     </div>
      <div className="w-100" style={{ minHeight: '100vh' }}>
       {loading ? (
        <div className="pt-2">
@@ -132,27 +133,67 @@ const EbookCourseScreen = () => {
     </div>
     <div
      className="d-none d-xl-block mr-2"
-     style={{ minWidth: 150, maxWidth: 150 }}
+     style={{ minWidth: 165, maxWidth: 165 }}
     >
-     <img
-      className="img-fluid rounded-lg"
-      src="https://i.pinimg.com/originals/7d/1a/3f/7d1a3f77eee9f34782c6f88e97a6c888.jpg"
-      alt=""
-     />
-     <div className="p-3">
-      <h5 className="text-primary">គ្រូ : វី​ វណ្ណៈ</h5>
-      <h6 className="my-2">Web Developer</h6>
-      <p className="">ហ្វាក់យូរប៉ិច</p>
+     <div className="bg-light p-2 my-1 rounded">
+      <img
+       className="img-fluid rounded-pill p-1 bg-info"
+       style={{ width: 148, height: 148, objectFit: 'cover' }}
+       src="/img/vannak.jpg"
+       alt=""
+      />
+      <div className="p-1 pt-2 text-center">
+       <h5 className="text-info">វី​ វណ្ណៈ</h5>
+       <h6 className="my-2">Web Developer</h6>
+      </div>
      </div>
-     <img
-      className="img-fluid rounded-lg"
-      src="https://i.pinimg.com/originals/7d/1a/3f/7d1a3f77eee9f34782c6f88e97a6c888.jpg"
-      alt=""
-     />
-     <div className="p-3">
-      <h5 className="text-primary">គ្រូ : ជ្រឹង​ ចំរើន</h5>
-      <h6 className="my-2">Web Developer</h6>
-      <p className="">ហ្វាក់យូរប៉ិច</p>
+     <div className="bg-light p-2 my-1 rounded">
+      <img
+       className="img-fluid rounded-pill p-1 bg-info"
+       style={{ width: 148, height: 148, objectFit: 'cover' }}
+       src="/img/jrnn21.jpg"
+       alt=""
+      />
+      <div className="p-1 pt-2 text-center">
+       <h5 className="text-info">ជ្រឹង ចំរើន</h5>
+       <h6 className="my-2">Web Developer</h6>
+      </div>
+     </div>
+     <div className="bg-light p-2 my-1 rounded">
+      <img
+       className="img-fluid rounded-pill p-1 bg-info"
+       style={{ width: 148, height: 148, objectFit: 'cover' }}
+       src="/img/thanet.jpg"
+       alt=""
+      />
+      <div className="p-1 pt-2 text-center">
+       <h5 className="text-info">លន ថាណេត</h5>
+       <h6 className="my-2">Web Developer</h6>
+      </div>
+     </div>
+     <div className="bg-light p-2 my-1 rounded">
+      <img
+       className="img-fluid rounded-pill p-1 bg-info"
+       style={{ width: 148, height: 148, objectFit: 'cover' }}
+       src="/img/dysovanrotha.jpg"
+       alt=""
+      />
+      <div className="p-1 pt-2 text-center">
+       <h5 className="text-info">ឌី សុវណ្ណរដ្ឋា</h5>
+       <h6 className="my-2">Web Developer</h6>
+      </div>
+     </div>
+     <div className="bg-light p-2 my-1 rounded">
+      <img
+       className="img-fluid rounded-pill p-1 bg-info"
+       style={{ width: 148, height: 148, objectFit: 'cover' }}
+       src="/img/reaksmey.jpg"
+       alt=""
+      />
+      <div className="p-1 pt-2 text-center">
+       <h5 className="text-info">ឌុន រស្មី</h5>
+       <h6 className="my-2">Web Developer</h6>
+      </div>
      </div>
     </div>
     {/* <div className="d-xl-none d-none d-md-block mr-2">

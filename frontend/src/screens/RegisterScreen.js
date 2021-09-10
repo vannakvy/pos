@@ -12,7 +12,7 @@ const RegisterScreen = ({ location, history }) => {
  const [name, setName] = useState('');
  const [email, setEmail] = useState('');
  const [password, setPassword] = useState('');
-//  const [confirmPassword, setConfirmPassword] = useState('');
+ //  const [confirmPassword, setConfirmPassword] = useState('');
  const [message, setMessage] = useState(null);
  const [confirmPassword, setConfirmPassword] = useState('');
 
@@ -34,64 +34,55 @@ const RegisterScreen = ({ location, history }) => {
  const submitHandler = (e) => {
   e.preventDefault();
   setMessage();
-    if (name == '') {
-    setMessage('សូមវាយបញ្ចូលឈ្មោះ');
-    setfocus("name");
-    }
-   else if (email == '') {
-    setMessage('សូមវាយបញ្ចូលអុីម៉ែល');
-    setfocus("email");
-   } 
-   else if (password == '') {
-    setMessage('សូមវាយបញ្ចូលពាក្យសម្ងាត់');
-    setfocus("password")
-   }
-   else if (confirmPassword == '') {
-    setMessage('សូមវាយបញ្ចូលពាក្យសម្ងាត់ម្ដងទៀត');
-    setfocus("confirm")
-   } 
-  else if (password !== confirmPassword) {
+  if (name == '') {
+   setMessage('សូមវាយបញ្ចូលឈ្មោះ');
+   setfocus('name');
+  } else if (email == '') {
+   setMessage('សូមវាយបញ្ចូលអុីម៉ែល');
+   setfocus('email');
+  } else if (password == '') {
+   setMessage('សូមវាយបញ្ចូលពាក្យសម្ងាត់');
+   setfocus('password');
+  } else if (confirmPassword == '') {
+   setMessage('សូមវាយបញ្ចូលផ្ទៀងផ្ទាត់ពាក្យសម្ងាត់');
+   setfocus('confirm');
+  } else if (password !== confirmPassword) {
    setMessage('សូមពិនិត្យពាក្យសម្ងាត់ម្ដងទៀត');
-   setfocus("confirm")
+   setfocus('confirm');
   } else {
    dispatch(register(name, email, password));
   }
  };
 
- const setfocus = (e) =>{
+ const setfocus = (e) => {
   document.getElementById(e).focus();
- }
-
-
+ };
 
  return (
   <FormContainer>
    <h1 className="kh text-center mb-5">បញ្ចូលព័ត៌មានផ្ទាល់ខ្លួន</h1>
-    {(() => {
-        if (message) {
-          return (
-            <Message variant="danger"> <p className="kh fw-bold text-center">{message}</p></Message>
-          )
-        } 
-        else if(error){
-          return (
-            <Message variant="danger">
-            <p className="kh fw-bold text-center">{error}</p>
-           </Message>
-          )
-        }
-        else {
-          return (
-          <p></p>
-          )
-        }
-      })()}
+   {(() => {
+    if (message) {
+     return (
+      <Message variant="danger">
+       {' '}
+       <p className="kh fw-bold text-center">{message}</p>
+      </Message>
+     );
+    } else if (error) {
+     return (
+      <Message variant="danger">
+       <p className="kh fw-bold text-center">{error}</p>
+      </Message>
+     );
+    } else {
+     return <p></p>;
+    }
+   })()}
    {loading && <Loader wd={40} hg={40} />}
    <Form onSubmit={submitHandler}>
     <Form.Group controlId="name">
-     <Form.Label className="kh fw-bold">
-      ឈ្មោះ (<span className="ubuntu">Name</span>)
-     </Form.Label>
+     <Form.Label className="kh fw-bold">ឈ្មោះ(Name)</Form.Label>
      <Form.Control
       className="rounded shadow-sm"
       type="name"
@@ -103,9 +94,7 @@ const RegisterScreen = ({ location, history }) => {
     </Form.Group>
 
     <Form.Group controlId="email">
-     <Form.Label className="kh fw-bold">
-      អុីម៉ែល (<span className="ubuntu">Email</span>)
-     </Form.Label>
+     <Form.Label className="kh fw-bold">អុីម៉ែល(Email)</Form.Label>
      <Form.Control
       className="rounded shadow-sm"
       type="email"
@@ -117,9 +106,7 @@ const RegisterScreen = ({ location, history }) => {
     </Form.Group>
 
     <Form.Group controlId="password">
-     <Form.Label className="kh fw-bold">
-      ពាក្យសម្ងាត់ (<span className="ubuntu">Password</span>)
-     </Form.Label>
+     <Form.Label className="kh fw-bold">ពាក្យសម្ងាត់(Password)</Form.Label>
      <Form.Control
       className="rounded shadow-sm"
       type="password"
@@ -132,7 +119,7 @@ const RegisterScreen = ({ location, history }) => {
 
     <Form.Group controlId="confirmPassword">
      <Form.Label className="kh fw-bold">
-      ផ្ទៀងផ្ទាត់ពាក្យសម្ងាត់ (<span className="ubuntu">Confirm Password</span>)
+      ផ្ទៀងផ្ទាត់ពាក្យសម្ងាត់(Confirm Password)
      </Form.Label>
      <Form.Control
       className="rounded shadow-sm"

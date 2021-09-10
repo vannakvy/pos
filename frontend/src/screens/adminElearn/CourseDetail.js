@@ -6,6 +6,7 @@ import Message from '../../components/Message';
 import Sections from '../../components/eLearningComponents/Sections';
 import { Parallax } from 'react-parallax';
 import Objective from '../../components/eLearningComponents/Objective';
+import CourseInclude from '../../components/eLearningComponents/CourseInclude';
 
 const insideStyles = {
  background: 'rgba(255, 255, 255, 0.7)',
@@ -24,6 +25,7 @@ const CoursesDetail = ({ match, history }) => {
  const { loading, error, course } = courseDetail;
 
  useEffect(() => {
+  window.scroll(0, 0);
   dispatch(getCourseById(courseId));
  }, [dispatch, courseId]);
 
@@ -63,6 +65,7 @@ const CoursesDetail = ({ match, history }) => {
      </button>
      <div className="container-fluid">
       <Objective id={courseId} />
+      <CourseInclude id={courseId} />
       <Sections />
      </div>
     </>

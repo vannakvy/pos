@@ -8,6 +8,7 @@ const Paginate = ({
  isAdmin = false,
  keyword = '',
  courseType = 'AllCourses',
+ locate = '',
 }) => {
  return (
   pages > 1 && (
@@ -16,7 +17,11 @@ const Paginate = ({
      <LinkContainer
       key={x + 1}
       to={
-       !isAdmin
+       locate === 'users'
+        ? ''
+        : locate === 'elearnDash'
+        ? `/elearning/search/page/${x + 1}?keyword=${keyword}`
+        : !isAdmin
         ? keyword
           ? `/elearning/courses/search/page/${x + 1}?keyword=${keyword}`
           : courseType !== 'AllCourses'

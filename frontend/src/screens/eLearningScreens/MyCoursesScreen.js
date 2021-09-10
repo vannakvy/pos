@@ -4,7 +4,7 @@ import { getUserEnrollCourses } from '../../actions/eLearningActions/enrollActio
 import ConvertNum from '../../components/eLearningComponents/ConvertNum';
 import CourseItemOwn from '../../components/eLearningComponents/CourseItemOwn';
 import Message from '../../components/Message';
-import { IoMdArrowBack } from 'react-icons/io';
+import { AiFillStepBackward } from 'react-icons/ai';
 import { useHistory } from 'react-router-dom';
 import Watch from '../../components/eLearningComponents/Watch';
 
@@ -32,23 +32,20 @@ const MyCoursesScreen = () => {
     className=""
     style={{ minHeight: '100vh', maxWidth: 1300, margin: '0 auto' }}
    >
-    <div className="row p-2 w-100">
+    <div className="row p-2 w-100 mt-2">
      <div className="col-4">
-      <button
-       className=" btn btn-dark kh font-weight-bolder p-3 rounded shadow border-none"
-       onClick={() => {
-        history.push(`/elearning`);
-       }}
+      <h5
+       className="m-0 text-dark"
+       style={{ cursor: 'pointer' }}
+       onClick={() => window.history.back()}
       >
-       <h6 className="m-0 text-light">
-        <IoMdArrowBack style={{ fontSize: 18 }} />
-        <span className="ml-2">ត្រឡប់ក្រោយ</span>
-       </h6>
-      </button>
+       <AiFillStepBackward style={{ fontSize: 18 }} />
+       <span className="ml-1">ត្រឡប់ក្រោយ</span>
+      </h5>
      </div>
-     <h4 className="col-4 text-center kh mt-1">មុខវិទ្យារបស់ខ្ញុំ</h4>
+     <h4 className="col-4 text-center kh mt-1 text-info">មុខវិទ្យារបស់ខ្ញុំ</h4>
     </div>
-    <h5 className="mt-2">
+    <h5 className="mt-2 ms-3">
      <span className="kh pl-2 w-100">មុខវិទ្យារបស់ខ្ញុំដែលបានចូលរៀន</span>(
      <span className="text-danger">
       <ConvertNum num={coursesEnroll && coursesEnroll.enrollCourses.length} />

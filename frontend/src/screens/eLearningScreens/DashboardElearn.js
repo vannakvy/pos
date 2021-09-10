@@ -19,6 +19,7 @@ import queryString from 'query-string';
 import CourseItem from '../../components/eLearningComponents/CourseItem';
 import { MdCancel } from 'react-icons/md';
 import { BiBook } from 'react-icons/bi';
+import Paginate from '../../components/eLearningComponents/Paginate';
 
 const DashboardElearn = ({ match, history }) => {
  const dispatch = useDispatch();
@@ -34,12 +35,8 @@ const DashboardElearn = ({ match, history }) => {
  );
 
  useEffect(() => {
-  if (keyword) {
-   dispatch(listCourses(courseType, pageNumber, keyword));
-  } else {
-   //  window.scroll(0, 0);
-  }
- }, [dispatch, keyword]);
+  dispatch(listCourses(courseType, pageNumber, keyword));
+ }, [dispatch, keyword, pageNumber]);
 
  const gotoCourseType = async (type) => {
   dispatch({ type: LOADER_TOP_TRUE });
@@ -56,7 +53,7 @@ const DashboardElearn = ({ match, history }) => {
 
  const searchHandler = (e) => {
   e.preventDefault();
-  history.push(`/elearning?keyword=${e.target.keyword.value}`);
+  history.push(`/elearning/search/page/1?keyword=${e.target.keyword.value}`);
  };
 
  const changeSearch = (e) => {
@@ -161,6 +158,15 @@ const DashboardElearn = ({ match, history }) => {
              <CourseItem course={course} />
             </div>
            ))}
+         </div>
+         <div className="d-flex justify-content-around">
+          <Paginate
+           pages={pages}
+           page={page}
+           keyword={keyword ? keyword : ''}
+           courseType={courseType}
+           locate={'elearnDash'}
+          />
          </div>
          {courses && courses.length === 0 && (
           <div className="p-5 text-center">

@@ -174,6 +174,31 @@ const createCourse = asyncHandler(async (req, res) => {
 //@desc Create Objective
 //@route PUT /api/courses/:id/objective
 //@access Private Admin
+const addCourseInclude = asyncHandler(async (req, res) => {
+ const { include } = req.body;
+ const course = await Course.findById(req.params.id);
+
+ if (course) {
+  course.include = include || '';
+  const courseWithInclude = await course.save();
+  res.json(courseWithInclude.include);
+ } else {
+  res.status(404);
+  throw new Error(`Can not add include!`);
+ }
+});
+
+const getCourseInclude = asyncHandler(async (req, res) => {
+ const course = await Course.findById(req.params.id);
+
+ if (course) {
+  res.json(course.include || '');
+ } else {
+  res.status(404);
+  throw new Error(`Can not get Include!`);
+ }
+});
+
 const addObjective = asyncHandler(async (req, res) => {
  const { objective } = req.body;
  const course = await Course.findById(req.params.id);
@@ -188,9 +213,6 @@ const addObjective = asyncHandler(async (req, res) => {
  }
 });
 
-//@desc get Objective
-//@route get /api/courses/:id/objective
-//@access Private Admin
 const getObjective = asyncHandler(async (req, res) => {
  const course = await Course.findById(req.params.id);
 
@@ -389,8 +411,8 @@ export {
  deleteCourseById,
  updateCourseById,
  createCourse,
- addObjective,
- getObjective,
+ addCourseInclude,
+ getCourseInclude,
  getSection,
  addSection,
  deleteSectionById,
@@ -399,4 +421,6 @@ export {
  updateVideoById,
  deleteVidoeoById,
  searchCourse,
+ addObjective,
+ getObjective,
 };

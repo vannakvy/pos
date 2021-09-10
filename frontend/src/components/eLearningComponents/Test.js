@@ -6,6 +6,7 @@ import EmbededApp from '../../img/Embed.png';
 import DesktopApp from '../../img/Desktop-App-Development.png';
 import WebDevelopment from '../../img/WDS.png';
 import MobileApp from '../../img/MBS.png';
+import { NavLink } from 'react-router-dom';
 
 export default class SlideChangeHooks extends Component {
  state = {
@@ -91,9 +92,12 @@ export default class SlideChangeHooks extends Component {
            ហើយការរៀនមានផ្នែកមួយៗដ់ើម្បីឲ្យសិស្សានុសិស្សងាយយល់
            និងអាចឆាប់ចេះបង្កើតកម្មវិធីដោយខ្លួនឯងបាន។
           </p>
-          <button className="btn btn-info rounded mt-2 mb-4 px-4 kh text-dark">
+          <NavLink
+           to="/elearning/courses?courseType=Programming"
+           className="btn bg-info rounded mt-2 mb-4 px-4 kh text-dark"
+          >
            ចាប់ផ្ដើម
-          </button>
+          </NavLink>
          </div>
         </div>
        </div>
@@ -127,9 +131,12 @@ export default class SlideChangeHooks extends Component {
            ហើយការរៀនមានផ្នែកមួយៗដ់ើម្បីឲ្យសិស្សានុសិស្សងាយយល់
            និងអាចឆាប់ចេះបង្កើតកម្មវិធីដោយខ្លួនឯងបាន។
           </p>
-          <button className="btn btn-info rounded mt-2 mb-4 px-4 kh text-dark">
+          <NavLink
+           to="/elearning/courses?courseType=MobileDevelopment"
+           className="btn bg-info rounded mt-2 mb-4 px-4 kh text-dark"
+          >
            ចាប់ផ្ដើម
-          </button>
+          </NavLink>
          </div>
         </div>
        </div>
@@ -163,9 +170,12 @@ export default class SlideChangeHooks extends Component {
            ហើយការរៀនមានផ្នែកមួយៗដ់ើម្បីឲ្យសិស្សានុសិស្សងាយយល់
            និងអាចឆាប់ចេះបង្កើតកម្មវិធីដោយខ្លួនឯងបាន។
           </p>
-          <button className="btn btn-info rounded mt-2 mb-4 px-4 kh text-dark">
+          <NavLink
+           to="/elearning/courses?courseType=WebDevelopment"
+           className="btn bg-info rounded mt-2 mb-4 px-4 kh text-dark"
+          >
            ចាប់ផ្ដើម
-          </button>
+          </NavLink>
          </div>
         </div>
        </div>
@@ -199,9 +209,12 @@ export default class SlideChangeHooks extends Component {
            ហើយការរៀនមានផ្នែកមួយៗដ់ើម្បីឲ្យសិស្សានុសិស្សងាយយល់
            និងអាចឆាប់ចេះបង្កើតកម្មវិធីដោយខ្លួនឯងបាន។
           </p>
-          <button className="btn btn-info rounded mt-2 mb-4 px-4 kh text-dark">
+          <NavLink
+           to="/elearning/courses?courseType=EmbededSystem"
+           className="btn bg-info rounded mt-2 mb-4 px-4 kh text-dark"
+          >
            ចាប់ផ្ដើម
-          </button>
+          </NavLink>
          </div>
         </div>
        </div>

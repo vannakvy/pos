@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import LanguageCom from '../../components/eBookComponents/LanguageCom';
 import Python from '../../img/Python.png';
 import c_plus from '../../img/c++.png';
@@ -6,6 +6,10 @@ import nodejs from '../../img/nodejs.png';
 import jquery from '../../img/jquery.png';
 
 const EbookLanguageScreen = () => {
+ useEffect(() => {
+  window.scroll(0, 0);
+ }, []);
+
  return (
   <div className="p-2 pb-5">
    <h3 className="mt-2 text-center">ភាសាកុំព្យូទ័រទាំងអស់</h3>
@@ -56,7 +60,7 @@ const EbookLanguageScreen = () => {
      style={{ background: 'rgb(240,240,240' }}
     >
      <div className="col">
-      <LanguageCom lang={'Node js'} img={nodejs} color={'dark'} />
+      <LanguageCom lang={'Node.js'} img={nodejs} color={'dark'} />
      </div>
      <div className="col">
       <LanguageCom lang={'Python'} img={Python} color={'dark'} />
@@ -70,6 +74,15 @@ const EbookLanguageScreen = () => {
      </div>
      <div className="col">
       <LanguageCom lang={'Java'} icon={'fab fa-java'} color={'dark'} />
+     </div>
+     <div className="col">
+      <LanguageCom
+       lang={'SCRATCH'}
+       img={
+        'https://w1.pngwing.com/pngs/925/885/png-transparent-scratch-logo-cat-programming-language-computer-programming-scratching-mit-media-lab-coderdojo-blend-t-yellow-line-thumbnail.png'
+       }
+       color={'dark'}
+      />
      </div>
     </div>
     <h5 className="mt-5">ទិន្នន័យ Database</h5>

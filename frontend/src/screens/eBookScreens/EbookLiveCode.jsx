@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Logo from '../../img/free-ebook.png';
 import { FaHome } from 'react-icons/fa';
 import { VscRunAll } from 'react-icons/vsc';
@@ -21,7 +21,7 @@ const EbookLiveCode = ({ match, history }) => {
    const { data } = await axios.get(
     `/api/ebook/details/codeLive/${match.params.code}/get`
    );
-   console.log(data);
+
    if (data) {
     setCodeLiveText(data.content);
     setHtmlDoc(data.content);
@@ -86,7 +86,7 @@ const EbookLiveCode = ({ match, history }) => {
          width="100%"
          height="100%"
          srcDoc={htmlDoc}
-         frameborder="0"
+         frameBorder="0"
         ></iframe>
        </div>
       </div>
@@ -112,7 +112,7 @@ const EbookLiveCode = ({ match, history }) => {
          width="100%"
          height="100%"
          srcDoc={htmlDoc}
-         frameborder="0"
+         frameBorder="0"
         ></iframe>
        </div>
       </div>

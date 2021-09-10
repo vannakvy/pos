@@ -4,7 +4,6 @@ import { Spinner } from 'react-bootstrap';
 const Loader = ({ wd, hg, color = false, mg = false }) => {
  return (
   <Spinner
-   className={`${color ? color : 't_grediant'}`}
    animation="border"
    role="status"
    aria-hidden="true"
@@ -13,6 +12,7 @@ const Loader = ({ wd, hg, color = false, mg = false }) => {
     height: `${hg}px`,
     margin: `${mg ? mg : 'auto'}`,
     display: 'block',
+    color: color || 'rgb(0,191,255)',
    }}
   >
    <span className="sr-only">Loading...</span>

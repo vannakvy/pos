@@ -365,10 +365,12 @@ const AdminCourses = ({ match }) => {
         <th scope="col" style={{ maxWidth: 100 }}>
          រូបភាព
         </th>
-        <th scope="col">Name</th>
-        <th scope="col">Course Type</th>
-        <th scope="col">Description</th>
-        <th scope="col">Actions</th>
+        <th scope="col">ឈ្មោះមុខវិទ្យា</th>
+        <th scope="col">ប្រភេទ</th>
+        <th scope="col">អត្ថបទ</th>
+        <th scope="col" className="text-center">
+         ការកំណត់
+        </th>
        </tr>
       </thead>
       <tbody>
@@ -387,7 +389,7 @@ const AdminCourses = ({ match }) => {
           </td>
           <td className="fw-bold text-dark fs-6 kh">{course.name}</td>
 
-          <td>{course.courseType}</td>
+          <td className="text-info">{course.courseType}</td>
           <td>{course.description.slice(0, 30)}...</td>
           <td
            className="text-center py-2 px-0"
