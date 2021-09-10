@@ -1,14 +1,14 @@
 import React from "react";
 import "./Quiz.css";
+import {useHistory} from 'react-router-dom'
 export const Quiz = () => {
+  const history = useHistory();
   return (
     <div class="container-fluid mt-2" style={{ height: "80vh" }}>
       <div class="row">
-
-        
-       
+      
         <div class="col-md-4 mb-1">
-          <div class="card p-3">
+          <div class="card p-3" >
             <div class="d-flex flex-row mb-3">
               <img src="https://i.imgur.com/IpKQiNu.png" width="70" />
               <div class="d-flex flex-column ml-2">
@@ -25,14 +25,14 @@ export const Quiz = () => {
             <h5>
                   ពិន្ទុ <span className="text-success"> : 120/200</span>
                 </h5>{" "}
-              <span class="text-primary btn btn-info rounded">
+              <span class="text-primary btn btn-info rounded" onClick={()=>history.push('/ebook/quiz/quizDetail')}>
                   ចាប់ផ្ដើម&nbsp;<i class="fa fa-angle-right"></i>
                 </span>
             </div>
           </div>
         </div>
         <div class="col-md-4 mb-1">
-          <div class="card p-3 mb-1">
+          <div class="card p-3 mb-1"  onClick={()=>history.push('/ebook/quiz/quizDetail')}>
             <div class="d-flex flex-row mb-3">
               <img src="https://i.imgur.com/42SqVZd.png" width="70" />
               <div class="d-flex flex-column ml-2">
@@ -52,8 +52,8 @@ export const Quiz = () => {
             </h6>
             <div class="d-flex justify-content-between install mt-3">
               <span>Installed 1234 times</span>
-              <span class="text-primary btn btn-info">
-                Start Quiz&nbsp;<i class="fa fa-angle-right"></i>
+              <span class="text-primary btn btn-info" onClick={()=>history.push('/ebook/quiz/quizDetail')}>
+                ចាប់ផ្តើម&nbsp;<i class="fa fa-angle-right"></i>
               </span>
             </div>
           </div>
