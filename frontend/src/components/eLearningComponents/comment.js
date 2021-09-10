@@ -48,10 +48,12 @@ const Comment = ({ cid }) => {
         </div>
        </form>
       )}
-      {comments &&
-       comments.map((com) => (
-        <CommentCom userInfo={userInfo} comment={com} key={com.id} />
-       ))}
+      <div style={{ maxHeight: '800px', overflowY: 'auto' }}>
+       {comments &&
+        comments.map((com) => (
+         <CommentCom userInfo={userInfo} comment={com} key={com.id} />
+        ))}
+      </div>
      </div>
     </div>
    </div>

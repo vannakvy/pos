@@ -97,7 +97,7 @@ const CourseItemDetails = (props) => {
  };
  return (
   <Card
-   className="mx-md-1 mx-lg-0 mx-xl-2 pb-2 shadow-sm my-3"
+   className="mx-md-1 mx-lg-0 mx-xl-2 pb-2 shadow my-3"
    style={{ padding: '2px', borderRadius: 25 }}
   >
    <CardMedia

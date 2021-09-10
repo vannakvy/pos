@@ -7,6 +7,7 @@ import CourseContent from '../../components/eLearningComponents/CourseContent';
 import CourseItemDetails from '../../components/eLearningComponents/CourseItemDetails';
 import Comment from '../../components/eLearningComponents/comment';
 import ReactHtmlParser from 'html-react-parser';
+import RatingElearn from '../../components/eLearningComponents/RatingElearn';
 
 const CourseDetailsScreen = ({ match }) => {
  const { id } = match.params;
@@ -36,21 +37,57 @@ const CourseDetailsScreen = ({ match }) => {
     <Message variant="danger">{error}</Message>
    ) : (
     <>
-     <div className="">
-      <div className="py-3 bg-dark">
+     <div className="container d-block d-lg-none">
+      <CourseItemDetails course={course} />
+     </div>
+     <div className="d-none d-lg-block">
+      <div className="position-relative">
        <div
-        className="container _courseDetailHeader"
-        style={{ minHeight: '20vh' }}
+        className="w-100"
+        style={{
+         height: '400px',
+         overflow: 'hidden',
+         filter: 'blur(1px)',
+         opacity: 1,
+        }}
        >
-        <div className="row h-100">
-         <div className="col-md-8 d-none d-lg-block mt-5 pt-3">
-          <h1 style={{ fontSize: '3rem' }} className="kh text-info">
-           {course.name}
-          </h1>
-          <p className="text-warning ms-3">{course.courseType}</p>
-         </div>
-         <div className="col-lg-4">
-          <CourseItemDetails course={course} />
+        <img className="w-100" src={course.imgUrl} alt="" />
+        <div
+         className="w-100 h-100"
+         style={{
+          position: 'absolute',
+          top: 0,
+          background: 'black',
+          opacity: 0.8,
+         }}
+        ></div>
+       </div>
+       <div style={{ position: 'absolute', top: 0, width: '100%' }}>
+        <div
+         className="container _courseDetailHeader"
+         style={{ minHeight: '20vh', margin: '0 auto' }}
+        >
+         <div className="row h-100">
+          <div className="col-md-8 d-none d-lg-block mt-5 pt-3">
+           <h1 style={{ fontSize: '3rem' }} className="kh text-info">
+            {course.name}
+           </h1>
+           <div className="mt-5">
+            <h5 className="text-info">
+             ចំណាត់ថ្នាក់ <RatingElearn />
+            </h5>
+            <p className="text-light">{course.courseType}</p>
+            <button
+             className="btn text-dark rounded"
+             style={{ background: 'rgb(255,94,20)' }}
+            >
+             អោយចំណាត់ថ្នាក់
+            </button>
+           </div>
+          </div>
+          <div className="col-lg-4">
+           <CourseItemDetails course={course} />
+          </div>
          </div>
         </div>
        </div>
