@@ -74,7 +74,8 @@ const CourseDetailsScreen = ({ match }) => {
            </h1>
            <div className="mt-5">
             <h5 className="text-info">
-             ចំណាត់ថ្នាក់ <RatingElearn />
+             ចំណាត់ថ្នាក់ <RatingElearn /> (
+             <span className="text-warning">325</span> សិស្ស)
             </h5>
             <p className="text-light">{course.courseType}</p>
             <button
