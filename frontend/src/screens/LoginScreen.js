@@ -33,43 +33,41 @@ const LoginScreen = ({ location, history }) => {
   e.preventDefault();
   setMessage();
   if (email == '') {
-    setMessage('សូមវាយបញ្ចូលអុីម៉ែល');
-    setfocus("email");
-    }
-   else if (password == '') {
-    setMessage('សូមវាយបញ្ចូលពាក្យសម្ងាត់');
-    setfocus("password");
-   } 
-   else{
-    dispatch(login(email, password));
-   }
+   setMessage('សូមវាយបញ្ចូលអុីម៉ែល');
+   setfocus('email');
+  } else if (password == '') {
+   setMessage('សូមវាយបញ្ចូលពាក្យសម្ងាត់');
+   setfocus('password');
+  } else {
+   console.log(email, password);
+   dispatch(login(email, password));
+  }
  };
- const setfocus = (e) =>{
-    document.getElementById(e).focus();
-   }
+ const setfocus = (e) => {
+  document.getElementById(e).focus();
+ };
 
  return (
   <FormContainer>
    <h1 className="kh text-center mb-5">បញ្ចូលគណនី</h1>
    {(() => {
-        if (message) {
-          return (
-            <Message variant="danger"> <p className="kh fw-bold text-center">{message}</p></Message>
-          )
-        } 
-        else if(error){
-          return (
-            <Message variant="danger">
-            <p className="kh fw-bold text-center">{error}</p>
-           </Message>
-          )
-        }
-        else {
-          return (
-          <p></p>
-          )
-        }
-      })()}
+    if (message) {
+     return (
+      <Message variant="danger">
+       {' '}
+       <p className="kh fw-bold text-center">{message}</p>
+      </Message>
+     );
+    } else if (error) {
+     return (
+      <Message variant="danger">
+       <p className="kh fw-bold text-center">{error}</p>
+      </Message>
+     );
+    } else {
+     return <p></p>;
+    }
+   })()}
    <LoaderBackdrop loader={loading && loading} />
    <Form onSubmit={submitHandler}>
     <Form.Group controlId="email">

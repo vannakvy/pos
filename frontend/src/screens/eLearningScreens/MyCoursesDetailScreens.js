@@ -6,16 +6,13 @@ import {
  getEnrollSections,
  getEnrollVideo,
 } from '../../actions/eLearningActions/enrollActions';
-import Load from '../../components/eLearningComponents/Watch';
 import Message from '../../components/Message';
-import { Parallax } from 'react-parallax';
 import CourseContent from '../../components/eLearningComponents/CourseContent';
-import LoaderFullScreen from '../../components/eLearningComponents/LoaderFullScreen';
 import MyCoursesItem from '../../components/eLearningComponents/MyCoursesItem';
-import ResponsiveDrawer from '../../components/eLearningComponents/MyCourseCom';
 import Loader from '../../components/Loader';
 import Comment from '../../components/eLearningComponents/comment';
 import Footer from '../../components/Footer';
+import ReactHtmlParser from 'html-react-parser';
 
 const insideStyles = {
  background: 'white',
@@ -159,34 +156,18 @@ const MyCoursesDetailScreen = () => {
              </div>
             </div>
             <div className="mt-4 text-light p-1">
-             <div className="row row-cols-2 row-cols-md-4">
-              <div className="col">
-               <h5 className="ubuntu text-center text-md-left">
-                <span className="text-info fs-5 fw-bold">100K+</span>{' '}
-                <span className="text-light fs-6">likes </span>
-               </h5>
-              </div>
-              <div className="col">
-               <h5 className="ubuntu text-center text-md-center">
-                <span className="text-info fs-5 fw-bold">40+</span>{' '}
-                <span className="text-light fs-6">videos </span>
-               </h5>
-              </div>
-              <div className="col">
-               <h5 className="ubuntu text-center text-md-center">
-                <span className="text-info fs-5 fw-bold">100K+</span>{' '}
-                <span className="text-light fs-6">likes </span>
-               </h5>
-              </div>
-              <div className="col">
-               <h5 className="ubuntu text-center text-md-end">
-                <span className="text-info fs-5 fw-bold">100K+</span>{' '}
-                <span className="text-light fs-6">likes </span>
-               </h5>
-              </div>
-             </div>
+             <h4 className="text-center text-info">ព័ត៌មានអំពីមុខវិទ្យា</h4>
              <div className="row row-cols-1 row-cols-md-2 mt-3 px-1 px-md-2">
               <div className="col">
+               <div className="bg-light shadow rounded p-3 mb-4">
+                <h4 className="text-center text-info">អំពីមុខវិទ្យា</h4>
+                <div className="text-dark">
+                 {ReactHtmlParser(
+                  (enrollDetail && enrollDetail.courseId.objective) ||
+                   '<h6 class="text-center">មិនទាន់មាន</h6>'
+                 )}
+                </div>
+               </div>
                <h5 className="kh text-light">វីឌីអូសម្រាប់មុខវិទ្យានេះ</h5>
                {loadingSection ? (
                 <Loader wd={40} hg={40} />
@@ -202,7 +183,6 @@ const MyCoursesDetailScreen = () => {
               </div>
 
               <div className="col">
-               <h5 className="kh text-light mt-3">ផ្ដល់មតិផ្សេងៗ</h5>
                <div className="text-dark rounded">
                 <Comment cid={enrollDetail && enrollDetail.courseId._id} />
                </div>
@@ -214,63 +194,6 @@ const MyCoursesDetailScreen = () => {
           </div>
          </div>
         </div>
-
-        {/* <div className="pb-2 px-0 bg-light container-xl">
-         <Parallax bgImage={enrollDetail.courseId.imgUrl} strength={500}>
-          <div style={{ height: '40vh' }}></div>
-         </Parallax>
-        </div>
-
-        <div className="container-xl w-100">
-         <div className="row mt-2">
-          <div className="col-md-8 p-1">
-           <div className="_bg-light shadow rounded p-3">
-            <h4 className="ubuntu">
-             <span className="kh">ឈ្មោះមុខវិទ្យា:</span>{' '}
-             {enrollDetail.courseId.name}
-            </h4>
-            <h5 className="kh">ព័ត៌មានផ្សេងៗ:</h5>
-            <p>
-             <span className="mr-5"></span>
-             {enrollDetail.courseId.description}
-            </p>
-           </div>
-           <div className="my-3">
-            <h5 className="kh">វីឌីអូសម្រាប់មុខវិទ្យានេះ</h5>
-            <CourseContent
-             sections={enrollDetail.courseId.section}
-             cid={enrollDetail.courseId._id}
-             fromVideo={true}
-            />
-           </div>
-          </div>
-          <div className="col-md-4 p-1">
-           <div className="shadow rounded p-2 _bg-light kh">
-            <h5 className="kh text-center mt-1 mb-0">លទ្ធផលការសិក្សា</h5>
-            <Chart
-             width={'100%'}
-             height={'300px'}
-             chartType="PieChart"
-             loader={
-              <div className="text-center" style={{ padding: '130px 0' }}>
-               <Load color="#282c34" type="Watch" width={40} height={40} />
-              </div>
-             }
-             data={[
-              ['Task', 'Hours per Day'],
-              ['Finished', enrollDetail.progressBar],
-              ['Not yet', 100 - enrollDetail.progressBar],
-             ]}
-             options={{
-              // Just add this option
-              is3D: true,
-             }}
-             rootProps={{ 'data-testid': '2' }}
-            />
-           </div>
-          </div>
-         </div>
-        </div> */}
        </>
       ) : null}
      </>

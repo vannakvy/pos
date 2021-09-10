@@ -8,6 +8,8 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper';
 import axios from 'axios';
+import { Form } from 'react-bootstrap';
+import Loader from '../Loader';
 
 function TabPanel(props) {
  const { children, value, index, ...other } = props;
@@ -52,6 +54,7 @@ const useStyles = makeStyles((theme) => ({
 export default function SimpleTabs(props) {
  const classes = useStyles();
  const [value, setValue] = React.useState(0);
+ const [upLoading, setUpLoading] = useState(false);
  const {
   contents,
   setContents,
@@ -88,26 +91,70 @@ export default function SimpleTabs(props) {
   setValue(newValue);
  };
 
+ const uploadFileHandler = async (e) => {
+  setUpLoading(true);
+  const file = e.target.files[0];
+  const formData = new FormData();
+  formData.append('image', file);
+
+  try {
+   const config = {
+    headers: {
+     'Content-Type': 'multipart/form-data',
+    },
+   };
+
+   const { data } = await axios.post(
+    '/api/eLearning/uploads',
+    formData,
+    config
+   );
+
+   setContents(contents + `<img src="${data}" alt="" >`);
+   setUpLoading(false);
+  } catch (error) {
+   console.error(error);
+   setUpLoading(false);
+  }
+ };
+
  return (
   <div className={classes.root}>
    <Paper square>
-    <Tabs
-     value={value}
-     onChange={handleChange}
-     aria-label="simple tabs example"
-     className="en"
-    >
-     <Tab label="Contents" {...a11yProps(0)} />
-     <Tab label="Code Show" {...a11yProps(1)} />
-     <Tab label="Code Live" {...a11yProps(2)} />
-    </Tabs>
+    <div className="d-flex justify-content-between">
+     <Tabs
+      value={value}
+      onChange={handleChange}
+      aria-label="simple tabs example"
+      className="en"
+     >
+      <Tab label="អត្ថបទ" {...a11yProps(0)} />
+      <Tab label="កូដបង្ហាញ" {...a11yProps(1)} />
+      <Tab label="កូដអនុវត្ដ" {...a11yProps(2)} />
+     </Tabs>
+     <div className="position-relative">
+      <Form.File
+       className="rounded bg-info"
+       style={{ marginTop: 2 }}
+       id="image-file"
+       label="បញ្ចូលរូបភាព"
+       custom
+       onChange={uploadFileHandler}
+      ></Form.File>
+      {upLoading && (
+       <span className="position-absolute" style={{ top: 10, left: -40 }}>
+        <Loader />
+       </span>
+      )}
+     </div>
+    </div>
    </Paper>
    <TabPanel value={value} index={0}>
     <Editor
      className="round"
      theme="vs-dark"
      height="250px"
-     options={{ formatOnPaste: true }}
+     //  options={{ formatOnPaste: true }}
      defaultLanguage="html"
      value={contents}
      onChange={(e) => setContents(e)}
@@ -119,7 +166,7 @@ export default function SimpleTabs(props) {
      theme="vs-dark"
      height="250px"
      defaultLanguage="html"
-     options={{ formatOnPaste: true }}
+     //  options={{ formatOnPaste: true }}
      value={code.codeShow}
      onChange={(e) => setCode({ ...code, codeShow: e })}
     />
@@ -130,7 +177,7 @@ export default function SimpleTabs(props) {
      theme="vs-dark"
      height="250px"
      defaultLanguage="html"
-     options={{ formatOnPaste: true }}
+     //  options={{ formatOnPaste: true }}
      value={codeLiveText}
      onChange={(e) => setCodeLiveText(e)}
     />

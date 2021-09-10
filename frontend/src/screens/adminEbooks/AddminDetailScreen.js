@@ -54,7 +54,7 @@ const AddminDetailScreen = () => {
   setOpenEditor(!openEditor);
  };
  return (
-  <div className="details mt-2" style={{ maxWidth: '1200px' }}>
+  <div className="details mt-2" style={{ maxWidth: '1100px' }}>
    <p
     className="kh px-2 py-1 rounded text-light bg-success d-inline-block sticky-top"
     style={{ top: 80, cursor: 'pointer' }}

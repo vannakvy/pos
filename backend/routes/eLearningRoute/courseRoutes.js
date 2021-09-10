@@ -1,7 +1,7 @@
 import express from 'express';
 import {
- addObjective,
- getObjective,
+ addCourseInclude,
+ getCourseInclude,
  createCourse,
  deleteCourseById,
  getCourseById,
@@ -14,6 +14,8 @@ import {
  updateSectionById,
  updateVideoById,
  deleteVidoeoById,
+ getObjective,
+ addObjective,
 } from '../../controllers/eLearningController/courseControllers.js';
 import { getVideoEnroll } from '../../controllers/eLearningController/videoControllers.js';
 import { protect, admin } from '../../middleware/authMiddleware.js';
@@ -28,6 +30,11 @@ router
  .get(getCourseById)
  .put(protect, admin, updateCourseById)
  .delete(protect, admin, deleteCourseById);
+
+router
+ .route('/:id/include')
+ .get(getCourseInclude)
+ .put(protect, admin, addCourseInclude);
 
 router
  .route('/:id/objective')

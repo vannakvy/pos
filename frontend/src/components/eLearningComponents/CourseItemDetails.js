@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { NavLink, useHistory, useParams } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -97,7 +97,7 @@ const CourseItemDetails = (props) => {
  };
  return (
   <Card
-   className="mx-md-1 mx-lg-0 mx-xl-2 pb-2 shadow my-3"
+   className="mx-md-1 mx-lg-0 mx-xl-2 pb-2 shadow-sm my-3"
    style={{ padding: '2px', borderRadius: 25 }}
   >
    <CardMedia
@@ -177,9 +177,9 @@ const CourseItemDetails = (props) => {
       </>
      )}
 
-     <h5 className="mt-2 mb-3 text-center text-info">គោលបំណង</h5>
+     <h5 className="mt-2 mb-3 text-center text-info mt-4">អំពីមុខវិទ្យា</h5>
      {ReactHtmlParser(
-      course.objective || '<h6 class="text-center">មិនទាន់មាន</h6>'
+      course.include || '<h6 class="text-center">មិនទាន់មាន</h6>'
      )}
      <hr />
      <div className="text-center mt-4">
@@ -205,13 +205,13 @@ const CourseItemDetails = (props) => {
       <Typography
        variant="body2"
        align="center"
-       className=" mt-2"
+       className="mt-2 mb-5 kh"
        style={{ fontSize: '12px' }}
       >
        {'Copyright © '}
-       <Link color="inherit" href="/">
+       <NavLink color="inherit" to="/">
         Coding Cambodia
-       </Link>{' '}
+       </NavLink>{' '}
        {new Date().getFullYear()}
        {'.'}
       </Typography>

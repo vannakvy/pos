@@ -6,8 +6,8 @@ import ReactHtmlParser from 'html-react-parser';
 import { useSelector } from 'react-redux';
 import { AiOutlineAppstoreAdd } from 'react-icons/ai';
 
-const Objective = ({ id }) => {
- const [codeLive, setCodeLive] = useState('');
+const CourseInclude = ({ id }) => {
+ const [codeLiveText, setCodeLiveText] = useState('');
  const [success, setSuccess] = useState(false);
  const [loading, setLoading] = useState(false);
 
@@ -16,13 +16,13 @@ const Objective = ({ id }) => {
  useEffect(() => {
   setSuccess(false);
   async function fetchData() {
-   const { data } = await axios.get(`/api/courses/${id}/objective`);
-   setCodeLive(data || '');
+   const { data } = await axios.get(`/api/courses/${id}/include`);
+   setCodeLiveText(data || '');
   }
   fetchData();
  }, [id, success]);
 
- const addObj = async (id, obj) => {
+ const addInclude = async (id, include) => {
   setLoading(true);
   try {
    const config = {
@@ -32,8 +32,8 @@ const Objective = ({ id }) => {
     },
    };
    const { data } = await axios.put(
-    `/api/courses/${id}/objective`,
-    { objective: obj },
+    `/api/courses/${id}/include`,
+    { include: include },
     config
    );
    if (data) {
@@ -47,7 +47,7 @@ const Objective = ({ id }) => {
 
  return (
   <>
-   <h4 className="text-info text-center">គោលបំណង</h4>
+   <h4 className="text-info text-center">អំពីមុខវិទ្យា</h4>
    <div className="row my-2">
     <div className="col-md-6">
      <div className="py-2 px-1 rounded" style={{ background: 'rgb(30,30,30)' }}>
@@ -57,32 +57,30 @@ const Objective = ({ id }) => {
        height="300px"
        defaultLanguage="html"
        options={{ formatOnPaste: true }}
-       value={codeLive}
+       value={codeLiveText}
        onChange={(e) => {
-        setCodeLive(e);
+        setCodeLiveText(e);
        }}
       />
      </div>
     </div>
     <div className="col-md-6">
      <div className="w-100 h-100 bg-light rounded p-4">
-      <div className="row row-cols-xl-2 row-cols-lg-1">
-       {ReactHtmlParser(codeLive)}
-      </div>
+      {ReactHtmlParser(codeLiveText)}
      </div>
     </div>
    </div>
    <div className="text-center mb-2">
     <button
      onClick={() =>
-      setCodeLive(
-       codeLive +
-        `<div class="mb-3 fw-bold d-flex">
-        <span class="obj1">
-            <i class="fas fa-check fs-5 text-success"></i>
+      setCodeLiveText(
+       codeLiveText +
+        `<p class="mb-2 fw-bold">
+        <span class="obj">
+            <img width="20px" src="https://i.pinimg.com/originals/5e/00/ff/5e00ffa3d59703b5dffc407b90dfde35.png" alt="" >
         </span>
-        <p class="w-100">ចេះ</p>
-    </div>`
+        ២២ ម៉ោងនៃវីដីអូទាំងអស់
+    </p>`
       )
      }
      className="btn btn-info rounded mx-1"
@@ -92,7 +90,7 @@ const Objective = ({ id }) => {
     <button
      className="btn btn-success mx-1 rounded position-relative"
      style={{ width: 120 }}
-     onClick={() => addObj(id, codeLive)}
+     onClick={() => addInclude(id, codeLiveText)}
     >
      {loading && (
       <span
@@ -116,4 +114,4 @@ const Objective = ({ id }) => {
  );
 };
 
-export default Objective;
+export default CourseInclude;

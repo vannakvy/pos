@@ -9,7 +9,7 @@ import Paginate from '../../components/eLearningComponents/Paginate';
 import { useLocation } from 'react-router-dom';
 import queryString from 'query-string';
 import ConvertNum from '../../components/eLearningComponents/ConvertNum';
-import { IoMdArrowBack } from 'react-icons/io';
+import { AiFillStepBackward } from 'react-icons/ai';
 
 const CoursesScreen = ({ match, history }) => {
  const dispatch = useDispatch();
@@ -48,19 +48,21 @@ const CoursesScreen = ({ match, history }) => {
     className=""
     style={{ minHeight: '90vh', maxWidth: 1300, margin: '0 auto' }}
    >
-    <div className="row pt-3 px-2 w-100">
+    <div className="row pt-3 px-2 w-100 mb-2">
      <div className="col-4">
-      <p className="my-2 kh fw-bold" onClick={() => window.history.back()}>
-       <h6 className="m-0 text-dark">
-        <IoMdArrowBack style={{ fontSize: 18 }} />
-        <span className="ml-1">ត្រឡប់ក្រោយ</span>
-       </h6>
-      </p>
+      <h5
+       className="m-0 text-dark"
+       style={{ cursor: 'pointer' }}
+       onClick={() => window.history.back()}
+      >
+       <AiFillStepBackward style={{ fontSize: 18 }} />
+       <span className="ml-1">ត្រឡប់ក្រោយ</span>
+      </h5>
      </div>
-     <h4 className="col-4 text-center kh mt-1">មុខវិទ្យា</h4>
+     <h4 className="col-4 text-center kh mt-1 text-info">មុខវិទ្យា</h4>
     </div>
     <div
-     className="d-flex justify-content-between flex-wrap w-100"
+     className="d-flex justify-content-between flex-wrap w-100 px-3"
      //  style={{ position: 'sticky', top: 200, zIndex: 2 }}
     >
      <div style={{ width: '270px' }}>
@@ -96,7 +98,7 @@ const CoursesScreen = ({ match, history }) => {
      </div>
     </div>
 
-    <h5 className="kh">
+    <h5 className="kh ms-3">
      {courseType === 'AllCourses'
       ? 'មុខវិទ្យាទាំងអស់'
       : courseType === 'WebDevelopment'

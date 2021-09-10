@@ -34,7 +34,7 @@ const CourseSidebar = ({ courses, lang }) => {
  };
 
  return (
-  <div className="sticky-top" style={{ zIndex: 100, top: '65px' }}>
+  <div className="" style={{ zIndex: 100, position: 'sticky', top: '60px' }}>
    <div className="d-none d-lg-block" style={{ width: 250, zIndex: 1 }}>
     <div className="ml-1">
      <div className="bg-light p-0 m-0 d-flex">

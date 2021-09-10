@@ -38,6 +38,7 @@ const courseSchema = mongoose.Schema(
   imgUrl: { type: String, required: true },
   description: { type: String, required: true },
   objective: String,
+  include: String,
   section: [sectionSchema],
  },
  {
