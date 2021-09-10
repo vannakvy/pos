@@ -25,11 +25,7 @@ const Team = () => {
      <div class="col-xl-3 col-sm-6 mb-5">
       <div class="bg-white round shadow-sm py-5 px-4 teamHover">
        <img
-<<<<<<< HEAD
-        src="/img/vannak.jpg"
-=======
         src={MY_PHOTO1}
->>>>>>> b7ea1bb08353968c4b2ea8da3e00fb10eee48f16
         alt=""
         width="130"
         class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm"
