@@ -14,15 +14,6 @@ import Comment from '../../components/eLearningComponents/comment';
 import Footer from '../../components/Footer';
 import ReactHtmlParser from 'html-react-parser';
 
-const insideStyles = {
- background: 'white',
- padding: 20,
- position: 'absolute',
- top: '50%',
- left: '50%',
- transform: 'translate(-50%,-50%)',
-};
-
 const MyCoursesDetailScreen = () => {
  const { eid } = useParams();
  const dispatch = useDispatch();
@@ -163,7 +154,9 @@ const MyCoursesDetailScreen = () => {
                 <h4 className="text-center text-info">គោលបំណង</h4>
                 <div className="text-dark">
                  {ReactHtmlParser(
-                  (enrollDetail && enrollDetail.courseId.objective) ||
+                  (enrollDetail &&
+                   enrollDetail.courseId &&
+                   enrollDetail.courseId.objective) ||
                    '<h6 class="text-center">មិនទាន់មាន</h6>'
                  )}
                 </div>
@@ -192,7 +185,8 @@ const MyCoursesDetailScreen = () => {
                  {ReactHtmlParser(
                   (enrollDetail &&
                    enrollDetail.courseId &&
-                   enrollDetail.courseId.include) || <h6>មិនមាន</h6>
+                   enrollDetail.courseId.include) ||
+                   '<h6 class="text-center">មិនទាន់មាន</h6>'
                  )}
                 </div>
                </div>

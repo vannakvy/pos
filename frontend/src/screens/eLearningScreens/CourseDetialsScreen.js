@@ -8,11 +8,19 @@ import CourseItemDetails from '../../components/eLearningComponents/CourseItemDe
 import Comment from '../../components/eLearningComponents/comment';
 import ReactHtmlParser from 'html-react-parser';
 import RatingElearn from '../../components/eLearningComponents/RatingElearn';
+import ModalSize from '../../components/Modal';
+import axios from 'axios';
+import { Dropdown } from 'semantic-ui-react';
 
 const CourseDetailsScreen = ({ match }) => {
  const { id } = match.params;
  const dispatch = useDispatch();
  const [scrollY, setScrollY] = useState(0);
+ const [rating, setRating] = useState({ rating: 0, userRated: [] });
+ const [yourRate, setYourRate] = useState(null);
+ const [addRateSuc, setAddRateSuc] = useState(false);
+
+ const { userInfo } = useSelector((state) => state.userLogin);
 
  const courseDetail = useSelector((state) => state.courseDetail);
  const { loading, error, course } = courseDetail;
@@ -26,6 +34,40 @@ const CourseDetailsScreen = ({ match }) => {
   updatePosition();
   if (!course || id !== course._id) dispatch(getCourseById(id));
  }, [dispatch, id]);
+
+ useEffect(async () => {
+  setAddRateSuc(false);
+  const { data } = await axios.get(`/api/courses/${id}/rating`);
+  if (data) {
+   setRating(data);
+  }
+  if (data && userInfo) {
+   const yourRated = data.userRated.find((e) => {
+    return e.user == userInfo._id;
+   });
+   if (yourRated) {
+    setYourRate(yourRated);
+   }
+  }
+ }, [id, userInfo, addRateSuc]);
+
+ const onRate = async (e, value) => {
+  console.log(value.rating);
+  const config = {
+   headers: {
+    Authorization: `Bearer ${userInfo.token}`,
+   },
+  };
+  const { data } = await axios.put(
+   `/api/courses/${id}/rating`,
+   { rating: value.rating },
+   config
+  );
+
+  if (data) {
+   setAddRateSuc(true);
+  }
+ };
 
  return (
   <div style={{ minHeight: '90vh' }}>
@@ -73,18 +115,51 @@ const CourseDetailsScreen = ({ match }) => {
             {course.name}
            </h1>
            <div className="mt-5">
-            <h5 className="text-info">
-             ចំណាត់ថ្នាក់ <RatingElearn /> (
-             <span className="text-warning">325</span> សិស្ស)
-            </h5>
             <p className="text-light">{course.courseType}</p>
-            <button
-             className="btn text-dark rounded"
-             style={{ background: 'rgb(255,94,20)' }}
-            >
-             អោយចំណាត់ថ្នាក់
-            </button>
+
+            <h5 className="text-info">
+             ចំណាត់ថ្នាក់ <RatingElearn rate={rating.rating} /> (
+             <span className="text-warning">{rating.userRated.length}</span>{' '}
+             សិស្ស)
+            </h5>
+
+            {userInfo && userInfo._id && (
+             <>
+              {yourRate ? (
+               <p
+                className="fw-bold text-light p-3 px-4 rounded shadow-sm"
+                style={{ background: 'rgba(0,180,255,0.2)', width: '250px' }}
+               >
+                អ្នកបានដាក់ <RatingElearn rate={yourRate.rating} />
+               </p>
+              ) : (
+               <Dropdown
+                text={
+                 <button
+                  className="btn text-dark rounded"
+                  style={{ background: 'rgb(255,94,20)' }}
+                 >
+                  អោយចំណាត់ថ្នាក់
+                 </button>
+                }
+               >
+                <Dropdown.Menu>
+                 <div className="p-2">
+                  <h6 className="text-center">ដាក់ចំណាត់ថ្នាក់</h6>
+                  <RatingElearn onRate={onRate} rate={1} readWrite={true} />
+                 </div>
+                </Dropdown.Menu>
+               </Dropdown>
+              )}
+             </>
+            )}
            </div>
+           <ModalSize
+            text="លុប?"
+            size={'sm'}
+            btn="danger"
+            funs={() => alert('dd')}
+           />
           </div>
           <div className="col-lg-4">
            <CourseItemDetails course={course} />
@@ -98,7 +173,7 @@ const CourseDetailsScreen = ({ match }) => {
      <div className="container py-2">
       <div className="row">
        <div className="col-lg-8">
-        <div className="bg-light shadow-sm mt-4 px-4 py-4 border round mb-4">
+        <div className="bg-light shadow-sm mt-4 px-5 py-4 border round mb-4">
          <h4 className="text-center text-info mb-4">ចប់មេរៀននេះសិស្សអាច៖</h4>
          <div className="row row-cols-md-2 row-cols-sm-1">
           {ReactHtmlParser(

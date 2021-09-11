@@ -11,6 +11,7 @@ import {
 import { addUserEnrollCourses } from '../../actions/eLearningActions/enrollActions';
 import { createNotify } from '../../actions/notifyActions';
 import { BsClipboardData } from 'react-icons/bs';
+import ModalSize from '../../components/Modal';
 
 const AdminStudents = () => {
  let i = 1;
@@ -79,29 +80,50 @@ const AdminStudents = () => {
          <td>{reqE.cid.name}</td>
          <td>{reqE.descrip}</td>
          <td className="pt-2 pb-0">
-          <button
-           className="btn btn-sm btn-success me-2 my-0"
-           onClick={() => {
-            if (window.confirm('get user a course?')) {
+          <span>
+           <ModalSize
+            id={'Suc' + reqE._id}
+            text={`យល់ព្រមការស្នើសុំរបស់ ${reqE.user.name} ?`}
+            size={'sm'}
+            btn="success"
+            funs={() => {
              createNoti(reqE);
              dispatch(addUserEnrollCourses(reqE.user._id, [reqE.cid._id]));
              deleteReqEnrollHandler(reqE._id);
-            }
-           }}
+            }}
+           />
+          </span>
+          <button
+           className="btn btn-sm btn-success me-2 my-0"
+           data-bs-toggle="modal"
+           data-bs-target={`#idSuc${reqE._id}`}
+           //  onClick={() => {
+           //   if (window.confirm('get user a course?')) {
+           //    createNoti(reqE);
+           //    dispatch(addUserEnrollCourses(reqE.user._id, [reqE.cid._id]));
+           //    deleteReqEnrollHandler(reqE._id);
+           //   }
+           //  }}
           >
            <FaCheck />
           </button>
 
           <button
            className="btn btn-sm btn-danger my-0"
-           onClick={() => {
-            if (window.confirm('Delete this enroll request?')) {
-             deleteReqEnrollHandler(reqE._id);
-            }
-           }}
+           data-bs-toggle="modal"
+           data-bs-target={`#idDel${reqE._id}`}
           >
            <i className="fas fa-trash text-light"></i>
           </button>
+          <span>
+           <ModalSize
+            id={'Del' + reqE._id}
+            text={`លុបការស្នើសុំរបស់ ${reqE.user.name} ?`}
+            size={'sm'}
+            btn="danger"
+            funs={() => deleteReqEnrollHandler(reqE._id)}
+           />
+          </span>
          </td>
         </tr>
        ))}

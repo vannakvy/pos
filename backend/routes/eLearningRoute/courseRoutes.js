@@ -17,6 +17,10 @@ import {
  getObjective,
  addObjective,
 } from '../../controllers/eLearningController/courseControllers.js';
+import {
+ addRating,
+ getRating,
+} from '../../controllers/eLearningController/ratingControllers.js';
 import { getVideoEnroll } from '../../controllers/eLearningController/videoControllers.js';
 import { protect, admin } from '../../middleware/authMiddleware.js';
 const router = express.Router();
@@ -30,6 +34,8 @@ router
  .get(getCourseById)
  .put(protect, admin, updateCourseById)
  .delete(protect, admin, deleteCourseById);
+
+router.route('/:id/rating').get(getRating).put(protect, addRating);
 
 router
  .route('/:id/include')

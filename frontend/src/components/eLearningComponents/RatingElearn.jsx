@@ -1,10 +1,16 @@
 import React from 'react';
 import { Rating } from 'semantic-ui-react';
 
-const RatingElearn = () => (
+const RatingElearn = ({ rate = 0, readWrite = false, onRate = null }) => (
  <span>
-  <Rating icon="star" defaultRating={3} maxRating={5} disabled={true} />
-  3.5
+  <Rating
+   icon="star"
+   rating={Math.floor(rate)}
+   maxRating={5}
+   disabled={!readWrite}
+   onRate={(e, data) => onRate(e, data)}
+  />{' '}
+  {rate.toFixed(1)}
  </span>
 );
 
