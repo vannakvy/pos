@@ -56,15 +56,9 @@ body {
 }
 
 .covid_rotate {
- position: absolute;
- /* top: 50%;
-  left: 50%; */
- width: 60px;
- height: 60px;
-
  -webkit-animation: spin 4s linear infinite;
  -moz-animation: spin 4s linear infinite;
- animation: spin 2s linear infinite;
+ animation: spin 6s linear infinite;
 }
 @-moz-keyframes spin {
  100% {
@@ -118,7 +112,7 @@ body {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
- background: rgb(17, 100, 255);
+ background: rgb(31, 155, 207);
 
  /* border-radius: 10px; */
 }

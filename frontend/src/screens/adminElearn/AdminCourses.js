@@ -22,6 +22,7 @@ import queryString from 'query-string';
 import Paginate from '../../components/eLearningComponents/Paginate';
 import { FaExternalLinkAlt } from 'react-icons/fa';
 import ConvertNum from '../../components/eLearningComponents/ConvertNum';
+import ModalSize from '../../components/Modal';
 
 const AdminCourses = ({ match }) => {
  const [courseId, setCourseId] = useState('');
@@ -89,9 +90,7 @@ const AdminCourses = ({ match }) => {
  };
 
  const deleteCourseHandler = (id) => {
-  if (window.confirm('Are you sure?')) {
-   dispatch(deleteCourse(id));
-  }
+  dispatch(deleteCourse(id));
  };
 
  const editCourseHandler = (course) => {
@@ -413,10 +412,19 @@ const AdminCourses = ({ match }) => {
            </button>
            <button
             className="btn-sm btn bg-danger text-light"
-            onClick={() => deleteCourseHandler(course._id)}
+            // onClick={() => deleteCourseHandler(course._id)}
+            data-bs-toggle="modal"
+            data-bs-target={`#id${course._id}`}
            >
             <i className="fas fa-trash" style={{ fontSize: '110%' }}></i>
            </button>
+           <ModalSize
+            id={course._id}
+            text={`លុប ${course.name} ?`}
+            size={'sm'}
+            btn="danger"
+            funs={() => deleteCourseHandler(course._id)}
+           />
           </td>
          </tr>
         ))}

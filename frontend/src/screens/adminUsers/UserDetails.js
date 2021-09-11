@@ -20,6 +20,7 @@ import CourseItemAdmin from '../../components/eLearningComponents/CourseItemAdmi
 import EnrollModal from '../../components/eLearningComponents/EnrollModal';
 import ConvertNum from '../../components/eLearningComponents/ConvertNum';
 import { Button } from 'react-bootstrap';
+import ModalSize from '../../components/Modal';
 
 const UserDetails = () => {
  let i = 1;
@@ -60,20 +61,11 @@ const UserDetails = () => {
  }, [dispatch, uid, successCreateEnroll, sucessDeleteEnrollCourse]);
 
  const deleteEnrollHandler = (eid) => {
-  if (window.confirm('Are you sure? Delete this enroll Course!')) {
-   dispatch(deleteUserEnrollCourses(eid));
-  }
+  dispatch(deleteUserEnrollCourses(eid));
  };
 
- const back = () => {
-  history.push('/adminUsers');
- };
  return (
   <>
-   {/* <Button className="my-2 bg-grey" onClick={back}>
-    back
-   </Button> */}
-
    {loadingUserDetails ? (
     <Loader wd={40} hg={40} />
    ) : errorUserDetail ? (
@@ -127,7 +119,7 @@ const UserDetails = () => {
     <Message variant="danger">errorUserEnrollCourses</Message>
    ) : (
     <>
-     <table class="table table-sm table-striped table-hover">
+     <table class="table table-sm table-striped table-hover bg-light pb-3">
       <thead>
        <tr className="bg-dark text-light kh">
         <th scope="col">#</th>
@@ -150,9 +142,22 @@ const UserDetails = () => {
             <td>{e.courseId.courseType}</td>
             <td>{e.progressBar}%</td>
             <td className="pt-2 pb-0 text-center">
+             <span>
+              <ModalSize
+               id={'Del' + e._id}
+               text={`លុបមុខវិទ្យា ${e.courseId.name} របស់ ${e.user.name} ?`}
+               size={'sm'}
+               btn="danger"
+               funs={() => {
+                deleteEnrollHandler(e._id);
+               }}
+              />
+             </span>
              <Button
               className="me-2"
-              onClick={() => deleteEnrollHandler(e._id)}
+              // onClick={() => deleteEnrollHandler(e._id)}
+              data-bs-toggle="modal"
+              data-bs-target={`#idDel${e._id}`}
               type="button"
               variant="danger"
               size="sm"

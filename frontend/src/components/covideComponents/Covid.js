@@ -14,9 +14,11 @@ import { sortData, prettyPrintStat } from "./util";
 import numeral from "numeral";
 import Map from "./Map";
 import "leaflet/dist/leaflet.css";
+import { Loader } from 'semantic-ui-react';
 import DropdownExampleSearchSelection from "./Dropdown";
 
 const App = () => {
+  const [loading, setLoading] = useState(true);
   const [country, setInputCountry] = useState("worldwide");
   const [countryInfo, setCountryInfo] = useState({});
   const [countries, setCountries] = useState([]);
@@ -69,8 +71,25 @@ const App = () => {
       });
   };
 
-  return (
-    <div className="app">
+  useEffect(() => {
+      setTimeout(function() { 
+          setLoading(false)
+      }.bind(this), 1000)
+  }, []);
+
+ 
+
+  if(loading==true){
+      return( 
+      <Card className="p-5">
+      <Loader active inline="centered" className="fw-bold">
+       កំពុងដំណើរការ...
+      </Loader>
+     </Card>)
+  }
+  else{
+    return(
+      <div className="app">
       <Card className="app__right">
         <CardContent>
           <div className="app__information">
@@ -136,7 +155,6 @@ const App = () => {
         />
       </div>
     </div>
-  );
-};
+  )}};
 
 export default App;

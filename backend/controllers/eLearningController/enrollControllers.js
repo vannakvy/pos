@@ -31,7 +31,9 @@ const getEnrollDetail = asyncHandler(async (req, res) => {
 //@access  Public
 const getUserEnrollCourses = asyncHandler(async (req, res) => {
  const { uid } = req.params;
- const enrollCourses = await Enroll.find({ user: uid }).populate('courseId');
+ const enrollCourses = await Enroll.find({ user: uid })
+  .populate('courseId')
+  .populate('user');
  const courses = await Course.find({});
 
  if (enrollCourses && courses) {
@@ -86,6 +88,9 @@ const getUserEnrollCourses = asyncHandler(async (req, res) => {
    return {
     _id: e._id,
     progressBar: e.progressBar,
+    user: {
+     name: e.user.name,
+    },
     courseId: {
      name: e.courseId.name,
      courseType: e.courseId.courseType,

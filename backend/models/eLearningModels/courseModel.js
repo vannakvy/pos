@@ -39,6 +39,13 @@ const courseSchema = mongoose.Schema(
   description: { type: String, required: true },
   objective: String,
   include: String,
+  rating: { type: Number, required: true, default: 1.0 },
+  userRated: [
+   {
+    user: { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'User' },
+    rating: Number,
+   },
+  ],
   section: [sectionSchema],
  },
  {

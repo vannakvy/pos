@@ -14,15 +14,6 @@ import Comment from '../../components/eLearningComponents/comment';
 import Footer from '../../components/Footer';
 import ReactHtmlParser from 'html-react-parser';
 
-const insideStyles = {
- background: 'white',
- padding: 20,
- position: 'absolute',
- top: '50%',
- left: '50%',
- transform: 'translate(-50%,-50%)',
-};
-
 const MyCoursesDetailScreen = () => {
  const { eid } = useParams();
  const dispatch = useDispatch();
@@ -87,7 +78,7 @@ const MyCoursesDetailScreen = () => {
          style={{
           top: 0,
           height: '100vh',
-          paddingTop: '68px',
+          paddingTop: '55px',
           zIndex: 10,
          }}
         >
@@ -159,16 +150,20 @@ const MyCoursesDetailScreen = () => {
              <h4 className="text-center text-info">ព័ត៌មានអំពីមុខវិទ្យា</h4>
              <div className="row row-cols-1 row-cols-md-2 mt-3 px-1 px-md-2">
               <div className="col">
-               <div className="bg-light shadow rounded p-3 mb-4">
-                <h4 className="text-center text-info">អំពីមុខវិទ្យា</h4>
+               <div className="bg-light shadow rounded p-4 mb-4">
+                <h4 className="text-center text-info">គោលបំណង</h4>
                 <div className="text-dark">
                  {ReactHtmlParser(
-                  (enrollDetail && enrollDetail.courseId.objective) ||
+                  (enrollDetail &&
+                   enrollDetail.courseId &&
+                   enrollDetail.courseId.objective) ||
                    '<h6 class="text-center">មិនទាន់មាន</h6>'
                  )}
                 </div>
                </div>
-               <h5 className="kh text-light">វីឌីអូសម្រាប់មុខវិទ្យានេះ</h5>
+               <h5 className="kh text-info text-center">
+                វីឌីអូសម្រាប់មុខវិទ្យានេះ
+               </h5>
                {loadingSection ? (
                 <Loader wd={40} hg={40} />
                ) : errorSection ? (
@@ -180,9 +175,23 @@ const MyCoursesDetailScreen = () => {
                  fromVideo={true}
                 />
                )}
+               <br />
               </div>
 
               <div className="col">
+               <div className="bg-light p-4 rounded mb-4">
+                <h4 className="text-center text-info">អំពីមុខវិទ្យា</h4>
+                <div className="text-dark mt-3 row row-cols-xl-2 row-cols-lg-1">
+                 {ReactHtmlParser(
+                  (enrollDetail &&
+                   enrollDetail.courseId &&
+                   enrollDetail.courseId.include) ||
+                   '<h6 class="text-center">មិនទាន់មាន</h6>'
+                 )}
+                </div>
+               </div>
+
+               <h4 className="text-center text-info">មតិយោបល់</h4>
                <div className="text-dark rounded">
                 <Comment cid={enrollDetail && enrollDetail.courseId._id} />
                </div>
