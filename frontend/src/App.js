@@ -138,17 +138,18 @@ const App = () => {
      onClick={() => dispatch(navbarList('Covid19'))}
      to="/covid"
      style={{
-      position: 'fixed',
-      bottom: '70px',
-      left: '10px',
+      position: 'absolute',
+      bottom: '0px',
+      left: '0px',
       zIndex: '1000',
      }}
     >
      <img
       className="covid_rotate rounded-circle"
-      width="50px"
-      height="50px"
-      src="https://www.psycharchives.org/retrieve/096175aa-f7f2-4970-989d-d934c30b5551"
+      width="150px"
+      height="150px"
+    //   src="https://www.psycharchives.org/retrieve/096175aa-f7f2-4970-989d-d934c30b5551"
+      src="http://webmonitor.inccloudserver.com/fubuki.png"
       alt=""
      />
     </NavLink>
