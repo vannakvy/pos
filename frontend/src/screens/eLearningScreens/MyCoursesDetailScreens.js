@@ -13,6 +13,7 @@ import Loader from '../../components/Loader';
 import Comment from '../../components/eLearningComponents/comment';
 import Footer from '../../components/Footer';
 import ReactHtmlParser from 'html-react-parser';
+import RatingElearn from '../../components/eLearningComponents/RatingElearn';
 
 const MyCoursesDetailScreen = () => {
  const { eid } = useParams();
@@ -143,6 +144,14 @@ const MyCoursesDetailScreen = () => {
                  មុខវិទ្យានេះមិនទាន់មា​នវិឌីអូដើម្បីរៀននៅឡើយ
                 </button>
                )}
+               <h5 className="text-info mt-3">
+                ចំណាត់ថ្នាក់{' '}
+                <RatingElearn rate={enrollDetail.courseId.rating} /> (
+                <span className="text-warning">
+                 {enrollDetail.courseId.userRated.length}
+                </span>{' '}
+                សិស្ស)
+               </h5>
               </div>
              </div>
             </div>

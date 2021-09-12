@@ -9,6 +9,7 @@ import {
  getEnrollVideo,
 } from '../../actions/eLearningActions/enrollActions';
 import CourseContent from '../../components/eLearningComponents/CourseContent';
+import NotOwn from '../../components/eLearningComponents/NotOwn';
 import Loader from '../../components/Loader';
 import Message from '../../components/Message';
 import { COUSRE_ENROLL_RESET } from '../../constants/eLearningConstants/enrollConstants';
@@ -72,7 +73,7 @@ const CourseVideoScreen = () => {
      <>
       {enroll === null || enroll === undefined ? (
        <>
-        <h3 className="text-center">You're not own this course</h3>
+        <NotOwn />
        </>
       ) : (
        <>

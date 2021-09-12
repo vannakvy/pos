@@ -29,6 +29,7 @@ import StockDetail from './screens/eShopScreens/StockDetail';
 import EshopDashboard from './screens/eShopScreens/EshopDashboard';
 import Test from './screens/eShopScreens/Test';
 import Team from './components/Team';
+import Quiz from './screens/adminQuiz/Quiz';
 
 const AppAdmin = () => {
  return (
@@ -65,7 +66,8 @@ const AppAdmin = () => {
       <Route path="/adminEbook/courses" component={AddminCourseScreen} />
       <Route path="/adminEbook/contents" component={AddminContentScreen} />
       <Route path="/adminEbook/details/:id" component={AddminDetailScreen} />
-
+      {/* for ebook path  */}
+      <Route path="/adminQuiz" component={Quiz} />
       {/* for eshop admin routes  */}
       <Route
        path="/adminEshop/product/:id/edit"

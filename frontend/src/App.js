@@ -73,6 +73,7 @@ const App = () => {
      <Route path="/adminElearn" component={AppAdmin} />
      <Route path="/adminEbook" component={AppAdmin} />
      <Route path="/adminEshop" component={AppAdmin} />
+     <Route path="/adminQuiz" component={AppAdmin} />
      {/* frontend */}
      <Route
       path="/elearning/mycourses/:eid"

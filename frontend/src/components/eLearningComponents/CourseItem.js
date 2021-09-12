@@ -62,6 +62,7 @@ const CourseItem = (props) => {
      <div className="d-none d-sm-block kh" style={{ height: '140px' }}>
       <h5 className="kh">{course.name}</h5>
       <small className="text-info kh">{course.courseType}</small>
+
       {/* <p className="kh">{course.description.slice(0, 50) + '...'}</p> */}
      </div>
      <div className="d-block d-sm-none kh" style={{ height: '115px' }}>

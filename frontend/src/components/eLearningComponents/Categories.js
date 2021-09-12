@@ -30,7 +30,7 @@ const panes = [
   ),
  },
  {
-  menuItem: 'ផ្នែកប្រព័ន្ធបញ្ចារ',
+  menuItem: 'ផ្នែកប្រព័ន្ធបញ្ចា',
   render: () => (
    <CoursesShow
     courseType="EmbededSystem"
