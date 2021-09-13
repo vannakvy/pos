@@ -4,6 +4,10 @@ import "./Map.css";
 import { showDataOnMap } from "./util";
 
 function Map({ countries, casesType, center, zoom }) {
+  
+  if(center===undefined){
+    center={ lat: 34.80746, lng: -40.4796 };
+  }
   return (
     <div className="map">
       <LeafletMap center={center} zoom={zoom}>
