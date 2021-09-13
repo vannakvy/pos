@@ -16,6 +16,7 @@ import Map from "./Map";
 import "leaflet/dist/leaflet.css";
 import { Loader } from 'semantic-ui-react';
 import DropdownExampleSearchSelection from "./Dropdown";
+import { BiFontFamily } from "react-icons/bi";
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -67,7 +68,7 @@ const App = () => {
       .then((data) => {
         setInputCountry(countryCode);
         setCountryInfo(data);
-        setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
+        setMapCenter();
         setMapZoom(4);
       });
   };
@@ -107,18 +108,18 @@ const App = () => {
       </Card>
       <div className="app__left">
         <div className="app__header">
-          <h1 className="ti">តារាងតាមដាន កូវិត​១៩ </h1>
+          <h1 className="ti">តារាងតាមដាន កូវីដ១៩ </h1>
           <FormControl className="app__dropdown">
             <Select
               variant="outlined"
               value={country}
               onChange={onCountryChange}
-            >
-              <MenuItem className="text-font" value="worldwide">
+              style={{fontFamily:"Kantumruy"}}>
+              <MenuItem style={{fontFamily:"Kantumruy"}} value="worldwide">
                 ទូទាំងពិភពលោក
               </MenuItem>
               {countries.map((country) => (
-                <MenuItem value={country.value}>{country.name}</MenuItem>
+                <MenuItem style={{fontFamily:"Kantumruy"}} value={country.value}>{country.name}</MenuItem>
               ))}
             </Select>
           </FormControl>
@@ -127,7 +128,8 @@ const App = () => {
           <InfoBox
             onClick={(e) => setCasesType("cases")}
             title="ករណីឆ្លង "
-            isRed
+            name="red"
+            isRed={true}
             active={casesType === "cases"}
             cases={prettyPrintStat(countryInfo.todayCases)}
             total={numeral(countryInfo.cases).format("0.0a")}
@@ -135,6 +137,7 @@ const App = () => {
           <InfoBox
             onClick={(e) => setCasesType("recovered")}
             title="ចំនួនជាសះស្បើយ"
+            name="green"
             active={casesType === "recovered"}
             cases={prettyPrintStat(countryInfo.todayRecovered)}
             total={numeral(countryInfo.recovered).format("0.0a")}
@@ -142,7 +145,8 @@ const App = () => {
           <InfoBox
             onClick={(e) => setCasesType("deaths")}
             title="ចំនួនអ្នកស្លាប់"
-            isRed
+            name="purple"
+            isPurple={true}
             active={casesType === "deaths"}
             cases={prettyPrintStat(countryInfo.todayDeaths)}
             total={numeral(countryInfo.deaths).format("0.0a")}
