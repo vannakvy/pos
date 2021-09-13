@@ -25,7 +25,7 @@ const PageComEbook = () => {
      <div className="row p-3">
       <div className="col-lg-1"></div>
       <div className="col-lg-10">
-       <h1 className="kh p-3 p-sm-0">ឬក៏អាចរៀនបានតាមរយៈការអាន</h1>
+       <h2 className="kh p-3 p-sm-0">ឬក៏អាចរៀនបានតាមរយៈការអាន</h2>
        <p className="lead kh mt-4" style={{ fontSize: 16 }}>
         <span className="ml-5"></span> ជាងនេះទៅទៀតអ្នកក៏អាចអាន
         និងស្វែងយល់ឲ្យកាន់តែស៊ីជម្រៅបន្ថែមទៀតនៅក្នុងការរៀនជាការអាន​ដែលមានការ
