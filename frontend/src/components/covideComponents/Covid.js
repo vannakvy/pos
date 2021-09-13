@@ -33,7 +33,6 @@ const App = () => {
     fetch("https://disease.sh/v3/covid-19/all")
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         setCountryInfo(data);
       });
   }, []);
@@ -47,7 +46,6 @@ const App = () => {
             name: country.country,
             value: country.countryInfo.iso2,
           }));
-          console.log(data);
           let sortedData = sortData(data);
           setCountries(countries);
           setMapCountries(data);
@@ -59,19 +57,31 @@ const App = () => {
 
   const onCountryChange = async (e) => {
     const countryCode = e.target.value;
+
     const url =
       countryCode === "worldwide"
         ? "https://disease.sh/v3/covid-19/all"
         : `https://disease.sh/v3/covid-19/countries/${countryCode}`;
+
+        
     await fetch(url)
       .then((response) => response.json())
       .then((data) => {
         setInputCountry(countryCode);
         setCountryInfo(data);
-        setMapCenter();
+        if(data.countryInfo===undefined){
+            setMapCenter([34.80746, -40.4796]);
+          
+        }else{
+            setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
+        }
         setMapZoom(4);
+      }).catch(error=>{
+        alert(error);
       });
   };
+
+
 
   useEffect(() => {
       setTimeout(function() { 
@@ -79,7 +89,6 @@ const App = () => {
       }.bind(this), 1000)
   }, []);
 
- 
 
   if(loading==true){
       return( 

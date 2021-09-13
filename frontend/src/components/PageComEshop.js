@@ -35,9 +35,9 @@ const PageComEshop = () => {
      <div className="row p-3">
       <div className="col-lg-1"></div>
       <div className="col-lg-10">
-       <h1 className="kh p-3 p-sm-0">
+       <h2 className="kh p-3 p-sm-0">
         និងអាចទិញគ្រឿងសម្ភារៈដើម្បីអនុវត្ដយ៉ាងងាយស្រួល និងសុវត្ដិភាព
-       </h1>
+       </h2>
        <p className="lead kh mt-4" style={{ fontSize: 16 }}>
         <span className="ml-5"></span>{' '}
         យើងក៏មានលក់នូវគ្រឿងឧបករណ៍អេឡិចត្រូនិចដើម្បីជាជំនួយដល់ការរៀននិងអនុវត្ដបន្ថែម
