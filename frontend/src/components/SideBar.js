@@ -189,6 +189,29 @@ const SideBar = () => {
    <div
     aria-expanded={false}
     aria-controls="mulEshop"
+    onClick={() => setActiveNav('quiz')}
+   >
+    <SideBarRow
+     text={'លំហាត់'}
+     goTo={'/adminQuiz'}
+     icon={'fas fa-dumbbell'}
+     mar={true}
+     id={'quiz'}
+     activeNav={activeNav}
+    />
+   </div>
+
+   <div onClick={() => setActiveNav('quiz')}>
+    <SideBarRowComponents
+     text={'លំហាត់'}
+     goTo={'/adminQuiz'}
+     icon={'fas fa-feather-alt'}
+    />
+   </div>
+
+   <div
+    aria-expanded={false}
+    aria-controls="mulEshop"
     onClick={() => setActiveNav('eshop')}
    >
     <SideBarRow
