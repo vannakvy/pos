@@ -28,6 +28,7 @@ const App = () => {
   const [casesType, setCasesType] = useState("cases");
   const [mapCenter, setMapCenter] = useState({ lat: 34.80746, lng: -40.4796 });
   const [mapZoom, setMapZoom] = useState(3);
+  const [worldwide, setWorldWide] = useState([]);
 
   useEffect(() => {
     fetch("https://disease.sh/v3/covid-19/all")
@@ -49,6 +50,7 @@ const App = () => {
           let sortedData = sortData(data);
           setCountries(countries);
           setMapCountries(data);
+          setWorldWide(data);
           setTableData(sortedData);
         });
     };
@@ -69,6 +71,7 @@ const App = () => {
       .then((data) => {
         setInputCountry(countryCode);
         setCountryInfo(data);
+        setMapCountries(countryCode === "worldwide" ? worldwide : [data]);
         if(data.countryInfo===undefined){
             setMapCenter([34.80746, -40.4796]);
           
