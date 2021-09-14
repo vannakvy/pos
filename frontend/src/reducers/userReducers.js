@@ -40,12 +40,19 @@ export const userRegisterReducer = (state = {}, action) => {
  }
 };
 
-export const userListReducer = (state = { users: [] }, action) => {
+export const userListReducer = (state = {}, action) => {
  switch (action.type) {
   case USER_LIST_REQUEST:
-   return { loading: true, users: [] };
+   return { loading: true };
   case USER_LIST_SUCCESS:
-   return { loading: false, users: action.payload };
+   return {
+    loading: false,
+    users: [],
+    // users: action.payload.users,
+    // page: action.payload.page,
+    // pages: action.payload.pages,
+    // count: action.payload.count,
+   };
   case USER_LIST_FAIL:
    return { loading: false, error: action.payload };
   case USER_LIST_RESET:

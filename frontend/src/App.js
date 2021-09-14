@@ -132,6 +132,7 @@ const App = () => {
      <Route path="/login" component={LoginScreen} />
      <Route path="/register" component={RegisterScreen} />
      <Route path="/" exact component={Dashboard} />
+     <Route component={Dashboard} />
     </Switch>
 
     <NavLink

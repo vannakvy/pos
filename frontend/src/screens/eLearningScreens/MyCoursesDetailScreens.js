@@ -119,13 +119,13 @@ const MyCoursesDetailScreen = () => {
               className="w-100 h-100 position-absolute px-3 pb-5 d-flex align-items-center"
              >
               <div>
-               <h1
-                className="text-light ubuntu mb-4"
-                style={{ fontSize: '2.9rem', maxWidth: '450px' }}
+               <h2
+                className="text-info kh mb-4"
+                style={{ fontSize: '2.5rem', maxWidth: '600px' }}
                >
                 {enrollDetail.courseId.name}
-               </h1>
-               <p className="ubuntu text-info">
+               </h2>
+               <p className="kh text-warning">
                 {enrollDetail.courseId.courseType}
                </p>
                {plays && plays.videoNotWatch && plays.videoNotWatch._id ? (

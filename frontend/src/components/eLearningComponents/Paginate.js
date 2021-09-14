@@ -18,7 +18,13 @@ const Paginate = ({
       key={x + 1}
       to={
        locate === 'users'
-        ? ''
+        ? keyword
+          ? `/adminUsers/users/page/${x + 1}?keyword=${keyword}`
+          : `/adminUsers/users/page/${x + 1}`
+        : locate === 'usersGeneral'
+        ? keyword
+          ? `/adminUsers/generals/page/${x + 1}?keyword=${keyword}`
+          : `/adminUsers/generals/page/${x + 1}`
         : locate === 'elearnDash'
         ? `/elearning/search/page/${x + 1}?keyword=${keyword}`
         : !isAdmin

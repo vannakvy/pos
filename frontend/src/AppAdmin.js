@@ -30,6 +30,8 @@ import EshopDashboard from './screens/eShopScreens/EshopDashboard';
 import Test from './screens/eShopScreens/Test';
 import Team from './components/Team';
 import Quiz from './screens/adminQuiz/Quiz';
+import UserTypeAdmin from './screens/adminUsers/UserTypeAdmin';
+import UserTypeNormal from './screens/adminUsers/UserTypeNormal';
 
 const AppAdmin = () => {
  return (
@@ -100,7 +102,14 @@ const AppAdmin = () => {
       <Route path="/adminEshop/stockDetail/:id" component={StockDetail} />
       <Route path="/adminEshop" component={EshopDashboard} />
       <Route path="/adminUsers/:uid/details" component={UserDetails} />
+      <Route path="/adminUsers/users/page/:pageNumber" component={AdminUsers} />
       <Route path="/adminUsers/users" component={AdminUsers} />
+      <Route path="/adminUsers/admins" component={UserTypeAdmin} />
+      <Route
+       path="/adminUsers/generals/page/:pageNumber"
+       component={UserTypeNormal}
+      />
+      <Route path="/adminUsers/generals" component={UserTypeNormal} />
      </Switch>
     </div>
    </div>
