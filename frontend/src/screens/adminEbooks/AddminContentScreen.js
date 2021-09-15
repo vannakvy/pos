@@ -11,6 +11,7 @@ import { getDetailByContentId } from '../../actions/eBookActions/eBookDetailActi
 import { FaTrash, FaEdit, FaExternalLinkAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import Loader from '../../components/Loader';
+import ModalSize from '../../components/Modal';
 
 const AddminContentScreen = () => {
  // const history = useHistory();
@@ -135,7 +136,7 @@ const AddminContentScreen = () => {
      </div>
     </form>
 
-    <table className="table-sm table-striped w-100 rounded">
+    <table className="table-sm table-striped w-100 rounded table-info">
      <thead className="bg-light text-dark">
       <tr className="bg-dark text-light">
        <th scope="col">No#</th>
@@ -148,7 +149,7 @@ const AddminContentScreen = () => {
       {loading ? (
        <tr>
         <td colspan="4">
-         <Loader wd={100} hg={100} />
+         <Loader wd={100} hg={100} color="black" />
         </td>
        </tr>
       ) : (
@@ -165,7 +166,7 @@ const AddminContentScreen = () => {
              data-target="#contentControl"
              aria-expanded="true"
              aria-controls="contentControl"
-             className="text-primary"
+             className="text-warning"
              style={{ cursor: 'pointer' }}
              onClick={() => {
               setTitle(conten.title);
@@ -173,17 +174,28 @@ const AddminContentScreen = () => {
               setContentId(conten._id);
              }}
             />
+
             <FaTrash
-             onClick={() => dispatch(deleteContent(conten._id))}
+             //  onClick={() => dispatch(deleteContent(conten._id))}
              style={{ cursor: 'pointer' }}
              className="text-danger ml-4"
+             data-bs-toggle="modal"
+             data-bs-target={`#id${conten._id}`}
             />
             <Link to={`/adminEbook/details/${conten._id}`}>
              <FaExternalLinkAlt
-              className="text-light ml-4"
+              className="text-dark ml-4"
               style={{ cursor: 'pointer' }}
              />
             </Link>
+
+            <ModalSize
+             id={conten._id}
+             text={`លុប ${conten.title} ?`}
+             size={'sm'}
+             btn="danger"
+             funs={() => dispatch(deleteContent(conten._id))}
+            />
            </td>
           </tr>
          ))}

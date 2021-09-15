@@ -14,6 +14,7 @@ import Comment from '../../components/eLearningComponents/comment';
 import Footer from '../../components/Footer';
 import ReactHtmlParser from 'html-react-parser';
 import RatingElearn from '../../components/eLearningComponents/RatingElearn';
+import { GET_ENROLL_SECTION_RESET } from '../../constants/eLearningConstants/enrollConstants';
 
 const MyCoursesDetailScreen = () => {
  const { eid } = useParams();
@@ -42,6 +43,7 @@ const MyCoursesDetailScreen = () => {
  }, [dispatch, eid]);
 
  useEffect(() => {
+  dispatch({ type: GET_ENROLL_SECTION_RESET });
   if (enrollDetail) {
    dispatch(
     getEnrollSections(
@@ -55,7 +57,7 @@ const MyCoursesDetailScreen = () => {
     )
    );
   }
- }, [dispatch, enrollDetail]);
+ }, [dispatch, enrollDetail, eid]);
 
  const courseDetailLink = (id) => {
   history.push(

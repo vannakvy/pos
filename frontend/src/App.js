@@ -122,7 +122,7 @@ const App = () => {
      <Route path="/eshop/shipping" component={ShippingScreen} />
      <Route path="/eshop/product/:id" component={ProductScreen} />
      <Route path="/eshop/cart/:id?" component={CartScreen} />
-     <Route path="/eshop/profile" component={ProfileScreen} />
+     <Route path="/profile" component={ProfileScreen} />
      <Route path="/eshop/myorder" component={MyOrderScreen} />
      <Route path="/eshop/search/:keyword" component={HomeScreen} exact />
      <Route path="/eshop/page/:pageNumber" component={HomeScreen} exact />
