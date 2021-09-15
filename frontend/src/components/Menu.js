@@ -39,7 +39,7 @@ export default function FadeMenu(props) {
 
  const userProfile = () => {
   handleClose();
-  history.push('/eshop/profile');
+  history.push('/profile');
  };
 
  return (

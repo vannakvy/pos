@@ -4,40 +4,95 @@ import CountUp from 'react-countup';
 import { useDispatch, useSelector } from 'react-redux';
 import VisibilitySensor from 'react-visibility-sensor';
 import { getUserList, SearchUser } from '../../actions/userActions/userActions';
-import App from '../../components/eLearningComponents/ChartStudent';
 import Loader from '../../components/Loader';
 import Message from '../../components/Message';
-import { USER_LIST_RESET } from '../../constants/userConstants';
 import { BsSearch } from 'react-icons/bs';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import ConvertNum from '../../components/eLearningComponents/ConvertNum';
 import profile from '../../img/profile.png';
+import queryString from 'query-string';
+import Paginate from '../../components/eLearningComponents/Paginate';
+import axios from 'axios';
 
-const AdminUsers = () => {
- let i = 1;
- const [keyword, setKeyword] = useState('');
+const AdminUsers = ({ match }) => {
+ const pageNumber = match.params.pageNumber || 1;
+ const location = useLocation();
+ const query = queryString.parse(location.search);
+ const keyword = query.keyword || '';
+ const typeUser = query.typeUser;
+ let i = 1 + 15 * (pageNumber - 1);
+ const [totalAdmin, setTotalAdmin] = useState(0);
+ const [totalNormalUser, setTotalNormalUser] = useState(0);
+ const [totalUser, setTotalUser] = useState(0);
 
  const dispatch = useDispatch();
  const history = useHistory();
 
+ const { userInfo } = useSelector((state) => state.userLogin);
  const userList = useSelector((state) => state.userList);
- const { loading: loadingUserList, error: errorUserList, users } = userList;
+ const {
+  loading: loadingUserList,
+  error: errorUserList,
+  users,
+  count,
+  page,
+  pages,
+ } = userList;
 
  useEffect(() => {
   window.scroll(0, 0);
-  dispatch({ type: USER_LIST_RESET });
-  dispatch(getUserList());
- }, [dispatch]);
+  // dispatch({ type: USER_LIST_RESET });
+  dispatch(getUserList(keyword, typeUser, pageNumber, 15));
+ }, [dispatch, keyword, typeUser, pageNumber]);
+
+ useEffect(() => {
+  userAdmin();
+  userNormal();
+  userTotal();
+ }, []);
+
+ const userAdmin = async () => {
+  const config = {
+   headers: {
+    Authorization: `Bearer ${userInfo.token}`,
+    'Content-Type': 'application/json',
+   },
+  };
+  const { data } = await axios.get(`/api/users?type=admin`, config);
+  setTotalAdmin(data.count);
+ };
+ const userTotal = async () => {
+  const config = {
+   headers: {
+    Authorization: `Bearer ${userInfo.token}`,
+    'Content-Type': 'application/json',
+   },
+  };
+  const { data } = await axios.get(`/api/users`, config);
+  setTotalUser(data.count);
+ };
+
+ const userNormal = async () => {
+  const config = {
+   headers: {
+    Authorization: `Bearer ${userInfo.token}`,
+    'Content-Type': 'application/json',
+   },
+  };
+  const { data } = await axios.get(`/api/users?type=users`, config);
+  setTotalNormalUser(data.count);
+ };
 
  const onChangeSearchUser = (e) => {
   const { value } = e.target;
-  setKeyword(value);
-  dispatch(SearchUser(value));
+  // setKeyword(value);
+  // dispatch(SearchUser(value));
+  history.push(`/adminUsers/users/page/1?keyword=${value}`);
  };
 
  const onSubmitSearch = (e) => {
   e.preventDefault();
-  dispatch(SearchUser(keyword));
+  history.push(`/adminUsers/users/page/1?keyword=${e.target.search.value}`);
  };
 
  const userDetails = (uid) => {
@@ -51,6 +106,7 @@ const AdminUsers = () => {
    <div className="row mt-2">
     <div className="col-xl-4 col-lg-12 py-1">
      <div
+      onClick={() => history.push(`/adminUsers/users`)}
       className="adminHover shadow"
       style={{
        padding: '20px 30px',
@@ -67,18 +123,13 @@ const AdminUsers = () => {
        className="text-right fw-bold"
        style={{ fontSize: '50px', color: 'rgb(235,235,235)' }}
       >
-       <CountUp end={4000} duration={3} redraw={false}>
-        {({ countUpRef, start }) => (
-         <VisibilitySensor onChange={start} delayedCall>
-          <span ref={countUpRef} />
-         </VisibilitySensor>
-        )}
-       </CountUp>
+       {totalUser}
       </h1>
      </div>
     </div>
     <div className="col-xl-4 col-lg-6 py-1">
      <div
+      onClick={() => history.push(`/adminUsers/users?typeUser=admin`)}
       className="bg-info adminHover shadow"
       style={{ padding: '20px 30px', height: '150px', borderRadius: '10px' }}
      >
@@ -90,18 +141,13 @@ const AdminUsers = () => {
        className="text-right fw-bold text-light"
        style={{ fontSize: '50px', color: 'rgb(235,235,235)' }}
       >
-       <CountUp end={4000} duration={3} redraw={false}>
-        {({ countUpRef, start }) => (
-         <VisibilitySensor onChange={start} delayedCall>
-          <span ref={countUpRef} />
-         </VisibilitySensor>
-        )}
-       </CountUp>
+       {totalAdmin}
       </h1>
      </div>
     </div>
     <div className="col-xl-4 col-lg-6 py-1">
      <div
+      onClick={() => history.push(`/adminUsers/users?typeUser=users`)}
       className="bg-info adminHover shadow"
       style={{ padding: '20px 30px', height: '150px', borderRadius: '10px' }}
      >
@@ -113,13 +159,7 @@ const AdminUsers = () => {
        className="text-right fw-bold text-light"
        style={{ fontSize: '50px' }}
       >
-       <CountUp end={4000} duration={3} redraw={false}>
-        {({ countUpRef, start }) => (
-         <VisibilitySensor onChange={start} delayedCall>
-          <span ref={countUpRef} />
-         </VisibilitySensor>
-        )}
-       </CountUp>
+       {totalNormalUser}
       </h1>
      </div>
     </div>
@@ -141,6 +181,7 @@ const AdminUsers = () => {
        aria-label="Username"
        aria-describedby="basic-addon1"
        onChange={onChangeSearchUser}
+       name="search"
       />
       <div className="input-group-prepend">
        <button type="submit" className="input-group-text btn rounded bg-dark">
@@ -151,7 +192,7 @@ const AdminUsers = () => {
     </form>
    </div>
 
-   <div className="">
+   <div>
     {loadingUserList ? (
      <Loader wd={40} hg={40} />
     ) : errorUserList ? (
@@ -216,13 +257,19 @@ const AdminUsers = () => {
              variant="info"
              size="sm"
             >
-             <i className="fas fa-external-link-alt"></i>
+             <i className="fas fa-external-link-alt text-dark fw-bold"></i>
             </Button>
            </td>
           </tr>
          ))}
        </tbody>
       </table>
+      <Paginate
+       locate="users"
+       pages={pages}
+       page={page}
+       keyword={keyword ? keyword : ''}
+      />
      </>
     )}
    </div>

@@ -10,6 +10,8 @@ import Paper from '@material-ui/core/Paper';
 import axios from 'axios';
 import { Form } from 'react-bootstrap';
 import Loader from '../Loader';
+import IconButton from '@material-ui/core/IconButton';
+import PhotoCamera from '@material-ui/icons/PhotoCamera';
 
 function TabPanel(props) {
  const { children, value, index, ...other } = props;
@@ -133,14 +135,26 @@ export default function SimpleTabs(props) {
       <Tab label="កូដអនុវត្ដ" {...a11yProps(2)} />
      </Tabs>
      <div className="position-relative">
-      <Form.File
+      <input
+       accept="image/*"
+       className="d-none"
+       id="icon-button-file"
+       type="file"
+       onChange={uploadFileHandler}
+      />
+      <label htmlFor="icon-button-file">
+       <IconButton color="primary" aria-label="upload picture" component="span">
+        <PhotoCamera />
+       </IconButton>
+      </label>
+      {/* <Form.File
        className="rounded bg-info"
        style={{ marginTop: 2 }}
        id="image-file"
        label="បញ្ចូលរូបភាព"
        custom
        onChange={uploadFileHandler}
-      ></Form.File>
+      ></Form.File> */}
       {upLoading && (
        <span className="position-absolute" style={{ top: 10, left: -40 }}>
         <Loader />

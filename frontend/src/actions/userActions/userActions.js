@@ -189,37 +189,42 @@ export const registerByGoogle = () => async (dispatch) => {
  }
 };
 
-export const getUserList = () => async (dispatch, getState) => {
- try {
-  dispatch({ type: USER_LIST_REQUEST });
+export const getUserList =
+ (keyword = '', type = 'all users', pageNumber, pageSize) =>
+ async (dispatch, getState) => {
+  try {
+   dispatch({ type: USER_LIST_REQUEST });
 
-  const {
-   userLogin: { userInfo },
-  } = getState();
+   const {
+    userLogin: { userInfo },
+   } = getState();
 
-  const config = {
-   headers: {
-    Authorization: `Bearer ${userInfo.token}`,
-    'Content-Type': 'application/json',
-   },
-  };
+   const config = {
+    headers: {
+     Authorization: `Bearer ${userInfo.token}`,
+     'Content-Type': 'application/json',
+    },
+   };
 
-  const { data } = await axios.get('/api/users', config);
+   const { data } = await axios.get(
+    `/api/users?keyword=${keyword}&pageNumber=${pageNumber}&type=${type}&pageSize=${pageSize}`,
+    config
+   );
 
-  dispatch({
-   type: USER_LIST_SUCCESS,
-   payload: data,
-  });
- } catch (error) {
-  dispatch({
-   type: USER_LIST_FAIL,
-   payload:
-    error.response && error.response.data.message
-     ? error.response.data.message
-     : error.message,
-  });
- }
-};
+   dispatch({
+    type: USER_LIST_SUCCESS,
+    payload: data,
+   });
+  } catch (error) {
+   dispatch({
+    type: USER_LIST_FAIL,
+    payload:
+     error.response && error.response.data.message
+      ? error.response.data.message
+      : error.message,
+   });
+  }
+ };
 
 export const SearchUser = (keyword) => async (dispatch, getState) => {
  try {

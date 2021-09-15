@@ -135,8 +135,48 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 // @route   GET /api/users
 // @access  Private/Admin
 const getUsers = asyncHandler(async (req, res) => {
- const users = await User.find({});
- res.json(users);
+ const type = req.query.type || 'all users';
+ const pageSize = Number(req.query.pageSize) || 15;
+ const page = Number(req.query.pageNumber) || 1;
+ const keyword = req.query.keyword
+  ? {
+     name: {
+      $regex: req.query.keyword,
+      $options: 'i',
+     },
+    }
+  : {};
+
+ const userType =
+  type === 'users'
+   ? { isAdmin: false }
+   : type === 'admin'
+   ? { isAdmin: true }
+   : {};
+
+ if (Object.keys(keyword).length !== 0) {
+  const count = await User.countDocuments({ ...keyword });
+  const users = await User.find({ ...keyword })
+   .limit(pageSize)
+   .skip(pageSize * (page - 1));
+  res.json({
+   users,
+   page,
+   pages: Math.ceil(count / pageSize),
+   count,
+  });
+ } else {
+  const count = await User.countDocuments({ ...userType });
+  const users = await User.find({ ...userType })
+   .limit(pageSize)
+   .skip(pageSize * (page - 1));
+  res.json({
+   users,
+   page,
+   pages: Math.ceil(count / pageSize),
+   count,
+  });
+ }
 });
 
 const deleteUser = asyncHandler(async (req, res) => {

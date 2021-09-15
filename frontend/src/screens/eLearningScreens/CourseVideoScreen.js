@@ -12,7 +12,10 @@ import CourseContent from '../../components/eLearningComponents/CourseContent';
 import NotOwn from '../../components/eLearningComponents/NotOwn';
 import Loader from '../../components/Loader';
 import Message from '../../components/Message';
-import { COUSRE_ENROLL_RESET } from '../../constants/eLearningConstants/enrollConstants';
+import {
+ COUSRE_ENROLL_RESET,
+ GET_ENROLL_SECTION_RESET,
+} from '../../constants/eLearningConstants/enrollConstants';
 
 const CourseVideoScreen = () => {
  const { id, vid } = useParams();
@@ -25,6 +28,7 @@ const CourseVideoScreen = () => {
  const { loading: loadingEnroll, error: errorEnroll, enroll } = enrollCourse;
 
  useEffect(() => {
+  dispatch({ type: GET_ENROLL_SECTION_RESET });
   dispatch({ type: COUSRE_ENROLL_RESET });
   dispatch(getCourseEnroll(id));
  }, [dispatch, id]);

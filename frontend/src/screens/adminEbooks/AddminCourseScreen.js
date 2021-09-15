@@ -8,6 +8,7 @@ import {
  updateLanguage,
 } from '../../actions/eBookActions/eBookCourseActions';
 import Loader from '../../components/Loader';
+import ModalSize from '../../components/Modal';
 
 const AddminCourseScreen = () => {
  const dispatch = useDispatch();
@@ -32,9 +33,7 @@ const AddminCourseScreen = () => {
  };
 
  const deleteLang = (id) => {
-  if (window.confirm('Are you sure to delete it')) {
-   dispatch(deleteLanguage(id));
-  }
+  dispatch(deleteLanguage(id));
  };
 
  useEffect(() => {
@@ -124,7 +123,7 @@ const AddminCourseScreen = () => {
      </div>
     </div>
 
-    <table className="table-sm table-striped table-dark w-100 rounded">
+    <table className="table-sm table-striped table-info w-100 rounded">
      <thead className="bg-light text-dark">
       <tr>
        <th scope="col">No#</th>
@@ -164,10 +163,20 @@ const AddminCourseScreen = () => {
               aria-expanded="true"
               aria-controls="course"
              />
+
              <FaTrash
               style={{ cursor: 'pointer' }}
               className="text-danger ml-2"
-              onClick={() => deleteLang(course._id)}
+              // onClick={() => deleteLang(course._id)}
+              data-bs-toggle="modal"
+              data-bs-target={`#id${course._id}`}
+             />
+             <ModalSize
+              id={course._id}
+              text={`លុប ${course.title} ?`}
+              size={'sm'}
+              btn="danger"
+              funs={() => deleteLang(course._id)}
              />
             </td>
            </tr>

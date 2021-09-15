@@ -23,21 +23,29 @@ const EbookHomeScreen = () => {
 
  const gotoDetails = async (lang) => {
   dispatch({ type: LOADER_TOP_TRUE });
-  const { data } = await axios.get(`/api/ebook/courses/${lang}`);
-  dispatch({
-   type: GET_ONE_LANGUAGE_SUCCESS,
-   payload: data,
-  });
-  if (data && data[0]) {
-   const content = await axios.get(`/api/ebook/details/content/${data[0]._id}`);
-   if (content.data) {
-    dispatch({
-     type: GET_DETAIL_BY_CONTENT_ID_SUCCESS,
-     payload: content.data,
-    });
+  try {
+   const { data } = await axios.get(`/api/ebook/courses/${lang}`);
+   dispatch({
+    type: GET_ONE_LANGUAGE_SUCCESS,
+    payload: data,
+   });
+   if (data && data[0]) {
+    const content = await axios.get(
+     `/api/ebook/details/content/${data[0]._id}`
+    );
+    if (content.data) {
+     dispatch({
+      type: GET_DETAIL_BY_CONTENT_ID_SUCCESS,
+      payload: content.data,
+     });
+     dispatch({ type: LOADER_TOP_FALSE });
+     history.push(`/ebook/${lang}/${data[0]._id || 1}`);
+    }
+   } else {
     dispatch({ type: LOADER_TOP_FALSE });
-    history.push(`/ebook/${lang}/${data[0]._id || 1}`);
    }
+  } catch (error) {
+   dispatch({ type: LOADER_TOP_FALSE });
   }
  };
 
@@ -68,6 +76,7 @@ const EbookHomeScreen = () => {
          <button
           className="btn btn-light kh shadow-sm rounded-lg mb-4"
           style={{ width: 150 }}
+          onClick={() => history.push('/ebook/languages')}
          >
           ចាប់ផ្តើមរៀន <FaArrowAltCircleRight />
          </button>
@@ -97,6 +106,7 @@ const EbookHomeScreen = () => {
          <button
           className="btn btn-dark kh shadow-sm rounded-lg mb-4"
           style={{ width: 150 }}
+          onClick={() => gotoDetails('SCRATCH')}
          >
           ចាប់ផ្តើមរៀន <FaArrowAltCircleRight />
          </button>

@@ -111,9 +111,9 @@ const CourseDetailsScreen = ({ match }) => {
         >
          <div className="row h-100">
           <div className="col-md-8 d-none d-lg-block mt-5 pt-3">
-           <h1 style={{ fontSize: '3rem' }} className="kh text-info">
+           <h2 style={{ fontSize: '2.4rem' }} className="kh text-info">
             {course.name}
-           </h1>
+           </h2>
            <div className="mt-5">
             <p className="text-light">{course.courseType}</p>
 
