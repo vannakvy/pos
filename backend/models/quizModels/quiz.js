@@ -1,12 +1,12 @@
 import mongoose from 'mongoose' 
 
 const quizeSchema = mongoose.Schema({
-    title:String,
+    name:String,
     course:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"Course"
     },
-    courseTitle:String,
+    category:String,
     courseImage:String,
     duration:Number,
     questions:[

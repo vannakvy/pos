@@ -208,6 +208,13 @@ const SideBar = () => {
      icon={'fas fa-feather-alt'}
     />
    </div>
+   <div onClick={() => setActiveNav('quiz1')}>
+    <SideBarRowComponents
+     text={'បញូលលំហាត់'}
+     goTo={'/adminQuiz'}
+     icon={'fas fa-feather-alt'}
+    />
+   </div>
 
    <div
     aria-expanded={false}

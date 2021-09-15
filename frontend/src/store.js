@@ -108,6 +108,10 @@ import {
  purchaseListReducer,
  purchaseDetailsReducer,
 } from './reducers/eShopReducers/purchaseReducers';
+
+import { quizCreateReducer,quizUpdateReducer,quizDeleteReducer,quizListReducers  } from './reducers/quizReducers/quiz.js';
+
+
 import {dataEshopDashboard} from './reducers/eShopReducers/dashboardReducer'
 import { NotifyByUserReducer } from './reducers/notifyReducers.js';
 import { commentsReducers } from './reducers/comment.js';
@@ -208,7 +212,15 @@ const reducer = combineReducers({
  purchaseCreate: purchaseCreateReducer,
  purchaseList: purchaseListReducer,
  purchaseDetail: purchaseDetailsReducer,
+ //quiz
+
+ quizLists: quizListReducers,
+ quizDelete: quizDeleteReducer,
+ quizCreate: quizCreateReducer,
+ quizUpdate: quizUpdateReducer,
 });
+
+
 
 const userInfoFromStorage = localStorage.getItem('userInfo')
  ? JSON.parse(localStorage.getItem('userInfo'))

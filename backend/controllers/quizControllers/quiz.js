@@ -1,22 +1,19 @@
 import asyncHandler from 'express-async-handler';
-import Quiz from '../../models/quizModels/quiz'; 
+import Quiz from '../../models/quizModels/quiz.js'; 
 
 //@Desc add new quiz 
 //@Access admin
 
 const AddQuiz = asyncHandler(async (req, res) => {
     const {
-        title,
-        course,
-        courseTitle,
+        name,
+        category,
         duration
     } = req.body;
-  
     try {
         const quiz = new Quiz({
-        title,
-        course,
-        courseTitle,
+        name,
+        category,
         duration
         });
 
@@ -24,10 +21,11 @@ const AddQuiz = asyncHandler(async (req, res) => {
             throw new Error("មិនអាចបង្កើតបានទេ");
         }
 
-        const createdQuiz = await Quiz.save();
+        const createdQuiz = await quiz.save();
         res.status(201).json(createdQuiz);
     } catch (error) {
-        throw new Error("មិនអាចបង្កើតបានទេ");
+      console.log(error)
+        throw new Error(error.message);
     }
 
   });
@@ -36,28 +34,29 @@ const AddQuiz = asyncHandler(async (req, res) => {
   //@Access admin
   const updateQuiz = asyncHandler(async (req, res) => {
     const {
-        title,
-        course,
+        name,
+        category,
         duration,
-        courseTitle,
-        quizId
     } = req.body;
+    const proId = req.params.id
+  
   
     try {
-const update = await Quiz.findByIdAndUpdate(quizId,{
-    title:title,
-    course:course,
-    duration:duration,
-    courseTitle:courseTitle,
+      const update = await Quiz.updateOne({_id:proId}
+  ,{
+    $set:{
+    "name":name,
+    "category":category,
+    "duration":duration,
+  }
 });
+
         if(!update){
             throw new Error("មិនអាចកែបានទេ");
         }
-
-      
         res.status(201).json(update);
     } catch (error) {
-        throw new Error("មិនអាចកែបានទេ");
+        throw new Error(error.message);
     }
 
   });
@@ -65,9 +64,7 @@ const update = await Quiz.findByIdAndUpdate(quizId,{
 //@Desc delete quiz
 //@Access admin
   const deleteQuiz = asyncHandler(async (req, res) => {
-    const {
-        quizId
-    } = req.body;
+   const quizId = req.params.id;
   
     try {
     const deleted = await Quiz.findByIdAndDelete(quizId);
@@ -83,7 +80,9 @@ const update = await Quiz.findByIdAndUpdate(quizId,{
   //@Desc get all quiz
 //@Access protected || admin
 const getAllQuizes = asyncHandler(async (req, res) => {
+  console.log(req.body)
     const quizes = await Quiz.find({});
+
         res.status(201).json(quizes);
   });
 
@@ -191,6 +190,13 @@ const getQuizByCourseId = asyncHandler(async (req, res) => {
 //     }
 //   });
 
-
-
-
+export {
+  getAllQuizes,
+  AddQuiz,
+  getQuizById,
+  updateQuestion,
+  addQuestion,
+  getQuizByCourseId,
+  deleteQuiz,
+  updateQuiz
+}
