@@ -2,17 +2,14 @@ import mongoose from "mongoose";
 
 const orderSchema = mongoose.Schema(
   {
-    user: {
-      type: mongoose.Schema.Types.ObjectId,
-      required: true,
-      ref: "User",
+    client: {
+      type: String,
     },
     orderItems: [
       {
         name: { type: String, required: true },
         qty: { type: Number, required: true },
-        image: { type: String, required: true },
-        salePrice: { type: Number, required: true },
+        price: { type: Number, required: true },
         product: {
           type: mongoose.Schema.Types.ObjectId,
           required: true,
@@ -20,26 +17,13 @@ const orderSchema = mongoose.Schema(
         },
       },
     ],
-    shippingAddress: {
-      address: { type: String, required: true },
-      city: { type: String, required: true },
-      postalCode: { type: String, required: true },
-      country: { type: String, required: true },
-    },
+    shippingAddress: String,
     paymentMethod: {
       type: String,
-      required: true,
     },
-    paymentResult: {
-      id: { type: String },
-      status: { type: String },
-      update_time: { type: String },
-      email_address: { type: String },
-      image: { type: String },
-    },
+
     taxPrice: {
       type: Number,
-      required: true,
       default: 0.0,
     },
     shippingPrice: {
@@ -68,6 +52,10 @@ const orderSchema = mongoose.Schema(
     deliveredAt: {
       type: Date,
     },
+    discount:{
+      type:Number,
+      default: 0
+    }
   },
   {
     timestamps: true,
