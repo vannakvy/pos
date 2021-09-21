@@ -8,7 +8,9 @@ import Order from '../../models/eShopModels/orderModel.js'
 
 const getSaleList = asyncHandler(async (req,res)=>{
     const data = await Order.aggregate([
+        {$match:{isPaid: true}},
         {$unwind:"$orderItems"},
+        
         {$group:{_id:"$orderItems.name",totalQty:{$sum:"$orderItems.qty"} ,totalSaleAmount: { $sum: { $multiply: [ "$orderItems.price", "$orderItems.qty" ] } }}}
     ]);
     res.json(data)
@@ -23,6 +25,7 @@ const getSaleList = asyncHandler(async (req,res)=>{
 const getTotalSale = asyncHandler(async (req, res) => {
    
     const totalSaleToday = await Order.aggregate([
+        {$match:{isPaid: true}},
         {$match:{createdAt:{$gte:new Date(new Date().setUTCHours(0,0,0,0)),$lt: new Date(new Date().setUTCHours(23,59,59,59))}}},
         {
         $group: { 
@@ -35,7 +38,7 @@ const getTotalSale = asyncHandler(async (req, res) => {
     ])
     const totalProduct = await Product.countDocuments({});
     
-    const totalSale = await Order.aggregate([ { 
+    const totalSale = await Order.aggregate([{$match:{isPaid: true}}, { 
         $group: { 
             _id: null, 
             total: { 

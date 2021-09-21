@@ -3,22 +3,76 @@ import Product from "../../models/eShopModels/productModel.js";
 // @desc    Fetch all products
 // @route   GET /api/products
 // @access  Public
-const getProductWithPagination = asyncHandler(async (req, res) => {
-  const pageSize = 10;
+// const getProductWithPagination = asyncHandler(async (req, res) => {
+//   const pageSize = 10;
+//   const page = Number(req.query.pageNumber) || 1;
+//   const keyword = req.query.keyword
+//     ? {
+//         name: {
+//           $regex: req.query.keyword,
+//           $options: "i",
+//         },
+//       }
+//     : {};
+//   const count = await Product.countDocuments({ ...keyword });
+//   const products = await Product.find({ ...keyword })
+//     .limit(pageSize)
+//     .skip(pageSize * (page - 1));
+//   res.json({ products, page, pages: Math.ceil(count / pageSize) });
+// });
+
+
+const getOrderWithPagination = asyncHandler(async(req, res)=>{
+  // const options = {
+  //   page: 1,
+  //   limit: 10,
+  //   collation: {
+  //     locale: 'en',
+  //   },
+  // };
+
+  // `/api/eshop/products?keyword=${keyword}&pageNumber=${pageNumber}&limit=${limit}`
+
   const page = Number(req.query.pageNumber) || 1;
-  const keyword = req.query.keyword
-    ? {
-        name: {
-          $regex: req.query.keyword,
-          $options: "i",
-        },
-      }
-    : {};
-  const count = await Product.countDocuments({ ...keyword });
-  const products = await Product.find({ ...keyword })
-    .limit(pageSize)
-    .skip(pageSize * (page - 1));
-  res.json({ products, page, pages: Math.ceil(count / pageSize) });
+  const keyword = req.query.keyword;
+  const limit = req.query.limit||5;
+
+//for changing the label name we want 
+
+  const orderLabel = {
+    totalDocs: 'itemCount',
+    docs: 'products',
+    limit: 'perPage',
+    page: 'currentPage',
+    nextPage: 'next',
+    prevPage: 'prev',
+    totalPages: 'pageCount',
+    pagingCounter: 'slNo',
+    meta: 'paginator',
+  };
+  
+  const options = {
+    page: page,
+    limit: limit,
+    customLabels: orderLabel,
+  };
+  let query = {};
+  if(keyword){
+   query = {
+    $and: [
+      {
+        $or: [
+          { name: { $regex: keyword, $options: "i" } },
+          { category: { $regex: keyword, $options: "i" } },
+          { remark: { $regex: keyword, $options: "i" } },
+        ],
+      },]}
+    }
+
+const products = await Product.paginate(query,options);
+
+res.json(products)
+
 });
 
 // @desc    Fetch all products

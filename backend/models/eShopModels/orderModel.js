@@ -5,6 +5,9 @@ const orderSchema = mongoose.Schema(
     client: {
       type: String,
     },
+    invoiceID:{
+      type:String,
+    },
     orderItems: [
       {
         name: { type: String, required: true },
@@ -41,6 +44,7 @@ const orderSchema = mongoose.Schema(
       required: true,
       default: false,
     },
+    remark:String,
     paidAt: {
       type: Date,
     },
@@ -49,6 +53,7 @@ const orderSchema = mongoose.Schema(
       required: true,
       default: false,
     },
+    deliveredBy:String,
     deliveredAt: {
       type: Date,
     },
@@ -61,6 +66,8 @@ const orderSchema = mongoose.Schema(
     timestamps: true,
   }
 );
+
+
 
 const Order = mongoose.model("Order", orderSchema);
 
