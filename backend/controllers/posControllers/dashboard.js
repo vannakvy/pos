@@ -9,9 +9,8 @@ import Order from '../../models/eShopModels/orderModel.js'
 const getSaleList = asyncHandler(async (req,res)=>{
     const data = await Order.aggregate([
         {$unwind:"$orderItems"},
-        {$group:{_id:"orderItems.name", totalSaleAmount: { $sum: { $multiply: [ "$price", "$qty" ] } }}}
+        {$group:{_id:"$orderItems.name",totalQty:{$sum:"$orderItems.qty"} ,totalSaleAmount: { $sum: { $multiply: [ "$orderItems.price", "$orderItems.qty" ] } }}}
     ]);
-console.log(data)
     res.json(data)
 });
 
@@ -52,7 +51,6 @@ const getTotalSale = asyncHandler(async (req, res) => {
     });
   });
  
-
 export {
   getTotalSale,
   getSaleList
