@@ -7,16 +7,18 @@ import {
   createProduct,
   updateProduct,
   getTopProducts,
+  adjustStock
 } from '../../controllers/posControllers/product.js'
 // import { protect, admin } from '../../middleware/authMiddleware.js'
 
 router.route('/').get(getProducts).post(createProduct)
 // router.route('/:id/reviews').post(createProductReview)
 // router.get('/top', getTopProducts)
-// router
-//   .route('/:id')
-//   .get(getProductById)
-//   .delete(protect, admin, deleteProduct)
-//   .put(protect, admin, updateProduct)
+router.route('/:id/adjust').post(adjustStock);
+router
+  .route('/:id')
+  .get(getProductById)
+  .delete( deleteProduct) 
+  .put(updateProduct)
 
-export default router
+export default router 

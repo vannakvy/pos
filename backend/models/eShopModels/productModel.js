@@ -12,12 +12,16 @@ const productSchema = mongoose.Schema(
     },
     remark: {
       type: String,
-
     },
     inStock:{
       type: Number,
       default: 0
     },
+    active:{
+      type:Boolean,
+      default:true
+    },
+    unit:String,
     price: {
       type: Number,
       required: true,

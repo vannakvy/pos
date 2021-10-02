@@ -53,10 +53,16 @@ const orderSchema = mongoose.Schema(
       required: true,
       default: false,
     },
+    isCancel:{
+      type:Boolean,
+      default:false
+    },
+    cancelDate:Date,
     deliveredBy:String,
     deliveredAt: {
       type: Date,
     },
+    clientTel:String,
     discount:{
       type:Number,
       default: 0

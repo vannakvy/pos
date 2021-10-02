@@ -1,6 +1,7 @@
 import asyncHandler from "express-async-handler";
 import Product from "../../models/eShopModels/productModel.js";
 import Order from '../../models/eShopModels/orderModel.js'
+import Puchase from "../../models/eShopModels/purchaseModel.js";
 
 // @desc    Get sale group by product 
 // @route   GET /api/dashboard/salelist
@@ -53,8 +54,53 @@ const getTotalSale = asyncHandler(async (req, res) => {
         totalSaleToday:totalSaleToday
     });
   });
+
+  //@Desc get stock 
+const getStock = asyncHandler(async(req, res)=>{
+
+
+
+
+    // const stock = await Order.aggregate([
+    //     // {$match:{isPaid: true}},
+    //     {$unwind:"$orderItems"},
+    //     {$lookup:{
+    //         from: "puchases",
+    //         localField: "orderItems.product",
+    //         foreignField: "product",
+    //         as: "fd"
+    //     }}
+    // ]);
+    const stock1 =await Order.aggregate([
+        {$unwind:"$orderItems"},
+        {$group:{_id:"$orderItems.product",productName: {$first:"$orderItems.name"},unitPrice : { $first: '$orderItems.price' },
+        totalSaleQty:{$sum:"$orderItems.qty"},totalSaleAmount:{ $sum: { $multiply: [ "$orderItems.qty", "$orderItems.price" ] }}}}
+
+]);
+
+const stock2 = await Puchase.aggregate([
+    {$group:{_id:"$product",purchaseQty:{$sum:"$purchaseQty"},totalPurchaseAmount:{ $sum: { $multiply: [ "$purchasePrice", "$purchaseQty" ] }}}}
+]);
+
+ const joinArray = (arr1, arr2) => {
+    let arr = []
+    arr1.map(load => {
+        arr2.map(load1 => {
+            if(load1._id.toString() ===load._id.toString()){
+                arr.push({...load, ...load1})
+                
+            }
+        })
+    })
+  return arr;
+  }
+
+// console.log(joinArray(stock1,stock2));
+    res.json(joinArray(stock1,stock2))
+});
  
 export {
   getTotalSale,
-  getSaleList
+  getSaleList,
+  getStock
 };

@@ -1,5 +1,6 @@
 import asyncHandler from "express-async-handler";
 import Order from "../../models/eShopModels/orderModel.js";
+import Product from "../../models/eShopModels/productModel.js";
 // import Sale from '../../models/eShopModels/saleModel.js';
 
 // @desc    Create new order
@@ -18,8 +19,10 @@ const addOrderItems = asyncHandler(async (req, res) => {
     currency,
     invoiceID,
     deliveredBy,
+    clientTel,
     remark
   } = req.body;
+try {
   let exist = await Order.findOne({invoiceID:invoiceID});
   if(exist){
     throw new Error("the order with this invoice id is already exist");
@@ -43,10 +46,30 @@ const addOrderItems = asyncHandler(async (req, res) => {
       invoiceID,
       deliveredBy,
       remark,
+      clientTel
     });
     const createdOrder = await order.save();
-    res.status(201).json(createdOrder);
+    let updateProduct;
+    if(createdOrder){
+      for(let i=0;i<orderItems.length;i++){
+        updateProduct =  await Product.updateMany(
+          { _id: orderItems[i].product },
+          { $inc: { inStock: -orderItems[i].qty } }
+       );
+      }
+    }
+      
+    if(!updateProduct){
+      await Order.findByIdAndRemove(createdOrder._id);
+      res.json({success:false,message:"Purhcase Create but cannot update the purchase"});
+    }
+    res.status(201).json({success:true,message:"Purhcase Created "});
+
   }
+} catch (error) {
+  res.status(201).json({success:true,message:"Purhcase not Created "+error});
+}
+ 
 
   // res.json({ message: "d" });
 });
@@ -162,12 +185,44 @@ const updateOrderToPaid = asyncHandler(async (req, res) => {
   }
 });
 
+// @desc    Update order to cancel
+// @route   GET /api/orders/:id/pay
+// @access  Private
+const updateToCancel = asyncHandler(async (req, res) => {
+
+  try {
+    const order = await Order.findById(req.params.id);
+    if (order) {
+      order.isCancel = true;
+      order.cancelDate = Date.now();
+      const updatedOrder = await order.save();
+      if(!updatedOrder){
+        res.json({success:false,message:"Update Not worked !"});
+      }
+   let updateProduct;
+    let orderItems = order.orderItems;
+
+        for(let i=0;i<orderItems.length;i++){
+          updateProduct =  await Product.updateMany(
+            { _id: orderItems[i].product },
+            { $inc: { inStock: orderItems[i].qty } }
+         );
+        }
+  
+      res.json({success:true,message:"Update successfully !"});
+    }
+  } catch (error) {
+    res.status(404);
+    res.json({success:false,message:"Update not worked !" + error});
+  }
+
+});
+
 // @desc    Update order to delivered
 // @route   GET /api/orders/:id/deliver
 // @access  Private/Admin
 const updateOrderToDelivered = asyncHandler(async (req, res) => {
   const order = await Order.findById(req.params.id);
-
   if (order) {
     order.isDelivered = true;
     order.deliveredAt = Date.now();
@@ -179,7 +234,6 @@ const updateOrderToDelivered = asyncHandler(async (req, res) => {
   }
 });
 
-
 export {
   addOrderItems,
   getOrderById,
@@ -187,4 +241,5 @@ export {
   updateOrderToDelivered,
   deleteOrder,
   getOrders,
+  updateToCancel
 };

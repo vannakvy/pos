@@ -1,4 +1,4 @@
-// import path from 'path';
+import path from 'path';
 import express from 'express';
 import dotenv from 'dotenv';
 import colors from 'colors';
@@ -33,6 +33,7 @@ import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 import orderRoutes from './routes/posRoutes/order.js'
 import productRoutes from './routes/posRoutes/product.js'
 import dashboardRoutes from './routes/posRoutes/dashboard.js'
+import purchaseRoutes from './routes/posRoutes/purchase.js'
 
 
 dotenv.config();
@@ -49,6 +50,7 @@ app.use(express.json());
 app.use('/api/order', orderRoutes);
 app.use('/api/product', productRoutes);
 app.use('/api/dashboard', dashboardRoutes);
+app.use('/api/purchase', purchaseRoutes);
 
 
 
@@ -94,7 +96,7 @@ app.use('/api/dashboard', dashboardRoutes);
 
 // app.use('/adminEbook/details', express.static('./routes/eBookRoutes/uploads'))
 
-// const __dirname = path.resolve();
+const __dirname = path.resolve();
 
 // app.use(
 //  '/uploads/eLearningUploads',
@@ -128,17 +130,17 @@ app.use('/api/dashboard', dashboardRoutes);
 //  express.static(path.join(__dirname, '/frontend/build/.well-known'))
 // );
 
-// if (process.env.NODE_ENV === 'production') {
-//  app.use(express.static(path.join(__dirname, '/frontend/build')));
+if (process.env.NODE_ENV === 'production') {
+ app.use(express.static(path.join(__dirname, '/frontend/build')));
 
-//  app.get('*', (req, res) =>
-//   res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
-//  );
-// } else {
-//  app.get('/', (req, res) => {
-//   res.send('API is running....');
-//  });
-// }
+ app.get('*', (req, res) =>
+  res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
+ );
+} else {
+ app.get('/', (req, res) => {
+  res.send('API is running....');
+ });
+}
 
 app.use(notFound);
 app.use(errorHandler);
